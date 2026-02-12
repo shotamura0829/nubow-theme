@@ -34,9 +34,9 @@
 					<h3>
 						<span class="shop-name-with-icon">
 							<span class="shop-name">ヌボーラルブル</span>
+							<span class="shop-location">（長野駅ビルMIDORI長野1階）</span>
 							<a href="https://www.instagram.com/nubow.larbre/" target="_blank" rel="noopener noreferrer" class="shop-instagram-icon" aria-label="Instagram">Instagram</a>
 						</span>
-						<span class="shop-location">（長野駅ビルMIDORI長野1階）</span>
 					</h3>
 					<div class="shop-image-wrap">
 						<img src="<?php echo get_template_directory_uri(); ?>/img/page/shop-info_nubow-larbre_img01.jpg" alt="">

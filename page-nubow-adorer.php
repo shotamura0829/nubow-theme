@@ -34,9 +34,9 @@
 					<h3>
 						<span class="shop-name-with-icon">
 							<span class="shop-name">ヌボーアドレ</span>
+							<span class="shop-location">（長野市稲里 ツルヤ長野南店隣）</span>
 							<a href="https://www.instagram.com/nubow.adorer/" target="_blank" rel="noopener noreferrer" class="shop-instagram-icon" aria-label="Instagram">Instagram</a>
 						</span>
-						<span class="shop-location">（長野市稲里 ツルヤ長野南店隣）</span>
 					</h3>
 					<div class="shop-image-wrap">
 						<img src="<?php echo get_template_directory_uri(); ?>/img/page/shop-info_nubow-adorer_img01.jpg" alt="">

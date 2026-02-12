@@ -34,9 +34,9 @@
 					<h3>
 						<span class="shop-name-with-icon">
 							<span class="shop-name">ヌボーエール</span>
+							<span class="shop-location">（長野市西和田）</span>
 							<a href="https://www.instagram.com/hanasuki_insta/" target="_blank" rel="noopener noreferrer" class="shop-instagram-icon" aria-label="Instagram">Instagram</a>
 						</span>
-						<span class="shop-location">（長野市西和田）</span>
 					</h3>
 					<div class="shop-image-wrap">
 						<img src="<?php echo get_template_directory_uri(); ?>/img/page/shop-info_honten_img01.png" alt="ヌボーエール 店舗">

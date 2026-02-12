@@ -1707,12 +1707,18 @@ Shop (店舗紹介)
 .shop-name-with-icon {
     display: inline-flex;
     align-items: center;
-    white-space: nowrap;
+    flex-wrap: wrap;
+    gap: 0 8px;
 }
 
 .shop-name {
     white-space: nowrap;
 }
+
+/* 店舗詳細3ページ：PC時は 店舗名 → アイコン → 住所 の順で表示（.shop-location をブロック内に含めたため） */
+#page.shop-info .honten h3 .shop-name-with-icon .shop-name { order: 1; }
+#page.shop-info .honten h3 .shop-name-with-icon .shop-instagram-icon { order: 2; }
+#page.shop-info .honten h3 .shop-name-with-icon .shop-location { order: 3; }
 
 /* Shop list page - ロゴ画像の調整・PCでテキスト列を揃える */
 @media screen and (min-width: 1200px) {
@@ -1794,15 +1800,36 @@ Shop (店舗紹介)
         max-width: 25rem;
     }
     
-    /* 店舗詳細3ページ：SP時はInstagramを一段下に表示 */
-    #page.shop-info .honten h3 .shop-name-with-icon {
+    /* 店舗詳細3ページ：SP時は 1行目「店舗名（住所）」2行目「Instagram」※（住所）は小さめ */
+    #page.shop-info .honten h3 {
+        display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.6rem;
     }
-    #page.shop-info .honten h3 .shop-instagram-icon {
+    #page.shop-info .honten h3 .shop-name-with-icon {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 0.3em;
+    }
+    #page.shop-info .honten h3 .shop-name-with-icon .shop-name {
+        order: 1;
+    }
+    #page.shop-info .honten h3 .shop-name-with-icon .shop-location {
+        order: 2;
+        font-size: 0.7em;
+        font-weight: normal;
+    }
+    /* 店舗詳細のみ：SPでもアイコンは小さくしすぎない＆左詰め */
+    #page.shop-info .honten h3 .shop-name-with-icon .shop-instagram-icon {
+        order: 3;
+        flex: 0 0 auto;
+        display: block;
         margin-left: 0;
-        margin-top: 0.2rem;
+        margin-top: 1rem;
+        width: 5.5rem;
+        height: 5.5rem;
     }
 }
 
