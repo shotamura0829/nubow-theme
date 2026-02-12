@@ -33,8 +33,8 @@
 				<div class="honten">
 					<h3>
 						<span class="shop-name-with-icon">
-							<a href="https://www.instagram.com/nubow.larbre/" target="_blank" rel="noopener noreferrer" class="shop-instagram-icon" aria-label="Instagram">Instagram</a>
 							<span class="shop-name">ヌボーラルブル</span>
+							<a href="https://www.instagram.com/nubow.larbre/" target="_blank" rel="noopener noreferrer" class="shop-instagram-icon" aria-label="Instagram">Instagram</a>
 						</span>
 						<span class="shop-location">（長野駅ビルMIDORI長野1階）</span>
 					</h3>

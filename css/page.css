@@ -220,9 +220,17 @@ online-shop
 
 @media screen and (max-width: 1199px) {
     #page.online-shop h3 {font-size: 4.8rem; margin-bottom: 3.2rem;}
-    #page.online-shop .list {gap: 11.6rem;}
-    #page.online-shop a span {width: 60rem; height: 12rem; font-size: 3.8rem;}
-    #page.online-shop a span:after {width: 1.6rem; height: 2.6rem;}
+    #page.online-shop .list {flex-direction: column; gap: 11.6rem; align-items: stretch;}
+    #page.online-shop .list .box {max-width: 100%;}
+    #page.online-shop a span {
+        top: auto;
+        bottom: 2.5rem;
+        width: 52rem;
+        max-width: calc(100% - 4rem);
+        height: 10rem;
+        font-size: 3.4rem;
+    }
+    #page.online-shop a span:after {width: 1.4rem; height: 2.2rem;}
 }
 
 /* =================================================================
@@ -501,11 +509,27 @@ shop / nubow-aile / nubow-adorer / nubow-larbre の4ページで同一
     #page.shop-info .honten .map {margin-top: 6rem;}
     #page.shop-info .honten .map iframe {height: auto; aspect-ratio: 370 / 233;}
     
-    /* 共通CTA（4ページ共通） */
-    #page.shop-info .list.links {margin-top: 12rem;}
-    #page.shop-info .list.links .box {margin-top: 0;}
+    /* 共通CTA（4ページ共通）＝オンラインショップと同様 SPは1カラム・余白統一 */
+    #page.shop-info .list.links {
+        flex-direction: column;
+        gap: 11.6rem;
+        margin-top: 12rem;
+        align-items: stretch;
+    }
+    #page.shop-info .list.links .box {
+        margin-top: 0;
+        max-width: 100%;
+    }
     #page.shop-info .list.links .box + .box {margin-top: 0;}
-    #page.shop-info .list.links a span {top: 0; bottom: 0;}
+    #page.shop-info .list.links a span {
+        top: auto;
+        bottom: 2.5rem;
+        width: 52rem;
+        max-width: calc(100% - 4rem);
+        height: 10rem;
+        font-size: 3.4rem;
+    }
+    #page.shop-info .list.links a span:after {width: 1.4rem; height: 2.2rem;}
 }
 
 /* =================================================================
@@ -1662,17 +1686,22 @@ Service Detail - Celebration Orchid (御祝い胡蝶蘭)
 Shop (店舗紹介)
 =================================================================*/
 
-/* Instagram アイコンのスタイル */
+/* Instagram アイコンのスタイル（サイズ少し大きめ） */
 .shop-instagram-icon {
     display: inline-block;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235c4636"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>') no-repeat center;
     background-size: contain;
     vertical-align: middle;
     margin-right: 6px;
     text-indent: -9999px;
     overflow: hidden;
+}
+/* 店舗詳細3ページ：店舗名の右にアイコンを配置するため */
+#page.shop-info .honten h3 .shop-instagram-icon {
+    margin-right: 0;
+    margin-left: 8px;
 }
 
 .shop-name-with-icon {
@@ -1736,8 +1765,8 @@ Shop (店舗紹介)
 
 @media screen and (max-width: 1199px) {
     .shop-instagram-icon {
-        width: 3.6rem;
-        height: 3.6rem;
+        width: 4.2rem;
+        height: 4.2rem;
         margin-right: 1.2rem;
     }
     
@@ -1746,13 +1775,34 @@ Shop (店舗紹介)
         max-height: 40rem !important;
     }
     
+    /* 店舗詳細3ページのみ：メイン画像左上ロゴをモバイルで少し小さく */
+    #page.shop-info .honten .shop-logo-wrap {
+        top: 2rem;
+        left: 2rem;
+        padding: 1.2rem;
+    }
+    #page.shop-info .honten .shop-logo {
+        max-width: 18rem;
+    }
+    
+    /* 上記以外の .shop-logo-wrap / .shop-logo（店舗一覧など）は従来どおり */
     .shop-logo-wrap {
         top: 3rem;
         left: 3rem;
     }
-    
     .shop-logo {
         max-width: 25rem;
+    }
+    
+    /* 店舗詳細3ページ：SP時はInstagramを一段下に表示 */
+    #page.shop-info .honten h3 .shop-name-with-icon {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+    }
+    #page.shop-info .honten h3 .shop-instagram-icon {
+        margin-left: 0;
+        margin-top: 0.2rem;
     }
 }
 
@@ -2019,24 +2069,25 @@ About Us
         margin-top: 8rem;
     }
     
-    /* About Us CTA（SP）＝店舗紹介CTAと同じサイズ感 */
+    /* About Us CTA（SP）＝オンラインショップ・店舗紹介と同様 1カラム・余白統一 */
     #page.about .other-links .list {
-        gap: 4rem;
+        flex-direction: column;
+        gap: 11.6rem;
     }
     #page.about .other-links .list .box {
         max-width: 100%;
     }
     #page.about .other-links a span {
-        top: 0;
-        bottom: 0;
-        width: 60rem;
+        top: auto;
+        bottom: 2.5rem;
+        width: 52rem;
         max-width: calc(100% - 4rem);
-        height: 12rem;
-        font-size: 3.8rem;
+        height: 10rem;
+        font-size: 3.4rem;
     }
     #page.about .other-links a span:after {
-        width: 1.6rem;
-        height: 2.4rem;
+        width: 1.4rem;
+        height: 2.2rem;
     }
 }
 

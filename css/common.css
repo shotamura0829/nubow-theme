@@ -379,7 +379,7 @@ footer .sp-menu {display: none;}
 
 @media screen and (max-width: 1199px) {
 .other-links img {max-width: 100%;}
-.other-links a span {top: 0; bottom: 0; width: 60rem; height: 12rem; font-size: 3.8rem;}
+.other-links a span {top: auto; bottom: 2.5rem; width: 52rem; max-width: calc(100% - 4rem); height: 10rem; font-size: 3.4rem;}
 .other-links a span:after {width: 1.6rem; height: 2.4rem;}
 }
 
