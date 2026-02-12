@@ -1536,6 +1536,283 @@ Service Detail - Celebration Orchid (御祝い胡蝶蘭)
     line-height: 1.6;
 }
 
+/* ===============================
+   観葉植物（celebration-plants）専用スタイル
+   =============================== */
+
+/* 商品リスト */
+.celebration-plants-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px !important;
+}
+
+.celebration-plants-items .item {
+    width: calc((100% - 20px) / 2) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.celebration-plants-items .item img {
+    width: 100%;
+    max-width: 385px;
+    height: auto;
+    aspect-ratio: 1 / 1.2;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.celebration-plants-items .item h5 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px !important;
+}
+
+.celebration-plants-items .item h5 .name {
+    font-size: 18px !important;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.celebration-plants-items .item h5 .price {
+    font-size: 16px !important;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+.celebration-plants-items .item h5 .tax {
+    font-size: 14px !important;
+}
+
+.celebration-plants-items .item .size p {
+    font-size: 14px !important;
+    line-height: 1.8;
+    margin: 5px 0;
+}
+
+.celebration-plants-items .item .size .note {
+    font-size: 12px !important;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Serviceセクション */
+.plants-service {
+    margin-top: 80px;
+}
+
+.plants-service .service-header {
+    background: transparent;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.plants-service .service-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: left;
+    font-weight: bold;
+}
+
+.plants-service .service-body {
+    padding: 0;
+}
+
+.plants-service .service-sub {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.plants-service .service-sub .label {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.plants-service .service-sub img {
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+}
+
+.plants-service .service-body hr {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 20px 0;
+}
+
+.plants-service .service-body p {
+    font-size: 16px !important;
+    line-height: 1.8;
+}
+
+/* Green Rentalセクション */
+.plants-rental {
+    margin-top: 60px;
+}
+
+.plants-rental .rental-header {
+    background: transparent;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.plants-rental .rental-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: left;
+    font-weight: bold;
+}
+
+.plants-rental .rental-body {
+    padding: 0;
+}
+
+.plants-rental .rental-sub {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.plants-rental .rental-sub .label {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.plants-rental .rental-sub img {
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+}
+
+.plants-rental .rental-body hr {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 20px 0;
+}
+
+.plants-rental .rental-body p {
+    font-size: 16px !important;
+    line-height: 1.8;
+}
+
+/* 観葉植物の特典 */
+.celebration-plants-tokuten {
+    margin-top: 80px;
+}
+
+.celebration-plants-tokuten .tokuten-header {
+    background: #cbdea6;
+    padding: 30px 40px;
+    margin: 0 0 40px 0;
+    border-radius: 10px;
+}
+
+.celebration-plants-tokuten .tokuten-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: center;
+}
+
+.celebration-plants-tokuten .tokuten-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px !important;
+}
+
+.celebration-plants-tokuten .tokuten-list .item {
+    width: calc((100% - 20px) / 2) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.celebration-plants-tokuten .tokuten-list .item img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.celebration-plants-tokuten .tokuten-list .item h5 {
+    font-size: 18px !important;
+    line-height: 1.6;
+}
+
+/* Suiteセクション（サスティープレゼント） */
+.plants-suite {
+    margin-top: 80px;
+}
+
+.plants-suite .suite-header {
+    background: transparent;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.plants-suite .suite-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: left;
+    font-weight: bold;
+}
+
+.plants-suite .suite-body {
+    background: #cbdea6;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.plants-suite .suite-sub {
+    margin-bottom: 20px;
+}
+
+.plants-suite .suite-sub .label {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.plants-suite .suite-body hr {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 20px 0;
+}
+
+.plants-suite .suite-body hr.dashed {
+    border-top: 1px dashed #000;
+}
+
+.plants-suite .suite-body p {
+    font-size: 16px !important;
+    line-height: 1.8;
+}
+
+.plants-suite .suite-body .suite-main {
+    font-weight: bold;
+}
+
+.plants-suite .suite-image {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.plants-suite .suite-image img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* 胡蝶蘭 Colors セクション */
 .celebration-orchid-colors {
     margin-top: 80px;
@@ -1774,6 +2051,159 @@ Service Detail - Celebration Orchid (御祝い胡蝶蘭)
     
     .celebration-orchid-tokuten .tokuten-list .item h5 {
         font-size: 4.5rem !important;
+    }
+    
+    /* ===============================
+       観葉植物（celebration-plants）SP用スタイル
+       =============================== */
+    
+    /* 商品リスト - SP時は1カラム、大きめ表示 */
+    .celebration-plants-items .item {
+        width: 100% !important;
+    }
+    
+    .celebration-plants-items .item img {
+        max-width: 60rem;
+    }
+    
+    .celebration-plants-items .item h5 .name {
+        font-size: 4.5rem !important;
+    }
+    
+    .celebration-plants-items .item h5 .price {
+        font-size: 3.8rem !important;
+    }
+    
+    .celebration-plants-items .item h5 .tax {
+        font-size: 3.2rem !important;
+    }
+    
+    .celebration-plants-items .item .size p {
+        font-size: 3.2rem !important;
+    }
+    
+    .celebration-plants-items .item .size .note {
+        font-size: 2.8rem !important;
+    }
+    
+    /* Serviceセクション */
+    .plants-service {
+        margin-top: 12rem;
+    }
+    
+    .plants-service .service-header h3 {
+        font-size: 6rem !important;
+        margin-bottom: 4rem !important;
+    }
+    
+    .plants-service .service-sub {
+        gap: 3rem;
+    }
+    
+    .plants-service .service-sub .label {
+        font-size: 4.5rem;
+    }
+    
+    .plants-service .service-sub img {
+        max-width: 25rem;
+    }
+    
+    .plants-service .service-body hr {
+        margin: 3rem 0;
+    }
+    
+    .plants-service .service-body p {
+        font-size: 3.6rem !important;
+    }
+    
+    /* Green Rentalセクション */
+    .plants-rental {
+        margin-top: 10rem;
+    }
+    
+    .plants-rental .rental-header h3 {
+        font-size: 6rem !important;
+        margin-bottom: 4rem !important;
+    }
+    
+    .plants-rental .rental-sub {
+        gap: 3rem;
+    }
+    
+    .plants-rental .rental-sub .label {
+        font-size: 4.5rem;
+    }
+    
+    .plants-rental .rental-sub img {
+        max-width: 25rem;
+    }
+    
+    .plants-rental .rental-body hr {
+        margin: 3rem 0;
+    }
+    
+    .plants-rental .rental-body p {
+        font-size: 3.6rem !important;
+    }
+    
+    /* 特典 - SP時は1カラム、大きめ表示 */
+    .celebration-plants-tokuten {
+        margin-top: 12rem;
+    }
+    
+    .celebration-plants-tokuten .tokuten-header {
+        padding: 4rem;
+        margin-bottom: 6rem;
+    }
+    
+    .celebration-plants-tokuten .tokuten-header h3 {
+        font-size: 6rem !important;
+    }
+    
+    .celebration-plants-tokuten .tokuten-list {
+        gap: 6rem 4rem !important;
+    }
+    
+    .celebration-plants-tokuten .tokuten-list .item {
+        width: 100% !important;
+    }
+    
+    .celebration-plants-tokuten .tokuten-list .item img {
+        max-width: 50rem;
+    }
+    
+    .celebration-plants-tokuten .tokuten-list .item h5 {
+        font-size: 4.5rem !important;
+    }
+    
+    /* Suiteセクション */
+    .plants-suite {
+        margin-top: 12rem;
+    }
+    
+    .plants-suite .suite-header h3 {
+        font-size: 6rem !important;
+        margin-bottom: 4rem !important;
+    }
+    
+    .plants-suite .suite-body {
+        padding: 6rem 4rem;
+    }
+    
+    .plants-suite .suite-sub .label {
+        font-size: 4.5rem;
+    }
+    
+    .plants-suite .suite-body hr {
+        margin: 3rem 0;
+    }
+    
+    .plants-suite .suite-body p {
+        font-size: 3.6rem !important;
+    }
+    
+    .plants-suite .suite-image {
+        margin-top: 5rem;
     }
     
     /* カラーバリエーション */

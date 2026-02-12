@@ -357,6 +357,177 @@ get_header();
 							</div>
 						</div>
 					</div>
+				<?php elseif ( is_page('celebration-plants') ) : ?>
+					<!-- celebration-plants専用コンテンツ -->
+					<?php
+					$plants_img = get_template_directory_uri() . '/img/service/celebration-plants/';
+					?>
+					<h3><?php the_title(); ?></h3>
+					<?php
+						$catch_text = get_field('catch_text');
+						if ($catch_text) :
+							echo '<p class="catch">' . esc_html($catch_text) . '</p>';
+						endif;
+					?>
+					<?php if ( $purpose_text = get_field('purpose_text') ) : ?>
+						<h4 class="youto">オススメ用途</h4>
+						<p class="purpose"><?php echo esc_html($purpose_text); ?></p>
+					<?php endif; ?>
+					<?php
+					$detail_text = get_field('service_detail_text');
+					if ($detail_text) :
+						echo '<p class="text1">' . nl2br(esc_html($detail_text)) . '</p>';
+					endif;
+					?>
+
+					<!-- 商品リスト（観葉植物6種） -->
+					<div class="list item-list celebration-plants-items">
+						<div class="item">
+							<img src="<?php echo $plants_img; ?>celebration-plants-image01.webp" alt="フィカス・アルテシマ">
+							<h5>
+								<span class="name">フィカス・アルテシマ</span>
+								<span class="price">尺鉢・鉢皿付 ¥27,500円<span class="tax">（税込）</span></span>
+							</h5>
+							<div class="size">
+								<p>植物 H160cm〜180cm前後　W40cm〜50cm前後</p>
+								<p>立て札 H29.7cm x W13cm</p>
+								<p class="note">※ 観葉植物は個体差があるため、サイズは目安となります。</p>
+							</div>
+						</div>
+						<div class="item">
+							<img src="<?php echo $plants_img; ?>celebration-plants-image02.webp" alt="シュロチク">
+							<h5>
+								<span class="name">シュロチク</span>
+								<span class="price">尺鉢・鉢皿付 ¥27,500円<span class="tax">（税込）</span></span>
+							</h5>
+							<div class="size">
+								<p>植物 H160cm〜180cm前後　W50cm〜60cm前後</p>
+								<p>立て札 H29.7cm x W13cm</p>
+								<p class="note">※ 観葉植物は個体差があるため、サイズは目安となります。</p>
+							</div>
+						</div>
+						<div class="item">
+							<img src="<?php echo $plants_img; ?>celebration-plants-image03.webp" alt="ドラセナ・マッサンゲアナ">
+							<h5>
+								<span class="name">ドラセナ・マッサンゲアナ</span>
+								<span class="price">尺鉢・鉢皿付 ¥27,500円<span class="tax">（税込）</span></span>
+							</h5>
+							<div class="size">
+								<p>植物 H150cm〜170cm前後　W30cm〜40cm前後</p>
+								<p>立て札 H29.7cm x W13cm</p>
+								<p class="note">※ 観葉植物は個体差があるため、サイズは目安となります。</p>
+							</div>
+						</div>
+						<div class="item">
+							<img src="<?php echo $plants_img; ?>celebration-plants-image04.webp" alt="ユッカ・エレファンティペス">
+							<h5>
+								<span class="name">ユッカ・エレファンティペス</span>
+								<span class="price">尺鉢・鉢皿付 ¥27,500円<span class="tax">（税込）</span></span>
+							</h5>
+							<div class="size">
+								<p>植物 H150cm〜170cm前後　W30cm〜40cm前後</p>
+								<p>立て札 H29.7cm x W13cm</p>
+								<p class="note">※ 観葉植物は個体差があるため、サイズは目安となります。</p>
+							</div>
+						</div>
+						<div class="item">
+							<img src="<?php echo $plants_img; ?>celebration-plants-image05.webp" alt="ドラセナ・リフレクサ">
+							<h5>
+								<span class="name">ドラセナ・リフレクサ</span>
+								<span class="price">尺鉢・鉢皿付 ¥22,000円<span class="tax">（税込）</span></span>
+							</h5>
+							<div class="size">
+								<p>植物 H150cm〜170cm前後　W40cm〜50cm前後</p>
+								<p>立て札 H29.7cm x W13cm</p>
+								<p class="note">※ 観葉植物は個体差があるため、サイズは目安となります。</p>
+							</div>
+						</div>
+						<div class="item">
+							<img src="<?php echo $plants_img; ?>celebration-plants-image06.webp" alt="シェフレラ・カポック">
+							<h5>
+								<span class="name">シェフレラ・カポック</span>
+								<span class="price">尺鉢・鉢皿付 ¥22,000円<span class="tax">（税込）</span></span>
+							</h5>
+							<div class="size">
+								<p>植物 H150cm〜170cm前後　W40cm〜50cm前後</p>
+								<p>立て札 H29.7cm x W13cm</p>
+								<p class="note">※ 観葉植物は個体差があるため、サイズは目安となります。</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- 価格から選ぶセクション（既存のACFコンテンツを維持） -->
+					<?php if ( $kakaku_html = get_field('kakaku_html', false, false) ) : ?>
+						<div class="price">
+							<?php echo do_shortcode( $kakaku_html ); ?>
+						</div>
+					<?php endif; ?>
+
+					<!-- Serviceセクション -->
+					<div class="plants-service">
+						<div class="service-header">
+							<h3>Service</h3>
+						</div>
+						<div class="service-body">
+							<div class="service-sub">
+								<span class="label">サービス</span>
+								<img src="<?php echo $plants_img; ?>celebration-plants-pot.webp" alt="器付・皿鉢付き">
+							</div>
+							<hr>
+							<p>観葉植物はすべて、器付・皿鉢付きの価格となっております。</p>
+						</div>
+					</div>
+
+					<!-- Green Rentalセクション -->
+					<div class="plants-rental">
+						<div class="rental-header">
+							<h3>Green Rental</h3>
+						</div>
+						<div class="rental-body">
+							<div class="rental-sub">
+								<span class="label">植物レンタル</span>
+								<img src="<?php echo $plants_img; ?>celebration-plants-rental.webp" alt="植物レンタル">
+							</div>
+							<hr>
+							<p>ヌボー生花店では、オフィスに観葉植物をお貸しするサービスを行っております。月々3,300円（税込）から、専門スタッフによるメンテナンス付で手軽に観葉植物をお楽しみいただけます。</p>
+						</div>
+					</div>
+
+					<!-- 観葉植物の特典 -->
+					<div class="tokuten celebration-plants-tokuten">
+						<div class="tokuten-header">
+							<h3>観葉植物の特典</h3>
+						</div>
+						<div class="list tokuten-list">
+							<div class="item">
+								<img src="<?php echo $plants_img; ?>celebration-plants-sighboard.webp" alt="立て札無料">
+								<h5>立て札無料</h5>
+							</div>
+							<div class="item">
+								<img src="<?php echo $plants_img; ?>celebration-plants-book.webp" alt="観葉植物の楽しみ方冊子付き">
+								<h5>観葉植物の楽しみ方冊子付き</h5>
+							</div>
+						</div>
+					</div>
+
+					<!-- Suiteセクション（サスティープレゼント） -->
+					<div class="plants-suite">
+						<div class="suite-header">
+							<h3>Suite</h3>
+						</div>
+						<div class="suite-body">
+							<div class="suite-sub">
+								<span class="label">サスティープレゼント</span>
+							</div>
+							<hr>
+							<p class="suite-main">22,000円以上の商品は、適切な水やりタイミングがわかる「サスティー」付き！</p>
+							<hr class="dashed">
+							<p>水やりは植物を楽しむうえで基本の「き」ですが、最も難しい作業といえます。初心者の方も「サスティー」があれば、水やりを失敗することなく、植物を楽しんでいただけます。</p>
+							<div class="suite-image">
+								<img src="<?php echo $plants_img; ?>sustee.png" alt="サスティー">
+							</div>
+						</div>
+					</div>
 				<?php elseif ( is_page('celebration-orchid') ) : ?>
 					<!-- celebration-orchid専用コンテンツ -->
 					<?php
