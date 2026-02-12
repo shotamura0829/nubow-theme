@@ -1,0 +1,180 @@
+/* =================================================================
+トップ共通
+=================================================================*/
+.title-wrap {display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 68px;}
+
+@media screen and (max-width: 1199px) {
+  .title-wrap {flex-direction: column; margin-bottom: 9.2rem; gap: 7.6rem;}
+  .list {flex-direction: column; align-items: center;}
+}
+
+/* =================================================================
+fv
+=================================================================*/
+.fv {position: relative; overflow: hidden;}
+.fv .wrapper {position: relative; max-width: 960px; margin: auto;}
+
+.swiper-button-prev,
+.swiper-rtl .swiper-button-next {width: 70px; height: 70px; left: -90px;}
+.swiper-button-next,
+.swiper-rtl .swiper-button-prev {width: 70px; height: 70px; right: -90px;}
+.swiper-button-prev:after,
+.swiper-rtl .swiper-button-next:after {content: '' !important; display: block; width: 70px; height: 70px; background-size: cover; background-image: url('../img/common/icon-prev.png');}
+.swiper-button-next:after,
+.swiper-rtl .swiper-button-prev:after {content: '' !important; display: block; width: 70px; height: 70px; background-size: cover; background-image: url('../img/common/icon-next.png');}
+
+@media screen and (max-width: 1199px) {
+
+}
+
+/* =================================================================
+news
+=================================================================*/
+#top .news {margin-top: 99px; padding-bottom: 106px;}
+#top .news .item {margin-bottom: 30px;}
+#top .news .article-title {display: flex; justify-content: space-between; align-items: flex-start;}
+#top .news .article-title .date {font-size: 32px;}
+#top .news .article-title a {display: flex; justify-content: center; align-items: center; width: 300px; height: 60px; border-radius: 9999px; border: 1px solid #998675; color: #998675; position: relative;}
+#top .news .article-title a:after {content: ""; width: 8px; height: 12px; background-image: url('../img/top/article-link_arrow.svg'); background-size: cover; position: absolute; right: 18px; top: 0; bottom: 0; margin: auto;}
+#top .news .content {font-size: 24px; padding-bottom: 39px; border-bottom: 1px solid #CCCCCC;}
+#top .news .sp-button {display: none;}
+
+@media screen and (max-width: 1199px) {
+  #top .news {margin-top: 7.6rem; padding-bottom: 2.4rem;}
+  #top .news .article-title .date {font-size: 4.8rem;}
+  #top .news .article-title a {display: none;}
+  #top .news .item {border-bottom: 1px solid #CCCCCC; padding-bottom: 8.8rem; margin-bottom: 7rem;}
+  #top .news .content {border-bottom: 0; font-size: 4rem; padding-bottom: 5rem;}
+  #top .news .sp-button {display: flex; justify-content: center; align-items: center; width: 50rem; height: 12rem; border-radius: 9999px; border: 1px solid #998675; color: #998675; position: relative; font-size: 3.6rem; margin: auto;}
+  #top .news .sp-button:after {content: ""; width: 1.6rem; height: 2.4rem; background-image: url('../img/top/article-link_arrow.svg'); background-size: cover; position: absolute; right: 18px; top: 0; bottom: 0; margin: auto;}
+
+}
+
+
+/* =================================================================
+about
+=================================================================*/
+#top .about {background: #F2F2F2; padding: 74px 0 86px;}
+#top .about h2 {margin-bottom: 44px;}
+#top .about .box {display: flex; justify-content: space-between;}
+#top .about p {font-size: 24px; font-weight: normal; line-height: 2;}
+#top .about img {max-width: 500px; height: auto;}
+#top .about .link {margin-top: 80px; display: flex; justify-content: center;}
+
+@media screen and (max-width: 1199px) {
+  #top .about {padding: 6rem 0 10rem;}
+  #top .about .box {flex-direction: column; gap: 6.4rem;}
+  #top .about p {font-size: 4rem;}
+  #top .about img {max-width: 100%;}
+  #top .about .link {margin-top: 9.4rem;}
+}
+
+/* =================================================================
+shop
+=================================================================*/
+#top .shop {padding: 78px 0 130px;}
+#top .shop h3 {font-size: 32px; margin-bottom: 23px;}
+#top .shop .top .box {display: flex; gap: 30px;}
+#top .shop .top img {max-width: 700px;}
+#top .shop .top p {font-size: 18px;}
+#top .shop .bottom {margin-top: 68px; display: flex; justify-content: space-between; gap: 80px;}
+#top .shop .bottom p {margin-top: 24px;}
+
+@media screen and (max-width: 1199px) {
+  #top .shop {padding: 10.1rem 0 11.4rem;}
+  #top .shop .title-wrap {margin-bottom: 4.2rem;}
+  #top .shop h3 {font-size: 4.8rem; margin-bottom: 1.6rem;}
+  #top .shop .top .box {flex-direction: column; gap: 4.6rem;}
+  #top .shop .top img {max-width: 100%; height: auto;}
+  #top .shop .top p {font-size: 3.6rem;}
+  #top .shop .box img {max-width: 100%; width: 100%;}
+
+  #top .shop .bottom {flex-direction: column; margin-top: 9.6rem; gap: 11.6rem;}
+  #top .shop .bottom p {font-size: 3.6rem;}
+}
+
+/* =================================================================
+service
+=================================================================*/
+#top .service {background: #F2F2F2; padding: 94px 0 97px;}
+#top .service p {font-size: 24px;}
+#top .service .list {margin-top: 45px; display: flex; flex-wrap: wrap; gap: 70px 50px;}
+#top .service .list .item {width: calc((100% - 70px)/2); background: #fff; border-radius: 20px; overflow: hidden; font-size: 24px; display: flex; align-items: center; gap: 40px; position: relative;}
+#top .service .list .item:after {content: ""; width: 13px; height: 21px; background-image: url('../img/top/article-link_arrow.svg'); background-size: cover; position: absolute; right: 20px; top: 0; bottom: 0; margin: auto;}
+#top .service .list .item img {height: 160px; width: auto;}
+
+@media screen and (max-width: 1199px) {
+  #top .service {padding: 8.4rem 0 10rem;}
+  #top .service p {font-size: 4rem;}
+  #top .service .list {margin-top: 8rem; gap: 4rem 0px;}
+  #top .service .list .item {width: 100%; gap: 5.6rem;}
+  #top .service .list .item:after {width: 1.7rem; height: 2.8rem;}
+  #top .service .list .item img {height: 22.4rem;}
+  #top .service .list .item p {font-size: 3.6rem; font-weight: bold;}
+}
+
+/* =================================================================
+case
+=================================================================*/
+#top .case {padding: 107px 0 85px;}
+#top .case .top-text {line-height: 2; font-size: 24px;}
+#top .case .tab-menu {display: flex; flex-wrap: wrap; border-top: 1px solid #998675; margin-top: 36px;}
+#top .case .tab-menu .tab {width: calc((100%)/4); border-right: 1px solid #998675; border-bottom: 1px solid #998675; color: #998675; height: 80px; display: flex; justify-content: center; align-items: center; font-size: 20px; cursor: pointer;}
+#top .case .tab-menu .tab:nth-child(1) {border-left: 1px solid #998675;}
+#top .case .tab-menu .tab:nth-child(5n) {border-left: 1px solid #998675;}
+#top .case .tab-menu .tab.is-active {background: #998675; color: #fff;}
+#top .case .list {display: flex; flex-direction: column; margin-top: 64px; gap: 70px;}
+#top .case .box {display: flex; align-items: flex-start;}
+#top .case .box img {max-width: 320px; margin-right: 38px;}
+#top .case .box .text {display: flex; flex-direction: column;}
+#top .case .box h3 {font-size: 30px; font-weight: bold;}
+#top .case .box p {margin-top: 11px; font-size: 24px; line-height: 2;}
+#top .case .box .text .more {align-self: center; display: inline-flex; justify-content: center; align-items: center; min-width: 300px; height: 60px; border-radius: 9999px; border: 1px solid #998675; color: #998675; position: relative; margin-top: 38px; padding: 0 50px;}
+#top .case .box .text .more:after {content: ""; width: 8px; height: 12px; background-image: url('../img/top/article-link_arrow.svg'); background-size: cover; position: absolute; right: 18px; top: 0; bottom: 0; margin: auto;}
+#top .case .link {display: flex; justify-content: center; margin-top: 85px;}
+#top .case .link .cmn-button {max-width: 100%; min-width: 600px; width: auto; display: inline-flex; padding: 0 60px;}
+#top .case .no-article {font-size: 24px; text-align: center;}
+
+@media screen and (max-width: 1199px) {
+  #top .case {padding: 8rem 0 11.2rem;}
+  #top .case .top-text {font-size: 4rem;}
+  #top .case .tab-menu {border: 1px solid #998675; border-bottom: 0; border-right: 0; margin-top: 15.6rem;}
+  #top .case .tab-menu .tab {width: calc((100%)/2); height: 12rem; border: 0; border-bottom: 1px solid #998675; border-right: 1px solid #998675; text-align: center; font-size: 3.2rem; font-weight: bold;}
+  #top .case .tab-menu .tab:nth-child(1) {border-left: 0;}
+  #top .case .tab-menu .tab:nth-child(5n) {border-left: 0;}
+  #top .case .list {gap: 11.2rem;}
+  #top .case .box {flex-direction: column;}
+  #top .case .box a {width: 100%;}
+  #top .case .box img {max-width: 100%; width: 100%; margin-right: 0;}
+  #top .case .box h3 {font-size: 4.8rem; margin-top: 2.2rem;}
+  #top .case .box p {font-size: 4rem; margin-top: 2.6rem;}
+  #top .case .box .text .more {margin-top: 7rem; width: 50rem; height: 10rem; font-size: 3.6rem;}
+  #top .case .box .text .more:after {width: 1.4rem; height: 2.2rem;}
+  #top .case .link {margin-top: 11.2rem;}
+  #top .case .link .cmn-button {min-width: 72rem; height: 12rem;}
+}
+
+/* =================================================================
+faq
+=================================================================*/
+#top .faq {background: #F2F2F2; padding: 85px 0 100px;}
+#top .faq .list {margin-top: 45px; display: flex; flex-wrap: wrap; gap: 70px 50px;}
+#top .faq .list .item {width: calc((100% - 70px)/2); background: #fff; border-radius: 20px; overflow: hidden; font-size: 24px; display: flex; align-items: center; gap: 40px; position: relative;}
+#top .faq .list .item:after {content: ""; width: 13px; height: 21px; background-image: url('../img/top/article-link_arrow.svg'); background-size: cover; position: absolute; right: 20px; top: 0; bottom: 0; margin: auto;}
+#top .faq .list .item img {height: 160px; width: auto;}
+
+@media screen and (max-width: 1199px) {
+  #top .faq {padding: 5.2rem 0 10rem;}
+  #top .faq .list {margin-top: 10rem; gap: 4rem 0px;}
+  #top .faq .list .item {width: 100%; gap: 4rem; font-size: 3.6rem; font-weight: bold;}
+  #top .faq .list .item img {width: 22.4rem; height: 22.4rem;}
+  #top .faq .list .item:after {width: 1.7rem; height: 2.8rem;}
+}
+
+
+
+
+
+
+
+

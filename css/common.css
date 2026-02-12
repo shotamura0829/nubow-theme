@@ -1,0 +1,391 @@
+/* ========================================================================
+ResetCss
+======================================================================== */
+
+/* 要素 フォントサイズ・マージン・パディングをリセット */
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+	margin:0;
+	padding:0;
+	border:0;
+	outline:0;
+	vertical-align:baseline;
+	background:transparent;
+}
+
+/* 行の高=フォントサイズ */
+body {
+	line-height:1;
+}
+
+/* 新規追加要素をブロック要素化 */
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+	display:block;
+}
+
+/* ulのマーカー非表示 */
+ol, ul {
+	list-style: none;
+}
+
+/* 引用符の非表示 */
+blockquote, q {
+	quotes:none;
+}
+
+/* blockquote要素、q要素の前後にコンテンツ非表示 */
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content:'';
+	content:none;
+}
+
+/* フォントサイズ　リセット フォントの縦方向 ベースライン揃え 点線削除 */
+a {
+	margin:0;
+	padding:0;
+	font-size:100%;
+	vertical-align:baseline;
+	background:transparent;
+	outline: none;
+	text-decoration: none;
+}
+
+/* ins要素 デフォルトセット 色を変える場合はここで変更 */
+ins {
+	background-color:#ff9;
+	color:#000;
+	text-decoration:none;
+}
+
+/* mark要素 デフォルトセット 色やフォントスタイルを変える場合はここで変更 */
+mark {
+	background-color:#ff9;
+	color:#000;
+	font-style:italic;
+	font-weight:bold;
+}
+
+/* テキスト 打ち消し線 */
+del {
+	text-decoration: line-through;
+}
+
+/* IE　デフォルトで点線を下線表示設定　下線設定 マウスオーバー時 ヘルプカーソル表示可 */
+abbr[title], dfn[title] {
+	border-bottom:1px dotted;
+	cursor:help;
+}
+
+/*　隣接するセルのボーダーを重ねて表示　*/
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+}
+
+/* 水平罫線デフォルトリセット */
+hr {
+	display:block;
+	height:1px;
+	border:0;
+	border-top:1px solid #cccccc;
+	margin:1em 0;
+	padding:0;
+}
+
+/* 縦方向の揃え 中央揃え */
+input, select {
+	vertical-align:middle;
+}
+
+/* 画像を縦に並べた時に余白0 */
+img {
+	vertical-align: top;
+	font-size: 0;
+	line-height: 0;
+}
+
+/*box-sizingを全ブラウザに対応*/
+*, *:before, *:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+/*画像レスポンシブ*/
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+/*改行のweb際のBR高さバグ修正*/
+br {
+	line-height: inherit;
+}
+
+input{
+	-webkit-appearance: none;
+}
+
+/*  レスポンシブ用
+-------------------------------------------------------------*/
+/*  pcのみ  */
+.sp-only {display: none !important;}
+.pc-only {display: block !important;}
+
+/*  spのみ  */
+@media screen and (max-width: 1199px) {
+	.pc-only {display: none !important;}
+	.sp-only {display: block !important;}
+}
+
+/*  リンク類
+-------------------------------------------------------------*/
+a{transition: all .2s; -webkit-transition: all .2s; -moz-transition: all .2s; -ms-transition: all .2s; text-decoration: none; color: #333;}
+a:hover{opacity: 0.6; transition:.2s all; text-decoration: none;}
+a:visited {color: #333;}
+a img{transition:.2s all;}
+a img:hover{opacity: 0.8; transition:.2s all;}
+button{transition:.2s all;}
+button:hover{opacity: 0.8; transition:.2s all;}
+form{margin: 0;}
+
+/* その他 共通
+-------------------------------------------------------------*/
+html {overflow: auto; height: 100%;}
+
+@media screen and (max-width: 1920px) {
+  html {
+    font-size: 0.5208333333vw;
+  }
+}
+@media screen and (max-width: 992px) {
+  html {
+    font-size: 1.2820512821vw;
+  }
+}
+
+body{
+	font-family: "游ゴシック体", YuGothic, "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック", "Yu Gothic", sans-serif;
+	position: relative;
+	color: #333333;
+	font-size: 16px;
+	line-height: 1.7;
+	font-weight: 500;
+}
+
+main {padding-top: 170px;}
+
+.inner {width: 100%; max-width: 1160px; margin: auto; padding: 0 40px;}
+
+.cmn-button {width: 100%; max-width: 600px; height: 100px; border-radius: 50px; background: #998675; box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.25); display: flex; justify-content: center; align-items: center; color: #FFF; font-size: 32px; font-weight: 700; position: relative;}
+.cmn-button:after {content: ""; display: block; width: 13px; height: 20px; background-image: url('../img/common/cmn-button_arrow.svg'); background-size: cover; position: absolute; right: 30px; top: 0; bottom: 0; margin: auto;}
+.cmn-button.back:after {left: 30px; right: auto; transform: rotate(180deg);}
+.cmn-button:visited {color: #fff;}
+.cmn-button:hover {opacity: 0.8;}
+
+.cmn-title {font-size: 48px; font-weight: bold; position: relative; padding-left: 18px; line-height: 1;}
+.cmn-title:before {content: ""; display: block; width: 8px; height: 40px; background: #998675; position: absolute; left: 0; top: 0; bottom: 0; margin: auto;}
+
+.breadcrumbs {display: flex; align-items: center; width: 100%; max-width: 1200px; padding: 32px 0 50px; margin: auto;}
+.breadcrumbs li {font-size: 16px;}
+.breadcrumbs .arrow {margin: 0 0.5em;}
+
+@media screen and (max-width: 1199px) {
+	body {font-size: 2rem;}
+	main {overflow: hidden; padding-top: 24rem;}
+	.inner {padding: 0 2rem;}
+	.cmn-button {width: 100%; max-width: 72rem; height: 12rem; padding: 1.4rem 2rem; font-size: 3.8rem;}
+	.cmn-button:after {width: 1.6rem; height: 2.4rem;}
+	.cmn-button.back:after {left: 3.6rem;}
+
+	.cmn-title {padding-left: 2rem; font-size: 5.6rem;}
+	.cmn-title:before {width: 0.8rem; height: 4.8rem;}
+
+	.breadcrumbs {padding: 0px 0 0px; margin-bottom: 4rem; white-space: nowrap; overflow: auto; display: block; white-space: normal;}
+  .breadcrumbs li {font-size: 2.8rem; display: inline;}
+}
+
+
+
+
+/* =================================================================
+ヘッダー
+=================================================================*/
+header {width: 100%; position: fixed; top: 0; z-index: 999; background: #CCC3BA; padding: 28px 0 0; height: 170px;}
+header .inner {width: 100%; max-width: 1080px; padding: 0;}
+header .logo {display: block; width: 135px; height: 58px;}
+header .logo img {display: block; width: 135px; height: 58px;}
+
+header .menu {display: flex; justify-content: space-between; align-items: center; border-left: 1px solid #DBD5CF; margin-top: 22px;}
+header .menu .item {border-right: 1px solid #DBD5CF;}
+header .menu .item a {display: flex; justify-content: center; align-items: center; font-size: 18px; font-weight: bold; width: 178px; height: 49px;text-align: center; line-height: 1.2; position: relative;}
+header .menu .item a.has-child:after {content: ""; display: block; width: 16px; height: 10px; background-size: cover; background-image: url('../img/common/heade_arrow.svg'); margin-left: 15px;}
+header .menu .item:last-child {border-right: 0;}
+
+.mega-menu {width: 100%; height: 88px; background: #fff; display: none; position: fixed; top: 170px; z-index: 100; border-bottom: 1px solid #CCCCCC; overflow: hidden;}
+.mega-menu .inner {display: flex; justify-content: center; align-items: center; gap: 50px; height: 88px;}
+.mega-menu .menu-box {display: none;}
+.mega-menu .menu-box a {color: #333; font-size: 20px; font-weight: bold;}
+.mega-menu .menu-box a:hover {text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 1px; opacity: 1;}
+
+.head_wrap {display: none; width: 100%; position: fixed; height: 100vh;}
+.head_wrap.open {display: block;}
+
+/*  menu  *//*  button  */
+#head_submenu {visibility: hidden; opacity: 0; display: none; -webkit-transition: all 0.3s 0s ease; transition: all 0.6s 0s ease; display: block; position: relative;}
+#head_submenu.open {opacity: 1; visibility: visible; z-index: 1020; -webkit-transition: all 0.3s 0s ease; transition: all 0.3s 0s ease;}
+
+/*  head submenu  */
+#head_submenu {position: fixed; top: 0px; left: 0; right: 0; bottom: 0; z-index: 997;}
+#head_submenu .head {position: fixed; width: 100%; top: 0px; right: 0; bottom: 0; background: #CCC2B9; overflow-y: scroll; padding: 0px 0px 30px 0px; box-sizing: border-box;}
+
+/*  animation  */
+#head_submenu,
+#head_submenu #submenu_left ul li a,
+#head_submenu #submenu_right ul li a,
+#head_menu ul li a {transition: all .3s; -webkit-transition: all .3s; -moz-transition: all .3s; -ms-transition: all .3s;}
+
+#head_submenu .head {display: flex; align-items: center; flex-direction: column;}
+#head_submenu .head .menu {width: 70%; height: auto;}
+
+#head_submenu .menu {display: flex; justify-content: center; align-items: flex-start; gap: 40px;}
+#head_submenu .menu .sub {display: flex; flex-direction: column; padding-left: 1em; padding-top: 1em; gap: 1em;}
+
+.menu-blur {position: fixed; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 996; opacity: 0; visibility: hidden; transition: all 0.3s ease; pointer-events: none;}
+.menu-blur.open {opacity: 1; visibility: visible; pointer-events: auto;}
+
+header .toggle-button {display: none;}
+
+@media screen and (max-width: 1199px) {
+	header {height: 24rem; padding: 4rem;}
+	header .inner {display: flex; align-items: center; justify-content: space-between; height: 100%;}	
+	header .menu {border: 0; margin: 0;}
+	header .menu .item {display: none;}
+	header .logo img {width: 26.8rem; height: auto;}
+
+	header .toggle-button {background: #998675; border-radius: 1rem; width: 16rem; height: 16rem; color: #fff; font-size: 2.4rem; font-weight: bold; display: flex; flex-direction: column; align-items: center; gap: 1rem; padding-top: 2.8rem;}
+	header .toggle-button .line {display: flex; flex-direction: column; align-items: center; gap: 2rem;}	
+	header .toggle-button .line span {display: block; height: 1.2rem; width: 10.4rem; background: #fff; border-radius: 9999px;}
+	
+	#head_submenu .close-button {position: absolute; background: #998675; border-radius: 1rem; width: 16rem; height: 16rem; color: #fff; top: 4rem; right: 4rem; font-size: 2.4rem; font-weight: bold; display: flex; flex-direction: column; align-items: center; gap: 3rem; padding-top: 5.8rem;} 
+	#head_submenu .close-button .line {display: flex; flex-direction: column; align-items: center; gap: 0;}	
+	#head_submenu .close-button .line span {display: block; height: 1.2rem; width: 10.4rem; background: #fff; border-radius: 9999px;}
+	#head_submenu .close-button .line span:nth-child(1) {transform: rotate(45deg);} 
+	#head_submenu .close-button .line span:nth-child(2) {transform: rotate(-45deg); position: relative; top: -5px;} 
+
+	#head_submenu .head {padding: 28rem 0px 20rem 0px;}
+	#head_submenu .head .menu {display: flex; flex-direction: column; align-items: center; width: 100%; padding: 0 4rem; gap: 0}
+
+	#head_submenu .link-area {display: flex; flex-direction: column; gap: 4rem;}
+	#head_submenu .link-area a {display: flex; align-items: center; background: #fff; border-radius: 2rem; width: 68rem; height: 14rem; padding: 0 4rem; font-size: 5.6rem; color: #5C4636; font-weight: bold; gap: 1.5rem; letter-spacing: -0.3rem;}
+
+	#head_submenu .sp-menu {width: 100%; border-top: 1px solid #5C4736; margin-top: 8rem;}
+	#head_submenu .sp-menu_box {border-bottom: 1px solid #5C4736;}
+	#head_submenu .sp-menu_box .list {display: none;}
+	#head_submenu .sp-menu_box .title {font-size: 4.4rem; padding: 3rem 3.2rem; display: block; font-weight: bold; color: #5C4736; position: relative;}
+	#head_submenu .sp-menu_box .title.accordion-toggle:before {content: ""; display: block; width: 4rem; height: 0.2rem; background: #5C4736; position: absolute; right: 4rem; top: 0; bottom: 0; margin: auto;}
+	#head_submenu .sp-menu_box .title.accordion-toggle:after {content: ""; display: block; width: 0.2rem; height: 4rem; background: #5C4736; position: absolute; right: 5.8rem; top: 0; bottom: 0; margin: auto;}
+	#head_submenu .sp-menu_box .title.is-open:after  {display: none;}
+	#head_submenu .sp-menu_box .list-inner {display: flex; flex-direction: column; align-items: flex-start; padding-left: 19rem; gap: 2.6rem; padding-bottom: 5.6rem;}
+	#head_submenu .sp-menu_box .list-inner a {font-size: 3.6rem; color: #5C4736; position: relative; display: block; width: 100%;}
+	#head_submenu .sp-menu_box .list-inner a:after {content: ""; display: block; width: 1.6rem; height: 2.8rem; background-image: url('../img/common/sp-header_icon-arrow.png'); background-size: cover; position: absolute; right: 5.2rem; top: 0; bottom: 0; margin: auto;}
+
+	#head_submenu .menu-logo {margin-top: 12rem;}
+	#head_submenu .menu-logo img {width: 42.4rem; height: auto;}
+	#head_submenu .bottom-links {margin-top: 9.6rem; display: flex; justify-content: center; align-items: center; gap: 4rem;}
+	#head_submenu .bottom-links a {width: 33rem; height: 16rem; display: flex; justify-content: center; align-items: center; gap: 1.5rem; border-radius: 9999px; color: #fff; font-size: 3.2rem;}
+	#head_submenu .bottom-links .yoyaku {background: #736356;}
+	#head_submenu .bottom-links .yoyaku img {width: 5rem;}
+	#head_submenu .bottom-links .contact {background: #764C24;}
+	#head_submenu .bottom-links .contact img {width: 4.6rem;}
+}
+
+/* =================================================================
+フッター
+=================================================================*/
+.backtotop {position: fixed; right: 50px; bottom: 60px; width: 70px; height: 70px; background: none; z-index: 100;}
+
+footer {background: #5C4636; color: #fff; padding: 70px 0 64px;}
+footer .inner {width: 100%; max-width: 1160px; margin: auto; display: flex; justify-content: space-between; padding: 40px 0;}
+
+footer .left-box {display: flex; flex-direction: column; justify-content: space-between;}
+footer .left-box .top {display: flex; flex-direction: column; gap: 25px;}
+footer .left-box .top a {display: flex; align-items: center; background: #fff; border-radius: 10px; width: 380px; height: 70px; padding: 0 20px; font-size: 28px; color: #5C4636; font-weight: bold; box-shadow: 0px 5px 0px 0px #C9CACA;}
+footer .left-box .top img {display: block; margin-right: 24px;}
+
+footer .left-box .bottom p {font-size: 18px; font-weight: normal; margin-top: 17px;}
+footer .left-box .bottom a {color: #fff; font-size: 21px; font-weight: bold; margin-top: 24px; display: inline-block;}
+
+footer .right-box .box {min-height: 253px;}
+footer .right-box {display: flex;}
+footer .right-box p {font-size: 24px; font-weight: bold; line-height: 1;}
+footer .right-box ul {display: flex; flex-direction: column; gap: 15px; padding-left: 20px; margin-top: 15px;}
+footer .right-box li a {font-size: 18px; color: #fff; font-weight: normal;}
+
+footer .right-box .menu {border-right: 1px solid #fff; padding-right: 70px;}
+footer .right-box .menu:last-child {border-right: 0; padding-right: 0; padding-left: 60px;}
+
+footer .sp-menu {display: none;}
+
+@media screen and (max-width: 1199px) {
+	.backtotop {right: 4rem; bottom: 4rem;}
+	footer {padding: 6rem 4rem 2.4rem;}
+	footer .inner {padding: 0;}
+	footer .sp-menu {display: block;}
+	footer .sp-menu {width: 100%; border-top: 1px solid #fff; margin-top: 8rem;}
+	footer .sp-menu_box {border-bottom: 1px solid #fff;}
+	footer .sp-menu_box .list {display: none;}
+	footer .sp-menu_box .title {font-size: 4.4rem; padding: 3rem 3.2rem; display: block; font-weight: bold; color: #fff; position: relative;}
+	footer .sp-menu_box .title.accordion-toggle:before {content: ""; display: block; width: 4rem; height: 0.2rem; background: #fff; position: absolute; right: 4rem; top: 0; bottom: 0; margin: auto;}
+	footer .sp-menu_box .title.accordion-toggle:after {content: ""; display: block; width: 0.2rem; height: 4rem; background: #fff; position: absolute; right: 5.8rem; top: 0; bottom: 0; margin: auto;}
+	footer .sp-menu_box .title.is-open:after  {display: none;}
+	footer .sp-menu_box .list-inner {display: flex; flex-direction: column; align-items: flex-start; padding-left: 19rem; gap: 2.6rem; padding-bottom: 5.6rem;}
+	footer .sp-menu_box .list-inner a {font-size: 3.6rem; color: #fff; position: relative; display: block; width: 100%;}
+	footer .sp-menu_box .list-inner a:after {content: ''; position: absolute; top: 0; bottom: 0; right: 5.2rem; width: 1.6rem; height: 1.6rem; margin: auto; border-top: 1px solid #fff; border-right: 1px solid #fff; transform: rotate(45deg); box-sizing: border-box;}
+
+	footer .left-box {width: 100%;}
+	footer .left-box .top {gap: 3rem; padding: 0;}
+	footer .left-box .top a {display: flex; align-items: center; background: #fff; border-radius: 2rem; width: 70rem; height: 14rem; padding: 0 4rem; font-size: 5.6rem; color: #5C4636; font-weight: bold; gap: 1.5rem; letter-spacing: -0.3rem;}
+	footer .left-box .top a img {margin: 0;}
+	footer .left-box .access ul {display: none;}
+
+	footer .right-box {display: none;}
+
+}
+
+
+/* =================================================================
+共通リンク
+=================================================================*/
+.other-links .list {justify-content: center;}
+.other-links img {display: block; max-width: 540px; width: 100%;}
+.other-links a {position: relative;}
+.other-links a span {display: flex; justify-content: center; align-items: center; border-radius: 9999px; background: #5C4636; width: 300px; height: 60px; color: #fff; position: absolute; left: 0; right: 0; bottom: 30px; margin: auto; font-size: 19px;}
+.other-links a span:after {content: ""; display: block; width: 8px; height: 13px; background-image: url('../img/common/cmn-button_arrow.svg'); background-size: cover; position: absolute; right: 24px; top: 0; bottom: 0; margin: auto;}
+
+@media screen and (max-width: 1199px) {
+.other-links img {max-width: 100%;}
+.other-links a span {top: 0; bottom: 0; width: 60rem; height: 12rem; font-size: 3.8rem;}
+.other-links a span:after {width: 1.6rem; height: 2.4rem;}
+}
+
+
+
+
+
+
+

@@ -1,0 +1,321 @@
+<?php
+// ヌボー生花店について（aboutus）は必ず page-aboutus.php を使用
+add_filter( 'template_include', function( $template ) {
+	if ( is_page( 'aboutus' ) ) {
+		$custom = get_template_directory() . '/page-aboutus.php';
+		if ( file_exists( $custom ) ) {
+			return $custom;
+		}
+	}
+	return $template;
+}, 99 );
+
+//インラインスタイル削除
+function remove_recent_comments_style() {
+    global $wp_widget_factory;
+    remove_action( 'wp_head', array( $wp_widget_factory->widgets['WP_Widget_Recent_Comments'], 'recent_comments_style' ) );
+}
+add_action( 'widgets_init', 'remove_recent_comments_style' );
+
+// WordPress4.4 レスポンシブイメージを無効化
+add_filter( 'wp_calculate_image_srcset', '__return_false' );
+add_filter( 'wp_calculate_image_sizes', '__return_false' );
+
+//ディスクリプションのp削除
+remove_filter('term_description','wpautop');
+
+//抜粋のp削除
+remove_filter('the_excerpt', 'wpautop');
+
+// HTTPレスポンスの記述削除
+remove_action('template_redirect', 'rest_output_link_header', 11 );
+
+// Webサイト全体の画像をResponsive images機能の対象から外す
+add_filter( 'wp_calculate_image_srcset', '__return_false' );
+// 記事本文、the_content()関数が出力する画像のみ無効化する場合はこちら
+// remove_filter( 'the_content', 'wp_make_content_images_responsive' );
+
+//jpeg劣化対策
+add_filter('jpeg_quality', function($arg){return 100;});
+
+add_filter( 'wp_list_categories', 'my_list_categories', 10, 2 );
+function my_list_categories( $output, $args ) {
+  $output = preg_replace('/<\/a>\s*\((\d+)\)/',' ($1)</a>',$output);
+  return $output;
+}
+
+// Contact Form 7の自動pタグ無効
+add_filter('wpcf7_autop_or_not', 'wpcf7_autop_return_false');
+function wpcf7_autop_return_false() {
+  return false;
+}
+
+/* ツールバー非表示
+/*---------------------------------------------------------*/
+add_filter('show_admin_bar', '__return_false');
+
+/* 記事サムネイルを有効化
+/*---------------------------------------------------------*/
+add_theme_support( 'post-thumbnails' );
+
+/* 投稿画面のカテゴリー階層を正常表示
+/*---------------------------------------------------------*/
+function lig_wp_category_terms_checklist_no_top( $args, $post_id = null ) {
+    $args['checked_ontop'] = false;
+    return $args;
+}
+add_action( 'wp_terms_checklist_args', 'lig_wp_category_terms_checklist_no_top' );
+
+/* get site URL
+/*---------------------------------------------------------*/
+function shortcode_url() {
+    return get_bloginfo('url');
+}
+add_shortcode('url', 'shortcode_url');
+
+/* get theme URL
+/*---------------------------------------------------------*/
+function shortcode_templateurl() {
+    return get_template_directory_uri();
+}
+add_shortcode('template_url', 'shortcode_templateurl');
+
+
+//トップページやカテゴリページなどのページネーションでのタグ出力
+function rel_next_prev_link_tags() {
+  global $paged;
+  if(!is_front_page()) {
+    if ( get_previous_posts_link() ){
+      echo '<link rel="prev" href="'.get_pagenum_link( $paged - 1 ).'" />'.PHP_EOL;
+    }
+    if ( get_next_posts_link() ){
+      echo '<link rel="next" href="'.get_pagenum_link( $paged + 1 ).'" />'.PHP_EOL;
+    }
+  }
+}
+add_action( 'wp_head', 'rel_next_prev_link_tags' );
+
+// 自動補完リダイレクト無効
+function disable_redirect_canonical( $redirect_url ) {
+  if( is_404() ) {
+    return false;
+  }
+  return $redirect_url;
+}
+add_filter( 'redirect_canonical', 'disable_redirect_canonical' );
+
+// ビジュアルエディタの変換を無効化
+function override_mce_options( $init_array ) {
+  global $allowedposttags;
+
+  $init_array['valid_elements']          = '*[*]';
+  $init_array['extended_valid_elements'] = '*[*]';
+  $init_array['valid_children']          = '+a[' . implode( '|', array_keys( $allowedposttags ) ) . ']';
+  $init_array['indent']                  = true;
+  $init_array['wpautop']                 = false;
+  $init_array['force_p_newlines']        = false;
+
+  return $init_array;
+}
+add_filter( 'tiny_mce_before_init', 'override_mce_options' );
+
+/* the_archive_title 余計な文字を削除 */
+add_filter( 'get_the_archive_title', function ($title) {
+    if (is_category()) {
+        $title = single_cat_title('',false);
+    } elseif (is_tag()) {
+        $title = single_tag_title('',false);
+  } elseif (is_tax()) {
+      $title = single_term_title('',false);
+  } elseif (is_post_type_archive() ){
+    $title = post_type_archive_title('',false);
+  } elseif (is_date()) {
+      $title = get_the_time('Y年n月');
+  } elseif (is_search()) {
+      $title = '検索結果：'.esc_html( get_search_query(false) );
+  } elseif (is_404()) {
+      $title = '「404」ページが見つかりません';
+  } else {
+
+  }
+    return $title;
+});
+
+/* アーカイブページ有効 */
+function post_has_archive($args, $post_type)
+{
+    if ('post' == $post_type) {
+        $args['rewrite'] = true; // リライトを有効にする
+        $args['has_archive'] = 'news'; // 任意のスラッグ名
+        $args['label'] = 'お知らせ'; // ページタイトル
+    }
+    return $args;
+}
+add_filter('register_post_type_args', 'post_has_archive', 10, 2);
+
+//iframeのレスポンシブ対応
+function wrap_iframe_in_div($the_content) {
+  if ( is_singular() ) {
+    $the_content = preg_replace('/<iframe/i', '<div class="iframe_body_wrap"><div class="iframe_body"><iframe', $the_content);
+    $the_content = preg_replace('/<\/iframe>/i', '</iframe></div></div>', $the_content);
+  }
+  return $the_content;
+}
+add_filter('the_content','wrap_iframe_in_div');
+
+// global-styles-inline-cssを無効化
+function remove_global_styles_inline_css() {
+    wp_dequeue_style( 'global-styles' );
+}
+add_action( 'wp_print_styles', 'remove_global_styles_inline_css' );
+
+// 固定ページ内にパーツ呼び出し
+function my_custom_part() {
+  ob_start();
+  get_template_part('parts/product-parts'); // parts/custom-part.php を読み込む
+  return ob_get_clean();
+}
+add_shortcode('product-parts', 'my_custom_part');
+
+// ACFのhtml入力に改行入れないようにする
+add_filter('acf/format_value/type=wysiwyg', function ($value, $post_id, $field) {
+  return $value; // 何も加工しない
+}, 10, 3);
+
+
+add_action('restrict_manage_posts', function () {
+  $screen = get_current_screen();
+  if (!$screen || $screen->post_type !== 'works') return; // ← 事例紹介(CPT)のスラッグに合わせる
+
+  $taxonomies = ['works_category'];             // ← 絞り込みたいタクソノミーを追加
+
+  foreach ($taxonomies as $tax) {
+    $tax_obj = get_taxonomy($tax);
+    if (!$tax_obj) continue;
+
+    $current = isset($_GET[$tax]) ? sanitize_text_field($_GET[$tax]) : '';
+
+    wp_dropdown_categories([
+      'show_option_all' => $tax_obj->labels->all_items, // 「すべての◯◯」
+      'taxonomy'        => $tax,
+      'name'            => $tax,
+      'orderby'         => 'name',
+      'selected'        => $current,
+      'hierarchical'    => true,
+      'show_count'      => true,
+      'hide_empty'      => false,
+      'value_field'     => 'slug',            // ← slugで渡す（後段のparse_queryで扱いやすい）
+    ]);
+  }
+});
+
+// 2) 選択された値で実際に絞り込む
+add_action('parse_query', function ($query) {
+  if (!is_admin() || !$query->is_main_query()) return;
+
+  $screen = function_exists('get_current_screen') ? get_current_screen() : null;
+  // get_current_screen() は一部フックで未定義のことがあるため post_type パラメータでも判定
+  $post_type = isset($_GET['post_type']) ? sanitize_text_field($_GET['post_type']) : ($screen->post_type ?? '');
+
+  if ($post_type !== 'works') return;             // ← CPTに合わせる
+
+  $taxonomies = ['works_category'];             // ← 上と同じ配列
+  $tax_query  = [];
+
+  foreach ($taxonomies as $tax) {
+    if (!empty($_GET[$tax])) {
+      $slug = sanitize_text_field($_GET[$tax]);
+      $tax_query[] = [
+        'taxonomy' => $tax,
+        'field'    => 'slug',
+        'terms'    => $slug,
+      ];
+    }
+  }
+
+  if (!empty($tax_query)) {
+    // 既存の tax_query がある場合もマージして適用
+    $existing = (array) $query->get('tax_query');
+    $query->set('tax_query', array_merge($existing, $tax_query));
+  }
+});
+
+// CPT UI で作成したタクソノミーを一括編集でも使えるようにする
+add_action('init', function() {
+  global $wp_taxonomies;
+
+  if (isset($wp_taxonomies['works_category'])) {
+    $wp_taxonomies['works_category']->show_in_quick_edit = true;
+    $wp_taxonomies['works_category']->show_admin_column = true;
+  }
+});
+
+
+
+// 事例カテゴリ(works_category)に「休止」チェックを追加
+add_action('works_category_add_form_fields', function(){
+  ?>
+  <div class="form-field">
+    <label for="scw_term_hidden">休止（カテゴリから探すに表示しない）</label>
+    <input type="checkbox" name="scw_term_hidden" id="scw_term_hidden" value="1">
+  </div>
+  <?php
+});
+add_action('works_category_edit_form_fields', function($term){
+  $val = get_term_meta($term->term_id, 'scw_term_hidden', true);
+  ?>
+  <tr class="form-field">
+    <th scope="row"><label for="scw_term_hidden">休止（カテゴリから探すに表示しない）</label></th>
+    <td><label><input type="checkbox" name="scw_term_hidden" id="scw_term_hidden" value="1" <?php checked($val, '1'); ?>> このタームを一覧から除外</label></td>
+  </tr>
+  <?php
+});
+add_action('created_works_category', function($term_id){
+  update_term_meta($term_id, 'scw_term_hidden', isset($_POST['scw_term_hidden']) ? '1' : '0');
+});
+add_action('edited_works_category', function($term_id){
+  update_term_meta($term_id, 'scw_term_hidden', isset($_POST['scw_term_hidden']) ? '1' : '0');
+});
+
+
+
+
+
+
+
+
+// ① 階層ターム対応のリライトルール（最優先で登録）
+add_action('init', function () {
+  // /works/{parent/child}/page/N/
+  add_rewrite_rule(
+    '^works/(.+)/page/([0-9]+)/?$',
+    'index.php?works_category=$matches[1]&paged=$matches[2]',
+    'top'
+  );
+  // 末尾スラ無しも保険
+  add_rewrite_rule(
+    '^works/(.+)/page/([0-9]+)$',
+    'index.php?works_category=$matches[1]&paged=$matches[2]',
+    'top'
+  );
+}, 0); // ★優先度0
+
+// ② フォールバック：rewriteに乗らず pagename 扱いになった時の救済（階層対応）
+add_filter('request', function ($vars) {
+  // 既に解釈できているなら何もしない
+  if ( (!empty($vars['taxonomy']) && !empty($vars['paged'])) ||
+       (!empty($vars['works_category']) && !empty($vars['paged'])) ) {
+    return $vars;
+  }
+
+  if (!empty($vars['pagename']) &&
+      preg_match('#^works/(.+)/page/([0-9]+)/?$#', $vars['pagename'], $m)) {
+
+    $path  = $m[1];            // 例: service_category/bouquet
+    $vars['taxonomy']       = 'works_category';
+    $vars['works_category'] = $path;          // 階層をそのまま渡す
+    $vars['paged']          = (int)$m[2];
+    unset($vars['pagename']);                 // 404回避
+  }
+  return $vars;
+}, 10, 1);
