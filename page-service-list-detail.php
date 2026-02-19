@@ -358,7 +358,7 @@ get_header();
 						</div>
 					</div>
 				<?php elseif ( is_page('celebration-plants') ) : ?>
-					<!-- celebration-plants専用コンテンツ -->
+					<!-- celebration-plants専用コンテンツ (updated) -->
 					<?php
 					$plants_img = get_template_directory_uri() . '/img/service/celebration-plants/';
 					?>
@@ -735,7 +735,7 @@ get_header();
 				<?php endif; ?>
 
 				<?php if ( $other = get_field('other_text_html', false, false) ) : ?>
-					<?php if ( !is_page('celebration-bouquet') && !is_page('celebration-arrangement') && !is_page('celebration-orchid') ) : ?>
+					<?php if ( !is_page('celebration-bouquet') && !is_page('celebration-arrangement') && !is_page('celebration-orchid') && !is_page('celebration-plants') ) : ?>
 						<div class="other">
 							<?php echo do_shortcode($other); ?>
 						</div>
