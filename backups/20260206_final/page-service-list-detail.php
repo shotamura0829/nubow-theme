@@ -29,47 +29,9 @@ get_header();
 				<div class="wrap">
 					<div class="faqbox">
 						<?php
-						if ( is_page('funeral-stand-flower') ) :
-							// 葬儀スタンド花ページ：カテゴリ「葬儀スタンド花のよくあるご質問」のFAQを表示
-							$faq_term = get_term_by( 'name', '葬儀スタンド花のよくあるご質問', 'faq_list' );
-							if ( $faq_term && ! is_wp_error( $faq_term ) ) :
-								$faq_query = new WP_Query([
-									'post_type'      => 'faq',
-									'posts_per_page' => -1,
-									'orderby'        => 'date',
-									'order'          => 'DESC',
-									'tax_query'      => [[
-										'taxonomy' => 'faq_list',
-										'field'    => 'term_id',
-										'terms'    => $faq_term->term_id,
-									]],
-								]);
-								if ( $faq_query->have_posts() ) :
-									while ( $faq_query->have_posts() ) : $faq_query->the_post(); ?>
-										<dl class="faq-content">
-											<dt class="faq-question accordion-toggle">
-												<div class="faq-question__title"><?php the_title(); ?></div>
-											</dt>
-											<dd class="faq-answer">
-												<div class="faq-answer__wrap">
-													<div><?php the_content(); ?></div>
-												</div>
-											</dd>
-										</dl>
-									<?php endwhile;
-									wp_reset_postdata();
-								else : ?>
-									<p>現在、よくあるご質問は準備中です。</p>
-								<?php endif;
-							else :
-								$faq_html = get_field('faq_html');
-								if ( $faq_html ) : echo $faq_html; endif;
-							endif;
-						else :
-							$faq_html = get_field('faq_html');
-							if ( $faq_html ) :
-								echo $faq_html;
-							endif;
+						$faq_html = get_field('faq_html');
+						if ($faq_html) :
+							echo $faq_html;
 						endif;
 						?>
 						<!-- <dl class="faq-content">
@@ -301,7 +263,7 @@ get_header();
 							</div>
 						</div>
 						<div class="item">
-							<img src="<?php echo $arr_img; ?>celebration-arrangement-image03.webp" alt="Lサイズ">
+							<img src="<?php echo $arr_img; ?>celebration-arrangement-image01.png" alt="Lサイズ">
 							<h5>
 								<span class="name">Lサイズ</span>
 								<span class="price">¥16,500円<span class="tax">（税込）</span></span>
@@ -312,7 +274,7 @@ get_header();
 							</div>
 						</div>
 						<div class="item">
-							<img src="<?php echo $arr_img; ?>celebration-arrangement-image04.webp" alt="LLサイズ">
+							<img src="<?php echo $arr_img; ?>celebration-arrangement-image01.png" alt="LLサイズ">
 							<h5>
 								<span class="name">LLサイズ</span>
 								<span class="price">¥22,000円<span class="tax">（税込）</span></span>
@@ -566,98 +528,6 @@ get_header();
 							</div>
 						</div>
 					</div>
-				<?php elseif ( is_page('celebration-stand-flower') ) : ?>
-					<!-- celebration-stand-flower専用コンテンツ -->
-					<?php
-					$stand_img = get_template_directory_uri() . '/img/page/celebration-stand-flower/';
-					?>
-					<h3><?php the_title(); ?></h3>
-					<?php
-						$catch_text = get_field('catch_text');
-						if ($catch_text) :
-							echo '<p class="catch">' . esc_html($catch_text) . '</p>';
-						endif;
-					?>
-					<?php if ( $purpose_text = get_field('purpose_text') ) : ?>
-						<h4 class="youto">オススメ用途</h4>
-						<p class="purpose"><?php echo esc_html($purpose_text); ?></p>
-					<?php endif; ?>
-					<?php
-					$detail_text = get_field('service_detail_text');
-					if ($detail_text) :
-						echo '<p class="text1">' . nl2br(esc_html($detail_text)) . '</p>';
-					endif;
-					?>
-
-					<!-- 商品リスト（M/L/LL/2段） -->
-					<div class="list item-list celebration-stand-flower-items">
-						<div class="item">
-							<img src="<?php echo $stand_img; ?>celebration-stand-flower-image01.webp" alt="Mサイズ">
-							<h5>
-								<span class="name">Mサイズ</span>
-								<span class="price">¥22,000円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>サイズ　1段 H190cm x W85cm</p>
-								<p>立て札　H49.5cm x W19.5cm</p>
-							</div>
-						</div>
-						<div class="item">
-							<img src="<?php echo $stand_img; ?>celebration-stand-flower-image02.webp" alt="Lサイズ">
-							<h5>
-								<span class="name">Lサイズ</span>
-								<span class="price">¥27,500円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>サイズ　1段 H190cm x W90cm</p>
-								<p>立て札　H49.5cm x W19.5cm</p>
-							</div>
-						</div>
-						<div class="item">
-							<img src="<?php echo $stand_img; ?>celebration-stand-flower-image03.webp" alt="LLサイズ">
-							<h5>
-								<span class="name">LLサイズ</span>
-								<span class="price">¥33,000円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>サイズ　1段 H190cm x W95cm</p>
-								<p>立て札　H49.5cm x W19.5cm</p>
-							</div>
-						</div>
-						<div class="item">
-							<img src="<?php echo $stand_img; ?>celebration-stand-flower-image04.webp" alt="2段">
-							<h5>
-								<span class="name">2段</span>
-								<span class="price">¥33,000円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>サイズ　2段 H190cm x W85cm</p>
-								<p>立て札　H49.5cm x W19.5cm</p>
-							</div>
-						</div>
-					</div>
-
-					<?php if ( $kakaku_html = get_field('kakaku_html', false, false) ) : ?>
-						<div class="price">
-							<?php echo do_shortcode( $kakaku_html ); ?>
-						</div>
-					<?php endif; ?>
-
-					<!-- Columnセクション（Service同様の作り） -->
-					<div class="stand-flower-column">
-						<div class="column-header">
-							<h3>Column</h3>
-							<h4 class="column-sub">開店祝いにスタンド花が喜ばれる理由</h4>
-						</div>
-						<div class="column-body">
-							<div class="column-image">
-								<img src="<?php echo $stand_img; ?>celebration-stand-flower-car.webp" alt="開店祝いにスタンド花が喜ばれる理由">
-							</div>
-							<p class="column-text">開店祝いに贈るスタンド花は、外に飾ることが一般的で、通りがかった人に新しいお店がオープンしたことを知っていただくきっかけとなり、集客効果があります。また、お花を抜いてお客様にプレゼントすることもできるため、特に接客サービス業のお客様に大変喜ばれる贈り物です。</p>
-							<p class="column-text">なお、開店するそのお店の雰囲気に合わせてデザインしてお作りすることも可能です。事前にそのお店の色合いや、内装・雰囲気を弊社へお知らせいただくことをオススメいたします。</p>
-						</div>
-					</div>
-
 				<?php elseif ( is_page('celebration-orchid') ) : ?>
 					<!-- celebration-orchid専用コンテンツ -->
 					<?php
@@ -820,243 +690,6 @@ get_header();
 							</div>
 						</div>
 					</div>
-				<?php elseif ( is_page('funeral-flower') ) : ?>
-					<!-- funeral-flower専用コンテンツ -->
-					<?php
-					$funeral_img = get_template_directory_uri() . '/img/page/funeral-flower/';
-					?>
-					<h3><?php the_title(); ?></h3>
-					<?php
-						$catch_text = get_field('catch_text');
-						if ($catch_text) :
-							echo '<p class="catch">' . esc_html($catch_text) . '</p>';
-						endif;
-					?>
-					<?php if ( $purpose_text = get_field('purpose_text') ) : ?>
-						<h4 class="youto">オススメ用途</h4>
-						<p class="purpose"><?php echo esc_html($purpose_text); ?></p>
-					<?php endif; ?>
-					<?php
-					$detail_text = get_field('service_detail_text');
-					if ($detail_text) :
-						echo '<p class="text1">' . nl2br(esc_html($detail_text)) . '</p>';
-					endif;
-					?>
-
-					<!-- 商品リスト（アレンジ＋胡蝶蘭） -->
-					<div class="list item-list funeral-flower-items">
-						<div class="item">
-							<img src="<?php echo $funeral_img; ?>funeral-flower-image01.webp" alt="アレンジメント花（洋花Sサイズ）">
-							<h5>
-								<span class="name">アレンジメント花（洋花Sサイズ）</span>
-								<span class="price">¥6,600円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>アレンジ　H40cm程度 x W35cm程度</p>
-								<p>立て札　H19cm x W10cm</p>
-							</div>
-						</div>
-						<div class="item">
-							<img src="<?php echo $funeral_img; ?>funeral-flower-image02.webp" alt="アレンジメント花（洋花Mサイズ）">
-							<h5>
-								<span class="name">アレンジメント花（洋花Mサイズ）</span>
-								<span class="price">¥8,800円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>アレンジ　H60cm程度 x W50cm程度</p>
-								<p>立て札　H19cm x W10cm</p>
-							</div>
-						</div>
-						<div class="item">
-							<img src="<?php echo $funeral_img; ?>funeral-flower-image03.webp" alt="アレンジメント花（洋花Mサイズ）">
-							<h5>
-								<span class="name">アレンジメント花（洋花Mサイズ）</span>
-								<span class="price">¥14,300円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>アレンジ　H75cm程度 x W60cm程度</p>
-								<p>立て札　H19cm x W10cm</p>
-							</div>
-						</div>
-						<div class="item">
-							<img src="<?php echo $funeral_img; ?>funeral-flower-image04.webp" alt="アレンジメント花（和花Lサイズ）">
-							<h5>
-								<span class="name">アレンジメント花（和花Lサイズ）</span>
-								<span class="price">¥11,000円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>アレンジ　H70cm程度 x W50cm程度</p>
-								<p>立て札　H19cm x W10cm</p>
-							</div>
-						</div>
-						<div class="item">
-							<img src="<?php echo $funeral_img; ?>funeral-flower-image05.webp" alt="アレンジメント花（和花Lサイズ）">
-							<h5>
-								<span class="name">アレンジメント花（和花Lサイズ）</span>
-								<span class="price">¥14,300円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>アレンジ　H80cm程度 x W55cm程度</p>
-								<p>立て札　H29.7cm x W13cm</p>
-							</div>
-						</div>
-						<div class="item">
-							<img src="<?php echo $funeral_img; ?>funeral-flower-orchid-image01.webp" alt="胡蝶蘭（小輪白/2本立ち）">
-							<h5>
-								<span class="name">胡蝶蘭（小輪白/2本立ち）</span>
-								<span class="price">¥8,800円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>胡蝶蘭　H50cm程度 x W30cm程度</p>
-								<p>立て札　H19cm x W10cm</p>
-							</div>
-						</div>
-						<div class="item">
-							<img src="<?php echo $funeral_img; ?>funeral-flower-orchid-image02.webp" alt="胡蝶蘭（小輪白/3本立ち）">
-							<h5>
-								<span class="name">胡蝶蘭（小輪白/3本立ち）</span>
-								<span class="price">¥13,200円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>胡蝶蘭　H60cm程度 x W40cm程度</p>
-								<p>立て札　H19cm x W10cm</p>
-							</div>
-						</div>
-						<div class="item funeral-orchid-multi">
-							<div class="orchid-images-row">
-								<img src="<?php echo $funeral_img; ?>funeral-flower-orchid-image03.webp" alt="胡蝶蘭（大輪白/3本立ち）①">
-								<img src="<?php echo $funeral_img; ?>funeral-flower-orchid-image04.webp" alt="胡蝶蘭（大輪白/3本立ち）②">
-							</div>
-							<h5><span class="name">胡蝶蘭（大輪白/3本立ち）</span></h5>
-							<div class="size orchid-size-small orchid-size-line">
-								<p><span class="line1">① ¥22,000（税込）輪数30前後</span><span class="line2">　胡蝶蘭 H80cm〜90cm前後 x W45cm前後</span></p>
-								<p><span class="line1">② ¥27,500（税込）輪数36前後</span><span class="line2">　胡蝶蘭 H90cm〜100cm前後 x W45cm前後</span></p>
-								<p><span class="line1">③ ¥33,000（税込）輪数42前後</span><span class="line2">　胡蝶蘭 H100cm〜110cm前後 x W50cm前後</span></p>
-								<p><span class="line1">④ ¥38,500（税込）輪数48前後</span><span class="line2">　胡蝶蘭 H100cm〜110cm前後 x W50cm前後</span></p>
-								<p>（共通）立て札 H29.7cm x W13cm</p>
-							</div>
-						</div>
-					</div>
-
-					<?php if ( $kakaku_html = get_field('kakaku_html', false, false) ) : ?>
-						<div class="price">
-							<?php echo do_shortcode( $kakaku_html ); ?>
-						</div>
-					<?php endif; ?>
-
-					<!-- お悔やみ・お供え花の特典 -->
-					<div class="tokuten funeral-flower-tokuten">
-						<div class="tokuten-header">
-							<h3>お悔やみ・お供え花の特典</h3>
-						</div>
-						<div class="list tokuten-list">
-							<div class="item">
-								<img src="<?php echo $funeral_img; ?>funeral-flower-sighboard.webp" alt="立て札無料">
-								<h5>立て札無料</h5>
-							</div>
-							<div class="item">
-								<img src="<?php echo $funeral_img; ?>funeral-flower-book.webp" alt="解説書付き">
-								<h5>アレンジメント花を長く楽しむための解説書 or 胡蝶蘭育て方の解説書付き</h5>
-							</div>
-						</div>
-					</div>
-
-					<!-- Columnセクション（見出し左・画像右・本文下） -->
-					<div class="funeral-flower-column">
-						<div class="column-header-row">
-							<div class="column-header">
-								<h3>Column</h3>
-								<h4 class="column-sub">胡蝶蘭が法事のお花にふさわしい理由</h4>
-							</div>
-							<div class="column-header-image">
-								<img src="<?php echo $funeral_img; ?>funeral-flower-column.webp" alt="胡蝶蘭が法事のお花にふさわしい理由">
-							</div>
-						</div>
-						<div class="column-body">
-							<p class="column-text">以前は仏教の教えから「不幸に根が付く」として避けられていた胡蝶蘭ですが、季節を問わず入手でき、香りや花粉がほぼなく、花持ちが良いことから、最近では法事の定番花になっています。お手入れが簡単で管理が少なく、贈り先のお客様に大変好評です。ヌボー生花店では急なご注文にも対応できるよう、長野市内でトップクラスの品揃えを誇っております。ぜひご利用ください。</p>
-						</div>
-					</div>
-
-				<?php elseif ( is_page('funeral-stand-flower') ) : ?>
-					<!-- 葬儀スタンド花専用コンテンツ -->
-					<?php
-					$stand_img = get_template_directory_uri() . '/img/page/celebration-stand-flower/';
-					$stand_funeral_img = get_template_directory_uri() . '/img/page/funeral-stand-flower/';
-					?>
-					<h3><?php the_title(); ?></h3>
-					<?php
-						$catch_text = get_field('catch_text');
-						if ($catch_text) :
-							echo '<p class="catch">' . esc_html($catch_text) . '</p>';
-						endif;
-					?>
-					<?php if ( $purpose_text = get_field('purpose_text') ) : ?>
-						<h4 class="youto">オススメ用途</h4>
-						<p class="purpose"><?php echo esc_html($purpose_text); ?></p>
-					<?php endif; ?>
-					<?php
-					$detail_text = get_field('service_detail_text');
-					if ($detail_text) :
-						echo '<p class="text1">' . nl2br(esc_html($detail_text)) . '</p>';
-					endif;
-					?>
-
-					<!-- 商品リスト（和花M/Lサイズ） -->
-					<div class="list item-list celebration-stand-flower-items">
-						<div class="item">
-							<img src="<?php echo $stand_img; ?>celebration-stand-flower-image01.webp" alt="和花Mサイズ">
-							<h5>
-								<span class="name">和花Mサイズ</span>
-								<span class="price">¥16,500円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>サイズ　1段 H85cm x W65cm</p>
-								<p>立て札　H49.5cm x W19.5cm</p>
-								<p>※スタンドの高さは飾る位置により変動します。</p>
-							</div>
-						</div>
-						<div class="item">
-							<img src="<?php echo $stand_img; ?>celebration-stand-flower-image02.webp" alt="和花Lサイズ">
-							<h5>
-								<span class="name">和花Lサイズ</span>
-								<span class="price">¥22,000円<span class="tax">（税込）</span></span>
-							</h5>
-							<div class="size">
-								<p>サイズ　1段 H90cm x W70cm</p>
-								<p>立て札　H49.5cm x W19.5cm</p>
-								<p>※スタンドの高さは飾る位置により変動します。</p>
-							</div>
-						</div>
-					</div>
-
-					<?php if ( $kakaku_html = get_field('kakaku_html', false, false) ) : ?>
-						<div class="price">
-							<?php echo do_shortcode( $kakaku_html ); ?>
-						</div>
-					<?php endif; ?>
-
-					<!-- 葬儀スタンド花の特典 -->
-					<div class="tokuten funeral-stand-flower-tokuten">
-						<div class="tokuten-header">
-							<h3>葬儀スタンド花の特典</h3>
-							<p class="tokuten-note">※16,500円以上の御注文時のみ</p>
-						</div>
-						<div class="list tokuten-list">
-							<div class="item">
-								<img src="<?php echo $stand_funeral_img; ?>funeral-stand-flower-sighboard.webp" alt="立て札無料">
-								<h5>立て札無料</h5>
-							</div>
-							<div class="item">
-								<img src="<?php echo $stand_funeral_img; ?>funeral-stand-flower-car.webp" alt="配送料　長野市内無料">
-								<h5>配送料　長野市内無料<br>（※一部地域を除く）</h5>
-							</div>
-							<div class="item">
-								<img src="<?php echo $stand_funeral_img; ?>funeral-stand-flower-0.webp" alt="葬儀場への持込み料無料">
-								<h5>葬儀場への持込み料無料</h5>
-							</div>
-						</div>
-					</div>
-
 				<?php else : ?>
 					<!-- その他のサービスページ（既存のACFコンテンツ） -->
 					<h3><?php the_title(); ?></h3>
@@ -1102,7 +735,7 @@ get_header();
 				<?php endif; ?>
 
 				<?php if ( $other = get_field('other_text_html', false, false) ) : ?>
-					<?php if ( !is_page('celebration-bouquet') && !is_page('celebration-arrangement') && !is_page('celebration-orchid') && !is_page('celebration-plants') && !is_page('celebration-stand-flower') && !is_page('funeral-flower') && !is_page('funeral-stand-flower') ) : ?>
+					<?php if ( !is_page('celebration-bouquet') && !is_page('celebration-arrangement') && !is_page('celebration-orchid') && !is_page('celebration-plants') ) : ?>
 						<div class="other">
 							<?php echo do_shortcode($other); ?>
 						</div>

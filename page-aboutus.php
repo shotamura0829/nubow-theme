@@ -1,4 +1,10 @@
 <?php get_header(); ?>
+<?php
+$aboutus_section = get_query_var( 'aboutus_section' );
+$section_map = array( 'message' => 0, 'company' => 1, 'staff' => 2 );
+$tab_index = isset( $section_map[ $aboutus_section ] ) ? $section_map[ $aboutus_section ] : 0;
+$sections = array( 'message', 'company', 'staff' );
+?>
 
 <!-- メインコンテンツ -->
 <main id="page" class="about">
@@ -22,23 +28,25 @@
 	</div>
 	<div class="main-content">
 		<ul class="tab-menu">
-			<li class="tab is-active">代表<br class="sp-only">挨拶</li>
-			<li class="tab">会社<br class="sp-only">概要</li>
-			<li class="tab">スタッフ<br class="sp-only">紹介</li>
+			<li class="tab <?php echo $tab_index === 0 ? 'is-active' : ''; ?>" data-section="message">代表<br class="sp-only">挨拶</li>
+			<li class="tab <?php echo $tab_index === 1 ? 'is-active' : ''; ?>" data-section="company">会社<br class="sp-only">概要</li>
+			<li class="tab <?php echo $tab_index === 2 ? 'is-active' : ''; ?>" data-section="staff">スタッフ<br class="sp-only">紹介</li>
 		</ul>
 
-		<div class="tab-wrap">
+		<div class="tab-wrap" data-initial-section="<?php echo esc_attr( $sections[ $tab_index ] ); ?>">
 			<!-- 代表挨拶 -->
-			<div class="tab-contents">
+			<div class="tab-contents<?php echo $tab_index === 0 ? ' is-active' : ''; ?>"<?php echo $tab_index !== 0 ? ' style="display:none;"' : ''; ?>>
 				<div class="greeting">
 					<h2 class="greeting-main-title">変化の激しい時代だからこそ、常に「新しい（ヌボー）」感動と、普遍的な「癒やし」を。</h2>
-					<div class="box">
+					<div class="box greeting-intro">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_greeting_img01.png" alt="" class="greeting-img">
 						<div class="text-block">
 							<h3>変化の激しい時代だからこそ、常に「新しい（ヌボー）」感動と、普遍的な「癒やし」を。創業50年、名前に込めた「革新」のDNA</h3>
-							<p>ヌボー生花店は1974年にその歩みを始め、おかげさまで創業50年という大きな節目を迎えることができました。社名にある「ヌボー」とは、フランス語で「新しい」や「新鮮な」を意味する言葉をもじって名付けられたものです。「地域の皆様に新鮮なお花を提供し、新しい提案をし続けられる花屋でありたい」。創業時のこの願いは、半世紀を経た今も私たちの根底に流れる変わらぬ精神です。地域の皆様に支えられ、今では地域一番店として認めていただける存在へと成長できましたことに、心より感謝申し上げるとともに、これからも地域に根差し貢献できる企業であり続けたいと思います。</p>
+							<p>ヌボー生花店は1974年にその歩みを始め、おかげさまで創業50年という大きな節目を迎えることができました。社名にある「ヌボー」とは、フランス語で「新しい」や「新鮮な」を意味する言葉をもじって名付けられたものです。</p>
 						</div>
-						<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_greeting_img01.png" alt="">
 					</div>
+
+					<p>「地域の皆様に新鮮なお花を提供し、新しい提案をし続けられる花屋でありたい」。創業時のこの願いは、半世紀を経た今も私たちの根底に流れる変わらぬ精神です。地域の皆様に支えられ、今では地域一番店として認めていただける存在へと成長できましたことに、心より感謝申し上げるとともに、これからも地域に根差し貢献できる企業であり続けたいと思います。</p>
 
 					<h3>激動の時代に求められる「自然への回帰」</h3>
 					<p>振り返ればこの10年は、私たち花屋を取り巻く環境が劇的に変化した時代でした。コロナ禍によるライフスタイルや消費行動の変容、そして温暖化による生産環境の厳しさなど、かつてない試練に直面しました。さらに現在、AIをはじめとするテクノロジーの進化は加速し、これから先の10年は、過去とは比較にならないほどの激動の日々となることが予想されます。しかし、世の中がデジタル化し、効率や速度が重視されるようになればなるほど、逆説的に人々の心が求めているものがあります。それは、生命の温かさであり、自然の息吹です。人間が本能的に求める「安らぎ」や「生命力」が、花や緑には宿っています。</p>
@@ -68,7 +76,10 @@
 					<!-- 花屋の未来をつくる活動（h3で分離） -->
 					<h3 class="greeting-extra-h3">花屋の未来をつくる活動</h3>
 					<div class="greeting-extra activity-block">
-						<p class="activity-company">株式会社はなやのミカタ</p>
+						<p class="activity-company">
+							<span class="activity-company-icon"><img src="<?php echo esc_url( get_template_directory_uri() ); ?>/img/page/hanayanomikata_icon.webp" alt="はなやのミカタ"></span>
+							株式会社はなやのミカタ
+						</p>
 						<p>「花屋さんの力になりたい、業界を活性化させたい」という強い想いから、2025年1月に花屋専門の経営コンサルティング会社を設立。長年培った経営ノウハウを全国の仲間に共有し、業界全体の持続可能な発展を支援しています。</p>
 						<div class="activity-logo">
 							<a href="#" class="activity-link" target="_blank" rel="noopener noreferrer">公式サイトはこちら</a>
@@ -79,7 +90,7 @@
 			<!-- 代表挨拶 -->
 
 			<!-- 会社概要 -->
-			<div class="tab-contents">
+			<div class="tab-contents<?php echo $tab_index === 1 ? ' is-active' : ''; ?>"<?php echo $tab_index !== 1 ? ' style="display:none;"' : ''; ?>>
 				<div class="company">
 					<h3>経営理念</h3>
 					<p>ヌボー生花店は「お花のある生活」という生活スタイルを提案することで、より多くの人達に幸福感を提供していきます。</p>
@@ -368,7 +379,7 @@
 			<!-- 会社概要 -->
 
 			<!-- スタッフ紹介 -->
-			<div class="tab-contents">
+			<div class="tab-contents<?php echo $tab_index === 2 ? ' is-active' : ''; ?>"<?php echo $tab_index !== 2 ? ' style="display:none;"' : ''; ?>>
 				<div class="staff">
 					<div class="list">
 						<div class="box">
@@ -456,13 +467,33 @@
 
 <script type="text/javascript">
 $(window).on('load', function() {
-	$(".tab-contents:not(:eq(0))").hide();
+	var baseUrl = '<?php echo esc_js( home_url( '/aboutus/' ) ); ?>';
+	var $wrap = $(".tab-wrap");
+	var initialSection = $wrap.data('initial-section') || 'message';
+	// 初期表示: is-active が付いているタブ・コンテンツ以外は非表示（CSSで .tab-contents:not(.is-active) を非表示にしている前提で、ここでは表示切り替えのみ）
+	$(".tab-contents").hide();
+	$(".tab-contents.is-active").show();
+
 	$(".tab").click(function() {
 		var num = $(".tab").index(this);
+		var section = $(this).data('section');
 		$(".tab-contents").hide();
 		$(".tab-contents").eq(num).show();
 		$(".tab").removeClass('is-active');
 		$(this).addClass('is-active');
+		if (section && window.history && window.history.pushState) {
+			var url = baseUrl + section + '/';
+			window.history.pushState({ section: section }, '', url);
+		}
+	});
+
+	window.addEventListener('popstate', function(e) {
+		var path = window.location.pathname.replace(/\/$/, '');
+		var m = path.match(/\/aboutus\/(message|company|staff)/);
+		var section = m ? m[1] : 'message';
+		var idx = { message: 0, company: 1, staff: 2 }[section];
+		$(".tab").removeClass('is-active').eq(idx).addClass('is-active');
+		$(".tab-contents").hide().eq(idx).show();
 	});
 });
 </script>

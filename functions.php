@@ -1,14 +1,66 @@
 <?php
-// ヌボー生花店について（aboutus）は必ず page-aboutus.php を使用
+// テンプレート強制
 add_filter( 'template_include', function( $template ) {
+	$path = trim( parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+	// トップ（/）は必ず front-page.php（パスが空またはトップの場合）
+	if ( $path === '' || ( is_front_page() && $path === '' ) ) {
+		$front = get_template_directory() . '/front-page.php';
+		if ( file_exists( $front ) ) {
+			return $front;
+		}
+	}
 	if ( is_page( 'aboutus' ) ) {
 		$custom = get_template_directory() . '/page-aboutus.php';
 		if ( file_exists( $custom ) ) {
 			return $custom;
 		}
 	}
+	// お知らせ一覧（/news）は page-news.php を強制使用
+	$path_is_news = ( $path === 'news' || strpos( $path, 'news/' ) === 0 || strpos( $path, 'news/page/' ) === 0 );
+	$is_news_page = $path_is_news && ! is_front_page();
+	if ( $is_news_page ) {
+		$custom = get_template_directory() . '/page-news.php';
+		if ( file_exists( $custom ) ) {
+			return $custom;
+		}
+	}
 	return $template;
 }, 99 );
+
+// お知らせページのページネーション用リライト（/news/page/2）
+add_action('init', function() {
+	add_rewrite_rule('^news/page/([0-9]+)/?$', 'index.php?pagename=news&paged=$matches[1]', 'top');
+}, 1);
+
+// aboutus サブパス（/aboutus/message 等）のリライトと style リダイレクト
+add_filter( 'query_vars', function( $vars ) {
+	$vars[] = 'aboutus_section';
+	return $vars;
+});
+
+add_action( 'init', function() {
+	$sections = array( 'message', 'company', 'staff', 'style' );
+	foreach ( $sections as $section ) {
+		add_rewrite_rule(
+			'^aboutus/' . preg_quote( $section, '#' ) . '/?$',
+			'index.php?pagename=aboutus&aboutus_section=' . $section,
+			'top'
+		);
+	}
+}, 1 );
+
+add_action( 'template_redirect', function() {
+	if ( get_query_var( 'aboutus_section' ) === 'style' ) {
+		wp_redirect( home_url( '/aboutus/message' ), 301 );
+		exit;
+	}
+}, 5 );
+
+add_action( 'wp_head', function() {
+	if ( is_page( 'aboutus' ) ) {
+		echo '<link rel="canonical" href="' . esc_url( home_url( '/aboutus' ) ) . '" />' . "\n";
+	}
+}, 1 );
 
 //インラインスタイル削除
 function remove_recent_comments_style() {
@@ -97,12 +149,39 @@ add_action( 'wp_head', 'rel_next_prev_link_tags' );
 
 // 自動補完リダイレクト無効
 function disable_redirect_canonical( $redirect_url ) {
-  if( is_404() ) {
+  if ( is_404() ) {
     return false;
+  }
+  // URL末尾スラッシュ統一（なしに揃える）: 末尾スラッシュの違いだけでリダイレクトしようとする場合はキャンセル
+  if ( $redirect_url ) {
+    $current = home_url( $_SERVER['REQUEST_URI'] ?? '' );
+    $curr_trimmed = untrailingslashit( $current );
+    $redir_trimmed = untrailingslashit( $redirect_url );
+    if ( $curr_trimmed === $redir_trimmed ) {
+      return false;
+    }
   }
   return $redirect_url;
 }
 add_filter( 'redirect_canonical', 'disable_redirect_canonical' );
+
+// URL末尾スラッシュを統一（全てなしに）
+add_filter( 'user_trailingslashit', function( $url ) {
+  return untrailingslashit( $url );
+}, 10, 1 );
+
+add_action( 'template_redirect', function() {
+  $uri = $_SERVER['REQUEST_URI'] ?? '';
+  $path = parse_url( $uri, PHP_URL_PATH );
+  $query = parse_url( $uri, PHP_URL_QUERY );
+  if ( ! $path || $path === '/' ) return;
+  if ( substr( $path, -1 ) === '/' ) {
+    $to = home_url( rtrim( $path, '/' ) );
+    if ( $query ) $to .= '?' . $query;
+    wp_redirect( $to, 301 );
+    exit;
+  }
+}, 1 );
 
 // ビジュアルエディタの変換を無効化
 function override_mce_options( $init_array ) {
@@ -152,6 +231,17 @@ function post_has_archive($args, $post_type)
     return $args;
 }
 add_filter('register_post_type_args', 'post_has_archive', 10, 2);
+
+// お知らせ一覧: 10件表示（他プラグインより後で適用）
+add_action('pre_get_posts', function ($query) {
+    if (is_admin() || !$query->is_main_query()) return;
+    $page_for_posts = (int) get_option('page_for_posts');
+    $is_blog = $page_for_posts && (int) $query->get('page_id') === $page_for_posts;
+    $is_post_archive = $query->is_archive() && in_array($query->get('post_type'), array('', 'post'), true);
+    if ($is_blog || $query->is_home() || $query->is_category() || $is_post_archive) {
+        $query->set('posts_per_page', 10);
+    }
+}, 999);
 
 //iframeのレスポンシブ対応
 function wrap_iframe_in_div($the_content) {

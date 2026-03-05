@@ -3,7 +3,7 @@
 import os
 import shutil
 
-src_base = "/Users/shotamura/Downloads/nubow_0730"
+src_base = "/Users/shotamura/Desktop/nubow_0730"
 dst_base = "/Users/shotamura/Local Sites/nubow-local/app/public/wp-content/themes/nubow"
 
 # 1. parts-otherlinks2.php

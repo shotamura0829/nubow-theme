@@ -36,8 +36,7 @@ page共通
 @media screen and (max-width: 1199px) {
     #page .list {flex-direction: column; align-items: center;}
 
-    /* CTA幅いっぱいのため、mainのoverflow:hiddenを上書き（common.css） */
-    #page {padding: 27.8rem 0 0; overflow-x: visible !important;}
+    #page {padding: 27.8rem 0 0;}
     #page .page-header h2 {font-size: 5.6rem;}
     #page .page-header h2.font24 {font-size: 4.8rem; letter-spacing: 0; white-space: nowrap;}
     #page .page-header.no-breadcrumbs {padding-top: 1rem;}
@@ -55,126 +54,6 @@ page共通
     #page .main-content h3 {font-size: 3.2rem;}
     #page .main-content p {font-size: 3.2rem;}
     #page .main-content ul li {font-size: 3.2rem;}
-
-    /* CTA（other-links2）SP時は全ページで画面幅いっぱい（テンプレートに依存しない） */
-    #page .other-links2 {
-        width: 100vw;
-        max-width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-        box-sizing: border-box;
-        padding: 0;
-    }
-    #page .other-links2 .links.list {
-        flex-direction: column;
-        gap: 11.6rem;
-        margin-top: 12rem;
-        margin-bottom: 20.8rem;
-        align-items: stretch;
-        width: 100%;
-        max-width: 100%;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    #page .other-links2 .links .box {
-        flex: 0 0 auto;
-        align-self: stretch;
-        width: 100%;
-        margin-top: 0;
-        max-width: 100%;
-        min-height: 0;
-    }
-    #page .other-links2 .links .box + .box {margin-top: 0;}
-    #page .other-links2 .links .box a {
-        width: 100%;
-        height: auto;
-        min-height: 0;
-    }
-    /* CTA画像：コンテンツ幅に合わせ、縦は画像全体が入るように（見切れなし） */
-    #page .other-links2 .links .box a > img {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        min-height: 0;
-        object-fit: contain;
-        object-position: center;
-        vertical-align: top;
-    }
-    #page .other-links2 .links a span {
-        top: auto;
-        bottom: 2.5rem;
-        width: 52rem;
-        max-width: calc(100% - 4rem);
-        height: 10rem;
-        font-size: 3.4rem;
-        z-index: 1;
-    }
-    #page .other-links2 .links a span:after {width: 1.4rem; height: 2.2rem;}
-
-    /* CTA SP: 他スタイルに負けないよう強制（幅いっぱい） */
-    #page .other-links2,
-    #page.service-detail .other-links2 {
-        width: 100vw !important;
-        max-width: 100vw !important;
-        margin-left: calc(50% - 50vw) !important;
-        margin-right: calc(50% - 50vw) !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        box-sizing: border-box !important;
-    }
-    #page .other-links2 .links.list,
-    #page.service-detail .other-links2 .links.list {
-        width: 100% !important;
-        max-width: none !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        box-sizing: border-box !important;
-    }
-    #page .other-links2 .links .box,
-    #page.service-detail .other-links2 .links .box {
-        width: 100% !important;
-        max-width: none !important;
-    }
-
-    /* CTA専用ラッパー .cta-bleed：SPで上部コンテンツ幅に合わせ、左右に少し余白 */
-    .cta-bleed {
-        width: 100vw !important;
-        max-width: 100vw !important;
-        margin-left: calc(50% - 50vw) !important;
-        margin-right: calc(50% - 50vw) !important;
-        padding-left: 2rem !important;
-        padding-right: 2rem !important;
-        box-sizing: border-box !important;
-    }
-    /* サービス詳細は main-content と同じ 1.5rem に合わせる */
-    #page.service-detail .cta-bleed {
-        padding-left: 1.5rem !important;
-        padding-right: 1.5rem !important;
-    }
-    .cta-bleed .other-links2 {
-        width: 100% !important;
-        max-width: none !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        box-sizing: border-box !important;
-    }
-    .cta-bleed .other-links2 .links.list {
-        width: 100% !important;
-        max-width: none !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        box-sizing: border-box !important;
-    }
-    .cta-bleed .other-links2 .links .box {
-        width: 100% !important;
-        max-width: none !important;
-    }
-    .cta-bleed .other-links2 .links .box a {
-        width: 100% !important;
-    }
 }
 
 /* =================================================================
@@ -199,16 +78,6 @@ page共通
 .pagination .next-button {background: #5C4636; color: #fff; width: auto;}
 
 .pagination .current {background: #5C4636; color: #fff;}
-
-/* お知らせ一覧用ページネーション */
-.pagination-news span,
-.pagination-news a {border-color: #998574; color: #998574;}
-.pagination-news a:hover {background: #998574; color: #fff;}
-.pagination-news .prev-button,
-.pagination-news .next-button {background: #998574; color: #fff; border-color: #998574;}
-.pagination-news .prev-button:hover,
-.pagination-news .next-button:hover {background: #7a6a5d; color: #fff;}
-.pagination-news .current {background: #998574; color: #fff; border-color: #998574;}
 
 @media screen and (max-width: 1199px) {
     .pagination {margin-top: 10rem;}
@@ -375,12 +244,10 @@ online-shop
 #page.contact .box.big .label {margin-bottom: 26px;}
 #page.contact .box .form {width: 100%; max-width: 659px;}
 #page.contact .box .form input {font-size: 24px; width: 100%; max-width: 659px; border: 1px solid #5C4636; border-radius: 5px; height: 64px; padding: 0 10px;}
-#page.contact .box .form textarea {font-size: 24px; width: 100%; border: 1px solid #5C4636; border-radius: 5px; padding: 14px 10px;}
+#page.contact .box .form textarea {font-size: 24px; width: 100%; border: 1px solid #5C4636; border-radius: 5px; padding: 0 10px;}
 #page.contact .box.big .form {width: 100%; max-width: 100%;}
 #page.contact .mwform-tel-field {display: flex; gap: 13px; width: 100%;}
 #page.contact .mwform-tel-field input {width: calc((100% - 13px*2)/3);}
-#page.contact .box .form input::placeholder,
-#page.contact .box .form textarea::placeholder {font-size: 18px; color: rgba(51, 51, 51, 0.4);}
 
 #page.contact .cmn-button {border: 0px; padding: 0; margin: 55px auto 0;} 
 #page.contact .cmn-button.back {border: 1px solid #998675; color: #998675; background: #fff; padding: 0; margin: 40px auto 0; box-shadow: none;} 
@@ -818,72 +685,8 @@ input:checked + label::after {opacity: 1;}
 #page.case-detail .main-content {margin-top: 0;}
 #page.case-detail .other-links {margin-bottom: 134px;}
 
-/* FAQ・事例詳細のCTA＝aboutusと同様（左右並び・中央配置・ボタンは画像内にオーバーレイ） */
-#page.faq .other-links .list,
-#page.case-detail .other-links .list {
-    display: flex;
-    flex-direction: row;
-    gap: 45px;
-    align-items: stretch;
-    justify-content: center;
-}
-#page.faq .other-links .list .box,
-#page.case-detail .other-links .list .box {
-    flex: 0 1 auto;
-    min-width: 0;
-    max-width: 540px;
-}
-#page.faq .other-links .list .box a,
-#page.case-detail .other-links .list .box a {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-}
-#page.faq .other-links .list .box img,
-#page.case-detail .other-links .list .box img {
-    display: block;
-    width: 100%;
-    max-width: 540px;
-    height: auto;
-    vertical-align: top;
-}
-#page.faq .other-links a span,
-#page.case-detail .other-links a span {
-    max-width: calc(100% - 40px);
-    box-sizing: border-box;
-    border-radius: 30px;
-}
-#page.faq .main-content > .other-links,
-#page.case-detail .main-content > .other-links {
-    margin-top: 60px;
-}
-
 @media screen and (max-width: 1199px) {
     #page.case-detail .other-links {padding: 0 2rem; margin-bottom: 20.8rem;}
-    #page.faq .other-links .list,
-    #page.case-detail .other-links .list {
-        flex-direction: column;
-        align-items: center;
-    }
-    #page.faq .other-links .list .box,
-    #page.case-detail .other-links .list .box {
-        max-width: 100%;
-    }
-    #page.faq .other-links a span,
-    #page.case-detail .other-links a span {
-        top: auto;
-        bottom: 2.5rem;
-        width: 52rem;
-        max-width: calc(100% - 4rem);
-        height: 10rem;
-        font-size: 3.4rem;
-    }
-    #page.faq .other-links a span:after,
-    #page.case-detail .other-links a span:after {
-        width: 1.4rem;
-        height: 2.2rem;
-    }
 }
 
 /* =================================================================
@@ -926,15 +729,8 @@ input:checked + label::after {opacity: 1;}
     #page.service-list .box p {font-size: 3.2rem; letter-spacing: 0.3rem;}
     #page.service-list .box h4.youto {font-size: 3.2rem; height: 8rem;}
     #page.service-list .box .purpose {font-size: 3rem;}
-    /* 画像をはみ出させるため、親チェーンで overflow を許可 */
-    #page.service-list .main-content,
-    #page.service-list .main-content .flex,
-    #page.service-list .service-main-content,
-    #page.service-list .box,
-    #page.service-list .box .flex {overflow: visible;}
-    #page.service-list .box .flex {flex-direction: column; gap: 3rem; margin-top: 3rem;}
-    /* サービス紹介画像：main-content の左右 2rem を打ち消し、コンテンツ幅いっぱいに */
-    #page.service-list .main-content .box .flex img {width: calc(100% + 4rem) !important; max-width: none !important; height: auto !important; display: block !important; margin-left: -2rem !important; margin-right: -2rem !important;}
+    #page.service-list .box .flex {gap: 3rem; margin-top: 3rem;}
+    #page.service-list .box .flex img {max-width: 100%;}
     #page.service-list .box a {height: 12rem; margin-top: 3rem; width: 100%; font-size: 3.8rem; letter-spacing: 0;}
 
     #page.service-list .faq-link.pc {display: none;}
@@ -1005,16 +801,6 @@ input:checked + label::after {opacity: 1;}
 #page.service-detail .tokuten {margin-top: 90px;}
 #page.service-detail .tokuten h3 {font-size: 32px; letter-spacing: 0;}
 #page.service-detail .tokuten p {font-size: 24px; margin-top: 11px;}
-
-/* 特典セクション：全サービスページでPC時に高さを統一 */
-@media screen and (min-width: 1200px) {
-    #page.service-detail .tokuten .tokuten-list {
-        align-items: stretch;
-    }
-    #page.service-detail .tokuten .tokuten-list .item {
-        align-self: stretch;
-    }
-}
 #page.service-detail .service-main-content .list .item.wide {width: 100%;}
 
 #page.service-detail .other {margin-top: 118px;} 
@@ -1024,69 +810,15 @@ input:checked + label::after {opacity: 1;}
 #page.service-detail .other p {font-size: 20px;}
 #page.service-detail .other img {margin-top: 20px;}
 
-/* サービス紹介下層 CTA（店舗紹介・Aboutと同様の余白・レイアウト） */
-#page.service-detail .other-links2 .links {
-    display: flex;
-    flex-direction: row;
-    gap: 45px;
-    margin-top: 80px;
-    margin-bottom: 134px;
-    justify-content: center;
-    align-items: stretch;
-}
-#page.service-detail .other-links2 .links .box {
-    flex: 1 1 0;
-    min-width: 0;
-    max-width: 540px;
-}
-#page.service-detail .other-links2 .links .box a {
-    position: relative;
-    display: block;
-    overflow: hidden;
-    border-radius: 10px;
-}
-/* CTA画像のみ（span内の.iconには当てない） */
-#page.service-detail .other-links2 .links .box a > img {
-    display: block;
-    width: 100%;
-    max-width: 540px;
-    height: auto;
-    vertical-align: top;
-}
+#page.service-detail .other-links2 .links {justify-content: center; margin-bottom: 134px;}
+#page.service-detail .other-links2 .links img {display: block; max-width: 540px; width: 100%;}
 #page.service-detail .other-links2 .links .icon {width: 28px;}
-#page.service-detail .other-links2 .links a span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    background: #5C4636;
-    width: 300px;
-    max-width: calc(100% - 40px);
-    height: 60px;
-    color: #fff;
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 30px;
-    margin: auto;
-    font-size: 19px;
-    letter-spacing: 0;
-    box-sizing: border-box;
-}
-#page.service-detail .other-links2 .links .tel a span {
-    background: #fff;
-    color: #5C4636;
-    font-weight: bold;
-    font-size: 24px;
-}
+#page.service-detail .other-links2 .links a {position: relative;}
+#page.service-detail .other-links2 .links a span {display: flex; justify-content: center; align-items: center; border-radius: 30px; background: #5C4636; width: 300px; height: 60px; color: #fff; position: absolute; left: 0; right: 0; bottom: 30px; margin: auto; font-size: 19px; letter-spacing: 0;}
+#page.service-detail .other-links2 .links .tel a span {background: #fff; color: #5C4636; font-weight: bold; font-size: 24px;}
 #page.service-detail .other-links2 .links .tel a span img {margin-right: 7px;}
 
 @media screen and (max-width: 1199px) {
-    /* SP: サービス詳細ページを画面幅いっぱいに表示 */
-    #page.service-detail {width: 100%; max-width: 100%; box-sizing: border-box;}
-    #page.service-detail .page-header .inner {max-width: 100%; padding-left: 1.5rem; padding-right: 1.5rem;}
-    #page.service-detail .main-content {max-width: 100%; padding-left: 1.5rem; padding-right: 1.5rem;}
-
     #page.service-detail .sidebar {padding-right: 0;}
     #page.service-detail .sidebar .wrap {display: none;}
     #page.service-detail .sidebar h3.accordion-toggle {border: 1px solid #333333; padding: 2.2rem 14rem 2.2rem 1.9rem; display: flex; align-items: center; position: relative; font-size: 4rem;}
@@ -1127,62 +859,6 @@ input:checked + label::after {opacity: 1;}
     #page.service-detail .other h4 {font-size: 4rem;}
     #page.service-detail .other p {font-size: 4rem;}
     #page.service-detail .swiper {padding-bottom: 0;}
-
-    /* サービス紹介 CTA（SP）＝画面幅いっぱい・1カラム・左右余白なし */
-    #page.service-detail .other-links2 {
-        width: 100vw;
-        max-width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-        box-sizing: border-box;
-        padding: 0;
-    }
-    #page.service-detail .other-links2 .links.list {
-        flex-direction: column;
-        gap: 11.6rem;
-        margin-top: 12rem;
-        margin-bottom: 20.8rem;
-        align-items: stretch;
-        width: 100%;
-        max-width: 100%;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    #page.service-detail .other-links2 .links .box {
-        flex: 0 0 auto;
-        align-self: stretch;
-        width: 100%;
-        margin-top: 0;
-        max-width: 100%;
-        min-height: 0;
-    }
-    #page.service-detail .other-links2 .links .box + .box {margin-top: 0;}
-    #page.service-detail .other-links2 .links .box a {
-        width: 100%;
-        height: auto;
-        min-height: 0;
-    }
-    /* SP: CTA画像＝コンテンツ幅に合わせ、縦は画像全体表示（見切れなし） */
-    #page.service-detail .other-links2 .links .box a > img {
-        display: block;
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-        min-height: 0;
-        object-fit: contain;
-        object-position: center;
-        vertical-align: top;
-    }
-    #page.service-detail .other-links2 .links a span {
-        top: auto;
-        bottom: 2.5rem;
-        width: 52rem;
-        max-width: calc(100% - 4rem);
-        height: 10rem;
-        font-size: 3.4rem;
-        z-index: 1;
-    }
-    #page.service-detail .other-links2 .links a span:after {width: 1.4rem; height: 2.2rem;}
 }
 
 
@@ -1767,6 +1443,7 @@ Service Detail - Celebration Orchid (御祝い胡蝶蘭)
 }
 
 .orchid-size-line {
+    border-top: 1px solid #ccc;
     padding-top: 15px;
     margin-top: 15px;
 }
@@ -1930,324 +1607,6 @@ Service Detail - Celebration Orchid (御祝い胡蝶蘭)
     font-size: 12px !important;
     color: #666;
     margin-top: 10px;
-}
-
-/* =================================================================
-御祝いスタンド花（celebration-stand-flower）
-=================================================================*/
-.celebration-stand-flower-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px 20px !important;
-}
-
-.celebration-stand-flower-items .item {
-    width: calc((100% - 20px) / 2) !important;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-}
-
-.celebration-stand-flower-items .item img {
-    width: 100%;
-    max-width: 385px;
-    height: auto;
-    aspect-ratio: 1 / 1.2;
-    object-fit: cover;
-    margin-bottom: 20px;
-    margin-left: 0;
-    margin-right: auto;
-}
-
-.celebration-stand-flower-items .item h5 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 15px !important;
-}
-
-.celebration-stand-flower-items .item h5 .name {
-    font-size: 18px !important;
-    font-weight: bold;
-    line-height: 1.4;
-}
-
-.celebration-stand-flower-items .item h5 .price {
-    font-size: 16px !important;
-    font-weight: normal;
-    line-height: 1.4;
-}
-
-.celebration-stand-flower-items .item h5 .tax {
-    font-size: 14px !important;
-}
-
-.celebration-stand-flower-items .item .size p {
-    font-size: 14px !important;
-    line-height: 1.8;
-    margin: 5px 0;
-}
-
-/* Columnセクション（Service同様・背景#f2bbb8・画像少し横長） */
-.stand-flower-column {
-    margin-top: 80px;
-    background: #f2bbb8;
-    border-radius: 10px;
-    padding: 40px;
-}
-
-.stand-flower-column .column-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.stand-flower-column .column-header h3 {
-    font-size: 36px !important;
-    margin: 0 0 10px 0 !important;
-    font-weight: bold;
-}
-
-.stand-flower-column .column-header .column-sub {
-    font-size: 20px !important;
-    margin: 0 !important;
-    font-weight: bold;
-}
-
-.stand-flower-column .column-body {
-    padding: 0;
-}
-
-.stand-flower-column .column-image {
-    margin-bottom: 24px;
-}
-
-.stand-flower-column .column-image img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    object-fit: contain;
-    border-radius: 8px;
-}
-
-.stand-flower-column .column-text {
-    font-size: 16px !important;
-    line-height: 1.8;
-    margin: 0 0 16px 0;
-}
-
-.stand-flower-column .column-text:last-child {
-    margin-bottom: 0;
-}
-
-/* =================================================================
-お悔やみ・お供え花（funeral-flower）
-=================================================================*/
-.funeral-flower-items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px 20px !important;
-}
-
-.funeral-flower-items .item {
-    width: calc((100% - 20px) / 2) !important;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-}
-
-.funeral-flower-items .item img {
-    width: 100%;
-    max-width: 385px;
-    height: auto;
-    aspect-ratio: 1 / 1.2;
-    object-fit: cover;
-    margin-bottom: 20px;
-    margin-left: 0;
-    margin-right: auto;
-}
-
-.funeral-flower-items .item h5 {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin-bottom: 15px !important;
-}
-
-.funeral-flower-items .item h5 .name {
-    font-size: 18px !important;
-    font-weight: bold;
-    line-height: 1.4;
-}
-
-.funeral-flower-items .item h5 .price {
-    font-size: 16px !important;
-    font-weight: normal;
-    line-height: 1.4;
-}
-
-.funeral-flower-items .item h5 .tax {
-    font-size: 14px !important;
-}
-
-.funeral-flower-items .item .size p {
-    font-size: 14px !important;
-    line-height: 1.8;
-    margin: 5px 0;
-}
-
-.funeral-flower-items .item.funeral-orchid-multi {
-    width: 100% !important;
-}
-
-/* 胡蝶蘭（大輪白/3本立ち）画像下の2本の線のうち、下の線を削除 */
-.funeral-flower-items .item.funeral-orchid-multi .size.orchid-size-line {
-    border-top: none !important;
-}
-
-/* お悔やみ・お供え花の特典（背景#c7e2ed） */
-.funeral-flower-tokuten {
-    margin-top: 80px;
-}
-
-.funeral-flower-tokuten .tokuten-header {
-    background: #c7e2ed;
-    padding: 30px 40px;
-    margin: 0 0 40px 0;
-    border-radius: 10px;
-}
-
-.funeral-flower-tokuten .tokuten-header h3 {
-    font-size: 36px !important;
-    margin: 0 !important;
-    text-align: center;
-}
-
-.funeral-flower-tokuten .tokuten-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px 20px;
-}
-
-.funeral-flower-tokuten .tokuten-list .item {
-    width: calc((100% - 20px) / 2);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.funeral-flower-tokuten .tokuten-list .item img {
-    max-width: 200px;
-    height: auto;
-}
-
-/* 葬儀スタンド花の特典（celebration-orchid同様・背景#dbd1de） */
-.funeral-stand-flower-tokuten {
-    margin-top: 80px;
-}
-
-.funeral-stand-flower-tokuten .tokuten-header {
-    background: #dbd1de;
-    padding: 30px 40px;
-    margin: 0 0 40px 0;
-    border-radius: 10px;
-}
-
-.funeral-stand-flower-tokuten .tokuten-header h3 {
-    font-size: 36px !important;
-    margin: 0 0 8px 0 !important;
-    text-align: center;
-}
-
-.funeral-stand-flower-tokuten .tokuten-note {
-    font-size: 14px !important;
-    margin: 0 !important;
-    text-align: center;
-}
-
-.funeral-stand-flower-tokuten .tokuten-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px 20px !important;
-}
-
-.funeral-stand-flower-tokuten .tokuten-list .item {
-    width: calc((100% - 20px) / 2) !important;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-.funeral-stand-flower-tokuten .tokuten-list .item img {
-    width: 100%;
-    max-width: 200px;
-    height: auto;
-    object-fit: contain;
-    margin-bottom: 20px;
-}
-
-.funeral-stand-flower-tokuten .tokuten-list .item h5 {
-    font-size: 18px !important;
-    line-height: 1.6;
-}
-
-/* Column（画像右・見出しテキスト左） */
-.funeral-flower-column {
-    margin-top: 80px;
-    background: #c7e2ed;
-    border-radius: 10px;
-    padding: 40px;
-}
-
-/* 見出しと画像を横並び（見出し左・画像右） */
-.funeral-flower-column .column-header-row {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 24px;
-    margin-bottom: 30px;
-}
-
-.funeral-flower-column .column-header {
-    flex: 1;
-    min-width: 0;
-    margin-bottom: 0;
-    text-align: left;
-}
-
-.funeral-flower-column .column-header-image {
-    flex-shrink: 0;
-}
-
-.funeral-flower-column .column-header-image img {
-    display: block;
-    width: auto;
-    max-width: 200px;
-    height: auto;
-}
-
-.funeral-flower-column .column-header h3 {
-    font-size: 36px !important;
-    margin: 0 0 10px 0 !important;
-    font-weight: bold;
-}
-
-.funeral-flower-column .column-header .column-sub {
-    font-size: 20px !important;
-    margin: 0 !important;
-    font-weight: bold;
-}
-
-.funeral-flower-column .column-body .column-text {
-    font-size: 16px !important;
-    line-height: 1.8;
-    margin: 0;
-    object-fit: contain;
-    border-radius: 8px;
 }
 
 /* Serviceセクション */
@@ -2748,130 +2107,6 @@ Service Detail - Celebration Orchid (御祝い胡蝶蘭)
         font-size: 2.8rem !important;
     }
     
-    /* 御祝いスタンド花 SP用 */
-    .celebration-stand-flower-items .item {
-        width: 100% !important;
-        align-items: flex-start !important;
-        text-align: left !important;
-    }
-    
-    .celebration-stand-flower-items .item img {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        margin-bottom: 2rem !important;
-    }
-    
-    .celebration-stand-flower-items .item h5 .name {
-        font-size: 4.5rem !important;
-    }
-    
-    .celebration-stand-flower-items .item h5 .price {
-        font-size: 3.8rem !important;
-    }
-    
-    .celebration-stand-flower-items .item h5 .tax {
-        font-size: 3.2rem !important;
-    }
-    
-    .celebration-stand-flower-items .item .size p {
-        font-size: 3.2rem !important;
-    }
-    
-    .stand-flower-column {
-        margin-top: 12rem;
-        padding: 4rem;
-    }
-    
-    .stand-flower-column .column-header h3 {
-        font-size: 6rem !important;
-        margin-bottom: 2rem !important;
-    }
-    
-    .stand-flower-column .column-header .column-sub {
-        font-size: 3.6rem !important;
-    }
-    
-    .stand-flower-column .column-image {
-        margin-bottom: 3rem;
-    }
-    
-    .stand-flower-column .column-text {
-        font-size: 3.2rem !important;
-    }
-    
-    /* お悔やみ・お供え花 SP用 */
-    .funeral-flower-items .item {
-        width: 100% !important;
-        align-items: flex-start !important;
-        text-align: left !important;
-    }
-    
-    .funeral-flower-items .item img {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        margin-bottom: 2rem !important;
-    }
-    
-    .funeral-flower-items .item h5 .name {
-        font-size: 4.5rem !important;
-    }
-    
-    .funeral-flower-items .item h5 .price {
-        font-size: 3.8rem !important;
-    }
-    
-    .funeral-flower-items .item h5 .tax {
-        font-size: 3.2rem !important;
-    }
-    
-    .funeral-flower-items .item .size p {
-        font-size: 3.2rem !important;
-    }
-    
-    .funeral-flower-column .column-header-image img {
-        max-width: 160px;
-    }
-    
-    .funeral-flower-column .column-header h3 {
-        font-size: 6rem !important;
-    }
-    
-    .funeral-flower-column .column-header .column-sub {
-        font-size: 3.6rem !important;
-    }
-    
-    .funeral-flower-column .column-body-right-img .column-text {
-        font-size: 3.2rem !important;
-    }
-    
-    .funeral-flower-tokuten .tokuten-header h3 {
-        font-size: 6rem !important;
-    }
-    
-    .funeral-flower-tokuten .tokuten-list .item {
-        width: 100% !important;
-    }
-    
-    .funeral-stand-flower-tokuten .tokuten-header h3 {
-        font-size: 6rem !important;
-    }
-    
-    .funeral-stand-flower-tokuten .tokuten-note {
-        font-size: 2.8rem !important;
-    }
-    
-    .funeral-stand-flower-tokuten .tokuten-list .item {
-        width: 100% !important;
-    }
-    
-    .funeral-stand-flower-tokuten .tokuten-list .item h5 {
-        font-size: 3.2rem !important;
-    }
-    
     /* Serviceセクション */
     .plants-service {
         margin-top: 12rem;
@@ -3218,28 +2453,23 @@ About Us
     font-weight: bold;
 }
 
-/* PC（1200px以上）のみ: 画像をfloatで右配置・2カラム幅。SPでは適用しない */
-@media screen and (min-width: 1200px) {
-    #page.about .greeting .box.greeting-intro {
-        display: block;
-        overflow: hidden;
-        margin-bottom: 40px;
-    }
+#page.about .greeting .box {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
 
-    #page.about .greeting .box.greeting-intro .greeting-img {
-        float: right;
-        width: 48%;
-        max-width: 540px;
-        margin: 0 0 24px 30px;
-        height: auto;
-        object-fit: cover;
-        border-radius: 10px;
-        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.20);
-    }
+#page.about .greeting .box .text-block {
+    flex: 1;
+}
 
-    #page.about .greeting .box.greeting-intro .text-block {
-        overflow: hidden;
-    }
+#page.about .greeting .box img {
+    width: 48%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.20);
 }
 
 #page.about .greeting h3 {
@@ -3328,28 +2558,8 @@ About Us
 }
 
 #page.about .greeting-extra .activity-company {
-    display: flex;
-    align-items: center;
-    gap: 12px;
     font-weight: bold;
     margin-bottom: 15px;
-}
-
-#page.about .greeting-extra .activity-company-icon {
-    flex-shrink: 0;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    overflow: hidden;
-    background: #f5f0eb;
-    box-shadow: 0 2px 8px rgba(92, 70, 54, 0.12);
-}
-
-#page.about .greeting-extra .activity-company-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
 }
 
 /* SNS：名前の右にInstagramアイコン、（日々の…）を小さく */
@@ -3423,14 +2633,6 @@ About Us
         max-width: 100%;
     }
     
-    /* 代表挨拶 intro：SPではfloat解除・画像を上部に全幅表示 */
-    #page.about .greeting .box.greeting-intro .greeting-img {
-        float: none;
-        width: 100%;
-        max-width: 100%;
-        margin: 0 0 3rem 0;
-    }
-    
     #page.about .greeting h3 {
         font-size: 4rem;
         margin: 4rem 0 2rem 0 !important;
@@ -3459,11 +2661,6 @@ About Us
     #page.about .greeting-extra .profile-name,
     #page.about .greeting-extra .activity-company {
         font-size: 3.2rem;
-    }
-
-    #page.about .greeting-extra .activity-company-icon {
-        width: 6.4rem;
-        height: 6.4rem;
     }
     
     /* SP: 名前の下にアイコン＋テキスト（アイコン左・テキスト右） */

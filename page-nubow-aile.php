@@ -39,7 +39,7 @@
 						</span>
 					</h3>
 					<div class="shop-image-wrap">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/page/shop-info_honten_img01.png" alt="ヌボーエール 店舗">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/shop-info_honten_img01.webp" alt="ヌボーエール 店舗">
 						<div class="shop-logo-wrap">
 							<img src="<?php echo get_template_directory_uri(); ?>/img/page/shop-info_shop-list_img01.png" alt="ヌボーエール ロゴ" class="shop-logo">
 						</div>

@@ -45,28 +45,40 @@
 					<?php endwhile; ?>
 				</div>
 
-				<?php if (function_exists('wp_pagenavi')) : ?>
-					<?php
-					global $wp_query;
-					$max_page = $wp_query->max_num_pages;
+				<?php
+				global $wp_query;
+				$max_page = $wp_query->max_num_pages;
+				if ($max_page > 1) :
 					$current_page = max(1, get_query_var('paged'));
-					$range = 2;
-					$show_last_page_threshold = $max_page - $range;
-					?>
-					<div class="pagination en">
-						<?php if ($prev_link = get_previous_posts_link('前へ')) : ?>
-							<a href="<?php echo get_pagenum_link($current_page - 1); ?>" class="prev-button"><?php echo strip_tags($prev_link); ?></a>
+				?>
+					<div class="pagination pagination-news en">
+						<?php if ($current_page > 1) : ?>
+							<a href="<?php echo esc_url(get_pagenum_link($current_page - 1)); ?>" class="prev-button">« 前へ</a>
 						<?php endif; ?>
 
-						<?php wp_pagenavi(); ?>
+						<?php
+						$pagination = paginate_links([
+							'prev_next' => false,
+							'type'      => 'array',
+							'mid_size'  => 1,
+							'end_size'  => 1,
+							'total'     => $max_page,
+							'current'   => $current_page,
+						]);
+						if ($pagination) :
+							foreach ($pagination as $link) {
+								echo $link;
+							}
+						endif;
+						?>
 
-						<?php if ($max_page > 1 && $current_page < $show_last_page_threshold) : ?>
+						<?php if ($max_page > 4 && $current_page < $max_page - 2) : ?>
 							<span class="extend">...</span>
-							<a href="<?php echo get_pagenum_link($max_page); ?>" class="last-page"><?php echo $max_page; ?></a>
+							<a href="<?php echo esc_url(get_pagenum_link($max_page)); ?>"><?php echo (int) $max_page; ?></a>
 						<?php endif; ?>
 
-						<?php if ($next_link = get_next_posts_link('次へ')) : ?>
-							<a href="<?php echo get_pagenum_link($current_page + 1); ?>" class="next-button"><?php echo strip_tags($next_link); ?></a>
+						<?php if ($current_page < $max_page) : ?>
+							<a href="<?php echo esc_url(get_pagenum_link($current_page + 1)); ?>" class="next-button">次へ »</a>
 						<?php endif; ?>
 					</div>
 				<?php endif; ?>

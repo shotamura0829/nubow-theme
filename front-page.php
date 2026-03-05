@@ -96,7 +96,7 @@
 					<div class="shop-box">
 						<h3>ヌボーエール</h3>
 						<div class="box">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/top/shop_img01.png" alt="ヌボーエール 店内">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/top/shop_img01.webp" alt="ヌボーエール 店内">
 							<p>
 								住所：〒381-0037<br>
 								長野県長野市西和田２丁目５−２５<br>
@@ -179,10 +179,6 @@
 					<a href="<?php echo home_url('/'); ?>service/funeral-stand-flower" class="item">
 						<img src="<?php echo get_template_directory_uri(); ?>/img/top/service_img07.png" alt="">
 						<p>葬儀スタンド花</p>
-					</a>
-					<a href="<?php echo home_url('/'); ?>service/garden-maintenance/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/service_img08.png" alt="">
-						<p>お庭のお手入れ</p>
 					</a>
 				</div>
 			</div>

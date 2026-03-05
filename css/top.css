@@ -75,7 +75,7 @@ shop
 #top .shop {padding: 78px 0 130px;}
 #top .shop h3 {font-size: 32px; margin-bottom: 23px;}
 #top .shop .top .box {display: flex; gap: 30px;}
-#top .shop .top img {max-width: 700px;}
+#top .shop .top img {max-width: 700px; width: auto; height: auto; flex-shrink: 0; display: block;}
 #top .shop .top p {font-size: 18px;}
 #top .shop .bottom {margin-top: 68px; display: flex; justify-content: space-between; gap: 80px;}
 #top .shop .bottom p {margin-top: 24px;}

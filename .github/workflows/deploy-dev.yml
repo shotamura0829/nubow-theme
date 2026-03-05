@@ -1,0 +1,32 @@
+name: Deploy to dev.nubow.co.jp
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**'
+      - '!.github/**'
+  workflow_dispatch:  # 手動実行も可能
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: wp-content/themes/nubow/
+          exclude: |
+            **/.git*
+            **/.DS_Store
+            **/node_modules/**
+            **/README*
+            **/sync_fix*
+            **/.cursor*

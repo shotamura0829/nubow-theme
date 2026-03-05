@@ -341,7 +341,6 @@
 
 		<!-- その他リンク -->
 		<?php get_template_part('parts/parts-otherlinks'); ?>
-		<!-- その他リンク -->
 	</div>
 </main>
 <!-- メインコンテンツ -->

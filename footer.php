@@ -83,7 +83,6 @@
 						<li><a href="<?php echo home_url('/'); ?>service/celebration-stand-flower/">御祝いスタンド花</a></li>
 						<li><a href="<?php echo home_url('/'); ?>service/funeral-flower">お悔やみ・お供え花</a></li>
 						<li><a href="<?php echo home_url('/'); ?>service/funeral-stand-flower/">葬儀スタンド花</a></li>
-						<li><a href="<?php echo home_url('/'); ?>service/garden-maintenance/">お庭のお手入れ</a></li>
 						<li><a href="<?php echo home_url('/'); ?>faq">よくあるご質問</a></li>
 					</ul>
 				</div>
@@ -108,7 +107,6 @@
 						<li><a href="<?php echo home_url('/'); ?>works/stand-celebration">御祝いスタンド花</a></li>
 						<li><a href="<?php echo home_url('/'); ?>works/funeral-flower">お悔やみ・お供え花</a></li>
 						<li><a href="<?php echo home_url('/'); ?>works/stand-funeral">葬儀スタンド花</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works/gardening">お庭のお手入れ</a></li>
 					</ul>
 				</div>
 			</div>
