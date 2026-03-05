@@ -1,8 +1,17 @@
 # dev 環境へのデプロイ設定
 
+## 重要事項
+
+- **デプロイ先**: dev.nubow.co.jp **のみ**（本番・他環境には一切アップロードしない）
+- **アップロード先**: `wp-content/themes/nubow/`（有効テーマ）
+- **元ファイル**: ローカルの nubow_0730（リポジトリの内容）
+- ※ サーバー側の `nubow_0730` フォルダは古いため使用しない。常に `nubow` に反映
+
+---
+
 ## GitHub Actions + FTP デプロイ
 
-`main` ブランチに push すると、自動で dev.nubow.co.jp にテーマがデプロイされます。
+`main` ブランチに push すると、自動で dev.nubow.co.jp の `nubow` テーマにデプロイされます。
 
 ---
 
@@ -29,9 +38,10 @@ git push -u origin main
 
 | Secret 名 | 値 | 説明 |
 |-----------|-----|------|
-| `FTP_SERVER` | `dev.nubow.co.jp` | FTP ホスト |
 | `FTP_USERNAME` | `sho-tamura` | FTP ユーザー名 |
 | `FTP_PASSWORD` | （FTPパスワード） | FTP パスワード |
+
+※ `FTP_SERVER` は不要です。`dev.nubow.co.jp` に固定されています。
 
 ### 3. リモートパスの確認
 

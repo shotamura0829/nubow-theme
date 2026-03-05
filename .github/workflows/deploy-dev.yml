@@ -1,3 +1,7 @@
+# ★重要★ このワークフローは dev.nubow.co.jp にのみデプロイします
+# ローカル(nubow_0730)の内容を、サーバーの wp-content/themes/nubow/ にアップロード
+# ※サーバー側の nubow_0730 は古いため使用しない。有効テーマは nubow です
+
 name: Deploy to dev.nubow.co.jp
 
 on:
@@ -16,10 +20,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: FTP Deploy
+      - name: FTP Deploy to dev.nubow.co.jp only
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: dev.nubow.co.jp
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: wp-content/themes/nubow/
