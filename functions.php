@@ -15,8 +15,9 @@ add_filter( 'template_include', function( $template ) {
 			return $custom;
 		}
 	}
-	// お知らせ一覧（/news）は page-news.php を強制使用
-	$path_is_news = ( $path === 'news' || strpos( $path, 'news/' ) === 0 || strpos( $path, 'news/page/' ) === 0 );
+	// お知らせ一覧（/news または /news/page/N）のみ page-news.php を強制使用
+	// ※ /news/カテゴリ/スラッグ は記事詳細なので除外（single.php に任せる）
+	$path_is_news = ( $path === 'news' || strpos( $path, 'news/page/' ) === 0 );
 	$is_news_page = $path_is_news && ! is_front_page();
 	if ( $is_news_page ) {
 		$custom = get_template_directory() . '/page-news.php';
