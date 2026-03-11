@@ -177,6 +177,15 @@ function rel_next_prev_link_tags() {
 }
 add_action( 'wp_head', 'rel_next_prev_link_tags' );
 
+// /news/カテゴリ/スラッグ のURLでは redirect_canonical アクション自体を削除（最優先で実行）
+add_action( 'template_redirect', function() {
+  $uri   = $_SERVER['REQUEST_URI'] ?? '';
+  $path  = parse_url( $uri, PHP_URL_PATH ) ?? '';
+  if ( strpos( $path, '/news/' ) === 0 && substr_count( $path, '/' ) >= 3 ) {
+    remove_action( 'template_redirect', 'redirect_canonical' );
+  }
+}, 0 );
+
 // 自動補完リダイレクト無効
 function disable_redirect_canonical( $redirect_url ) {
   if ( is_404() ) {
@@ -188,7 +197,7 @@ function disable_redirect_canonical( $redirect_url ) {
   if ( $path === 'contact' || strpos( $path, 'contact/' ) === 0 ) {
     return false;
   }
-  // /news/カテゴリ/スラッグ 形式のURLはリダイレクトしない
+  // /news/カテゴリ/スラッグ 形式のURLはリダイレクトしない（フィルター側でも二重対策）
   $path_only = parse_url( $uri, PHP_URL_PATH ) ?? '';
   if ( strpos( $path_only, '/news/' ) === 0 && substr_count( $path_only, '/' ) >= 3 ) {
     return false;
@@ -204,7 +213,7 @@ function disable_redirect_canonical( $redirect_url ) {
   }
   return $redirect_url;
 }
-add_filter( 'redirect_canonical', 'disable_redirect_canonical' );
+add_filter( 'redirect_canonical', 'disable_redirect_canonical', PHP_INT_MAX );
 
 // URL末尾スラッシュを統一（全てなしに）
 add_filter( 'user_trailingslashit', function( $url ) {
