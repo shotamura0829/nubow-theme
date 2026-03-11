@@ -24,13 +24,38 @@ add_filter( 'template_include', function( $template ) {
 			return $custom;
 		}
 	}
+	// お問い合わせ（/contact, /contact/confirm, /contact/complete）は page-contact.php を強制使用
+	if ( $path === 'contact' || strpos( $path, 'contact/' ) === 0 ) {
+		$custom = get_template_directory() . '/page-contact.php';
+		if ( file_exists( $custom ) ) {
+			return $custom;
+		}
+	}
 	return $template;
 }, 99 );
 
 // お知らせページのページネーション用リライト（/news/page/2）
 add_action('init', function() {
 	add_rewrite_rule('^news/page/([0-9]+)/?$', 'index.php?pagename=news&paged=$matches[1]', 'top');
+	// 個別記事: /news/カテゴリスラッグ/記事スラッグ（本番形式）
+	add_rewrite_rule('^news/([^/]+)/([^/]+)/?$', 'index.php?name=$matches[2]', 'top');
 }, 1);
+
+// 投稿のURLを /news/カテゴリスラッグ/記事スラッグ 形式に変更（本番と同じ）
+add_filter('post_link', function($permalink, $post) {
+	if (!$post || $post->post_type !== 'post' || $post->post_status !== 'publish') {
+		return $permalink;
+	}
+	$cats = get_the_category($post->ID);
+	$cat_slug = 'information'; // 未分類・カテゴリなし時のフォールバック
+	foreach ((array)$cats as $c) {
+		if ($c->slug !== 'uncategorized') {
+			$cat_slug = $c->slug;
+			break;
+		}
+	}
+	return home_url('/news/' . $cat_slug . '/' . $post->post_name);
+}, 10, 2);
 
 // aboutus サブパス（/aboutus/message 等）のリライトと style リダイレクト
 add_filter( 'query_vars', function( $vars ) {
@@ -96,6 +121,9 @@ function my_list_categories( $output, $args ) {
   return $output;
 }
 
+// MW WP Form お問い合わせフォームのID（管理画面 フォーム一覧で編集URLの post= の値）
+// add_filter( 'nubow_contact_form_key', function() { return 43; } );
+
 // Contact Form 7の自動pタグ無効
 add_filter('wpcf7_autop_or_not', 'wpcf7_autop_return_false');
 function wpcf7_autop_return_false() {
@@ -152,6 +180,12 @@ function disable_redirect_canonical( $redirect_url ) {
   if ( is_404() ) {
     return false;
   }
+  // MW WP Form の contact 系URLでは redirect_canonical を完全に無効化（スラッシュ正規化でループするため）
+  $uri  = $_SERVER['REQUEST_URI'] ?? '';
+  $path = trim( parse_url( $uri, PHP_URL_PATH ), '/' );
+  if ( $path === 'contact' || strpos( $path, 'contact/' ) === 0 ) {
+    return false;
+  }
   // URL末尾スラッシュ統一（なしに揃える）: 末尾スラッシュの違いだけでリダイレクトしようとする場合はキャンセル
   if ( $redirect_url ) {
     $current = home_url( $_SERVER['REQUEST_URI'] ?? '' );
@@ -171,10 +205,13 @@ add_filter( 'user_trailingslashit', function( $url ) {
 }, 10, 1 );
 
 add_action( 'template_redirect', function() {
-  $uri = $_SERVER['REQUEST_URI'] ?? '';
+  $uri  = $_SERVER['REQUEST_URI'] ?? '';
   $path = parse_url( $uri, PHP_URL_PATH );
   $query = parse_url( $uri, PHP_URL_QUERY );
   if ( ! $path || $path === '/' ) return;
+  // /contact, /contact/confirm, /contact/complete は MW WP Form のURL。末尾スラッシュリダイレクトでループするためスキップ
+  $path_trimmed = trim( $path, '/' );
+  if ( $path_trimmed === 'contact' || strpos( $path_trimmed, 'contact/' ) === 0 ) return;
   if ( substr( $path, -1 ) === '/' ) {
     $to = home_url( rtrim( $path, '/' ) );
     if ( $query ) $to .= '?' . $query;
