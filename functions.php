@@ -35,6 +35,20 @@ add_filter( 'template_include', function( $template ) {
 	return $template;
 }, 99 );
 
+// 日本語中点（・）をカテゴリスラッグに保持する（sanitize_title で除去される問題を修正）
+add_filter( 'sanitize_title', function( $title, $raw_title = '', $context = 'display' ) {
+	if ( $context === 'query' || empty( $raw_title ) ) {
+		return $title;
+	}
+	if ( mb_strpos( $raw_title, '・' ) !== false && mb_strpos( $title, '・' ) === false ) {
+		$ph     = 'NAKATEN_DOT';
+		$safe   = str_replace( '・', $ph, $raw_title );
+		$result = sanitize_title_with_dashes( $safe, '', $context );
+		return str_replace( $ph, '・', $result );
+	}
+	return $title;
+}, 99, 3 );
+
 // News URL: /news/カテゴリ/スラッグ 形式（本番と統一）※ deploy trigger
 // お知らせページのページネーション用リライト（/news/page/2）
 add_action('init', function() {
