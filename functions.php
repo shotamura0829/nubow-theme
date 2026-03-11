@@ -49,6 +49,11 @@ add_filter( 'sanitize_title', function( $title, $raw_title = '', $context = 'dis
 	return $title;
 }, 99, 3 );
 
+// Permalink Manager が生成したURIの ・ 欠落を修正
+add_filter( 'permalink_manager_filter_post_uri', function( $uri, $post_id ) {
+	return str_replace( '取材メディア情報', '取材・メディア情報', $uri );
+}, 10, 2 );
+
 // News URL: /news/カテゴリ/スラッグ 形式（本番と統一）※ deploy trigger
 // お知らせページのページネーション用リライト（/news/page/2）
 add_action('init', function() {
