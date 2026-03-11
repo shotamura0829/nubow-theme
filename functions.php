@@ -49,10 +49,17 @@ add_filter( 'sanitize_title', function( $title, $raw_title = '', $context = 'dis
 	return $title;
 }, 99, 3 );
 
-// Permalink Manager が生成したURIの ・ 欠落を修正
-add_filter( 'permalink_manager_filter_post_uri', function( $uri, $post_id ) {
-	return str_replace( '取材メディア情報', '取材・メディア情報', $uri );
-}, 10, 2 );
+// 投稿保存時に Permalink Manager の保存URIの ・ 欠落を修正
+add_action( 'save_post', function( $post_id ) {
+	if ( wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
+		return;
+	}
+	$uris = get_option( 'permalink-manager-uris', [] );
+	if ( isset( $uris[ $post_id ] ) && strpos( $uris[ $post_id ], '取材メディア情報' ) !== false ) {
+		$uris[ $post_id ] = str_replace( '取材メディア情報', '取材・メディア情報', $uris[ $post_id ] );
+		update_option( 'permalink-manager-uris', $uris );
+	}
+}, 999 );
 
 // News URL: /news/カテゴリ/スラッグ 形式（本番と統一）※ deploy trigger
 // お知らせページのページネーション用リライト（/news/page/2）
