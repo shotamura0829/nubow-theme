@@ -41,7 +41,7 @@ add_filter( 'sanitize_title', function( $title, $raw_title = '', $context = 'dis
 		return $title;
 	}
 	if ( mb_strpos( $raw_title, '・' ) !== false && mb_strpos( $title, '・' ) === false ) {
-		$ph     = 'NAKATEN_DOT';
+		$ph     = 'xnktnx'; // 小文字・英字のみ（sanitize後も保持される）
 		$safe   = str_replace( '・', $ph, $raw_title );
 		$result = sanitize_title_with_dashes( $safe, '', $context );
 		return str_replace( $ph, '・', $result );
