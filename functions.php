@@ -187,8 +187,9 @@ function disable_redirect_canonical( $redirect_url ) {
   if ( $path === 'contact' || strpos( $path, 'contact/' ) === 0 ) {
     return false;
   }
-  // /news/カテゴリ/スラッグ 形式の投稿ページはリダイレクトしない
-  if ( is_singular( 'post' ) && preg_match( '#^/news/[^/]+/[^/]+#', $uri ) ) {
+  // /news/カテゴリ/スラッグ 形式のURLはリダイレクトしない
+  $path_only = parse_url( $uri, PHP_URL_PATH ) ?? '';
+  if ( strpos( $path_only, '/news/' ) === 0 && substr_count( $path_only, '/' ) >= 3 ) {
     return false;
   }
   // URL末尾スラッシュ統一（なしに揃える）: 末尾スラッシュの違いだけでリダイレクトしようとする場合はキャンセル
