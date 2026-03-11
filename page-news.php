@@ -58,7 +58,15 @@ $max_page = $news_query->max_num_pages;
 							</p>
 						</div>
 						<p class="content"><?php the_title(); ?></p>
-						<a href="<?php the_permalink(); ?>" class="more">詳しく見る</a>
+						<?php
+					$_cats = get_the_category();
+					$_cat_slug = 'information';
+					foreach ( (array) $_cats as $_c ) {
+						if ( $_c->slug !== 'uncategorized' ) { $_cat_slug = $_c->slug; break; }
+					}
+					$_post_url = home_url( '/news/' . $_cat_slug . '/' . get_post_field( 'post_name' ) );
+					?>
+					<a href="<?php echo esc_url( $_post_url ); ?>" class="more">詳しく見る</a>
 					</div>
 					<?php endwhile; ?>
 				</div>
