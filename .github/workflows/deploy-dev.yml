@@ -26,7 +26,7 @@ jobs:
           server: dev.nubow.co.jp
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: wp-content/themes/nubow/
+          server-dir: dev.nubow.co.jp/wp-content/themes/nubow/
           dangerous-clean-slate: true
           exclude: |
             **/.git*
