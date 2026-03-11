@@ -34,7 +34,7 @@ add_filter( 'template_include', function( $template ) {
 	return $template;
 }, 99 );
 
-// News URL: /news/カテゴリ/スラッグ 形式（本番と統一）
+// News URL: /news/カテゴリ/スラッグ 形式（本番と統一）※ deploy trigger
 // お知らせページのページネーション用リライト（/news/page/2）
 add_action('init', function() {
 	add_rewrite_rule('^news/page/([0-9]+)/?$', 'index.php?pagename=news&paged=$matches[1]', 'top');
