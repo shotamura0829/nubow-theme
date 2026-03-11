@@ -453,21 +453,32 @@ add_action('edited_works_category', function($term_id){
 
 
 
+// works_category のリライトスラッグを本番と同じ works_category に変更
+add_filter( 'register_taxonomy_args', function( $args, $taxonomy ) {
+  if ( $taxonomy === 'works_category' ) {
+    $args['rewrite'] = [
+      'slug'         => 'works_category',
+      'with_front'   => false,
+      'hierarchical' => true,
+    ];
+  }
+  return $args;
+}, 10, 2 );
+
 // ① 階層ターム対応のリライトルール（最優先で登録）
 add_action('init', function () {
-  // /works/{parent/child}/page/N/
+  // /works_category/{parent/child}/page/N/
   add_rewrite_rule(
-    '^works/(.+)/page/([0-9]+)/?$',
+    '^works_category/(.+)/page/([0-9]+)/?$',
     'index.php?works_category=$matches[1]&paged=$matches[2]',
     'top'
   );
-  // 末尾スラ無しも保険
   add_rewrite_rule(
-    '^works/(.+)/page/([0-9]+)$',
+    '^works_category/(.+)/page/([0-9]+)$',
     'index.php?works_category=$matches[1]&paged=$matches[2]',
     'top'
   );
-}, 0); // ★優先度0
+}, 0);
 
 // ② フォールバック：rewriteに乗らず pagename 扱いになった時の救済（階層対応）
 add_filter('request', function ($vars) {
@@ -478,13 +489,13 @@ add_filter('request', function ($vars) {
   }
 
   if (!empty($vars['pagename']) &&
-      preg_match('#^works/(.+)/page/([0-9]+)/?$#', $vars['pagename'], $m)) {
+      preg_match('#^works_category/(.+)/page/([0-9]+)/?$#', $vars['pagename'], $m)) {
 
-    $path  = $m[1];            // 例: service_category/bouquet
+    $path  = $m[1];            // 例: flower-gift/bouquet
     $vars['taxonomy']       = 'works_category';
-    $vars['works_category'] = $path;          // 階層をそのまま渡す
+    $vars['works_category'] = $path;
     $vars['paged']          = (int)$m[2];
-    unset($vars['pagename']);                 // 404回避
+    unset($vars['pagename']);
   }
   return $vars;
 }, 10, 1);
