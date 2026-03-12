@@ -3497,7 +3497,28 @@ About Us
     }
 }
 
-
+/* 1005〜1199px：#page.about のCTAを2カラムに戻す（上記SPスタイルを上書き） */
+@media screen and (min-width: 1005px) and (max-width: 1199px) {
+    #page.about .other-links .list {
+        flex-direction: row;
+        gap: 3rem;
+        align-items: stretch;
+    }
+    #page.about .other-links .list .box {
+        flex: 1 1 0;
+        min-width: 0;
+        max-width: 50%;
+    }
+    #page.about .other-links a span {
+        width: 24rem;
+        height: 6rem;
+        font-size: 1.8rem;
+        bottom: 2rem;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+}
 
 
 

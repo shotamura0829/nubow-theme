@@ -394,6 +394,14 @@ footer .sp-menu {display: none;}
 .other-links a span:after {width: 1.6rem; height: 2.4rem;}
 }
 
+/* 1005〜1199px：other-links を2カラムPC寄りレイアウトに維持 */
+@media screen and (min-width: 1005px) and (max-width: 1199px) {
+  .other-links .list {display: flex; flex-direction: row; gap: 3rem; align-items: stretch;}
+  .other-links .list .box {flex: 1 1 0; min-width: 0; max-width: 50%;}
+  .other-links a span {width: 24rem; height: 6rem; font-size: 1.8rem; bottom: 2rem; left: 0; right: 0; margin: auto;}
+  .other-links a span:after {width: 1rem; height: 1.5rem;}
+}
+
 
 
 
