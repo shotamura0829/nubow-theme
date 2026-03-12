@@ -3518,13 +3518,18 @@ About Us
         max-width: 50%;
     }
     #page.about .other-links a span {
-        width: 24rem;
-        height: 6rem;
-        font-size: 1.8rem;
-        bottom: 2rem;
+        width: 300px;
+        height: 60px;
+        font-size: 19px;
+        bottom: 30px;
         left: 0;
         right: 0;
         margin: auto;
+        max-width: calc(100% - 40px);
+    }
+    #page.about .other-links a span:after {
+        width: 8px;
+        height: 13px;
     }
 }
 
