@@ -69,6 +69,12 @@ about
   #top .about .link {margin-top: 9.4rem;}
 }
 
+/* 1005〜1199px：about画像を適切なサイズに抑える */
+@media screen and (min-width: 1005px) and (max-width: 1199px) {
+  #top .about .box { flex-direction: row; align-items: flex-start; gap: 4rem; }
+  #top .about img { max-width: 45%; flex-shrink: 0; }
+}
+
 /* =================================================================
 shop
 =================================================================*/
@@ -91,6 +97,14 @@ shop
 
   #top .shop .bottom {flex-direction: column; margin-top: 9.6rem; gap: 11.6rem;}
   #top .shop .bottom p {font-size: 3.6rem;}
+}
+
+/* 1005〜1199px：shop上部の画像を横並びのまま適切なサイズに抑える */
+@media screen and (min-width: 1005px) and (max-width: 1199px) {
+  #top .shop .top .box { flex-direction: row; align-items: flex-start; gap: 3rem; }
+  #top .shop .top img { max-width: 45%; flex-shrink: 0; height: auto; }
+  #top .shop .top p { font-size: 2rem; }
+  #top .shop .bottom { flex-direction: row; gap: 4rem; }
 }
 
 /* =================================================================

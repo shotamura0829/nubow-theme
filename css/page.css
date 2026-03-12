@@ -177,6 +177,49 @@ page共通
     }
 }
 
+/* 1005〜1199px：CTAを2カラムPC寄りレイアウトに戻す */
+@media screen and (min-width: 1005px) and (max-width: 1199px) {
+    #page .other-links2,
+    #page.service-detail .other-links2 {
+        width: auto !important;
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    #page .other-links2 .links.list,
+    #page.service-detail .other-links2 .links.list {
+        flex-direction: row !important;
+        gap: 3rem !important;
+        margin-top: 5rem !important;
+        margin-bottom: 8rem !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    #page .other-links2 .links .box,
+    #page.service-detail .other-links2 .links .box {
+        flex: 1 1 0 !important;
+        max-width: 50% !important;
+        width: auto !important;
+    }
+    .cta-bleed {
+        width: auto !important;
+        max-width: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    #page .other-links2 .links a span {
+        bottom: 1.5rem;
+        width: 28rem;
+        height: 6rem;
+        font-size: 1.8rem;
+    }
+}
+
 /* =================================================================
 404
 =================================================================*/
