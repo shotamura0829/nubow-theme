@@ -17,38 +17,41 @@ if ( ! isset( $_GET['run'] ) ) {
     exit;
 }
 
-// リアルタイム出力
 if ( ob_get_level() ) { ob_end_clean(); }
 header( 'Content-Type: text/html; charset=utf-8' );
 header( 'X-Accel-Buffering: no' );
 
+global $wpdb;
+
 echo '<pre>';
 
-$posts = get_posts( [
-    'post_type'      => 'works',
-    'posts_per_page' => -1,
-    'post_status'    => 'publish',
-    'orderby'        => 'ID',
-    'order'          => 'ASC',
-] );
+// works投稿をアイキャッチなしのものに絞って全取得
+$posts = $wpdb->get_results(
+    "SELECT p.ID, p.post_title, p.post_content
+     FROM {$wpdb->posts} p
+     WHERE p.post_type = 'works'
+       AND p.post_status = 'publish'
+       AND NOT EXISTS (
+           SELECT 1 FROM {$wpdb->postmeta} pm
+           WHERE pm.post_id = p.ID
+             AND pm.meta_key = '_thumbnail_id'
+       )
+     ORDER BY p.ID ASC"
+);
 
+$total        = count( $posts );
 $set_count    = 0;
-$skip_count   = 0;
 $no_img_count = 0;
 $not_found    = 0;
 $i            = 0;
 
+echo "対象件数（アイキャッチなし）: {$total}件\n\n";
+flush();
+
 foreach ( $posts as $post ) {
     $i++;
-    echo "[{$i}] ID:{$post->ID} 「{$post->post_title}」\n";
+    echo "[{$i}/{$total}] ID:{$post->ID} 「{$post->post_title}」\n";
     flush();
-
-    if ( has_post_thumbnail( $post->ID ) ) {
-        $skip_count++;
-        echo "  → SKIP（アイキャッチ設定済み）\n\n";
-        flush();
-        continue;
-    }
 
     // コンテンツ内の最初の img src を取得
     if ( ! preg_match( '/<img[^>]+src=["\']([^"\']+)["\'][^>]*>/i', $post->post_content, $m ) ) {
@@ -60,58 +63,54 @@ foreach ( $posts as $post ) {
 
     $image_url = $m[1];
     $filename  = basename( parse_url( $image_url, PHP_URL_PATH ) );
-    echo "  → 最初の画像: {$filename}\n";
+    echo "  → ファイル名: {$filename}\n";
     flush();
 
-    // ① attachment_url_to_postid で探す（完全一致）
-    $attachment_id = attachment_url_to_postid( $image_url );
-
-    // ② devドメインに置き換えて再検索
-    if ( ! $attachment_id ) {
-        $dev_url       = preg_replace( '#https?://[^/]+#', home_url(), $image_url );
-        $attachment_id = attachment_url_to_postid( $dev_url );
-        if ( $attachment_id ) {
-            echo "  → devドメインURLで発見 ID:{$attachment_id}\n";
-        }
-    }
-
-    // ③ ファイル名でメディアライブラリを検索
-    if ( ! $attachment_id ) {
-        $found = get_posts( [
-            'post_type'      => 'attachment',
-            'post_status'    => 'inherit',
-            'posts_per_page' => 1,
-            'meta_query'     => [
-                [
-                    'key'     => '_wp_attached_file',
-                    'value'   => $filename,
-                    'compare' => 'LIKE',
-                ],
-            ],
-        ] );
-        if ( $found ) {
-            $attachment_id = $found[0]->ID;
-            echo "  → ファイル名検索で発見 ID:{$attachment_id}\n";
-        }
-    }
+    // _wp_attached_file の LIKE 検索（直接SQL）
+    $attachment_id = $wpdb->get_var(
+        $wpdb->prepare(
+            "SELECT post_id FROM {$wpdb->postmeta}
+             WHERE meta_key = '_wp_attached_file'
+               AND meta_value LIKE %s
+             LIMIT 1",
+            '%' . $wpdb->esc_like( $filename )
+        )
+    );
 
     if ( ! $attachment_id ) {
         $not_found++;
-        echo "  → NOT FOUND（メディアライブラリに画像なし）\n  → URL: {$image_url}\n\n";
+        echo "  → NOT FOUND（メディアライブラリに未登録）\n";
+        echo "  → 元URL: {$image_url}\n\n";
         flush();
         continue;
     }
 
-    if ( set_post_thumbnail( $post->ID, $attachment_id ) ) {
+    echo "  → メディアID:{$attachment_id} 発見\n";
+    flush();
+
+    // アイキャッチを直接postmetaに書き込み（set_post_thumbnailと同等）
+    $result = $wpdb->replace(
+        $wpdb->postmeta,
+        [
+            'post_id'    => $post->ID,
+            'meta_key'   => '_thumbnail_id',
+            'meta_value' => $attachment_id,
+        ],
+        [ '%d', '%s', '%d' ]
+    );
+
+    if ( $result !== false ) {
+        // オブジェクトキャッシュをクリア
+        clean_post_cache( $post->ID );
         $set_count++;
-        echo "  → OK（アイキャッチ設定: attachment ID:{$attachment_id}）\n\n";
+        echo "  → OK（アイキャッチ設定完了）\n\n";
     } else {
-        echo "  → ERROR（set_post_thumbnail 失敗）\n\n";
+        echo "  → ERROR（DB書き込み失敗）\n\n";
     }
     flush();
 }
 
 echo "========================================\n";
-echo "完了: {$i}件処理\n";
-echo "  設定:{$set_count}件 / スキップ:{$skip_count}件 / 画像なし:{$no_img_count}件 / ライブラリ未発見:{$not_found}件\n";
+echo "完了: {$total}件対象\n";
+echo "  設定:{$set_count}件 / 画像なし:{$no_img_count}件 / ライブラリ未登録:{$not_found}件\n";
 echo '</pre>';
