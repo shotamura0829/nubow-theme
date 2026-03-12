@@ -499,3 +499,34 @@ add_filter('request', function ($vars) {
   }
   return $vars;
 }, 10, 1);
+
+/**
+ * Permalink Manager の Gutenberg スクリプトを Yoast SEO より後に読み込み直すことで
+ * JS 競合を解消し、Yoast SEO サイドバーパネルを固定ページ編集画面に表示する
+ */
+add_action('admin_enqueue_scripts', function($hook) {
+  if (!in_array($hook, ['post.php', 'post-new.php'], true)) {
+    return;
+  }
+  $pm_handles = [
+    'permalink-manager',
+    'permalink-manager-gutenberg',
+    'permalink-manager-edit-screen',
+    'permalink-manager-react',
+  ];
+  foreach ($pm_handles as $handle) {
+    if (wp_script_is($handle, 'enqueued')) {
+      $script = wp_scripts()->registered[$handle] ?? null;
+      if ($script) {
+        wp_dequeue_script($handle);
+        wp_enqueue_script(
+          $handle,
+          $script->src,
+          $script->deps,
+          $script->ver,
+          true
+        );
+      }
+    }
+  }
+}, 9999);
