@@ -3497,6 +3497,14 @@ About Us
     }
 }
 
+/* SP（≤1199px）：CTAの画像は540px上限を解除してボックス全幅に */
+@media screen and (max-width: 1199px) {
+    #page.about .other-links .list .box img {
+        max-width: 100%;
+        width: 100%;
+    }
+}
+
 /* 1005〜1199px：#page.about のCTAを2カラムに戻す（上記SPスタイルを上書き） */
 @media screen and (min-width: 1005px) and (max-width: 1199px) {
     #page.about .other-links .list {
