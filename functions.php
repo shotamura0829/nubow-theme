@@ -501,32 +501,24 @@ add_filter('request', function ($vars) {
 }, 10, 1);
 
 /**
- * Permalink Manager の Gutenberg スクリプトを Yoast SEO より後に読み込み直すことで
- * JS 競合を解消し、Yoast SEO サイドバーパネルを固定ページ編集画面に表示する
+ * Permalink Manager の Gutenberg スクリプトを無効化して Yoast SEO との JS 競合を解消する
+ * Permalink Manager の実際のリダイレクト・カスタムパーマリンク機能は影響を受けない
  */
 add_action('admin_enqueue_scripts', function($hook) {
   if (!in_array($hook, ['post.php', 'post-new.php'], true)) {
     return;
   }
+  // Permalink Manager が登録するスクリプトハンドルを全て無効化
   $pm_handles = [
     'permalink-manager',
     'permalink-manager-gutenberg',
     'permalink-manager-edit-screen',
     'permalink-manager-react',
+    'permalink-manager-pro',
+    'permalink-manager-pro-gutenberg',
   ];
   foreach ($pm_handles as $handle) {
-    if (wp_script_is($handle, 'enqueued')) {
-      $script = wp_scripts()->registered[$handle] ?? null;
-      if ($script) {
-        wp_dequeue_script($handle);
-        wp_enqueue_script(
-          $handle,
-          $script->src,
-          $script->deps,
-          $script->ver,
-          true
-        );
-      }
-    }
+    wp_dequeue_script($handle);
+    wp_deregister_script($handle);
   }
 }, 9999);
