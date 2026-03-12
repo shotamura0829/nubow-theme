@@ -1,10 +1,71 @@
 # 引き継ぎ事項：nubowプロジェクト修正
 
-## プロジェクト統合済み（2025-02-19）
+---
+
+## 📋 引き継ぎサマリ（2026-02-06 更新）
+
+### プロジェクト概要
+
+| 項目 | 内容 |
+|------|------|
+| **サイト** | ヌボー生花店（WordPress） |
+| **本番** | https://nubow.co.jp |
+| **dev** | https://dev.nubow.co.jp（Basic: admin / nubow） |
+| **ローカル** | http://nubow-local.local |
+| **デプロイ** | GitHub Actions で `main` push → dev の `wp-content/themes/nubow/` へ FTP |
+
+### 作業ディレクトリ（統一済み 2026-03-11）
+
+| 項目 | 内容 |
+|------|------|
+| **正（メイン）** | `/Users/shotamura/Desktop/nubow_0730` |
+| **sync_fix.py** | Desktop を参照 |
+| **sync_cta_to_local.py** | Desktop を参照 |
+| **Downloads** | 古いコピー。今後は **Desktop** を開いて作業すること。 |
+
+### 実装済み（コード上で完了）
+
+| 機能 | 場所 | 備考 |
+|------|------|------|
+| News URL を `/news/カテゴリ/記事` 形式に統一 | functions.php（リライト + post_link フィルター） | dev にデプロイ後、パーマリンク再保存が必要 |
+| お問い合わせ /contact の不具合対応 | functions.php, page-contact.php, CSS | リロードループ・フォーム非表示を修正 |
+| お知らせ一覧 page-news.php | テンプレート強制 | |
+| aboutus/style → /aboutus/message リダイレクト | functions.php | |
+| 御祝い観葉植物 page-celebration-plants | 新規テンプレート | |
+| Cursor 軽量化 | .cursorignore | .git, img, backups, swiper, aos, nubow-production-urls.txt を除外 |
+
+### 次のアクション（優先順）
+
+1. **作業ディレクトリの統一** … Desktop / Downloads のどちらを正とするか決める
+2. **sync_fix.py の path 整合** … 上記に合わせて source_dir を修正
+3. **News 移行（dev）** … functions.php をデプロイ → 設定→パーマリンク「変更を保存」
+4. **News インポート未実施なら** … NEWS_MIGRATION.md の Phase 2–4 を実行
+5. **RENEWAL_TASKS.md** … リニューアル本番切替までは全タスクの消化が必要
+
+### 懸念点・注意
+
+- **Desktop / Downloads の二重管理** … 片方にしか反映されていない変更が混在する可能性あり。どちらか一方を正とし、sync_fix.py と HANDOVER の記載を揃えること。
+- **News URL** … カテゴリ紐づいていても `/uncategorized/記事ID` になる場合、functions.php の post_link が dev に反映されていないか、パーマリンク未再保存の可能性。
+- **ローカル反映** … Cursor で編集後、Local に反映するには `sync_fix.py` を実行する必要あり（編集のみでは反映されない）。
+
+### 参照ドキュメント
+
+| ファイル | 用途 |
+|----------|------|
+| NEWS_MIGRATION.md | News 本番→dev 移行手順・トラブルシュート |
+| RENEWAL_TASKS.md | リニューアル全タスク一覧 |
+| MIGRATION_FLOW.md | 移行 Phase 1–4 の流れ |
+| REDIRECT_AND_CATEGORY_MAP.md | カテゴリ・リダイレクトマップ |
+| DEPLOY.md | GitHub Actions デプロイ |
+
+---
+
+## プロジェクト統合（2025-02-19 時点の記載）
 
 - **Downloads** の最新を **Desktop** に統合しました（先祖返り防止）。
-- 以降は **`/Users/shotamura/Desktop/nubow_0730`** を Cursor で開いて作業してください。
-- sync_fix.py と sync_cta_to_local.py は Desktop を参照するよう更新済み。
+- ※上記「作業ディレクトリの注意」を参照。sync_fix.py の source_dir は実際の作業ディレクトリに合わせて要確認。
+
+---
 
 ## 重要な注意点：作業ディレクトリと Local の不一致
 
@@ -18,7 +79,7 @@
 ## 同期コマンド（Pythonスクリプト推奨）
 
 ```bash
-# Pythonスクリプトを使用して同期（プロジェクトは Desktop を参照）
+# プロジェクトは Desktop を参照（sync_fix.py の source_dir）
 python3 /Users/shotamura/Desktop/nubow_0730/sync_fix.py
 ```
 
@@ -58,14 +119,15 @@ python3 /Users/shotamura/Desktop/nubow_0730/sync_fix.py
   - `img/top` 約 10MB（FV・店舗画像など）
 - その他: `backups/`、`*-OLD.php` / `*-BACKUP.php` などの重複テンプレート
 
-### 実施した改善（Cursor を軽くする）
-- **`.cursorignore`** を追加し、以下を Cursor のインデックス対象から除外しました。
-  - `.git/` … Git履歴（約52MB）
+### 実施した改善（Cursor を軽くする）【2026-02-06 更新】
+- **`.cursorignore`** に以下を追加し、Cursor のインデックス対象から除外しています。
+  - `.git/` … Git履歴（約53MB）
   - `img/` … 画像（約55MB）
   - `backups/`
   - `*-OLD.php`, `*-BACKUP.php`
   - `css/swiper-bundle.css`, `css/aos.css` … 外部ライブラリ
-- これにより Cursor の検索・インデックス負荷が減り、体感が軽くなります。
+  - `nubow-production-urls.txt` … 参照用URL一覧（約600KB）
+- 反映後は **Cursor の完全再起動** を推奨（インデックス再構築で体感が軽くなる）。
 
 ### それでも遅い場合の対処
 1. **Cursor の完全再起動** … プロジェクトを閉じ、Cursor アプリを終了してから再度開く。インデックスが再構築され、`.cursorignore` の反映が進む。

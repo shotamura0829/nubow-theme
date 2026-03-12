@@ -10,8 +10,11 @@ get_header();
 remove_filter('the_content', 'wpautop');
 remove_filter('the_content', 'wptexturize');
 
-$data = MW_WP_Form_Data::connect('mw-wp-form-43');
-$flg = $data->get_view_flg();
+$flg = '';
+if ( class_exists( 'MW_WP_Form_Data' ) ) {
+	$data = MW_WP_Form_Data::connect( 'mw-wp-form-43' );
+	$flg  = $data->get_view_flg();
+}
 ?>
 
 <!-- メインコンテンツ -->
@@ -64,7 +67,7 @@ $flg = $data->get_view_flg();
 		</div>
 		<?php
 		// フォーム出力
-		$form_html = do_shortcode('[mwform_formkey key="43"]');
+		$form_html = class_exists( 'MW_WP_Form_Data' ) ? do_shortcode( '[mwform_formkey key="43"]' ) : '<p class="form-unavailable">MW WP Form プラグインを有効にしてください。</p>';
 
 		// 確認画面のときだけ送信ボタン直前にプライバシー文を挿入
 		if ( $flg === 'confirm' ) {

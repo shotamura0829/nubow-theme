@@ -1,10 +1,4 @@
 <?php get_header(); ?>
-<?php
-$aboutus_section = get_query_var( 'aboutus_section' );
-$section_map = array( 'message' => 0, 'company' => 1, 'staff' => 2 );
-$tab_index = isset( $section_map[ $aboutus_section ] ) ? $section_map[ $aboutus_section ] : 0;
-$sections = array( 'message', 'company', 'staff' );
-?>
 
 <!-- メインコンテンツ -->
 <main id="page" class="about">
@@ -28,14 +22,14 @@ $sections = array( 'message', 'company', 'staff' );
 	</div>
 	<div class="main-content">
 		<ul class="tab-menu">
-			<li class="tab <?php echo $tab_index === 0 ? 'is-active' : ''; ?>" data-section="message">代表<br class="sp-only">挨拶</li>
-			<li class="tab <?php echo $tab_index === 1 ? 'is-active' : ''; ?>" data-section="company">会社<br class="sp-only">概要</li>
-			<li class="tab <?php echo $tab_index === 2 ? 'is-active' : ''; ?>" data-section="staff">スタッフ<br class="sp-only">紹介</li>
+			<li class="tab is-active">代表<br class="sp-only">挨拶</li>
+			<li class="tab">会社<br class="sp-only">概要</li>
+			<li class="tab">スタッフ<br class="sp-only">紹介</li>
 		</ul>
 
-		<div class="tab-wrap" data-initial-section="<?php echo esc_attr( $sections[ $tab_index ] ); ?>">
+		<div class="tab-wrap">
 			<!-- 代表挨拶 -->
-			<div class="tab-contents<?php echo $tab_index === 0 ? ' is-active' : ''; ?>"<?php echo $tab_index !== 0 ? ' style="display:none;"' : ''; ?>>
+			<div class="tab-contents">
 				<div class="greeting">
 					<h2 class="greeting-main-title">変化の激しい時代だからこそ、常に「新しい（ヌボー）」感動と、普遍的な「癒やし」を。</h2>
 					<div class="box greeting-intro">
@@ -90,7 +84,7 @@ $sections = array( 'message', 'company', 'staff' );
 			<!-- 代表挨拶 -->
 
 			<!-- 会社概要 -->
-			<div class="tab-contents<?php echo $tab_index === 1 ? ' is-active' : ''; ?>"<?php echo $tab_index !== 1 ? ' style="display:none;"' : ''; ?>>
+			<div class="tab-contents">
 				<div class="company">
 					<h3>経営理念</h3>
 					<p>ヌボー生花店は「お花のある生活」という生活スタイルを提案することで、より多くの人達に幸福感を提供していきます。</p>
@@ -379,7 +373,7 @@ $sections = array( 'message', 'company', 'staff' );
 			<!-- 会社概要 -->
 
 			<!-- スタッフ紹介 -->
-			<div class="tab-contents<?php echo $tab_index === 2 ? ' is-active' : ''; ?>"<?php echo $tab_index !== 2 ? ' style="display:none;"' : ''; ?>>
+			<div class="tab-contents">
 				<div class="staff">
 					<div class="list">
 						<div class="box">
@@ -467,33 +461,13 @@ $sections = array( 'message', 'company', 'staff' );
 
 <script type="text/javascript">
 $(window).on('load', function() {
-	var baseUrl = '<?php echo esc_js( home_url( '/aboutus/' ) ); ?>';
-	var $wrap = $(".tab-wrap");
-	var initialSection = $wrap.data('initial-section') || 'message';
-	// 初期表示: is-active が付いているタブ・コンテンツ以外は非表示（CSSで .tab-contents:not(.is-active) を非表示にしている前提で、ここでは表示切り替えのみ）
-	$(".tab-contents").hide();
-	$(".tab-contents.is-active").show();
-
+	$(".tab-contents:not(:eq(0))").hide();
 	$(".tab").click(function() {
 		var num = $(".tab").index(this);
-		var section = $(this).data('section');
 		$(".tab-contents").hide();
 		$(".tab-contents").eq(num).show();
 		$(".tab").removeClass('is-active');
 		$(this).addClass('is-active');
-		if (section && window.history && window.history.pushState) {
-			var url = baseUrl + section + '/';
-			window.history.pushState({ section: section }, '', url);
-		}
-	});
-
-	window.addEventListener('popstate', function(e) {
-		var path = window.location.pathname.replace(/\/$/, '');
-		var m = path.match(/\/aboutus\/(message|company|staff)/);
-		var section = m ? m[1] : 'message';
-		var idx = { message: 0, company: 1, staff: 2 }[section];
-		$(".tab").removeClass('is-active').eq(idx).addClass('is-active');
-		$(".tab-contents").hide().eq(idx).show();
 	});
 });
 </script>
