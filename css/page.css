@@ -3497,12 +3497,15 @@ About Us
     }
 }
 
-/* SP（≤1199px）：CTAの画像は540px上限を解除してボックス全幅に */
+/* SP（≤1199px）：各ページのCTA画像をmax-width上限解除してボックス全幅に
+   #page .list { align-items: center } がboxをshrinkさせるため stretch で上書き */
 @media screen and (max-width: 1199px) {
-    #page.about .other-links .list .box img {
-        max-width: 100%;
-        width: 100%;
-    }
+    #page .other-links .list { align-items: stretch; }
+    #page .other-links .list .box { width: 100%; max-width: 100%; }
+    #page .other-links .list .box img { max-width: 100%; width: 100%; }
+    #page.about .other-links .list .box img { max-width: 100%; width: 100%; }
+    #page.shop-info .list.links img { max-width: 100%; width: 100%; }
+    #page.online-shop img { max-width: 100%; }
 }
 
 /* 1005〜1199px：#page.about のCTAを2カラムに戻す（上記SPスタイルを上書き） */
