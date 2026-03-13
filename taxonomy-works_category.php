@@ -110,11 +110,27 @@ if ( $term_override ) {
 				<h2>カテゴリから探す</h2>
 				<ul class="category-link-list">
 					<?php
+					// service_category 自身とその子タームを除外
+					$_svc_parent    = get_term_by( 'slug', 'service_category', 'works_category' );
+					$_svc_parent_id = ( $_svc_parent && ! is_wp_error( $_svc_parent ) ) ? (int) $_svc_parent->term_id : 0;
+					$_exclude_ids   = $_svc_parent_id ? [ $_svc_parent_id ] : [];
+					if ( $_svc_parent_id ) {
+						$_svc_children = get_terms([
+							'taxonomy'   => 'works_category',
+							'parent'     => $_svc_parent_id,
+							'hide_empty' => false,
+							'fields'     => 'ids',
+						]);
+						if ( ! empty( $_svc_children ) && ! is_wp_error( $_svc_children ) ) {
+							$_exclude_ids = array_merge( $_exclude_ids, $_svc_children );
+						}
+					}
 					$all_terms = get_terms([
 						'taxonomy'   => 'works_category',
 						'hide_empty' => false,
 						'orderby'    => 'name',
 						'order'      => 'ASC',
+						'exclude'    => $_exclude_ids,
 						'meta_query' => [
 							'relation' => 'OR',
 							[ 'key' => 'scw_term_hidden', 'compare' => 'NOT EXISTS' ],
