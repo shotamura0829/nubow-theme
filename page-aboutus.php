@@ -382,72 +382,72 @@
 			<div class="tab-contents">
 				<div class="staff">
 					<div class="list">
-						<div class="box">
-							<div class="image">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_sample.jpg" alt="">
-							</div>
-							<div class="text">
-								<h3 class="name">常務取締役<br>Sugita.N （本店）</h3>
+					<div class="box">
+						<div class="image">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_1.webp" alt="Sugita.N">
+						</div>
+						<div class="text">
+							<h3 class="name">常務取締役<br>Sugita.N （本店）</h3>
 								<p>花の魅力に惹かれて入社。長年ありとあらゆる装花技術を磨き続け、ヌボー生花店の装飾技術の根底を支えている。趣味はツーリング。長野市出身。</p>
 							</div>
 						</div>
 
-						<div class="box">
-							<div class="image">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_sample.jpg" alt="">
-							</div>
-							<div class="text">
-								<h3 class="name">法人事業担当マネージャー<br>Yamamoto.K （本店）</h3>
+					<div class="box">
+						<div class="image">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_2.webp" alt="Yamamoto.K">
+						</div>
+						<div class="text">
+							<h3 class="name">法人事業担当マネージャー<br>Yamamoto.K （本店）</h3>
 								<p>パン屋のアルバイトから花屋へ転身。長年店舗販売を担当し、愛嬌のある接客でファンが多い。現在は本店のムードメーカー。須坂市出身。</p>
 							</div>
 						</div>
 						
-						<div class="box">
-							<div class="image">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_sample.jpg" alt="">
-							</div>
-							<div class="text">
-								<h3 class="name">婚礼事業担当マネージャー<br>Kitahara.K （本店）</h3>
+					<div class="box">
+						<div class="image">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_3.webp" alt="Kitahara.K">
+						</div>
+						<div class="text">
+							<h3 class="name">婚礼事業担当マネージャー<br>Kitahara.K （本店）</h3>
 								<p>農業大学から新卒で入社。長年杉田の元で技術力を磨き、現在は婚礼装飾の責任者としてその腕をふるっている。小柄だが芯が強い。伊那市出身。</p>
 							</div>
 						</div>
 						
-						<div class="box">
-							<div class="image">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_sample.jpg" alt="">
-							</div>
-							<div class="text">
-								<h3 class="name">お庭や担当マネージャー<br>Nishizawa.N （本店）</h3>
+					<div class="box">
+						<div class="image">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_4.webp" alt="Nishizawa.N">
+						</div>
+						<div class="text">
+							<h3 class="name">お庭や担当マネージャー<br>Nishizawa.N （本店）</h3>
 								<p>植物をこよなく愛する直樹先生。ガーデニングやお庭のメンテナンスのプロとして専門教室を開催している。天然な性格で愛されキャラ。中野市出身。</p>
 							</div>
 						</div>
 						
-						<div class="box">
-							<div class="image">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_sample.jpg" alt="">
-							</div>
-							<div class="text">
-								<h3 class="name">ヌボーアドレ 店長<br>Kubota.R （ヌボーアドレ）</h3>
+					<div class="box">
+						<div class="image">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_5.webp" alt="Kubota.R">
+						</div>
+						<div class="text">
+							<h3 class="name">ヌボーアドレ 店長<br>Kubota.R （ヌボーアドレ）</h3>
 								<p>花好きが高じて入社。新店舗の立ち上げに数多く携わり、店舗ディスプレイは抜群のセンスを誇る。アンスリウムをこよなく愛している。飯山市出身。</p>
 							</div>
 						</div>
 						
-						<div class="box">
-							<div class="image">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_sample.jpg" alt="">
-							</div>
-							<div class="text">
-								<h3 class="name">ヌボーラルブル 店長<br>Yanagisawa.Y （ヌボーラルブル）</h3>
+					<div class="box">
+						<div class="image">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_6.webp" alt="Yanagisawa.Y">
+						</div>
+						<div class="text">
+							<h3 class="name">ヌボーラルブル 店長<br>Yanagisawa.Y （ヌボーラルブル）</h3>
 								<p>就職氷河期を経験し偶然出会った花屋へ就職。現場で多くの笑顔に触れ、花屋の仕事に魅了される。自然と周りを笑顔にする天賦の才を持つ。佐久市出身。</p>
 							</div>
 						</div>
 						
-						<div class="box">
-							<div class="image">
-								<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_sample.jpg" alt="">
-							</div>
-							<div class="text">
-								<h3 class="name">支援事業担当マネージャー<br>Matukura.Y （本店）</h3>
+					<div class="box">
+						<div class="image">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/page/about_staff_7.webp" alt="Matukura.Y">
+						</div>
+						<div class="text">
+							<h3 class="name">支援事業担当マネージャー<br>Matukura.Y （本店）</h3>
 								<p>電話受注から総務や経理など事務方全般を担当し、ヌボー生花店の縁の下の力持ちとして活躍している。電話の対応は天下一品。白馬村出身。</p>
 							</div>
 						</div>
