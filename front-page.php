@@ -383,47 +383,25 @@
 
 <script src="<?php echo get_template_directory_uri(); ?>/js/swiper-bundle.min.js"></script>
 <script type="text/javascript">
-(function() {
-	var initialized = false;
-
-	function initFVSwiper() {
-		if (initialized) return;
-		initialized = true;
-		new Swiper(".swiper01", {
-			loop: true,
-			slidesPerView: 1,
-			spaceBetween: 0,
-			speed: 1000,
-			allowTouchMove: true,
-			autoplay: {
-				delay: 4000,
-				disableOnInteraction: false,
-			},
-			pagination: {
-				el: ".swiper-pagination-01",
-				clickable: true,
-			},
-			navigation: {
-				nextEl: ".swiper-button-next-01",
-				prevEl: ".swiper-button-prev-01",
-			},
-		});
-	}
-
-	/* new Image() のプリロードは iOS Safari で DOM img キャッシュに反映されない場合があるため、
-	   実際の DOM img 要素のロード完了を待ってから Swiper を初期化する。 */
-	var firstImg = document.querySelector('.fv .swiper-slide:first-child img');
-	if (!firstImg) {
-		initFVSwiper();
-	} else if (firstImg.complete && firstImg.naturalWidth > 0) {
-		initFVSwiper();
-	} else {
-		firstImg.addEventListener('load',  initFVSwiper);
-		firstImg.addEventListener('error', initFVSwiper);
-		/* 画像がいつまでも来ない場合の保険（8秒後に強制初期化） */
-		setTimeout(initFVSwiper, 8000);
-	}
-})();
+new Swiper(".swiper01", {
+	loop: true,
+	slidesPerView: 1,
+	spaceBetween: 0,
+	speed: 1000,
+	allowTouchMove: true,
+	autoplay: {
+		delay: 4000,
+		disableOnInteraction: false,
+	},
+	pagination: {
+		el: ".swiper-pagination-01",
+		clickable: true,
+	},
+	navigation: {
+		nextEl: ".swiper-button-next-01",
+		prevEl: ".swiper-button-prev-01",
+	},
+});
 </script>
 
 <script type="text/javascript">
