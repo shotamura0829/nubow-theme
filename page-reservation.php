@@ -73,14 +73,31 @@
 			#hanayoya .hy-parts-wrap {
 				overflow: visible !important;
 			}
-			/* ドロップダウンリストが小さい場合の文字サイズ補正 */
-			#hanayoya select option,
-			#hanayoya [class*="hy-list"] li,
-			#hanayoya [class*="hy-item"],
-			#hanayoya [class*="hy-option"] {
-				font-size: 14px !important;
-				padding: 8px 10px !important;
-				line-height: 1.5 !important;
+			/* hanayoya が body に追記するドロップダウンポップアップ（SP 補正） */
+			@media screen and (max-width: 1199px) {
+				body > div[class*="hy"],
+				body > ul[class*="hy"] {
+					left: 0 !important;
+					right: 0 !important;
+					width: 90vw !important;
+					max-width: 400px !important;
+					margin: 0 auto !important;
+					font-size: 16px !important;
+					line-height: 1.8 !important;
+					z-index: 99999 !important;
+					box-sizing: border-box !important;
+				}
+				body > div[class*="hy"] li,
+				body > ul[class*="hy"] li,
+				body > div[class*="hy"] [class*="item"],
+				body > div[class*="hy"] [class*="option"] {
+					font-size: 16px !important;
+					padding: 12px 16px !important;
+					line-height: 1.6 !important;
+					min-height: 44px !important;
+					display: flex !important;
+					align-items: center !important;
+				}
 			}
 
 			/* ===== PC（1200px以上）：視認性向上 ===== */
@@ -225,7 +242,55 @@
 		</style>
 		<script src="https://hanayoya.jp/form/common/js/lib.js"></script>
         <script src="/hanayoya/load.js" type="text/javascript"></script>
-        <div id="hanayoya" class="hy-frame" style="margin-left: auto; margin-right:auto;"></div>
+        <div id="hanayoya" class="hy-frame"></div>
+		<script>
+		/* hanayoya SP ドロップダウン補正（MutationObserver） */
+		(function() {
+			var isSP = window.innerWidth <= 1199;
+			if (!isSP) return;
+
+			function fixDropdown(el) {
+				if (!el || el.nodeType !== 1) return;
+				var cls = (el.className || '').toString();
+				if (cls.indexOf('hy') === -1) return;
+
+				/* 文字サイズ・パディング */
+				el.style.setProperty('font-size', '16px', 'important');
+				el.style.setProperty('line-height', '1.8', 'important');
+				el.style.setProperty('z-index', '99999', 'important');
+				el.querySelectorAll('li, [class*="item"], [class*="option"]').forEach(function(item) {
+					item.style.setProperty('font-size', '16px', 'important');
+					item.style.setProperty('padding', '12px 16px', 'important');
+					item.style.setProperty('min-height', '44px', 'important');
+					item.style.setProperty('line-height', '1.6', 'important');
+				});
+
+				/* 位置補正：ビューポート内に収める */
+				setTimeout(function() {
+					var rect  = el.getBoundingClientRect();
+					var vw    = window.innerWidth;
+					var elW   = Math.min(rect.width, vw * 0.9);
+					el.style.setProperty('width', elW + 'px', 'important');
+					/* 右にはみ出す場合は右端に寄せる */
+					var newLeft = parseFloat(el.style.left) || rect.left;
+					if (newLeft + elW > vw - 8) {
+						newLeft = vw - elW - 8;
+					}
+					if (newLeft < 8) newLeft = 8;
+					el.style.setProperty('left', newLeft + 'px', 'important');
+				}, 10);
+			}
+
+			var observer = new MutationObserver(function(mutations) {
+				mutations.forEach(function(m) {
+					m.addedNodes.forEach(function(node) { fixDropdown(node); });
+				});
+			});
+			document.addEventListener('DOMContentLoaded', function() {
+				observer.observe(document.body, { childList: true });
+			});
+		})();
+		</script>
 		<div class="link">
 			<a href="<?php echo home_url('/'); ?>" class="cmn-button back">ホームに戻る</a>
 		</div>
