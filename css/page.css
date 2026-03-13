@@ -249,10 +249,10 @@ page共通
 .pagination .current {background: #5C4636; color: #fff;}
 
 @media screen and (max-width: 1199px) {
-    .pagination {margin-top: 10rem;}
+    .pagination {margin-top: 10rem; flex-wrap: wrap; gap: 1rem;}
     .pagination span,
-    .pagination a {font-size: 4rem; width: 10rem; height: 10rem;}
-    .pagination .prev-button, .pagination .next-button {width: 13.4rem;}
+    .pagination a {font-size: 4rem; width: 10rem; height: 10rem; padding: 0;}
+    .pagination .prev-button, .pagination .next-button {width: auto; padding: 0 2.5rem; min-width: 14rem;}
 }
 
 /* =================================================================
@@ -283,6 +283,7 @@ articleリスト
 
 
 @media screen and (max-width: 1199px) {
+    #page.article-list {overflow-x: hidden !important;}
     #page.article-list .article-main {max-width: 100%;}
     #page.article-list .list {gap: 10rem 0;}
     #page.article-list .article-title .date {font-size: 4.8rem;}
