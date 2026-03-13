@@ -18,7 +18,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel='stylesheet' href='<?php echo get_template_directory_uri(); ?>/css/swiper-bundle.css'>
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/common.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/aos.css" type="text/css" />
-<?php if (is_front_page()): ?>
+<?php 
+$_current_path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/');
+if (is_front_page() || is_home() || $_current_path === ''): 
+?>
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/top.css">
 <?php endif; ?>
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/page.css">
