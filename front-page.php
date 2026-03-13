@@ -9,22 +9,22 @@
 			<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<a href="https://nubow.jp/" target="_blank" rel="noopener noreferrer">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" alt="ヌボー生花店 オンラインショップ">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" alt="ヌボー生花店 オンラインショップ" fetchpriority="high" loading="eager">
 					</a>
 				</div>
 				<div class="swiper-slide">
 					<a href="<?php echo home_url('/reservation'); ?>">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg" alt="店舗来店予約・事前決済">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg" alt="店舗来店予約・事前決済" loading="lazy">
 					</a>
 				</div>
 				<div class="swiper-slide">
 					<a href="https://nubow.jp/" target="_blank" rel="noopener noreferrer">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" alt="ヌボー生花店 オンラインショップ">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" alt="ヌボー生花店 オンラインショップ" loading="lazy">
 					</a>
 				</div>
 				<div class="swiper-slide">
 					<a href="<?php echo home_url('/reservation'); ?>">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg" alt="店舗来店予約・事前決済">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg" alt="店舗来店予約・事前決済" loading="lazy">
 					</a>
 				</div>
 			</div>
@@ -89,7 +89,7 @@
 						地域の皆様に幸福感を提供し続けるための<br>
 						私たちの決意表明をぜひご覧ください。
 					</p>
-					<img src="<?php echo get_template_directory_uri(); ?>/img/top/about_img01.png" alt="ヌボーエール 店内">
+					<img src="<?php echo get_template_directory_uri(); ?>/img/top/about_img01.png" alt="ヌボーエール 店内" loading="lazy">
 				</div>
 				<div class="link">
 					<a href="<?php echo home_url('/'); ?>aboutus" class="cmn-button">ヌボー生花店について</a>
@@ -109,7 +109,7 @@
 					<div class="shop-box">
 						<h3>ヌボーエール</h3>
 						<div class="box">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/top/shop_img01.webp" alt="ヌボーエール 店内">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/top/shop_img01.webp" alt="ヌボーエール 店内" loading="lazy">
 							<p>
 								住所：〒381-0037<br>
 								長野県長野市西和田２丁目５−２５<br>
@@ -123,7 +123,7 @@
 					<div class="shop-box">
 						<h3>ヌボーアドレ</h3>
 						<div class="box">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/top/shop_img02.jpg" alt="">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/top/shop_img02.jpg" alt="" loading="lazy">
 							<p>
 								住所：〒381-2217<br>
 								長野市稲里町中央1-23-1<br>
@@ -136,7 +136,7 @@
 					<div class="shop-box">
 						<h3>ヌボーラルブル</h3>
 						<div class="box">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/top/shop_img03.jpg" alt="">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/top/shop_img03.jpg" alt="" loading="lazy">
 							<p>
 								住所：〒380-0823<br>
 								長野県長野市南千歳1丁目<br>
@@ -166,31 +166,31 @@
 
 				<div class="list">
 					<a href="<?php echo home_url('/'); ?>service/celebration-bouquet/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/service/celebration-bouquet-image1.webp" alt="御祝い花束">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/service/celebration-bouquet-image1.webp" alt="御祝い花束" loading="lazy">
 						<p>御祝い花束</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/celebration-arrangement/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-arrangement/celebration-arrangement-image01.png" alt="御祝いアレンジメント花">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-arrangement/celebration-arrangement-image01.png" alt="御祝いアレンジメント花" loading="lazy">
 						<p>御祝い<br>アレンジメント花</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/celebration-orchid/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-orchid/celebration-orchid-image01.png" alt="御祝い胡蝶蘭">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-orchid/celebration-orchid-image01.png" alt="御祝い胡蝶蘭" loading="lazy">
 						<p>御祝い胡蝶蘭</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/celebration-plants/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/service/celebration-plants/celebration-plants-image01.webp" alt="御祝い観葉植物">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/service/celebration-plants/celebration-plants-image01.webp" alt="御祝い観葉植物" loading="lazy">
 						<p>御祝い観葉植物</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/celebration-stand-flower/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-stand-flower/celebration-stand-flower-image01.webp" alt="御祝いスタンド花">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-stand-flower/celebration-stand-flower-image01.webp" alt="御祝いスタンド花" loading="lazy">
 						<p>御祝いスタンド花</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/funeral-flower" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/page/funeral-flower/funeral-flower-image01.webp" alt="お悔やみ・お供え花">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/funeral-flower/funeral-flower-image01.webp" alt="お悔やみ・お供え花" loading="lazy">
 						<p>お悔やみ・お供え花</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/funeral-stand-flower" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/page/funeral-stand-flower/sougi_stand01.webp" alt="葬儀スタンド花">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/funeral-stand-flower/sougi_stand01.webp" alt="葬儀スタンド花" loading="lazy">
 						<p>葬儀スタンド花</p>
 					</a>
 				</div>

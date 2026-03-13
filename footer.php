@@ -1,5 +1,7 @@
+<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
 <a href="#" class="backtotop">
-	<img src="<?php echo get_template_directory_uri(); ?>/img/common/icon-backtotop.png" alt="トップへ戻る">
+	<img src="<?php echo get_template_directory_uri(); ?>/img/common/icon-backtotop.png" alt="トップへ戻る" loading="lazy">
 </a>
 
 <footer>
@@ -7,10 +9,10 @@
 		<div class="left-box">
 			<div class="top">
 				<a href="<?php echo home_url('/'); ?>">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/common/footer_icon_home.png" width="49" alt="">ホーム
+					<img src="<?php echo get_template_directory_uri(); ?>/img/common/footer_icon_home.png" width="49" height="49" loading="lazy" alt="">ホーム
 				</a>
 				<a href="<?php echo home_url('/'); ?>online-shop">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/common/footer_icon_cart.png" width="51" alt="">オンラインショップ
+					<img src="<?php echo get_template_directory_uri(); ?>/img/common/footer_icon_cart.png" width="51" height="49" loading="lazy" alt="">オンラインショップ
 				</a>
 			</div>
 			<div class="sp-menu">
@@ -53,7 +55,7 @@
 				</div>
 			</div>
 			<div class="bottom">
-				<a href="<?php echo home_url('/'); ?>" class="logo"><img src="<?php echo get_template_directory_uri(); ?>/img/common/footer-logo.png" width="215" alt="" class="footer-logo"></a>
+				<a href="<?php echo home_url('/'); ?>" class="logo"><img src="<?php echo get_template_directory_uri(); ?>/img/common/footer-logo.png" width="215" loading="lazy" alt="" class="footer-logo"></a>
 				<div class="access">
 					<p>〒381-0014 <br class="sp-only">長野県長野市北尾張部715-7</p>
 					<ul>
@@ -100,13 +102,13 @@
 				<div class="box">
 					<p>事例紹介</p>
 					<ul>
-						<li><a href="<?php echo home_url('/'); ?>works/bouquet">御祝い花束</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works/arrangement">御祝いアレンジメント花</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works/phalaenopsis">御祝い胡蝶蘭</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works/plants">御祝い観葉植物</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works/stand-celebration">御祝いスタンド花</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works/funeral-flower">お悔やみ・お供え花</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works/stand-funeral">葬儀スタンド花</a></li>
+						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/celebration-bouquet">花束</a></li>
+						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/celebration-arrangement">アレンジメント花</a></li>
+						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/celebration-orchid">胡蝶蘭</a></li>
+						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/celebration-plants">観葉植物</a></li>
+						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/celebration-stand-flower">御祝い花・御祝いスタンド花</a></li>
+						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/funeral-flower">お悔やみ・お供え花</a></li>
+						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/funeral-stand-flower">葬儀花・葬儀スタンド花</a></li>
 					</ul>
 				</div>
 			</div>

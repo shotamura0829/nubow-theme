@@ -13,8 +13,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="format-detection" content="telephone=no">
 <title><?php bloginfo('name'); wp_title('|'); ?></title>
 
+<!-- 外部リソース事前接続（レンダリング高速化） -->
+<link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+<link rel="preconnect" href="https://code.jquery.com" crossorigin>
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+
 <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/common/favicon.ico">
 <link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/images/common/apple-touch-icon.png" sizes="152x152">
+
+<?php if ( is_front_page() ) : ?>
+<link rel="preload" as="image" href="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" fetchpriority="high">
+<?php endif; ?>
+
 <?php if (
 	is_front_page() ||
 	is_page_template( 'page-service-list-detail.php' ) ||
@@ -23,7 +33,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel='stylesheet' href='<?php echo get_template_directory_uri(); ?>/css/swiper-bundle.css'>
 <?php endif; ?>
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/common.css" type="text/css" />
-<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/aos.css" type="text/css" />
 <?php 
 $_current_path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/');
 if (is_front_page() || is_home() || $_current_path === ''): 
@@ -31,8 +40,6 @@ if (is_front_page() || is_home() || $_current_path === ''):
 	<link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/top.css">
 <?php endif; ?>
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/page.css">
-
-<script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
 
 <?php wp_head(); ?>
 </head>
@@ -46,7 +53,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header>
 	<div class="inner">
 		<a href="<?php echo home_url(); ?>" class="logo">
-			<img src="<?php echo get_template_directory_uri(); ?>/img/common/header-logo.png" alt="ヌボー">
+			<img src="<?php echo get_template_directory_uri(); ?>/img/common/header-logo.png" alt="ヌボー" width="270" height="115">
 		</a>
 
 		<div class="menu">
@@ -102,10 +109,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		<div class="menu">
 			<div class="link-area">
 				<a href="<?php echo home_url('/'); ?>">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/common/footer_icon_home.png" width="49" alt="">ホーム
+					<img src="<?php echo get_template_directory_uri(); ?>/img/common/footer_icon_home.png" width="49" height="49" loading="lazy" alt="">ホーム
 				</a>
 				<a href="<?php echo home_url('/'); ?>online-shop">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/common/footer_icon_cart.png" width="51" alt="">オンラインショップ
+					<img src="<?php echo get_template_directory_uri(); ?>/img/common/footer_icon_cart.png" width="51" height="49" loading="lazy" alt="">オンラインショップ
 				</a>
 			</div>
 
@@ -149,18 +156,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				</div>
 			</div>
 
-			<a href="<?php echo home_url(); ?>" class="menu-logo">
-				<img src="<?php echo get_template_directory_uri(); ?>/img/common/sp-header_logo.png" alt="ヌボー">
-			</a>
+		<a href="<?php echo home_url(); ?>" class="menu-logo">
+			<img src="<?php echo get_template_directory_uri(); ?>/img/common/sp-header_logo.png" alt="ヌボー" loading="lazy">
+		</a>
 
-			<div class="bottom-links">
-				<a href="<?php echo home_url('/'); ?>reservation" class="yoyaku">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/common/sp-header_icon-yoyaku.png" alt="">店舗予約
-				</a>
-				<a href="<?php echo home_url('/'); ?>contact" class="contact">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/common/sp-header_icon-mail.png" alt="">お問い合わせ
-				</a>
-			</div>
+		<div class="bottom-links">
+			<a href="<?php echo home_url('/'); ?>reservation" class="yoyaku">
+				<img src="<?php echo get_template_directory_uri(); ?>/img/common/sp-header_icon-yoyaku.png" alt="" loading="lazy">店舗予約
+			</a>
+			<a href="<?php echo home_url('/'); ?>contact" class="contact">
+				<img src="<?php echo get_template_directory_uri(); ?>/img/common/sp-header_icon-mail.png" alt="" loading="lazy">お問い合わせ
+			</a>
+		</div>
 		</div>
 	</div>
 </div>
