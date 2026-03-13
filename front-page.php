@@ -390,14 +390,11 @@
 		if (initialized) return;
 		initialized = true;
 		new Swiper(".swiper01", {
-			/* rewind: loop と同様に最後→最初へシームレスに戻るが
-			   DOM clone を作らないため iOS での clone 画像未ロード問題を回避 */
-			rewind: true,
+			loop: true,
 			slidesPerView: 1,
 			spaceBetween: 0,
 			speed: 1000,
 			allowTouchMove: true,
-			autoHeight: true,
 			autoplay: {
 				delay: 4000,
 				disableOnInteraction: false,
