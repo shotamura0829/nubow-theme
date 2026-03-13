@@ -1,4 +1,39 @@
 <?php get_header(); ?>
+<?php
+// サービスカテゴリ タイトル・クエリ上書きマッピング
+$service_term_map = [
+	'御祝い花束'           => ['title' => '花束',                      'slugs' => ['bouquet']],
+	'御祝いアレンジメント花' => ['title' => 'アレンジメント花',           'slugs' => ['arrangement', 'abstract-flowers']],
+	'御祝い胡蝶蘭'         => ['title' => '胡蝶蘭',                    'slugs' => ['phalaenopsis']],
+	'御祝い観葉植物'        => ['title' => '観葉植物',                  'slugs' => ['plants', 'rental']],
+	'御祝いスタンド花'      => ['title' => '御祝い花・御祝いスタンド花', 'slugs' => ['stand-celebration', 'display-decorations']],
+	'お悔やみ・お供え花'    => ['title' => 'お悔やみ・お供え花',         'slugs' => ['funeral-flower']],
+	'葬儀スタンド花'        => ['title' => '葬儀花・葬儀スタンド花',     'slugs' => ['funeral', 'stand-funeral']],
+];
+
+$current_term  = get_queried_object();
+$current_name  = ( $current_term && isset( $current_term->name ) ) ? $current_term->name : '';
+$term_override = $service_term_map[ $current_name ] ?? null;
+$display_title = $term_override ? $term_override['title'] : $current_name;
+
+// マッピングがある場合はカスタムクエリを事前に生成
+$paged = max( 1, get_query_var('paged') );
+if ( $term_override ) {
+	$custom_query = new WP_Query([
+		'post_type'      => 'works',
+		'posts_per_page' => get_option('posts_per_page'),
+		'paged'          => $paged,
+		'orderby'        => 'date',
+		'order'          => 'DESC',
+		'tax_query'      => [[
+			'taxonomy' => 'works_category',
+			'field'    => 'slug',
+			'terms'    => $term_override['slugs'],
+			'operator' => 'IN',
+		]],
+	]);
+}
+?>
 
 <!-- Remodal CSS & JS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.0.5/remodal.min.css">
@@ -15,19 +50,16 @@
 				<li><a href="<?php echo home_url('/'); ?>">ホーム</a></li>
 				<li class="arrow">&#62;</li>
 				<li><a href="<?php echo home_url('/'); ?>works">事例紹介</a></li>
-				<?php
-				$current_term = get_queried_object();
-				if ($current_term && !is_wp_error($current_term) && isset($current_term->name)) :
-				?>
+				<?php if ( $current_term && ! is_wp_error( $current_term ) && isset( $current_term->name ) ) : ?>
 					<li class="arrow">&#62;</li>
-					<li><?php echo esc_html($current_term->name); ?></li>
+					<li><?php echo esc_html( $display_title ); ?></li>
 				<?php endif; ?>
 			</ul>
 			<div class="main-title">
 				<h2 class="cmn-title">
 					<?php
-					if ($current_term && !is_wp_error($current_term) && isset($current_term->name)) {
-                        echo esc_html($current_term->name);
+					if ( $current_term && ! is_wp_error( $current_term ) && isset( $current_term->name ) ) {
+						echo esc_html( $display_title );
 					} else {
 						post_type_archive_title();
 					}
@@ -60,10 +92,14 @@
 					'order'      => 'ASC',
 				]);
 				if ( ! empty( $case_terms ) && ! is_wp_error( $case_terms ) ) :
-					foreach ( $case_terms as $case_term ) : ?>
+					foreach ( $case_terms as $case_term ) :
+						$modal_label = isset( $service_term_map[ $case_term->name ] )
+							? $service_term_map[ $case_term->name ]['title']
+							: $case_term->name;
+						?>
 						<li>
 							<a href="<?php echo esc_url( get_term_link( $case_term ) ); ?>">
-								<?php echo esc_html( $case_term->name ); ?>
+								<?php echo esc_html( $modal_label ); ?>
 							</a>
 						</li>
 					<?php endforeach;
@@ -103,9 +139,13 @@
 	<div class="main-content">
 		<div class="article-wrap">
 			<div class="article-main">
-				<?php if (have_posts()) : ?>
+				<?php
+				// マッピングがある場合はカスタムクエリ、それ以外はデフォルトクエリを使用
+				$loop_query = $term_override ? $custom_query : $GLOBALS['wp_query'];
+				?>
+				<?php if ( $loop_query->have_posts() ) : ?>
 					<div class="list">
-						<?php while (have_posts()) : the_post(); ?>
+						<?php while ( $loop_query->have_posts() ) : $loop_query->the_post(); ?>
 							<div class="item">
 								<div class="thumb">
 									<?php if (has_post_thumbnail()) : ?>
@@ -120,30 +160,40 @@
 								</div>
 							</div>
 						<?php endwhile; ?>
+						<?php if ( $term_override ) wp_reset_postdata(); ?>
 					</div>
 
 					<?php if (function_exists('wp_pagenavi')) : ?>
 						<?php
-						global $wp_query;
-						$max_page = $wp_query->max_num_pages;
-						$current_page = max( 1, get_query_var('paged'), get_query_var('page') );
-						$range = 2;
-						$show_last_page_threshold = $max_page - $range;
+						$max_page     = $loop_query->max_num_pages;
+						$current_page = $paged;
+						$show_last_page_threshold = $max_page - 2;
 						?>
 						<div class="pagination en">
-							<?php if ($prev_link = get_previous_posts_link('前へ')) : ?>
-								<a href="<?php echo get_pagenum_link($current_page - 1); ?>" class="prev-button"><?php echo strip_tags($prev_link); ?></a>
+							<?php if ( $current_page > 1 ) : ?>
+								<a href="<?php echo get_pagenum_link($current_page - 1); ?>" class="prev-button">前へ</a>
 							<?php endif; ?>
 
-							<?php wp_pagenavi(); ?>
+							<?php
+							// wp_pagenavi にカスタムクエリを渡すため一時的に $wp_query を置き換え
+							if ( $term_override ) {
+								global $wp_query;
+								$_tmp_query = $wp_query;
+								$wp_query   = $custom_query;
+								wp_pagenavi();
+								$wp_query = $_tmp_query;
+							} else {
+								wp_pagenavi();
+							}
+							?>
 
-							<?php if ($max_page > 1 && $current_page < $show_last_page_threshold) : ?>
+							<?php if ( $max_page > 1 && $current_page < $show_last_page_threshold ) : ?>
 								<span class="extend">...</span>
 								<a href="<?php echo get_pagenum_link($max_page); ?>" class="last-page"><?php echo $max_page; ?></a>
 							<?php endif; ?>
 
-							<?php if ($next_link = get_next_posts_link('次へ')) : ?>
-								<a href="<?php echo get_pagenum_link($current_page + 1); ?>" class="next-button"><?php echo strip_tags($next_link); ?></a>
+							<?php if ( $current_page < $max_page ) : ?>
+								<a href="<?php echo get_pagenum_link($current_page + 1); ?>" class="next-button">次へ</a>
 							<?php endif; ?>
 						</div>
 					<?php endif; ?>

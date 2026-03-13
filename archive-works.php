@@ -1,4 +1,16 @@
 <?php get_header(); ?>
+<?php
+// サービスカテゴリ 表示タイトルマッピング（モーダル用）
+$service_term_map = [
+	'御祝い花束'           => '花束',
+	'御祝いアレンジメント花' => 'アレンジメント花',
+	'御祝い胡蝶蘭'         => '胡蝶蘭',
+	'御祝い観葉植物'        => '観葉植物',
+	'御祝いスタンド花'      => '御祝い花・御祝いスタンド花',
+	'お悔やみ・お供え花'    => 'お悔やみ・お供え花',
+	'葬儀スタンド花'        => '葬儀花・葬儀スタンド花',
+];
+?>
 
 <!-- Remodal CSS & JS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remodal/1.0.5/remodal.min.css">
@@ -54,10 +66,12 @@
 					'order'      => 'ASC',
 				]);
 				if ( ! empty( $case_terms ) && ! is_wp_error( $case_terms ) ) :
-					foreach ( $case_terms as $case_term ) : ?>
+					foreach ( $case_terms as $case_term ) :
+						$modal_label = $service_term_map[ $case_term->name ] ?? $case_term->name;
+						?>
 						<li>
 							<a href="<?php echo esc_url( get_term_link( $case_term ) ); ?>">
-								<?php echo esc_html( $case_term->name ); ?>
+								<?php echo esc_html( $modal_label ); ?>
 							</a>
 						</li>
 					<?php endforeach;
