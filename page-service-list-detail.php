@@ -24,83 +24,65 @@ get_header();
 	<div class="main-content">
 		<div class="flex">
 			<div class="sidebar" id="sidebar">
+				<?php
+				// サービスページ別 FAQ カテゴリ名マッピング
+				$faq_term_map = [
+					'celebration-orchid'       => '胡蝶蘭のよくあるご質問',
+					'celebration-stand-flower' => '御祝いスタンド花のよくあるご質問',
+					'funeral-flower'           => 'お供え花のよくあるご質問',
+					'funeral-stand-flower'     => '葬儀スタンド花のよくあるご質問',
+				];
+				$faq_term_name = null;
+				foreach ( $faq_term_map as $slug => $name ) {
+					if ( is_page( $slug ) ) {
+						$faq_term_name = $name;
+						break;
+					}
+				}
+				?>
+				<?php if ( $faq_term_name ) : ?>
 				<h3 class="pc-only"><?php the_title(); ?>に関するよくあるご質問</h3>
 				<h3 class="sp-only accordion-toggle"><?php the_title(); ?>に関するよくあるご質問</h3>
+				<?php endif; ?>
 				<div class="wrap">
+					<?php if ( $faq_term_name ) : ?>
 					<div class="faqbox">
 						<?php
-						if ( is_page('funeral-stand-flower') ) :
-							// 葬儀スタンド花ページ：カテゴリ「葬儀スタンド花のよくあるご質問」のFAQを表示
-							$faq_term = get_term_by( 'name', '葬儀スタンド花のよくあるご質問', 'faq_list' );
-							if ( $faq_term && ! is_wp_error( $faq_term ) ) :
-								$faq_query = new WP_Query([
-									'post_type'      => 'faq',
-									'posts_per_page' => -1,
-									'orderby'        => 'date',
-									'order'          => 'DESC',
-									'tax_query'      => [[
-										'taxonomy' => 'faq_list',
-										'field'    => 'term_id',
-										'terms'    => $faq_term->term_id,
-									]],
-								]);
-								if ( $faq_query->have_posts() ) :
-									while ( $faq_query->have_posts() ) : $faq_query->the_post(); ?>
-										<dl class="faq-content">
-											<dt class="faq-question accordion-toggle">
-												<div class="faq-question__title"><?php the_title(); ?></div>
-											</dt>
-											<dd class="faq-answer">
-												<div class="faq-answer__wrap">
-													<div><?php the_content(); ?></div>
-												</div>
-											</dd>
-										</dl>
-									<?php endwhile;
-									wp_reset_postdata();
-								else : ?>
-									<p>現在、よくあるご質問は準備中です。</p>
-								<?php endif;
-							else :
-								$faq_html = get_field('faq_html');
-								if ( $faq_html ) : echo $faq_html; endif;
-							endif;
-						else :
-							$faq_html = get_field('faq_html');
-							if ( $faq_html ) :
-								echo $faq_html;
-							endif;
-						endif;
-						?>
-						<!-- <dl class="faq-content">
-							<dt class="faq-question accordion-toggle">
-								<div class="faq-question__title">
-									ここに質問が入ります。
-								</div>
-							</dt>
-							<dd class="faq-answer">
-								<div class="faq-answer__wrap">
-									<div>
-										ここに回答が入ります。ここに回答が入ります。ここに回答が入ります。ここに回答が入ります。
-									</div>
-								</div>
-							</dd>
-						</dl>
-						<dl class="faq-content">
-							<dt class="faq-question accordion-toggle">
-								<div class="faq-question__title">
-									ここに質問が入ります。
-								</div>
-							</dt>
-							<dd class="faq-answer">
-								<div class="faq-answer__wrap">
-									<div>
-										ここに回答が入ります。ここに回答が入ります。ここに回答が入ります。ここに回答が入ります。
-									</div>
-								</div>
-							</dd>
-						</dl> -->
+						$faq_term = get_term_by( 'name', $faq_term_name, 'faq_list' );
+						if ( $faq_term && ! is_wp_error( $faq_term ) ) :
+							$faq_query = new WP_Query([
+								'post_type'      => 'faq',
+								'posts_per_page' => -1,
+								'orderby'        => 'date',
+								'order'          => 'DESC',
+								'tax_query'      => [[
+									'taxonomy' => 'faq_list',
+									'field'    => 'term_id',
+									'terms'    => $faq_term->term_id,
+								]],
+							]);
+							if ( $faq_query->have_posts() ) :
+								while ( $faq_query->have_posts() ) : $faq_query->the_post(); ?>
+									<dl class="faq-content">
+										<dt class="faq-question accordion-toggle">
+											<div class="faq-question__title"><?php the_title(); ?></div>
+										</dt>
+										<dd class="faq-answer">
+											<div class="faq-answer__wrap">
+												<div><?php the_content(); ?></div>
+											</div>
+										</dd>
+									</dl>
+								<?php endwhile;
+								wp_reset_postdata();
+							else : ?>
+								<p>現在、よくあるご質問は準備中です。</p>
+							<?php endif;
+						else : ?>
+							<p>現在、よくあるご質問は準備中です。</p>
+						<?php endif; ?>
 					</div>
+					<?php endif; ?>
 
 					<div class="bottom">
 						<h3>

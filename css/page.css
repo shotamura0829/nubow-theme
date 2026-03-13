@@ -871,7 +871,7 @@ shop / nubow-aile / nubow-adorer / nubow-larbre の4ページで同一
     #page.service-list .sidebar a {font-size: 4rem; gap: 2rem; font-weight: bold;}
     #page.service-list .sidebar a:before {width: 1.6rem; height: 2.4rem;}
 
-    #page.service-list .service-main-content {border: 0px; padding: 0 0 0px 0; gap: 14.8rem;}
+    #page.service-list .service-main-content {border: 0px; padding: 0 0 0px 0; gap: 14.8rem; max-width: 100%;}
     #page.service-list .box h3 {font-size: 4.8rem;}
     #page.service-list .box p {font-size: 3.2rem; letter-spacing: 0.3rem;}
     #page.service-list .box h4.youto {font-size: 3.2rem; height: 8rem;}
