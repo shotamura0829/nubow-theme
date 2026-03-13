@@ -56,16 +56,45 @@
 				max-width: none;
 				vertical-align: middle;
 			}
-			/* SP時はロゴが画面幅を超えないよう制限 */
-			@media screen and (max-width: 1199px) {
-				#hanayoya img.hy-logo {
-					max-width: 120px !important;
-					width: auto !important;
-					height: auto !important;
-				}
+
+			/* ===== プルダウンのズレ修正 ===== */
+			/* ドロップダウンを正しく位置計算させるための起点を設定 */
+			#hanayoya .hy-parts {
+				position: relative;
+			}
+			/* 親要素がoverflowでクリッピングしないよう開放 */
+			#hanayoya,
+			#hanayoya .hy-frame,
+			#hanayoya .hy-wrap,
+			#hanayoya .hy-parts-wrap {
+				overflow: visible !important;
 			}
 
-			/* ===== 次へボタン：色のみサイトに合わせる ===== */
+			/* ===== PC（1200px以上）：視認性向上 ===== */
+			#hanayoya.hy-frame {
+				font-size: 15px;
+				line-height: 1.6;
+			}
+			/* フォームフィールドのラベル・入力エリアを大きく */
+			#hanayoya .hy-parts-wrap {
+				font-size: 15px;
+				padding: 6px 0;
+			}
+			#hanayoya .hy-select,
+			#hanayoya .hy-reservedate,
+			#hanayoya .hy-input {
+				font-size: 15px !important;
+				padding: 6px 8px !important;
+				height: auto !important;
+				min-height: 36px;
+			}
+			/* 注記テキスト */
+			#hanayoya .hy-info02 {
+				font-size: 13px;
+				line-height: 1.6;
+			}
+
+			/* ===== 次へボタン：PC でも目立つデザインに ===== */
 			#hanayoya button {
 				all: revert;
 				cursor: pointer;
@@ -74,28 +103,37 @@
 				color: #fff !important;
 				white-space: nowrap;
 			}
-			/* サイトカラーで上書き */
 			#hanayoya button.hy-button {
-				background-color: #998675 !important;
-				border-color: #998675 !important;
+				background-color: #5C4636 !important;
+				border-color: #5C4636 !important;
+				color: #fff !important;
+				font-size: 16px !important;
+				font-weight: bold !important;
+				padding: 14px 32px !important;
+				border-radius: 50px !important;
+				min-width: 140px;
+				letter-spacing: 0.05em;
+				box-shadow: 0 3px 8px rgba(0,0,0,0.15);
 			}
 			#hanayoya button:hover {
 				opacity: 1;
 				background-color: #fff !important;
-				color: #998675 !important;
-				border-color: #998675 !important;
+				color: #5C4636 !important;
+				border-color: #5C4636 !important;
 			}
 			#hanayoya button:hover span {
-				color: #998675 !important;
+				color: #5C4636 !important;
 			}
 			#hanayoya button:hover span:after {
-				border-top-color: #998675 !important;
-				border-right-color: #998675 !important;
+				border-top-color: #5C4636 !important;
+				border-right-color: #5C4636 !important;
 			}
 			#hanayoya button span {
 				display: flex;
 				align-items: center;
+				justify-content: center;
 				color: #fff;
+				gap: 6px;
 			}
 			#hanayoya button span:after {
 				content: '';
@@ -105,12 +143,25 @@
 				border-right: 2px solid currentColor;
 				transform: rotate(45deg);
 				display: inline-block;
-				margin-left: 4px;
 				box-sizing: content-box;
+			}
+			/* CTAエリアをボタンが右に固まらないよう余裕を持たせる */
+			#hanayoya .hy-ctrl {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				gap: 10px;
+				padding: 8px 12px;
+				text-align: center;
 			}
 
 			/* ===== SP（〜1199px）：レイアウト崩れのみ修正 ===== */
 			@media screen and (max-width: 1199px) {
+				#hanayoya img.hy-logo {
+					max-width: 120px !important;
+					width: auto !important;
+					height: auto !important;
+				}
 				/* テーマの vw ベース font-size を px に固定して崩れ防止 */
 				#hanayoya.hy-frame {
 					font-size: 14px !important;
@@ -140,14 +191,6 @@
 					font-size: 14px !important;
 					width: 100% !important;
 				}
-				/* CTAエリアを縦積み中央寄せ */
-				#hanayoya .hy-ctrl {
-					display: flex !important;
-					flex-direction: column;
-					align-items: center;
-					gap: 8px;
-					text-align: center;
-				}
 				/* 注記テキスト：改行許容・中央寄せ */
 				#hanayoya .hy-info02 {
 					font-size: 12px !important;
@@ -158,9 +201,9 @@
 				/* ボタンをタップしやすく */
 				#hanayoya button.hy-button {
 					width: 100% !important;
-					font-size: 14px !important;
-					padding: 12px 0 !important;
-					border-radius: 18px !important;
+					font-size: 15px !important;
+					padding: 14px 0 !important;
+					border-radius: 50px !important;
 				}
 				#hanayoya button span {
 					justify-content: center;
