@@ -384,22 +384,19 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script type="text/javascript">
 (function() {
-	var fvSrcs = [
-		'<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg',
-		'<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg'
-	];
-	var loaded = 0;
+	var initialized = false;
 
 	function initFVSwiper() {
-		var swiper1 = new Swiper(".swiper01", {
-			loop: true,
-			/* centeredSlides は full-width 1-per-view では不要。
-			   Swiper v8 で loop と組み合わせると初期 transform がずれる場合があるため削除。 */
+		if (initialized) return;
+		initialized = true;
+		new Swiper(".swiper01", {
+			/* rewind: loop と同様に最後→最初へシームレスに戻るが
+			   DOM clone を作らないため iOS での clone 画像未ロード問題を回避 */
+			rewind: true,
 			slidesPerView: 1,
 			spaceBetween: 0,
 			speed: 1000,
 			allowTouchMove: true,
-			/* スライドの高さをアクティブスライドに自動追従させる */
 			autoHeight: true,
 			autoplay: {
 				delay: 4000,
@@ -416,21 +413,19 @@
 		});
 	}
 
-	/* FV 画像をプリロードし、全枚数ロード完了後に Swiper を初期化する。
-	   モバイル実機で画像ロード前に Swiper が height:0 で初期化される問題を防ぐ。 */
-	function tryInit() {
-		loaded++;
-		if (loaded >= fvSrcs.length) {
-			initFVSwiper();
-		}
+	/* new Image() のプリロードは iOS Safari で DOM img キャッシュに反映されない場合があるため、
+	   実際の DOM img 要素のロード完了を待ってから Swiper を初期化する。 */
+	var firstImg = document.querySelector('.fv .swiper-slide:first-child img');
+	if (!firstImg) {
+		initFVSwiper();
+	} else if (firstImg.complete && firstImg.naturalWidth > 0) {
+		initFVSwiper();
+	} else {
+		firstImg.addEventListener('load',  initFVSwiper);
+		firstImg.addEventListener('error', initFVSwiper);
+		/* 画像がいつまでも来ない場合の保険（8秒後に強制初期化） */
+		setTimeout(initFVSwiper, 8000);
 	}
-
-	fvSrcs.forEach(function(src) {
-		var img = new Image();
-		img.onload  = tryInit;
-		img.onerror = tryInit; // 失敗しても初期化は実行
-		img.src = src;
-	});
 })();
 </script>
 
