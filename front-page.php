@@ -188,7 +188,7 @@
 						<p>お悔やみ・お供え花</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/funeral-stand-flower" class="item">
-						<img src="<?php echo content_url('/uploads/2026/03/sougi_stand01.webp'); ?>" alt="葬儀スタンド花">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/funeral-stand-flower/sougi_stand01.webp" alt="葬儀スタンド花">
 						<p>葬儀スタンド花</p>
 					</a>
 				</div>
@@ -200,6 +200,17 @@
 	// 設定
 	$taxonomy     = 'works_category';   // タクソノミー
 	$parent_slug  = 'service_category'; // 親タームの「スラッグ」
+
+	// サービスカテゴリ 表示タイトル・クエリ用スラッグマッピング
+	$fp_service_term_map = [
+		'御祝い花束'           => ['title' => '花束',                      'slugs' => ['bouquet']],
+		'御祝いアレンジメント花' => ['title' => 'アレンジメント花',           'slugs' => ['arrangement', 'abstract-flowers']],
+		'御祝い胡蝶蘭'         => ['title' => '胡蝶蘭',                    'slugs' => ['phalaenopsis']],
+		'御祝い観葉植物'        => ['title' => '観葉植物',                  'slugs' => ['plants', 'rental']],
+		'御祝いスタンド花'      => ['title' => '御祝い花・御祝いスタンド花', 'slugs' => ['stand-celebration', 'display-decorations']],
+		'お悔やみ・お供え花'    => ['title' => 'お悔やみ・お供え花',         'slugs' => ['funeral-flower']],
+		'葬儀スタンド花'        => ['title' => '葬儀花・葬儀スタンド花',     'slugs' => ['funeral', 'stand-funeral']],
+	];
 
 	// 親タームを取得（スラッグ指定）
 	$parent = get_term_by( 'slug', $parent_slug, $taxonomy );
@@ -243,9 +254,10 @@
 		<ul class="tab-menu">
 			<?php foreach ( $child_terms as $i => $term ) : ?>
 				<?php
-				$slug   = $term->slug;
-				$name   = $term->name;
-				$active = ( $i === 0 ) ? ' is-active' : '';
+				$slug        = $term->slug;
+				$_tc         = $fp_service_term_map[ $term->name ] ?? null;
+				$name        = $_tc ? $_tc['title'] : $term->name;
+				$active      = ( $i === 0 ) ? ' is-active' : '';
 				?>
 				<li class="tab<?php echo esc_attr( $active ); ?>" data-tab="<?php echo esc_attr( $slug ); ?>">
 					<?php echo esc_html( $name ); ?>
@@ -259,20 +271,30 @@
 				$slug        = $term->slug;
 				$activeClass = ( $i === 0 ) ? ' is-active' : '';
 				$term_link   = get_term_link( $term );
+				$_tc         = $fp_service_term_map[ $term->name ] ?? null;
+				$display_name = $_tc ? $_tc['title'] : $term->name;
 
-				// 子ターム配下の works 投稿（孫ターム以降も含めたいので include_children=true）
+				// マッピングがある場合は production slugs で取得、なければデフォルト
+				if ( $_tc ) {
+					$tax_query_arg = [
+						'taxonomy' => $taxonomy,
+						'field'    => 'slug',
+						'terms'    => $_tc['slugs'],
+						'operator' => 'IN',
+					];
+				} else {
+					$tax_query_arg = [
+						'taxonomy'         => $taxonomy,
+						'field'            => 'term_id',
+						'terms'            => (int) $term->term_id,
+						'include_children' => true,
+					];
+				}
 				$q = new WP_Query([
 					'post_type'      => 'works',
 					'posts_per_page' => 2,
 					'post_status'    => 'publish',
-					'tax_query'      => [[
-						'taxonomy'         => $taxonomy,
-						'field'            => 'term_id',          // スラッグより堅牢
-						'terms'            => (int) $term->term_id,
-						'include_children' => true,               // 孫タームも拾う
-					]],
-					// 多言語や検索系プラグインが絞り込む環境なら、必要に応じて下記を有効化
-					// 'suppress_filters' => true,
+					'tax_query'      => [ $tax_query_arg ],
 				]);
 				?>
 				<div class="tab-contents<?php echo esc_attr( $activeClass ); ?>" id="tab-<?php echo esc_attr( $slug ); ?>" data-tab="<?php echo esc_attr( $slug ); ?>">
@@ -302,7 +324,7 @@
 					<?php if ( ! is_wp_error( $term_link ) ) : ?>
 						<div class="link">
 							<a href="<?php echo esc_url( $term_link ); ?>" class="cmn-button">
-								<?php echo esc_html( $term->name ); ?>の事例を確認する
+								<?php echo esc_html( $display_name ); ?>の事例を確認する
 							</a>
 						</div>
 					<?php endif; ?>

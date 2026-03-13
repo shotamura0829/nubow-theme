@@ -986,7 +986,7 @@ get_header();
 					<!-- 商品リスト（和花M/Lサイズ） -->
 					<div class="list item-list celebration-stand-flower-items">
 						<div class="item">
-							<img src="<?php echo content_url('/uploads/2026/03/sougi_stand01.webp'); ?>" alt="和花Mサイズ">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/page/funeral-stand-flower/sougi_stand01.webp" alt="和花Mサイズ">
 							<h5>
 								<span class="name">和花Mサイズ</span>
 								<span class="price">¥16,500円<span class="tax">（税込）</span></span>
@@ -998,7 +998,7 @@ get_header();
 							</div>
 						</div>
 						<div class="item">
-							<img src="<?php echo content_url('/uploads/2026/03/sougi_stand02.webp'); ?>" alt="和花Lサイズ">
+							<img src="<?php echo get_template_directory_uri(); ?>/img/page/funeral-stand-flower/sougi_stand02.webp" alt="和花Lサイズ">
 							<h5>
 								<span class="name">和花Lサイズ</span>
 								<span class="price">¥22,000円<span class="tax">（税込）</span></span>
