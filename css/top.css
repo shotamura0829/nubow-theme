@@ -26,7 +26,11 @@ fv
 .swiper-rtl .swiper-button-prev:after {content: '' !important; display: block; width: 70px; height: 70px; background-size: cover; background-image: url('../img/common/icon-next.png');}
 
 @media screen and (max-width: 1199px) {
-
+  /* FV: 画像未ロード時に高さが 0 になることを防ぐ */
+  .fv {min-height: 40vw;}
+  /* SP ではナビゲーションボタンを非表示 */
+  .swiper-button-prev,
+  .swiper-button-next {display: none !important;}
 }
 
 /* =================================================================

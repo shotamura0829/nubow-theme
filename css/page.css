@@ -369,8 +369,9 @@ news詳細
 
 @media screen and (max-width: 1199px) {
     #page.article-detail .main-content .date {font-size: 4.8rem;}
-    #page.article-detail .main-content .info {gap: 4rem;}
-    #page.article-detail .main-content .tag a {min-height: 4.6rem; font-size: 2.8rem;}
+    #page.article-detail .main-content .info {gap: 2rem; flex-wrap: wrap;}
+    #page.article-detail .main-content .tag {flex-wrap: wrap; gap: 1.2rem;}
+    #page.article-detail .main-content .tag a {min-height: 4rem; font-size: 2.4rem; white-space: nowrap; flex-shrink: 0; padding: 0 1.6rem;}
     #page.article-detail .main-content .title {font-size: 4rem; margin-top: 3.8rem;}
     #page.article-detail .main-content .article-main {margin-top: 4rem; padding-top: 4rem;}
     #page.article-detail .article-main p {font-size: 4rem;}
