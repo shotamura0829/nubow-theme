@@ -62,11 +62,7 @@
 			#page.online-shop {
 				overflow: visible !important;
 			}
-			/* ドロップダウンを正しく位置計算させるための起点を設定 */
-			#hanayoya .hy-parts {
-				position: relative;
-			}
-			/* hanayoya内のoverflowも開放 */
+			/* hanayoya内のoverflowを開放（ドロップダウンがクリッピングされないよう） */
 			#hanayoya,
 			#hanayoya .hy-frame,
 			#hanayoya .hy-wrap,
@@ -244,41 +240,88 @@
         <script src="/hanayoya/load.js" type="text/javascript"></script>
         <div id="hanayoya" class="hy-frame"></div>
 		<script>
-		/* hanayoya SP ドロップダウン補正（MutationObserver） */
+		/* hanayoya SP ドロップダウン位置・サイズ補正 */
 		(function() {
-			var isSP = window.innerWidth <= 1199;
-			if (!isSP) return;
+			if (window.innerWidth > 1199) return;
+
+			var lastClicked = null;
+
+			/* クリックされた hanayoya 要素を記録 */
+			document.addEventListener('click', function(e) {
+				var t = e.target;
+				while (t && t !== document.body) {
+					if (t.id === 'hanayoya' || (t.className && t.className.toString().indexOf('hy') !== -1)) {
+						lastClicked = e.target;
+						break;
+					}
+					t = t.parentElement;
+				}
+			}, true);
+
+			function styleItems(el) {
+				el.style.setProperty('font-size', '16px', 'important');
+				el.style.setProperty('line-height', '1.8', 'important');
+				el.style.setProperty('z-index', '99999', 'important');
+				el.style.setProperty('box-sizing', 'border-box', 'important');
+				el.querySelectorAll('li, [class*="item"], [class*="option"], span').forEach(function(item) {
+					item.style.setProperty('font-size', '16px', 'important');
+					item.style.setProperty('padding', '12px 16px', 'important');
+					item.style.setProperty('min-height', '44px', 'important');
+					item.style.setProperty('line-height', '1.6', 'important');
+					item.style.setProperty('display', 'flex', 'important');
+					item.style.setProperty('align-items', 'center', 'important');
+				});
+			}
+
+			function reposition(el) {
+				var vw = window.innerWidth;
+				var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+
+				/* クリックされた要素またはhanayoya内の最初のselect/入力を基準点とする */
+				var refEl = null;
+				if (lastClicked) {
+					/* クリックされた要素の最寄りの .hy-parts を探す */
+					var t = lastClicked;
+					while (t && t.id !== 'hanayoya') {
+						if (t.className && t.className.toString().indexOf('hy-parts') !== -1) {
+							refEl = t;
+							break;
+						}
+						t = t.parentElement;
+					}
+				}
+				if (!refEl) {
+					refEl = document.querySelector('#hanayoya [class*="hy-parts"]')
+						|| document.querySelector('#hanayoya select')
+						|| document.getElementById('hanayoya');
+				}
+
+				if (!refEl) return;
+
+				var refRect = refEl.getBoundingClientRect();
+				/* getBoundingClientRect はビューポート相対 → スクロール分を加算してdoc相対に */
+				var topDoc  = refRect.bottom + scrollY + 4;
+				var leftDoc = refRect.left;
+				var dropW   = Math.min(Math.max(refRect.width, 200), vw - 16);
+
+				/* 右端補正 */
+				if (leftDoc + dropW > vw - 8) leftDoc = vw - dropW - 8;
+				if (leftDoc < 8) leftDoc = 8;
+
+				el.style.setProperty('position', 'absolute', 'important');
+				el.style.setProperty('top',  topDoc  + 'px', 'important');
+				el.style.setProperty('left', leftDoc + 'px', 'important');
+				el.style.setProperty('width', dropW  + 'px', 'important');
+				el.style.setProperty('max-height', '50vh',  'important');
+				el.style.setProperty('overflow-y', 'auto',  'important');
+			}
 
 			function fixDropdown(el) {
 				if (!el || el.nodeType !== 1) return;
 				var cls = (el.className || '').toString();
 				if (cls.indexOf('hy') === -1) return;
-
-				/* 文字サイズ・パディング */
-				el.style.setProperty('font-size', '16px', 'important');
-				el.style.setProperty('line-height', '1.8', 'important');
-				el.style.setProperty('z-index', '99999', 'important');
-				el.querySelectorAll('li, [class*="item"], [class*="option"]').forEach(function(item) {
-					item.style.setProperty('font-size', '16px', 'important');
-					item.style.setProperty('padding', '12px 16px', 'important');
-					item.style.setProperty('min-height', '44px', 'important');
-					item.style.setProperty('line-height', '1.6', 'important');
-				});
-
-				/* 位置補正：ビューポート内に収める */
-				setTimeout(function() {
-					var rect  = el.getBoundingClientRect();
-					var vw    = window.innerWidth;
-					var elW   = Math.min(rect.width, vw * 0.9);
-					el.style.setProperty('width', elW + 'px', 'important');
-					/* 右にはみ出す場合は右端に寄せる */
-					var newLeft = parseFloat(el.style.left) || rect.left;
-					if (newLeft + elW > vw - 8) {
-						newLeft = vw - elW - 8;
-					}
-					if (newLeft < 8) newLeft = 8;
-					el.style.setProperty('left', newLeft + 'px', 'important');
-				}, 10);
+				styleItems(el);
+				setTimeout(function() { reposition(el); }, 20);
 			}
 
 			var observer = new MutationObserver(function(mutations) {
@@ -286,8 +329,9 @@
 					m.addedNodes.forEach(function(node) { fixDropdown(node); });
 				});
 			});
+
 			document.addEventListener('DOMContentLoaded', function() {
-				observer.observe(document.body, { childList: true });
+				observer.observe(document.body, { childList: true, subtree: false });
 			});
 		})();
 		</script>
