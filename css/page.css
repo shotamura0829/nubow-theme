@@ -6,7 +6,6 @@ page共通
 #page .page-header .links {display: none; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; gap: 50px; padding: 33px 0 32px; border-bottom: 1px solid #ccc;}
 #page .page-header .links .is-active {text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 1px;}
 #page .page-header .main-title .title {font-size: ;}
-#page .page-header .main-title h1 {font-size: 38px; font-weight: 700; color: #fff; letter-spacing: 0.1em; display: flex; justify-content: center; flex-direction: column; align-items: center;}
 #page .page-header .main-title .main-title_text {font-size: 38px; font-weight: 700; color: #fff; letter-spacing: 0.1em; display: flex; justify-content: center; flex-direction: column; align-items: center;}
 #page .page-header .main-title .jp {font-size: 38px; display: inline-block; border-bottom: 2px solid #fff; width: auto;}
 #page .page-header .main-title .en {font-size: 24px;}
