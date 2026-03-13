@@ -17,16 +17,6 @@
 						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg" alt="店舗来店予約・事前決済" loading="lazy">
 					</a>
 				</div>
-				<div class="swiper-slide">
-					<a href="https://nubow.jp/" target="_blank" rel="noopener noreferrer">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" alt="ヌボー生花店 オンラインショップ" loading="lazy">
-					</a>
-				</div>
-				<div class="swiper-slide">
-					<a href="<?php echo home_url('/reservation'); ?>">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg" alt="店舗来店予約・事前決済" loading="lazy">
-					</a>
-				</div>
 			</div>
 				</div>
 				<!-- ナビゲーションボタン -->

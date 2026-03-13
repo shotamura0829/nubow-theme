@@ -16,6 +16,11 @@ fv
 .fv .swiper-slide a {display: block; line-height: 0;}
 .fv .swiper-slide a img {width: 100%; height: auto; display: block;}
 
+/* swiper-bundle.css が遅延/未読み込みでも正しく横並びになるよう保証 */
+.fv .swiper01 {overflow: hidden;}
+.fv .swiper-wrapper {display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; width: 100%; box-sizing: content-box; transition-property: transform;}
+.fv .swiper-slide {flex-shrink: 0; width: 100%;}
+
 .swiper-button-prev,
 .swiper-rtl .swiper-button-next {width: 70px; height: 70px; left: -90px;}
 .swiper-button-next,
