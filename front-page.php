@@ -349,7 +349,8 @@
 <script type="text/javascript">
 	$(function() {
 		const swiper1 = new Swiper(".swiper01", {
-			loop: true,
+			loop: false,
+			rewind: true,
 			centeredSlides: true,
 			slidesPerView: 1,
 			spaceBetween: 0,
