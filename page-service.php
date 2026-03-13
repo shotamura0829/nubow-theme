@@ -61,7 +61,7 @@
 					'celebration-plants'       => 'img/service/celebration-plants/celebration-plants-image01.webp',
 					'celebration-stand-flower' => 'img/page/celebration-stand-flower/celebration-stand-flower-image01.webp',
 					'funeral-flower'           => 'img/page/funeral-flower/funeral-flower-image01.webp',
-					'funeral-stand-flower'     => 'img/page/funeral-stand-flower/funeral-stand-flower-0.webp',
+					'funeral-stand-flower'     => 'UPLOADS:2026/03/sougi_stand01.webp',
 				];
 				foreach ( $service_boxes as $box_id => $box ) :
 					// 子ページ（service/celebration-orchid 等）または単体スラッグで取得
@@ -70,9 +70,14 @@
 					$detail = $service_detail_pages[ $box_id ];
 					// 一覧の画像：詳細ページの1枚目商品画像があればそれを使用、なければ従来の service-list 画像
 					$slug = $detail['url'];
-					$list_img_src = isset( $service_first_product_img[ $slug ] )
-						? get_template_directory_uri() . '/' . $service_first_product_img[ $slug ]
-						: get_template_directory_uri() . '/img/page/' . $detail['img'];
+				$_raw_img = $service_first_product_img[ $slug ] ?? null;
+				if ( $_raw_img && strncmp( $_raw_img, 'UPLOADS:', 8 ) === 0 ) {
+					$list_img_src = content_url( '/uploads/' . substr( $_raw_img, 8 ) );
+				} elseif ( $_raw_img ) {
+					$list_img_src = get_template_directory_uri() . '/' . $_raw_img;
+				} else {
+					$list_img_src = get_template_directory_uri() . '/img/page/' . $detail['img'];
+				}
 				?>
 				<!-- <?php echo esc_html( $box['h3'] ); ?> -->
 				<div class="box" id="<?php echo esc_attr( $box_id ); ?>" name="<?php echo esc_attr( $box_id ); ?>">
