@@ -26,8 +26,13 @@ fv
 .swiper-rtl .swiper-button-prev:after {content: '' !important; display: block; width: 70px; height: 70px; background-size: cover; background-image: url('../img/common/icon-next.png');}
 
 @media screen and (max-width: 1199px) {
-  /* FV: 画像未ロード時に高さが 0 になることを防ぐ */
-  .fv {min-height: 40vw;}
+  /* FV: 画像未ロード時に高さが 0 になることを防ぐ（約 16:5 バナー比率相当） */
+  .fv {min-height: 48vw;}
+  .fv .swiper01 {min-height: 48vw;}
+  /* 画像ロード前も img が領域を確保するよう object-fit で固定比率 */
+  .fv .swiper-slide {min-height: 48vw;}
+  .fv .swiper-slide a {display: block; height: 100%;}
+  .fv .swiper-slide a img {width: 100%; height: auto; min-height: 48vw; object-fit: cover; display: block;}
   /* SP ではナビゲーションボタンを非表示 */
   .swiper-button-prev,
   .swiper-button-next {display: none !important;}

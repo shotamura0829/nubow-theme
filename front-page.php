@@ -5,8 +5,8 @@
 		<!-- fv -->
 		<section class="fv">
 			<div class="wrapper">
-				<div class="swiper01">
-			<div class="swiper-wrapper">
+			<div class="swiper swiper01">
+		<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<a href="https://nubow.jp/" target="_blank" rel="noopener noreferrer">
 						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" alt="ヌボー生花店 オンラインショップ" fetchpriority="high" loading="eager">
@@ -391,6 +391,10 @@
 			spaceBetween: 0,
 			speed: 1000,
 			allowTouchMove: true,
+			/* 画像ロード後のレイアウト変化を検知して自動で再計算 */
+			observer: true,
+			observeParents: true,
+			observeSlideChildren: true,
 			autoplay: {
 				delay: 4000,
 				disableOnInteraction: false,
@@ -408,6 +412,10 @@
 					slidesPerView: 1,
 				}
 			},
+		});
+		/* 全画像ロード完了後に強制再計算（実機モバイルで画像ロードが遅い場合の保険） */
+		$(window).on('load', function() {
+			swiper1.update();
 		});
 	});
 </script>
