@@ -115,19 +115,37 @@ add_action( 'wp_head', function() {
 	}
 }, 1 );
 
-// JSON-LD 構造化データ（LocalBusiness）
+// JSON-LD: LocalBusiness（全ページ共通）
 add_action( 'wp_head', function() {
+	$theme = get_template_directory_uri();
 	$schema = [
-		'@context'    => 'https://schema.org',
-		'@type'       => [ 'LocalBusiness', 'FloristShop' ],
-		'name'        => 'ヌボー生花店',
-		'legalName'   => '株式会社ヌボー生花店',
-		'url'         => 'https://nubow.co.jp',
-		'logo'        => get_template_directory_uri() . '/img/common/header-logo.png',
-		'image'       => get_template_directory_uri() . '/img/top/fv01.jpg',
-		'description' => 'お花のある生活、それは幸せな生活。長野市の花屋ヌボー生花店。花束・アレンジメント・胡蝶蘭・スタンド花・観葉植物・葬儀生花祭壇など幅広いサービスを提供しています。',
-		'telephone'   => '0120-878-718',
-		'address'     => [
+		'@context'  => 'https://schema.org',
+		'@type'     => [ 'LocalBusiness', 'FloristShop' ],
+		'@id'       => home_url( '/' ) . '#organization',
+		'name'      => 'ヌボー生花店',
+		'legalName' => '株式会社ヌボー生花店',
+		'url'       => home_url( '/' ),
+		'logo'      => [
+			'@type'  => 'ImageObject',
+			'url'    => $theme . '/img/common/header-logo.png',
+			'width'  => 270,
+			'height' => 115,
+		],
+		'image' => [
+			'@type'  => 'ImageObject',
+			'url'    => $theme . '/img/top/fv01.jpg',
+			'width'  => 1920,
+			'height' => 1000,
+		],
+		'description'        => 'お花のある生活、それは幸せな生活。創業1974年、長野市の花屋ヌボー生花店。花束・アレンジメント・胡蝶蘭・スタンド花・観葉植物・葬儀生花祭壇など幅広いサービスを提供しています。',
+		'foundingDate'       => '1974',
+		'telephone'          => '0120-878-718',
+		'faxNumber'          => '026-244-6583',
+		'email'              => 'info@nubow.co.jp',
+		'priceRange'         => '¥¥',
+		'currenciesAccepted' => 'JPY',
+		'paymentAccepted'    => '現金, クレジットカード',
+		'address' => [
 			'@type'           => 'PostalAddress',
 			'streetAddress'   => '北尾張部715-7',
 			'addressLocality' => '長野市',
@@ -140,20 +158,141 @@ add_action( 'wp_head', function() {
 			'latitude'  => 36.654658,
 			'longitude' => 138.234933,
 		],
-		'hasMap'      => 'https://maps.google.com/maps?q=36.654658,138.234933',
-		'priceRange'  => '¥¥',
-		'currenciesAccepted' => 'JPY',
-		'paymentAccepted'    => '現金, クレジットカード',
-		'areaServed'  => [
+		'hasMap'     => 'https://maps.google.com/maps?q=36.654658,138.234933',
+		'areaServed' => [
 			[ '@type' => 'City', 'name' => '長野市' ],
-			[ '@type' => 'Prefecture', 'name' => '長野県' ],
+			[ '@type' => 'AdministrativeArea', 'name' => '長野県' ],
 		],
-		'sameAs' => [
-			'https://nubow.co.jp',
+		'founder' => [
+			'@type'    => 'Person',
+			'@id'      => home_url( '/' ) . '#person-yamazaki',
+			'name'     => '山﨑年起',
+			'jobTitle' => '代表取締役社長',
+			'sameAs'   => [ 'https://www.instagram.com/nubow.tyamazaki/' ],
 		],
+		// 各店舗
+		'department' => [
+			[
+				'@type'     => [ 'LocalBusiness', 'FloristShop' ],
+				'name'      => 'ヌボーエール（本店）',
+				'url'       => home_url( '/shop/nubow-aile' ),
+				'telephone' => '0120-878-718',
+				'address'   => [
+					'@type'           => 'PostalAddress',
+					'streetAddress'   => '西和田2丁目5-25',
+					'addressLocality' => '長野市',
+					'addressRegion'   => '長野県',
+					'postalCode'      => '381-0037',
+					'addressCountry'  => 'JP',
+				],
+				'openingHoursSpecification' => [[
+					'@type'      => 'OpeningHoursSpecification',
+					'dayOfWeek'  => [ 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday' ],
+					'opens'      => '09:00',
+					'closes'     => '18:00',
+				]],
+			],
+			[
+				'@type'   => [ 'LocalBusiness', 'FloristShop' ],
+				'name'    => 'ヌボーアドレ',
+				'url'     => home_url( '/shop/nubow-adorer' ),
+				'address' => [
+					'@type'           => 'PostalAddress',
+					'streetAddress'   => '稲里町中央1-23-1',
+					'addressLocality' => '長野市',
+					'addressRegion'   => '長野県',
+					'postalCode'      => '381-2217',
+					'addressCountry'  => 'JP',
+				],
+				'openingHoursSpecification' => [[
+					'@type'      => 'OpeningHoursSpecification',
+					'dayOfWeek'  => [ 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday' ],
+					'opens'      => '10:00',
+					'closes'     => '19:00',
+				]],
+			],
+			[
+				'@type'   => [ 'LocalBusiness', 'FloristShop' ],
+				'name'    => 'ヌボーラルブル',
+				'url'     => home_url( '/shop/nubow-larbre' ),
+				'address' => [
+					'@type'           => 'PostalAddress',
+					'streetAddress'   => '南千歳1丁目22-6 長野駅ビルMIDORI長野1階',
+					'addressLocality' => '長野市',
+					'addressRegion'   => '長野県',
+					'postalCode'      => '380-0823',
+					'addressCountry'  => 'JP',
+				],
+				'openingHoursSpecification' => [[
+					'@type'      => 'OpeningHoursSpecification',
+					'dayOfWeek'  => [ 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday' ],
+					'opens'      => '10:00',
+					'closes'     => '20:00',
+				]],
+			],
+		],
+		'sameAs' => [ home_url( '/' ) ],
 	];
 	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
 }, 5 );
+
+// JSON-LD: BreadcrumbList（トップ以外の全ページ）
+add_action( 'wp_head', function() {
+	if ( is_front_page() ) return;
+
+	$items = [];
+	$pos   = 1;
+	$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => 'ホーム', 'item' => home_url( '/' ) ];
+
+	if ( is_singular( 'post' ) ) {
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => 'お知らせ', 'item' => home_url( '/news' ) ];
+		$cats = get_the_category();
+		if ( ! empty( $cats ) ) {
+			$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => esc_html( $cats[0]->name ), 'item' => get_category_link( $cats[0]->term_id ) ];
+		}
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => get_the_title() ];
+
+	} elseif ( is_singular( 'works' ) ) {
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => '事例紹介', 'item' => home_url( '/works' ) ];
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => get_the_title() ];
+
+	} elseif ( is_tax( 'works_category' ) ) {
+		$term = get_queried_object();
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => '事例紹介', 'item' => home_url( '/works' ) ];
+		if ( $term->parent ) {
+			$parent = get_term( $term->parent, 'works_category' );
+			if ( $parent && ! is_wp_error( $parent ) ) {
+				$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => esc_html( $parent->name ), 'item' => get_term_link( $parent ) ];
+			}
+		}
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => esc_html( $term->name ) ];
+
+	} elseif ( is_post_type_archive( 'works' ) ) {
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => '事例紹介' ];
+
+	} elseif ( is_category() || is_archive() ) {
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => get_the_archive_title() ];
+
+	} elseif ( is_page() ) {
+		$post = get_post();
+		if ( $post && $post->post_parent ) {
+			$parent = get_post( $post->post_parent );
+			if ( $parent ) {
+				$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => get_the_title( $parent->ID ), 'item' => get_permalink( $parent->ID ) ];
+			}
+		}
+		$items[] = [ '@type' => 'ListItem', 'position' => $pos++, 'name' => get_the_title() ];
+	}
+
+	if ( count( $items ) < 2 ) return;
+
+	$schema = [
+		'@context'        => 'https://schema.org',
+		'@type'           => 'BreadcrumbList',
+		'itemListElement' => $items,
+	];
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
+}, 6 );
 
 //インラインスタイル削除
 function remove_recent_comments_style() {

@@ -1157,4 +1157,87 @@ jQuery(function($) {
 
 
 
+<?php
+// JSON-LD: Service スキーマ
+$service_jsonld = [
+	'@context'    => 'https://schema.org',
+	'@type'       => 'Service',
+	'name'        => get_the_title(),
+	'url'         => get_permalink(),
+	'description' => get_the_excerpt() ?: get_the_title() . 'のサービス詳細ページです。',
+	'provider'    => [
+		'@type' => 'LocalBusiness',
+		'@id'   => home_url( '/' ) . '#organization',
+		'name'  => 'ヌボー生花店',
+		'url'   => home_url( '/' ),
+	],
+	'areaServed'  => [
+		'@type' => 'City',
+		'name'  => '長野市',
+	],
+	'serviceType' => get_the_title(),
+];
+echo '<script type="application/ld+json">' . wp_json_encode( $service_jsonld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
+
+// JSON-LD: FAQPage スキーマ（FAQ投稿が存在するサービスページのみ）
+$_faq_term_map_ld = [
+	'celebration-orchid'       => '胡蝶蘭のよくあるご質問',
+	'celebration-stand-flower' => '御祝いスタンド花のよくあるご質問',
+	'funeral-flower'           => 'お供え花のよくあるご質問',
+	'funeral-stand-flower'     => '葬儀スタンド花のよくあるご質問',
+];
+$_faq_term_name_ld = null;
+foreach ( $_faq_term_map_ld as $_slug => $_name ) {
+	if ( is_page( $_slug ) ) {
+		$_faq_term_name_ld = $_name;
+		break;
+	}
+}
+if ( $_faq_term_name_ld ) {
+	$_faq_term_ld = get_term_by( 'name', $_faq_term_name_ld, 'faq_list' );
+	if ( $_faq_term_ld && ! is_wp_error( $_faq_term_ld ) ) {
+		$_faq_q_ld = new WP_Query([
+			'post_type'      => 'faq',
+			'posts_per_page' => -1,
+			'orderby'        => 'date',
+			'order'          => 'DESC',
+			'no_found_rows'  => true,
+			'tax_query'      => [[
+				'taxonomy' => 'faq_list',
+				'field'    => 'term_id',
+				'terms'    => $_faq_term_ld->term_id,
+			]],
+		]);
+		if ( $_faq_q_ld->have_posts() ) {
+			$_faq_entities = [];
+			while ( $_faq_q_ld->have_posts() ) {
+				$_faq_q_ld->the_post();
+				$_answer_text = wp_strip_all_tags( get_the_content() );
+				if ( $_answer_text ) {
+					$_faq_entities[] = [
+						'@type' => 'Question',
+						'name'  => get_the_title(),
+						'acceptedAnswer' => [
+							'@type' => 'Answer',
+							'text'  => $_answer_text,
+						],
+					];
+				}
+			}
+			wp_reset_postdata();
+			if ( ! empty( $_faq_entities ) ) {
+				$faq_page_jsonld = [
+					'@context'   => 'https://schema.org',
+					'@type'      => 'FAQPage',
+					'url'        => get_permalink(),
+					'name'       => get_the_title() . ' よくあるご質問',
+					'mainEntity' => $_faq_entities,
+				];
+				echo '<script type="application/ld+json">' . wp_json_encode( $faq_page_jsonld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
+			}
+		}
+	}
+}
+?>
+
 <?php get_footer(); ?>

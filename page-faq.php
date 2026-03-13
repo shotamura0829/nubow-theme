@@ -1,4 +1,123 @@
-<?php get_header(); ?>
+<?php
+// =====================================================================
+// FAQデータ一元管理
+// 回答（answer）を入力すれば HTML と JSON-LD の両方に自動反映されます
+// =====================================================================
+$faq_sections = [
+	[
+		'id'    => 'faq01',
+		'title' => 'ご注文方法',
+		'items' => [
+			[
+				'question' => '注文後の変更はできますか？',
+				'answer'   => '', // ← ここに回答を入力してください
+			],
+			[
+				'question' => 'いつまでに注文したら良いですか？',
+				'answer'   => '',
+			],
+			[
+				'question' => 'どのように注文したら良いですか？',
+				'answer'   => '',
+			],
+		],
+	],
+	[
+		'id'    => 'faq02',
+		'title' => 'お支払方法',
+		'items' => [
+			[
+				'question' => '支払いはどうしたら良いでしょうか？',
+				'answer'   => '',
+			],
+			[
+				'question' => '金券でも支払いは出来ますか？',
+				'answer'   => '',
+			],
+		],
+	],
+	[
+		'id'    => 'faq03',
+		'title' => 'お届け方法',
+		'items' => [
+			[
+				'question' => '法事のお花を贈るタイミングは？',
+				'answer'   => '',
+			],
+			[
+				'question' => '訃報の知らせをうけたら？',
+				'answer'   => '',
+			],
+			[
+				'question' => '長野市外へのお届けは出来ますか？',
+				'answer'   => '',
+			],
+			[
+				'question' => 'お届け先が不在の場合はどうなりますか？',
+				'answer'   => '',
+			],
+			[
+				'question' => '叙勲・受賞祝のタイミングは？',
+				'answer'   => '',
+			],
+		],
+	],
+	[
+		'id'    => 'faq04',
+		'title' => 'お花を贈る時の注意点',
+		'items' => [
+			[
+				'question' => 'ご法事花の注意点は？',
+				'answer'   => '',
+			],
+			[
+				'question' => '叙勲・受賞祝時の注意点は？',
+				'answer'   => '',
+			],
+			[
+				'question' => '出馬・当選祝時の注意点は？',
+				'answer'   => '',
+			],
+			[
+				'question' => '就任・栄転祝い時の注意点は？',
+				'answer'   => '',
+			],
+			[
+				'question' => '開店・開業・移転祝時の注意点は？',
+				'answer'   => '',
+			],
+		],
+	],
+	[
+		'id'    => 'faq05',
+		'title' => 'その他',
+		'items' => [
+			[
+				'question' => 'お悔やみ時の札の大きさは？',
+				'answer'   => '',
+			],
+			[
+				'question' => 'お祝いの札の大きさは？',
+				'answer'   => '',
+			],
+			[
+				'question' => 'お店はどこにありますか？',
+				'answer'   => '長野市内に3店舗ございます。ヌボーエール（西和田2丁目5-25）、ヌボーアドレ（稲里町中央1-23-1）、ヌボーラルブル（南千歳1丁目22-6 長野駅ビルMIDORI長野1階）にてお買い求めいただけます。',
+			],
+			[
+				'question' => 'お届けした商品を見ることは出来ますか？',
+				'answer'   => '',
+			],
+			[
+				'question' => '注文後の変更は出来ますか？',
+				'answer'   => '',
+			],
+		],
+	],
+];
+
+get_header();
+?>
 
 <!-- メインコンテンツ -->
 <main id="page" class="faq">
@@ -32,310 +151,23 @@
 			</div>
 			<div id="sidebar-placeholder" style="display: none;"></div>
 			<div class="faq-main-content">
-				<!-- ご注文方法 -->
-				<div class="box" id="faq01" name="faq01">
-					<h3>ご注文方法</h3>
+				<?php foreach ( $faq_sections as $section ) : ?>
+				<div class="box" id="<?php echo esc_attr( $section['id'] ); ?>">
+					<h3><?php echo esc_html( $section['title'] ); ?></h3>
+					<?php foreach ( $section['items'] as $item ) : ?>
 					<dl class="faq-content">
 						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								注文後の変更はできますか？
-							</div>
+							<div class="faq-question__title"><?php echo esc_html( $item['question'] ); ?></div>
 						</dt>
 						<dd class="faq-answer">
 							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
+								<div><?php echo $item['answer'] ? nl2br( esc_html( $item['answer'] ) ) : '<span style="color:#999;">（回答準備中）</span>'; ?></div>
 							</div>
 						</dd>
 					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								いつまでに注文したら良いですか？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								どのように注文したら良いですか？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
+					<?php endforeach; ?>
 				</div>
-
-				<!-- お支払方法 -->
-				<div class="box" id="faq02" name="faq02">
-					<h3>お支払方法</h3>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								支払いはどうしたら良いでしょうか？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								金券でも支払いは出来ますか？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-				</div>
-
-				<!-- お届け方法 -->
-				<div class="box" id="faq03" name="faq03">
-					<h3>お届け方法</h3>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								法事のお花を贈るタイミングは？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								訃報の知らせをうけたら？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								長野市外へのお届けは出来ますか？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								お届け先が不在の場合はどうなりますか？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								叙勲・受賞祝のタイミングは？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-				</div>
-
-				<!-- お花を贈る時の注意点 -->
-				<div class="box" id="faq04" name="faq04">
-					<h3>お花を贈る時の注意点</h3>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								ご法事花の注意点は？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								叙勲・受賞祝時の注意点は？？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								出馬・当選祝時の注意点は？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								就任・栄転祝い時の注意点は？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								開店・開業・移転祝時の注意点は？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-				</div>
-
-				<!-- その他 -->
-				<div class="box" id="faq05" name="faq05">
-					<h3>その他</h3>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								お悔やみ時の札の大きさは？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								お祝いの札の大きさは？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								お店はどこにありますか？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								お届けした商品を見ることは出来ますか？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-					<dl class="faq-content">
-						<dt class="faq-question accordion-toggle">
-							<div class="faq-question__title">
-								注文後の変更は出来ますか？
-							</div>
-						</dt>
-						<dd class="faq-answer">
-							<div class="faq-answer__wrap">
-								<div>
-									答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。答えが入ります。
-								</div>
-							</div>
-						</dd>
-					</dl>
-				</div>
+				<?php endforeach; ?>
 			</div>
 		</div>
 
@@ -415,5 +247,34 @@ jQuery(function($) {
 	updateSidebar();
 });
 </script>
+
+<?php
+// JSON-LD: FAQPage（回答が入力済みの項目のみ出力）
+$_faq_entities = [];
+foreach ( $faq_sections as $_section ) {
+	foreach ( $_section['items'] as $_item ) {
+		if ( ! empty( $_item['answer'] ) ) {
+			$_faq_entities[] = [
+				'@type' => 'Question',
+				'name'  => $_item['question'],
+				'acceptedAnswer' => [
+					'@type' => 'Answer',
+					'text'  => $_item['answer'],
+				],
+			];
+		}
+	}
+}
+if ( ! empty( $_faq_entities ) ) {
+	$faq_jsonld = [
+		'@context'   => 'https://schema.org',
+		'@type'      => 'FAQPage',
+		'url'        => get_permalink(),
+		'name'       => 'よくあるご質問 | 長野の花屋 ヌボー生花店',
+		'mainEntity' => $_faq_entities,
+	];
+	echo '<script type="application/ld+json">' . wp_json_encode( $faq_jsonld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
+}
+?>
 
 <?php get_footer(); ?>

@@ -537,4 +537,76 @@ function googleMap() {
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8JximS_BMUAn-ndp1Kmxmxed-PkEtgIY&callback=googleMap"></script>
 
+<?php
+// JSON-LD: AboutPage + Organization + Person
+$about_jsonld = [
+	'@context' => 'https://schema.org',
+	'@graph'   => [
+		[
+			'@type'       => 'AboutPage',
+			'@id'         => home_url( '/aboutus' ) . '#webpage',
+			'url'         => home_url( '/aboutus' ),
+			'name'        => 'ヌボー生花店について | 長野の花屋 ヌボー生花店',
+			'description' => '創業1974年の長野市の老舗花屋。代表挨拶・会社概要・スタッフ紹介をご覧いただけます。',
+			'breadcrumb'  => [
+				'@type'           => 'BreadcrumbList',
+				'itemListElement' => [
+					[ '@type' => 'ListItem', 'position' => 1, 'name' => 'ホーム',           'item' => home_url( '/' ) ],
+					[ '@type' => 'ListItem', 'position' => 2, 'name' => 'ヌボー生花店について' ],
+				],
+			],
+			'about' => [ '@id' => home_url( '/' ) . '#organization' ],
+		],
+		[
+			'@type'       => 'Organization',
+			'@id'         => home_url( '/' ) . '#organization',
+			'name'        => 'ヌボー生花店',
+			'legalName'   => '株式会社ヌボー生花店',
+			'url'         => home_url( '/' ),
+			'foundingDate' => '1974',
+			'description' => 'ヌボー生花店は「お花のある生活」という生活スタイルを提案することで、より多くの人達に幸福感を提供していきます。創業1974年、長野市を拠点に生花ギフト・空間装飾・ウェディング・葬祭・グリーンレンタルなど幅広いサービスを展開。',
+			'address'     => [
+				'@type'           => 'PostalAddress',
+				'streetAddress'   => '北尾張部715-7',
+				'addressLocality' => '長野市',
+				'addressRegion'   => '長野県',
+				'postalCode'      => '381-0014',
+				'addressCountry'  => 'JP',
+			],
+			'contactPoint' => [
+				'@type'             => 'ContactPoint',
+				'telephone'         => '0120-878-718',
+				'contactType'       => 'customer service',
+				'areaServed'        => 'JP',
+				'availableLanguage' => 'Japanese',
+			],
+			'email'     => 'info@nubow.co.jp',
+			'faxNumber' => '026-244-6583',
+			'logo'      => [
+				'@type'  => 'ImageObject',
+				'url'    => get_template_directory_uri() . '/img/common/header-logo.png',
+				'width'  => 270,
+				'height' => 115,
+			],
+			'founder' => [ '@id' => home_url( '/' ) . '#person-yamazaki' ],
+			'member'  => [ '@id' => home_url( '/' ) . '#person-yamazaki' ],
+		],
+		[
+			'@type'       => 'Person',
+			'@id'         => home_url( '/' ) . '#person-yamazaki',
+			'name'        => '山﨑年起',
+			'givenName'   => '年起',
+			'familyName'  => '山﨑',
+			'alternateName' => 'Toshiki Yamasaki',
+			'jobTitle'    => '代表取締役社長',
+			'worksFor'    => [ '@id' => home_url( '/' ) . '#organization' ],
+			'description' => '1974年創業の株式会社ヌボー生花店2代目社長。システムエンジニアを経て2006年に入社、2013年に代表就任。「三方よし」の理念のもと、ファンマーケティングとDXを融合させた独自の経営スタイルを確立。総務省「テレワークトップランナー2024」選定ほか多数受賞。',
+			'sameAs'      => [ 'https://www.instagram.com/nubow.tyamazaki/' ],
+			'image'       => get_template_directory_uri() . '/img/page/about_greeting_img01.png',
+		],
+	],
+];
+echo '<script type="application/ld+json">' . wp_json_encode( $about_jsonld, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
+?>
+
 <?php get_footer(); ?>
