@@ -20,11 +20,17 @@
 		</div>
 		
 	</div>
+	<?php
+	$section_map = [ 'message' => 0, 'company' => 1, 'staff' => 2 ];
+	$current_section = get_query_var( 'aboutus_section', 'message' );
+	$initial_tab = isset( $section_map[ $current_section ] ) ? $section_map[ $current_section ] : 0;
+	$section_slugs = [ 0 => 'message', 1 => 'company', 2 => 'staff' ];
+	?>
 	<div class="main-content">
 		<ul class="tab-menu">
-			<li class="tab is-active">代表<br class="sp-only">挨拶</li>
-			<li class="tab">会社<br class="sp-only">概要</li>
-			<li class="tab">スタッフ<br class="sp-only">紹介</li>
+			<li class="tab<?php echo $initial_tab === 0 ? ' is-active' : ''; ?>">代表<br class="sp-only">挨拶</li>
+			<li class="tab<?php echo $initial_tab === 1 ? ' is-active' : ''; ?>">会社<br class="sp-only">概要</li>
+			<li class="tab<?php echo $initial_tab === 2 ? ' is-active' : ''; ?>">スタッフ<br class="sp-only">紹介</li>
 		</ul>
 
 		<div class="tab-wrap">
@@ -461,13 +467,21 @@
 
 <script type="text/javascript">
 $(window).on('load', function() {
-	$(".tab-contents:not(:eq(0))").hide();
+	var sectionSlugs = ['message', 'company', 'staff'];
+	var initialTab = <?php echo (int) $initial_tab; ?>;
+
+	// 初期タブを表示（PHP側でis-activeは付与済み）
+	$(".tab-contents").hide();
+	$(".tab-contents").eq(initialTab).show();
+
 	$(".tab").click(function() {
 		var num = $(".tab").index(this);
 		$(".tab-contents").hide();
 		$(".tab-contents").eq(num).show();
 		$(".tab").removeClass('is-active');
 		$(this).addClass('is-active');
+		// URL を切り替え（リロードなし）
+		history.pushState(null, '', '<?php echo esc_js( home_url('/aboutus/') ); ?>' + sectionSlugs[num]);
 	});
 });
 </script>
