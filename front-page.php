@@ -47,8 +47,10 @@
 				<div class="list">
 					<?php
 					$args = [
-						'post_type' => 'post', // 通常の投稿
-						'posts_per_page' => 2, // 表示数は任意で変更
+						'post_type'              => 'post',
+						'posts_per_page'         => 2,
+						'no_found_rows'          => true,
+						'update_post_term_cache' => false,
 					];
 					$news_query = new WP_Query($args);
 					if ($news_query->have_posts()) :
@@ -291,10 +293,12 @@
 					];
 				}
 				$q = new WP_Query([
-					'post_type'      => 'works',
-					'posts_per_page' => 2,
-					'post_status'    => 'publish',
-					'tax_query'      => [ $tax_query_arg ],
+					'post_type'              => 'works',
+					'posts_per_page'         => 2,
+					'post_status'            => 'publish',
+					'tax_query'              => [ $tax_query_arg ],
+					'no_found_rows'          => true,
+					'update_post_term_cache' => false,
 				]);
 				?>
 				<div class="tab-contents<?php echo esc_attr( $activeClass ); ?>" id="tab-<?php echo esc_attr( $slug ); ?>" data-tab="<?php echo esc_attr( $slug ); ?>">

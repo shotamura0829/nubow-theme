@@ -15,7 +15,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/common/favicon.ico">
 <link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/images/common/apple-touch-icon.png" sizes="152x152">
+<?php if (
+	is_front_page() ||
+	is_page_template( 'page-service-list-detail.php' ) ||
+	is_page_template( 'page-celebration-plants.php' )
+) : ?>
 <link rel='stylesheet' href='<?php echo get_template_directory_uri(); ?>/css/swiper-bundle.css'>
+<?php endif; ?>
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/common.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/css/aos.css" type="text/css" />
 <?php 

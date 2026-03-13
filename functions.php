@@ -115,6 +115,46 @@ add_action( 'wp_head', function() {
 	}
 }, 1 );
 
+// JSON-LD 構造化データ（LocalBusiness）
+add_action( 'wp_head', function() {
+	$schema = [
+		'@context'    => 'https://schema.org',
+		'@type'       => [ 'LocalBusiness', 'FloristShop' ],
+		'name'        => 'ヌボー生花店',
+		'legalName'   => '株式会社ヌボー生花店',
+		'url'         => 'https://nubow.co.jp',
+		'logo'        => get_template_directory_uri() . '/img/common/header-logo.png',
+		'image'       => get_template_directory_uri() . '/img/top/fv01.jpg',
+		'description' => 'お花のある生活、それは幸せな生活。長野市の花屋ヌボー生花店。花束・アレンジメント・胡蝶蘭・スタンド花・観葉植物・葬儀生花祭壇など幅広いサービスを提供しています。',
+		'telephone'   => '0120-878-718',
+		'address'     => [
+			'@type'           => 'PostalAddress',
+			'streetAddress'   => '北尾張部715-7',
+			'addressLocality' => '長野市',
+			'addressRegion'   => '長野県',
+			'postalCode'      => '381-0014',
+			'addressCountry'  => 'JP',
+		],
+		'geo' => [
+			'@type'     => 'GeoCoordinates',
+			'latitude'  => 36.654658,
+			'longitude' => 138.234933,
+		],
+		'hasMap'      => 'https://maps.google.com/maps?q=36.654658,138.234933',
+		'priceRange'  => '¥¥',
+		'currenciesAccepted' => 'JPY',
+		'paymentAccepted'    => '現金, クレジットカード',
+		'areaServed'  => [
+			[ '@type' => 'City', 'name' => '長野市' ],
+			[ '@type' => 'Prefecture', 'name' => '長野県' ],
+		],
+		'sameAs' => [
+			'https://nubow.co.jp',
+		],
+	];
+	echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT ) . '</script>' . "\n";
+}, 5 );
+
 //インラインスタイル削除
 function remove_recent_comments_style() {
     global $wp_widget_factory;
@@ -135,8 +175,6 @@ remove_filter('the_excerpt', 'wpautop');
 // HTTPレスポンスの記述削除
 remove_action('template_redirect', 'rest_output_link_header', 11 );
 
-// Webサイト全体の画像をResponsive images機能の対象から外す
-add_filter( 'wp_calculate_image_srcset', '__return_false' );
 // 記事本文、the_content()関数が出力する画像のみ無効化する場合はこちら
 // remove_filter( 'the_content', 'wp_make_content_images_responsive' );
 
