@@ -326,16 +326,22 @@
 				setTimeout(function() { reposition(el); }, 100);
 			}
 
-			/* DOM全体をsubtree:trueで監視 */
+			/*
+			 * body の直接の子要素だけを監視（subtree:false）
+			 * #hanayoya 内部のカレンダー等は触らない
+			 */
 			var obs = new MutationObserver(function(muts) {
 				muts.forEach(function(m) {
-					m.addedNodes.forEach(function(n) { fix(n); });
+					m.addedNodes.forEach(function(n) {
+						/* body の直接の子でない場合はスキップ */
+						if (!n || !n.parentElement || n.parentElement !== document.body) return;
+						fix(n);
+					});
 				});
 			});
 
-			/* DOMContentLoaded / load どちらでも起動 */
 			function startObs() {
-				obs.observe(document.body, { childList: true, subtree: true });
+				obs.observe(document.body, { childList: true, subtree: false });
 			}
 			if (document.readyState === 'loading') {
 				document.addEventListener('DOMContentLoaded', startObs);
