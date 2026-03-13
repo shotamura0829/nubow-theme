@@ -466,19 +466,23 @@
 <!-- メインコンテンツ -->
 
 <script type="text/javascript">
-$(window).on('load', function() {
+$(document).ready(function() {
 	var sectionSlugs = ['message', 'company', 'staff'];
 	var initialTab = <?php echo (int) $initial_tab; ?>;
 
-	// 初期タブを表示（PHP側でis-activeは付与済み）
-	$(".tab-contents").hide();
-	$(".tab-contents").eq(initialTab).show();
+	var $tabs     = $(".tab-menu .tab");
+	var $contents = $(".tab-wrap .tab-contents");
 
-	$(".tab").click(function() {
-		var num = $(".tab").index(this);
-		$(".tab-contents").hide();
-		$(".tab-contents").eq(num).show();
-		$(".tab").removeClass('is-active');
+	// 初期タブを表示（PHP側でis-activeは付与済み）
+	$contents.hide();
+	$contents.eq(initialTab).show();
+
+	$tabs.on('click', function() {
+		var num = $tabs.index(this);
+		if (num < 0) return;
+		$contents.hide();
+		$contents.eq(num).show();
+		$tabs.removeClass('is-active');
 		$(this).addClass('is-active');
 		// URL を切り替え（リロードなし）
 		history.pushState(null, '', '<?php echo esc_js( home_url('/aboutus/') ); ?>' + sectionSlugs[num]);
