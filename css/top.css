@@ -103,7 +103,7 @@ shop
 @media screen and (min-width: 1005px) and (max-width: 1199px) {
   #top .shop .top .box { flex-direction: row; align-items: flex-start; gap: 3rem; }
   #top .shop .top img { max-width: 45%; flex-shrink: 0; height: auto; }
-  #top .shop .top p { font-size: 2rem; }
+  #top .shop .top p { font-size: 3.4rem; }
   #top .shop .bottom { flex-direction: row; gap: 4rem; }
 }
 
