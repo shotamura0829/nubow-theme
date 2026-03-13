@@ -58,16 +58,29 @@
 			}
 
 			/* ===== プルダウンのズレ修正 ===== */
+			/* common.css の main{overflow:hidden} がドロップダウン位置計算を狂わせるため開放 */
+			#page.online-shop {
+				overflow: visible !important;
+			}
 			/* ドロップダウンを正しく位置計算させるための起点を設定 */
 			#hanayoya .hy-parts {
 				position: relative;
 			}
-			/* 親要素がoverflowでクリッピングしないよう開放 */
+			/* hanayoya内のoverflowも開放 */
 			#hanayoya,
 			#hanayoya .hy-frame,
 			#hanayoya .hy-wrap,
 			#hanayoya .hy-parts-wrap {
 				overflow: visible !important;
+			}
+			/* ドロップダウンリストが小さい場合の文字サイズ補正 */
+			#hanayoya select option,
+			#hanayoya [class*="hy-list"] li,
+			#hanayoya [class*="hy-item"],
+			#hanayoya [class*="hy-option"] {
+				font-size: 14px !important;
+				padding: 8px 10px !important;
+				line-height: 1.5 !important;
 			}
 
 			/* ===== PC（1200px以上）：視認性向上 ===== */
