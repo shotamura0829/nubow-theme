@@ -354,9 +354,13 @@
 			spaceBetween: 0,
 			speed: 1000,
 			allowTouchMove: true,
+			autoplay: {
+				delay: 4000,
+				disableOnInteraction: false,
+			},
 			pagination: {
 				el: ".swiper-pagination-01",
-				clickable: true, // ページネーションをクリック可能にする
+				clickable: true,
 			},
 			navigation: {
 				nextEl: ".swiper-button-next-01",
