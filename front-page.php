@@ -393,11 +393,14 @@
 	function initFVSwiper() {
 		var swiper1 = new Swiper(".swiper01", {
 			loop: true,
-			centeredSlides: true,
+			/* centeredSlides は full-width 1-per-view では不要。
+			   Swiper v8 で loop と組み合わせると初期 transform がずれる場合があるため削除。 */
 			slidesPerView: 1,
 			spaceBetween: 0,
 			speed: 1000,
 			allowTouchMove: true,
+			/* スライドの高さをアクティブスライドに自動追従させる */
+			autoHeight: true,
 			autoplay: {
 				delay: 4000,
 				disableOnInteraction: false,
@@ -409,11 +412,6 @@
 			navigation: {
 				nextEl: ".swiper-button-next-01",
 				prevEl: ".swiper-button-prev-01",
-			},
-			breakpoints: {
-				1239: {
-					slidesPerView: 1,
-				}
 			},
 		});
 	}
