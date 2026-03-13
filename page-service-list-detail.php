@@ -109,12 +109,7 @@ get_header();
 						<p class="purpose"><?php echo esc_html($purpose_text); ?></p>
 					<?php endif; ?>
 
-					<?php
-					$detail_text = get_field('service_detail_text');
-					if ($detail_text) :
-						echo '<p class="text1">' . nl2br(esc_html($detail_text)) . '</p>';
-					endif;
-					?>
+					<p class="text1">贈られる相手、贈られる方、双方の好みやシュチュエーションなどを考慮し、お客様の想いをカタチにいたします。更にヌボー生花店は徹底的にお花の鮮度にこだわります。鮮度の良いお花のみを厳選します！</p>
 
 					<!-- 商品リスト（S/M/L/LLサイズ） -->
 					<div class="list item-list celebration-bouquet-items">

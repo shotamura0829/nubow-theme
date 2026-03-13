@@ -824,8 +824,8 @@ shop / nubow-aile / nubow-adorer / nubow-larbre の4ページで同一
     #page.case-list .article-main .text .title {font-size: 4.8rem;}
     #page.case-list .article-main .text a {margin: 3rem auto 0; height: 12rem; max-width: 60rem; font-size: 3.8rem;}
 
-    .remodal-wrapper {padding: 0 !important; top: 24rem !important; height: 100vh !important;}
-    .remodal {padding: 0 !important; width: 100% !important;}
+    .remodal-wrapper {padding: 0 !important; top: 0 !important; height: 100% !important; overflow-y: auto !important; -webkit-overflow-scrolling: touch !important;}
+    .remodal {padding: 0 !important; width: 100% !important; max-height: none !important; margin-top: 24rem !important; margin-bottom: 4rem !important;}
     .remodal-close {width: 10rem !important; height: 10rem !important; right: 2rem !important; top: 2rem !important; left: auto !important; }
     .modal-inner {padding: 14.4rem 4rem 6rem;}
     .modal-inner h2 {font-size: 4rem; gap: 1rem; padding-bottom: 2rem;}

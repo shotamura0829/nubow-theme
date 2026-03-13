@@ -340,16 +340,37 @@
 				});
 			});
 
-			function startObs() {
-				obs.observe(document.body, { childList: true, subtree: false });
-			}
-			if (document.readyState === 'loading') {
-				document.addEventListener('DOMContentLoaded', startObs);
-			} else {
-				startObs();
-			}
-		})();
-		</script>
+		function startObs() {
+			obs.observe(document.body, { childList: true, subtree: false });
+		}
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', startObs);
+		} else {
+			startObs();
+		}
+
+		/* カレンダーが #hanayoya 内に追加されたら自動スクロールで見えるようにする */
+		function startCalObs() {
+			var hyEl = document.getElementById('hanayoya');
+			if (!hyEl) return;
+			new MutationObserver(function(muts) {
+				muts.forEach(function(m) {
+					m.addedNodes.forEach(function(n) {
+						if (n.nodeType !== 1) return;
+						setTimeout(function() {
+							n.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+						}, 150);
+					});
+				});
+			}).observe(hyEl, { childList: true, subtree: true });
+		}
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', startCalObs);
+		} else {
+			startCalObs();
+		}
+	})();
+	</script>
 		<div class="link">
 			<a href="<?php echo home_url('/'); ?>" class="cmn-button back">ホームに戻る</a>
 		</div>
