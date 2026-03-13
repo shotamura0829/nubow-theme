@@ -508,14 +508,41 @@ add_action('template_redirect', function() {
   $path = rtrim( strtok( $_SERVER['REQUEST_URI'], '?' ), '/' );
 
   $redirects = [
-    '/shop/honten'        => '/shop/nubow-aile',
-    '/shop/nagano-minami' => '/shop/nubow-adorer',
-    '/shop/adorer-cafe'   => '/shop',
-    '/shop/shinonoi'      => '/shop',
+    // 店舗URL変更・閉店
+    '/shop/honten'                      => '/shop/nubow-aile',
+    '/shop/nagano-minami'               => '/shop/nubow-adorer',
+    '/shop/adorer-cafe'                 => '/shop',
+    '/shop/shinonoi'                    => '/shop',
+
+    // サービスページ旧URL（/service/gift/* 廃止）
+    '/service/funeral'                  => '/service/funeral-stand-flower',
+    '/service/gift'                     => '/service',
+    '/service/gift/arrangement'         => '/service/celebration-arrangement',
+    '/service/gift/bouquet'             => '/service/celebration-bouquet',
+    '/service/gift/funeral'             => '/service/funeral-flower',
+    '/service/gift/phalaenopsis'        => '/service/celebration-orchid',
+    '/service/gift/plant'               => '/service/celebration-plants',
+    '/service/gift/stand-celebration'   => '/service/celebration-stand-flower',
+    '/service/gift/stand-funeral'       => '/service/funeral-stand-flower',
+    '/service/gift/wedding-bouquet'     => '/service',
+    '/service/indoor-greening'          => '/service',
+    '/service/wedding'                  => '/service',
+
+    // FAQカテゴリ旧URL廃止
+    '/faq_list/deliver'                 => '/faq',
+    '/faq_list/order'                   => '/faq',
+    '/faq_list/other'                   => '/faq',
+    '/faq_list/payment'                 => '/faq',
   ];
 
   if ( isset( $redirects[ $path ] ) ) {
     wp_redirect( home_url( $redirects[ $path ] ), 301 );
+    exit;
+  }
+
+  // /faq_list/* の全パス（上記以外も含む）は /faq へ
+  if ( strpos( $path, '/faq_list/' ) === 0 ) {
+    wp_redirect( home_url( '/faq' ), 301 );
     exit;
   }
 });
