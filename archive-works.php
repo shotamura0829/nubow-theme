@@ -41,108 +41,55 @@
 			<img src="<?php echo get_template_directory_uri(); ?>/img/page/case_icon-close.svg" alt="">
 		</button>
 		<div class="modal-inner">
-			<form method="get" action="<?php echo esc_url( get_post_type_archive_link('works') ); ?>">
-				<h2>サービスから探す <span class="required">※選択必須</span></h2>
-				<div class="service-radio-list">
+			<h2>サービスから探す</h2>
+			<ul class="category-link-list">
+				<?php
+				$parent = get_term_by( 'slug', 'service_category', 'works_category' );
+				$parent_id = ( $parent && ! is_wp_error( $parent ) ) ? (int) $parent->term_id : 0;
+				$case_terms = get_terms([
+					'taxonomy'   => 'works_category',
+					'parent'     => $parent_id,
+					'hide_empty' => false,
+					'orderby'    => 'term_order',
+					'order'      => 'ASC',
+				]);
+				if ( ! empty( $case_terms ) && ! is_wp_error( $case_terms ) ) :
+					foreach ( $case_terms as $case_term ) : ?>
+						<li>
+							<a href="<?php echo esc_url( get_term_link( $case_term ) ); ?>">
+								<?php echo esc_html( $case_term->name ); ?>
+							</a>
+						</li>
+					<?php endforeach;
+				endif; ?>
+			</ul>
+
+			<div class="search-category">
+				<h2>カテゴリから探す</h2>
+				<ul class="category-link-list">
 					<?php
-					// 親ターム（slug: service_category）を取得
-					$parent = get_term_by( 'slug', 'service_category', 'works_category' );
-					$parent_id = ( $parent && ! is_wp_error( $parent ) ) ? (int) $parent->term_id : 0;
-
-					$case_terms = get_terms([
+					$all_terms = get_terms([
 						'taxonomy'   => 'works_category',
-						'parent'     => $parent_id,   // 親=service_category の直下のみ取得
 						'hide_empty' => false,
-						'orderby'    => 'term_order',
+						'orderby'    => 'name',
 						'order'      => 'ASC',
+						'meta_query' => [
+							'relation' => 'OR',
+							[ 'key' => 'scw_term_hidden', 'compare' => 'NOT EXISTS' ],
+							[ 'key' => 'scw_term_hidden', 'value' => '0', 'compare' => '=' ],
+						],
 					]);
-
-					if ( ! empty( $case_terms ) && ! is_wp_error( $case_terms ) ) :
-						foreach ( $case_terms as $index => $case_term ) :
-							$input_id = 'works_category_' . $index; // indexでID作成
-							$term_url = get_term_link( $case_term ); // ← /works_category/◯◯/ の綺麗なURL
-							?>
-							<input
-								class="visually-hidden"
-								type="radio"
-								name="works_category"
-								id="<?php echo esc_attr( $input_id ); ?>"
-								value="<?php echo esc_attr( $case_term->slug ); ?>"
-								data-url="<?php echo esc_url( $term_url ); ?>"
-								<?php echo $index === 0 ? 'required' : ''; ?>><!-- グループ必須化 -->
-							<label for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_html( $case_term->name ); ?></label>
-							<?php
-						endforeach;
-					endif;
-					?>
-				</div>
-
-				<div class="search-category">
-	<h2>カテゴリから探す</h2>
-	<ul class="category-link-list">
-		<?php
-		// 休止フラグの無い/0のタームだけ取得
-		$all_terms = get_terms([
-			'taxonomy'   => 'works_category',
-			'hide_empty' => false,
-			'orderby'    => 'name',
-			'order'      => 'ASC',
-			'meta_query' => [
-				'relation' => 'OR',
-				[ 'key' => 'scw_term_hidden', 'compare' => 'NOT EXISTS' ],
-				[ 'key' => 'scw_term_hidden', 'value' => '0', 'compare' => '=' ],
-			],
-		]);
-
-		if (!empty($all_terms) && !is_wp_error($all_terms)) :
-			foreach ($all_terms as $term) : ?>
-				<li>
-					<a href="<?php echo esc_url(get_term_link($term)); ?>">
-						<?php echo esc_html($term->name); ?>
-					</a>
-				</li>
-			<?php endforeach;
-		endif; ?>
-	</ul>
-</div>
-
-
-
-				<!-- <input type="hidden" name="post_type" value="works"> -->
-				<button type="submit" class="submit-button">
-					詳細検索
-					<img src="<?php echo get_template_directory_uri(); ?>/img/page/case_icon-search.svg" alt="">
-				</button>
-			</form>
-
-		<script>
-		document.addEventListener('DOMContentLoaded', function () {
-			const form = document.querySelector('.remodal .modal-inner form');
-			if (!form) return;
-
-			// SP: サービス選択時に詳細検索ボタンへ自動スクロール
-			const serviceRadios = form.querySelectorAll('.service-radio-list input[type="radio"]');
-			serviceRadios.forEach(function (radio) {
-				radio.addEventListener('change', function () {
-					if (window.innerWidth <= 1199) {
-						const submitBtn = form.querySelector('.submit-button');
-						if (submitBtn) {
-							submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
-						}
-					}
-				});
-			});
-
-			// 送信ボタン押下時のみ、選択されたタームのパーマリンクへ遷移
-			form.addEventListener('submit', function (e) {
-				const checked = form.querySelector('input[name="works_category"]:checked');
-				if (checked && checked.dataset.url) {
-					e.preventDefault(); // GET送信させない
-					window.location.href = checked.dataset.url; // /works_category/◯◯/ へ
-				}
-			});
-		});
-		</script>
+					if ( ! empty( $all_terms ) && ! is_wp_error( $all_terms ) ) :
+						foreach ( $all_terms as $term ) : ?>
+							<li>
+								<a href="<?php echo esc_url( get_term_link( $term ) ); ?>">
+									<?php echo esc_html( $term->name ); ?>
+								</a>
+							</li>
+						<?php endforeach;
+					endif; ?>
+				</ul>
+			</div>
 		</div>
 	</div>
 
