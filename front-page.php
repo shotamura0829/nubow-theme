@@ -383,18 +383,21 @@
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <script type="text/javascript">
-	$(function() {
-		const swiper1 = new Swiper(".swiper01", {
+(function() {
+	var fvSrcs = [
+		'<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg',
+		'<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg'
+	];
+	var loaded = 0;
+
+	function initFVSwiper() {
+		var swiper1 = new Swiper(".swiper01", {
 			loop: true,
 			centeredSlides: true,
 			slidesPerView: 1,
 			spaceBetween: 0,
 			speed: 1000,
 			allowTouchMove: true,
-			/* 画像ロード後のレイアウト変化を検知して自動で再計算 */
-			observer: true,
-			observeParents: true,
-			observeSlideChildren: true,
 			autoplay: {
 				delay: 4000,
 				disableOnInteraction: false,
@@ -413,11 +416,24 @@
 				}
 			},
 		});
-		/* 全画像ロード完了後に強制再計算（実機モバイルで画像ロードが遅い場合の保険） */
-		$(window).on('load', function() {
-			swiper1.update();
-		});
+	}
+
+	/* FV 画像をプリロードし、全枚数ロード完了後に Swiper を初期化する。
+	   モバイル実機で画像ロード前に Swiper が height:0 で初期化される問題を防ぐ。 */
+	function tryInit() {
+		loaded++;
+		if (loaded >= fvSrcs.length) {
+			initFVSwiper();
+		}
+	}
+
+	fvSrcs.forEach(function(src) {
+		var img = new Image();
+		img.onload  = tryInit;
+		img.onerror = tryInit; // 失敗しても初期化は実行
+		img.src = src;
 	});
+})();
 </script>
 
 <script type="text/javascript">
