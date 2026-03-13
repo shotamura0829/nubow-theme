@@ -413,13 +413,19 @@
 </script>
 
 <script type="text/javascript">
-$(window).on('load', function() {
-	$(".tab-contents:not(:eq(0))").hide();
-	$(".tab").click(function() {
-		var num = $(".tab").index(this);
-		$(".tab-contents").hide();
-		$(".tab-contents").eq(num).show();
-		$(".tab").removeClass('is-active');
+$(document).ready(function() {
+	var $tabs     = $(".case .tab-menu .tab");
+	var $contents = $(".case .tab-wrap .tab-contents");
+
+	$contents.hide();
+	$contents.eq(0).show();
+
+	$tabs.on('click', function() {
+		var num = $tabs.index(this);
+		if (num < 0) return;
+		$contents.hide();
+		$contents.eq(num).show();
+		$tabs.removeClass('is-active');
 		$(this).addClass('is-active');
 	});
 });
