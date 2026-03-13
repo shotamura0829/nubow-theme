@@ -300,8 +300,10 @@ news詳細
 #page.article-detail .main-content .article-main {margin-top: 30px;}
 #page.article-detail .main-content .link {display: flex; justify-content: center; margin-top: 62px;}
 
-#page.article-detail .article-main {border-top: 1px solid #333333; padding-top: 36px;}
+#page.article-detail .article-main {border-top: 1px solid #333333; padding-top: 36px; overflow-wrap: break-word; word-break: break-word;}
 #page.article-detail .article-main p {font-size: 20px; line-height: 2;}
+#page.article-detail .article-main a {color: #998675; text-decoration: underline;}
+#page.article-detail .article-main a:hover {color: #5C4636;}
 
 #page.article-detail .article-main img {width: 100%;}
 #page.article-detail .article-main figure + p {margin-top: 40px;}
