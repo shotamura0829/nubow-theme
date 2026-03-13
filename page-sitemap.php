@@ -56,23 +56,12 @@
 					<li><a href="<?php echo home_url('/'); ?>faq">・よくあるご質問</a></li>
 				</ul>
 			</div>
-			<div class="item">
-				<h3>事例紹介</h3>
-				<ul>
-					<li>
-						<a href="<?php echo home_url('/'); ?>works">・事例紹介</a>
-						<ul>
-							<li><a href="<?php echo home_url('/'); ?>works/bouquet">・御祝い花束</a></li>
-							<li><a href="<?php echo home_url('/'); ?>works/arrangement">・御祝いアレンジメント花</a></li>
-							<li><a href="<?php echo home_url('/'); ?>works/phalaenopsis">・御祝い胡蝶蘭</a></li>
-							<li><a href="<?php echo home_url('/'); ?>works/plants">・御祝い観葉植物</a></li>
-							<li><a href="<?php echo home_url('/'); ?>works/stand-celebration">・御祝いスタンド花</a></li>
-							<li><a href="<?php echo home_url('/'); ?>works/funeral-flower">・お悔やみ・お供え花</a></li>
-							<li><a href="<?php echo home_url('/'); ?>works/stand-funeral">・葬儀スタンド花</a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
+		<div class="item">
+			<h3>事例紹介</h3>
+			<ul>
+				<li><a href="<?php echo home_url('/'); ?>works">・事例紹介</a></li>
+			</ul>
+		</div>
 			<div class="item">
 				<h3>オンラインショップ</h3>
 				<ul>

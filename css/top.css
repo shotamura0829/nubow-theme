@@ -13,6 +13,8 @@ fv
 =================================================================*/
 .fv {position: relative; overflow: hidden;}
 .fv .wrapper {position: relative; max-width: 960px; margin: auto;}
+.fv .swiper-slide a {display: block; line-height: 0;}
+.fv .swiper-slide a img {width: 100%; height: auto; display: block;}
 
 .swiper-button-prev,
 .swiper-rtl .swiper-button-next {width: 70px; height: 70px; left: -90px;}
