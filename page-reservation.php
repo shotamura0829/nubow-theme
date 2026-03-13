@@ -318,13 +318,41 @@
 				el.style.setProperty('width', dropW + 'px', 'important');
 			}
 
-			function fix(el) {
-				if (!looksLikeDropdown(el)) return;
-				applyStyles(el);
-				/* 少し遅らせてhanayoyaのJS位置設定を上書き */
-				setTimeout(function() { reposition(el); }, 30);
-				setTimeout(function() { reposition(el); }, 100);
-			}
+		function repositionCalendar(el) {
+			/* カレンダー用：子要素のドロップダウンスタイルを除去してから中央固定配置 */
+			el.querySelectorAll('li, span, div').forEach(function(c) {
+				if (c === el) return;
+				['font-size','padding','min-height','line-height','display','align-items','box-sizing'].forEach(function(p) {
+					c.style.removeProperty(p);
+				});
+			});
+			var vw = window.innerWidth;
+			el.style.setProperty('position',   'fixed',                             'important');
+			el.style.setProperty('left',        '50%',                               'important');
+			el.style.setProperty('transform',   'translateX(-50%)',                  'important');
+			el.style.setProperty('top',         '8vh',                               'important');
+			el.style.setProperty('width',       Math.min(vw - 16, 400) + 'px',       'important');
+			el.style.setProperty('max-width',   '400px',                             'important');
+			el.style.setProperty('max-height',  '84vh',                              'important');
+			el.style.setProperty('overflow-y',  'auto',                              'important');
+			el.style.setProperty('z-index',     '99999',                             'important');
+		}
+
+		function fix(el) {
+			if (!looksLikeDropdown(el)) return;
+			applyStyles(el);
+			/* 少し遅らせてhanayoyaのJS位置設定を上書き */
+			setTimeout(function() { reposition(el); }, 30);
+			/* 150ms 後に子要素数を確認 → 多ければカレンダーとして再配置 */
+			setTimeout(function() {
+				var isCalendar = el.querySelectorAll('*').length > 20;
+				if (isCalendar) {
+					repositionCalendar(el);
+				} else {
+					reposition(el);
+				}
+			}, 150);
+		}
 
 			/*
 			 * body の直接の子要素だけを監視（subtree:false）
