@@ -318,7 +318,7 @@ header .toggle-button {display: none;}
 @media screen and (max-width: 1004px) {
 	header { height: 20rem; padding: 2.5rem; }
 	main { padding-top: 20rem; }
-	header .logo img { width: 18rem; }
+	header .logo img { width: 22rem; }
 	header .toggle-button { width: 12rem; height: 12rem; padding-top: 2.2rem; gap: 0.8rem; font-size: 2rem; border-radius: 0.8rem; }
 	header .toggle-button .line { gap: 1rem; }
 	header .toggle-button .line span { height: 0.8rem; width: 7rem; }
