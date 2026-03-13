@@ -36,9 +36,9 @@ $service_term_map = [
 				<?php endif; ?> -->
 			</ul>
 			<div class="main-title">
-				<h2 class="cmn-title">
+				<h1 class="cmn-title">
 					事例紹介
-				</h2>
+				</h1>
 				<a href="javascript:void(0);" class="serch-detail" data-remodal-target="modal">
 					詳細検索
 					<img src="<?php echo get_template_directory_uri(); ?>/img/page/case_icon-search.svg" alt="">

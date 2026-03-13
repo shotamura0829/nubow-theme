@@ -737,3 +737,33 @@ add_action('template_redirect', function() {
     exit;
   }
 });
+
+/**
+ * robots.txt カスタマイズ
+ * 本番移行後: WordPress管理画面「設定 > 表示設定」の"検索エンジンをブロック"をOFFにすること
+ */
+add_filter( 'robots_txt', function( $output, $public ) {
+  if ( $public ) {
+    $output  = "User-agent: *\n";
+    $output .= "Disallow: /wp-admin/\n";
+    $output .= "Disallow: /wp-includes/\n";
+    $output .= "Allow: /wp-admin/admin-ajax.php\n";
+    $output .= "\n";
+    $output .= "Sitemap: " . home_url( '/sitemap_index.xml' ) . "\n";
+  }
+  return $output;
+}, 10, 2 );
+
+/**
+ * OGP デフォルト画像をデータベース設定として登録（初回のみ）
+ * Yoast SEO「wpseo_social > og_default_image」が空の場合のみ自動設定
+ * 手動変更: Yoast SEO > ソーシャル > Facebook > デフォルト画像
+ */
+add_action( 'init', function() {
+  $social = get_option( 'wpseo_social', [] );
+  if ( empty( $social['og_default_image'] ) ) {
+    $social['og_default_image']    = get_template_directory_uri() . '/img/top/fv01.jpg';
+    $social['og_default_image_id'] = 0;
+    update_option( 'wpseo_social', $social );
+  }
+} );

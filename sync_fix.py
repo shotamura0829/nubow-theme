@@ -1,7 +1,7 @@
 import os
 import shutil
 
-source_dir = "/Users/shotamura/Downloads/nubow_0730"
+source_dir = "/Users/shotamura/Desktop/nubow_0730"
 targets = [
     "/Users/shotamura/Local Sites/nubow-local/app/public/wp-content/themes/nubow",
     "/Users/shotamura/Local Sites/nubow-local/app/public/wp-content/themes/nubow_0730"
@@ -14,13 +14,15 @@ files_to_copy = [
     "page-service-list-detail.php",
     "page-nubow-aile.php",
     "page-news.php",
+    "page-contact.php",
     "home.php",
     "functions.php",
     "front-page.php",
     "archive.php",
     "category.php",
     "css/page.css",
-    "css/top.css"
+    "css/top.css",
+    "css/common.css"
 ]
 
 def copy_file(src, dst, file_rel):

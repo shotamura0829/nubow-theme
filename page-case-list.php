@@ -13,7 +13,7 @@
 				<li><?php the_title(); ?></li>
 			</ul>
 			<div class="main-title">
-				<h2 class="cmn-title"><?php the_title(); ?></h2>
+				<h1 class="cmn-title"><?php the_title(); ?></h1>
 			</div>
 		</div>
 		

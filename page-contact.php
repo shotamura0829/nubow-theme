@@ -40,7 +40,7 @@ if ( class_exists( 'MW_WP_Form_Data' ) ) {
 				<?php endif; ?>
 			</ul>
 			<div class="main-title">
-				<h2 class="cmn-title">
+				<h1 class="cmn-title">
 					<?php if ( $flg === 'confirm' ) : ?>
 						<span class="pc-only">お問い合わせ内容のご確認</span>
 						<span class="sp-only">お問い合わせ</span>
@@ -49,7 +49,7 @@ if ( class_exists( 'MW_WP_Form_Data' ) ) {
 					<?php else : ?>
 						お問い合わせ
 					<?php endif; ?>
-				</h2>
+				</h1>
 			</div>
 		</div>
 	</div>

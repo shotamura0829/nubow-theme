@@ -1,0 +1,3341 @@
+/* =================================================================
+page共通
+=================================================================*/
+#page .list {display: flex;}
+
+#page .page-header .links {display: none; justify-content: center; align-items: center; font-size: 20px; font-weight: bold; gap: 50px; padding: 33px 0 32px; border-bottom: 1px solid #ccc;}
+#page .page-header .links .is-active {text-decoration: underline; text-underline-offset: 8px; text-decoration-thickness: 1px;}
+#page .page-header .main-title .title {font-size: ;}
+#page .page-header .main-title h1 {font-size: 38px; font-weight: 700; color: #fff; letter-spacing: 0.1em; display: flex; justify-content: center; flex-direction: column; align-items: center;}
+#page .page-header .main-title .main-title_text {font-size: 38px; font-weight: 700; color: #fff; letter-spacing: 0.1em; display: flex; justify-content: center; flex-direction: column; align-items: center;}
+#page .page-header .main-title .jp {font-size: 38px; display: inline-block; border-bottom: 2px solid #fff; width: auto;}
+#page .page-header .main-title .en {font-size: 24px;}
+#page .page-header h2 {font-size: 48px;}
+#page .page-header.no-breadcrumbs {padding-top: 182px;}
+
+#page .page-intro {padding-bottom: 130px;}
+#page .page-intro .inner {display: flex; justify-content: space-between; align-items: center;}
+#page .page-intro .text {width: 48%; padding-right: 40px;}
+#page .page-intro .text h2 {margin-bottom: 60px; line-height: 1.3;}
+#page .page-intro .text h3 {font-size: 28px; line-height: 1.3;}
+#page .page-intro .text p {margin-top: 40px;}
+#page .page-intro img {width: 52%; max-width: 616px; height: auto; aspect-ratio: 616 / 461; object-fit: cover; position: relative; box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.20); border-radius: 10px;}
+
+#page .main-content {width: 100%; max-width: 1160px; padding: 0 40px 156px; margin: 64px auto 0; font-size: 24px; letter-spacing: 0.2em;}
+#page .main-content .link {display: flex; justify-content: center; margin-top: 80px;}
+#page .main-content p {line-height: 1.66666; letter-spacing: 0.2em;}
+#page .main-content p + p,
+#page .main-content p + ul,
+#page .main-content ul + p,
+#page .main-content p + h3,
+#page .main-content h3 + p {margin-top: 1em;}
+#page .main-content ul {list-style: disc; padding-left: 1em;}
+#page .main-content ul li {line-height: 1.66666;}
+
+
+@media screen and (max-width: 1199px) {
+    #page .list {flex-direction: column; align-items: center;}
+
+    /* CTA幅いっぱいのため、mainのoverflow:hiddenを上書き（common.css） */
+    #page {padding: 27.8rem 0 0; overflow-x: visible !important;}
+    #page .page-header h2 {font-size: 5.6rem;}
+    #page .page-header h2.font24 {font-size: 4.8rem; letter-spacing: 0; white-space: nowrap;}
+    #page .page-header.no-breadcrumbs {padding-top: 1rem;}
+
+    #page table th,
+    #page table td {display: block; padding: 10px 10px; border-right: 1px solid #E8E8E8;}
+    #page table th {border-bottom: 1px solid #E8E8E8;}
+    #page table td {border-bottom: 0px;}
+    #page table tr:nth-child(1) td {border-top: 0px;}
+    #page table tr:last-child td {border-bottom: 1px solid #E8E8E8;}
+
+    #page .main-content {padding: 0 2rem 15.6rem; margin: 7rem auto 0;}
+    #page .main-content .link {margin-top: 12rem;}
+    #page .main-content h2 {font-size: 3.2rem;}
+    #page .main-content h3 {font-size: 3.2rem;}
+    #page .main-content p {font-size: 3.2rem;}
+    #page .main-content ul li {font-size: 3.2rem;}
+
+    /* CTA（other-links2）SP時は全ページで画面幅いっぱい（テンプレートに依存しない） */
+    #page .other-links2 {
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        box-sizing: border-box;
+        padding: 0;
+    }
+    #page .other-links2 .links.list {
+        flex-direction: column;
+        gap: 11.6rem;
+        margin-top: 12rem;
+        margin-bottom: 20.8rem;
+        align-items: stretch;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    #page .other-links2 .links .box {
+        flex: 0 0 auto;
+        align-self: stretch;
+        width: 100%;
+        margin-top: 0;
+        max-width: 100%;
+        min-height: 0;
+    }
+    #page .other-links2 .links .box + .box {margin-top: 0;}
+    #page .other-links2 .links .box a {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+    /* CTA画像：コンテンツ幅に合わせ、縦は画像全体が入るように（見切れなし） */
+    #page .other-links2 .links .box a > img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 0;
+        object-fit: contain;
+        object-position: center;
+        vertical-align: top;
+    }
+    #page .other-links2 .links a span {
+        top: auto;
+        bottom: 2.5rem;
+        width: 52rem;
+        max-width: calc(100% - 4rem);
+        height: 10rem;
+        font-size: 3.4rem;
+        z-index: 1;
+    }
+    #page .other-links2 .links a span:after {width: 1.4rem; height: 2.2rem;}
+
+    /* CTA SP: 他スタイルに負けないよう強制（幅いっぱい） */
+    #page .other-links2,
+    #page.service-detail .other-links2 {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+    #page .other-links2 .links.list,
+    #page.service-detail .other-links2 .links.list {
+        width: 100% !important;
+        max-width: none !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+    #page .other-links2 .links .box,
+    #page.service-detail .other-links2 .links .box {
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    /* CTA専用ラッパー .cta-bleed：SPで上部コンテンツ幅に合わせ、左右に少し余白 */
+    .cta-bleed {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        margin-left: calc(50% - 50vw) !important;
+        margin-right: calc(50% - 50vw) !important;
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+        box-sizing: border-box !important;
+    }
+    /* サービス詳細は main-content と同じ 1.5rem に合わせる */
+    #page.service-detail .cta-bleed {
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+    .cta-bleed .other-links2 {
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+    .cta-bleed .other-links2 .links.list {
+        width: 100% !important;
+        max-width: none !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        box-sizing: border-box !important;
+    }
+    .cta-bleed .other-links2 .links .box {
+        width: 100% !important;
+        max-width: none !important;
+    }
+    .cta-bleed .other-links2 .links .box a {
+        width: 100% !important;
+    }
+}
+
+/* =================================================================
+404
+=================================================================*/
+@media screen and (max-width: 1199px) {
+    #page.notfound .main-content {margin-top: 2.8rem;}
+    #page.notfound .main-content p {font-size: 4.8rem;}
+}
+
+/* =================================================================
+ナビゲーション
+=================================================================*/
+.pagination {display: flex; justify-content: center; align-items: flex-end; gap: 14px; margin-top: 100px;}
+.wp-pagenavi {display: flex; justify-content: center; gap: 14px;}
+.pagination span,
+.pagination a {display: flex; justify-content: center; align-items: center; width: auto; padding: 0 20px; height: 60px; border: 1px solid #5C4636; font-size: 24px; color: #5C4636;}
+.pagination a:hover {background: #5C4636; color: #fff;}
+.pagination .extend {border: none; width: auto;}
+
+.pagination .prev-button,
+.pagination .next-button {background: #5C4636; color: #fff; width: auto;}
+
+.pagination .current {background: #5C4636; color: #fff;}
+
+@media screen and (max-width: 1199px) {
+    .pagination {margin-top: 10rem;}
+    .pagination span,
+    .pagination a {font-size: 4rem; width: 10rem; height: 10rem;}
+    .pagination .prev-button, .pagination .next-button {width: 13.4rem;}
+}
+
+/* =================================================================
+article共通
+=================================================================*/
+#page.article .sidebar {width: 260px;}
+#page.article .side-category h2 {border-bottom: 1px solid #ccc; padding-bottom: 0px; font-size: 24px;}
+#page.article .side-category .category-list {margin-top: 10px;}
+
+@media screen and (max-width: 1199px) {
+    #page.article .article-wrap {flex-direction: column;}
+    #page.article .sidebar {width: 100%; margin-top: 80px;}
+}
+
+/* =================================================================
+articleリスト
+=================================================================*/
+#page.article-list .main-content {margin-top: 100px;}
+#page.article-list .list {display: flex; flex-wrap: wrap; flex-direction: column; gap: 60px 0px;}
+#page.article-list .item {width: 100%; padding-bottom: 60px; border-bottom: 1px solid #CCCCCC; display: flex; flex-direction: column;}
+#page.article-list .article-title {display: flex; align-items: center;}
+#page.article-list .article-title .date {font-size: 24px;}
+#page.article-list .main-content .tag {display: flex; align-items: center; gap: 8px; margin: 0 0 0 19px;}
+#page.article-list .main-content .tag a {display: flex; justify-content: center; align-items: center; background: #5C4636; padding: 0px 10px; min-height: 23px; font-size: 14px; font-weight: bold; color: #fff; border-radius: 4px; line-height: 1;}
+#page.article-list .more {display: flex; justify-content: center; align-items: center; width: 300px; height: 60px; border-radius: 9999px; color: #fff; background: #998675; position: relative; align-self: flex-end; font-size: 19px;}
+#page.article-list .more:after {content: ""; width: 8px; height: 12px; background-image: url('../img/common/cmn-button_arrow.svg'); background-size: cover; position: absolute; right: 18px; top: 0; bottom: 0; margin: auto;}
+#page.article-list .content {font-size: 24px; margin-top: 26px;}
+
+
+@media screen and (max-width: 1199px) {
+    #page.article-list .article-main {max-width: 100%;}
+    #page.article-list .list {gap: 10rem 0;}
+    #page.article-list .article-title .date {font-size: 4.8rem;}
+    #page.article-list .main-content .tag {gap: 1.6rem; margin-left: 3.8rem;}
+    #page.article-list .main-content .tag a {padding: 0px 2rem; font-size: 2.8rem; min-height: 4.6rem;}
+    #page.article-list .content {margin-top: 3.8rem;  font-size: 4rem;}
+    #page.article-list .more {margin: 4.6rem auto 0; font-size: 3.8rem ; width: 100%; max-width: 60rem; height: 12rem;}
+    #page.article-list .item {padding-bottom: 10rem;}
+}
+
+/* =================================================================
+news詳細
+=================================================================*/
+#page.article-detail .main-content {margin-top: 100px; padding-bottom: 120px;}
+#page.article-detail .main-content .title {font-size: 32px; line-height: 1.5; margin-top: 36px;}
+#page.article-detail .main-content .info {display: flex; align-items: center; gap: 20px;}
+#page.article-detail .main-content .date {font-size: 24px; letter-spacing: 0.2em;}
+#page.article-detail .main-content .tag {display: flex; align-items: center; gap: 8px; margin: 0;}
+#page.article-detail .main-content .tag a {display: flex; justify-content: center; align-items: center; background: #5C4636; padding: 0px 10px; min-height: 23px; font-size: 14px; font-weight: bold; color: #fff; border-radius: 4px; line-height: 1;}
+#page.article-detail .main-content .article-main {margin-top: 30px;}
+#page.article-detail .main-content .link {display: flex; justify-content: center; margin-top: 62px;}
+
+#page.article-detail .article-main {border-top: 1px solid #333333; padding-top: 36px;}
+#page.article-detail .article-main p {font-size: 20px; line-height: 2;}
+
+#page.article-detail .article-main img {width: 100%;}
+#page.article-detail .article-main figure + p {margin-top: 40px;}
+#page.article-detail .article-main h2 {font-size: 34px; font-weight: 700; border-bottom: 1px solid #333333; padding-bottom: 10px;}
+#page.article-detail .article-main h3 {font-size: 30px; font-weight: 700; border-bottom: 1px solid #333333; padding-bottom: 10px;}
+#page.article-detail .article-main h4 {font-size: 26px; font-weight: 700;}
+#page.article-detail .article-main h5 {font-size: 22px; font-weight: 700;}
+
+#page.article-detail .article-main h2 + p {margin-top: 20px;}
+#page.article-detail .article-main h3 + p {margin-top: 20px;}
+#page.article-detail .article-main h4 + p {margin-top: 20px;}
+#page.article-detail .article-main h5 + p {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + p {margin-top: 20px;}
+
+#page.article-detail .article-main h2 + figure {margin-top: 20px;}
+#page.article-detail .article-main h3 + figure {margin-top: 20px;}
+#page.article-detail .article-main h4 + figure {margin-top: 20px;}
+#page.article-detail .article-main h5 + figure {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + figure {margin-top: 20px;}
+
+#page.article-detail .article-main h2 + h2 {margin-top: 20px;}
+#page.article-detail .article-main h3 + h2 {margin-top: 20px;}
+#page.article-detail .article-main h4 + h2 {margin-top: 20px;}
+#page.article-detail .article-main h5 + h2 {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + h2 {margin-top: 20px;}
+
+#page.article-detail .article-main h2 + h3 {margin-top: 20px;}
+#page.article-detail .article-main h3 + h3 {margin-top: 20px;}
+#page.article-detail .article-main h4 + h3 {margin-top: 20px;}
+#page.article-detail .article-main h5 + h3 {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + h3 {margin-top: 20px;}
+
+#page.article-detail .article-main h2 + h4 {margin-top: 20px;}
+#page.article-detail .article-main h3 + h4 {margin-top: 20px;}
+#page.article-detail .article-main h4 + h4 {margin-top: 20px;}
+#page.article-detail .article-main h5 + h4 {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + h4 {margin-top: 20px;}
+
+#page.article-detail .article-main h2 + h5 {margin-top: 20px;}
+#page.article-detail .article-main h3 + h5 {margin-top: 20px;}
+#page.article-detail .article-main h4 + h5 {margin-top: 20px;}
+#page.article-detail .article-main h5 + h5 {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + h5 {margin-top: 20px;}
+
+#page.article-detail .article-main p + h2 {margin-top: 100px;}
+#page.article-detail .article-main p + h3 {margin-top: 100px;}
+#page.article-detail .article-main p + h4 {margin-top: 40px;}
+#page.article-detail .article-main p + h5 {margin-top: 40px;}
+#page.article-detail .article-main p + .wp-block-columns {margin-top: 40px;}
+
+#page.article-detail .article-main .wp-block-columns {gap: 20px;}
+#page.article-detail .article-main .wp-block-columns + p {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + h2 {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + h3 {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + h4 {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + h5 {margin-top: 20px;}
+#page.article-detail .article-main .wp-block-columns + .wp-block-columns {margin-top: 20px;}
+
+@media screen and (max-width: 1199px) {
+    #page.article-detail .main-content .date {font-size: 4.8rem;}
+    #page.article-detail .main-content .info {gap: 4rem;}
+    #page.article-detail .main-content .tag a {min-height: 4.6rem; font-size: 2.8rem;}
+    #page.article-detail .main-content .title {font-size: 4rem; margin-top: 3.8rem;}
+    #page.article-detail .main-content .article-main {margin-top: 4rem; padding-top: 4rem;}
+    #page.article-detail .article-main p {font-size: 4rem;}
+}
+
+
+
+/* =================================================================
+online-shop
+=================================================================*/
+#page.online-shop .main-content {letter-spacing: 0;}
+#page.online-shop h3 {font-size: 24px; font-weight: normal; margin-bottom: 17px;}
+#page.online-shop .list {justify-content: space-between;}
+#page.online-shop img {display: block; max-width: 510px; width: 100%;}
+#page.online-shop a {position: relative;}
+#page.online-shop a span {display: flex; justify-content: center; align-items: center; border-radius: 9999px; background: #5C4636; width: 300px; height: 60px; color: #fff; position: absolute; left: 0; right: 0; bottom: 30px; margin: auto; font-size: 19px;}
+#page.online-shop a span:after {content: ""; display: block; width: 8px; height: 13px; background-image: url('../img/common/cmn-button_arrow.svg'); background-size: cover; position: absolute; right: 24px; top: 0; bottom: 0; margin: auto;}
+
+@media screen and (max-width: 1199px) {
+    #page.online-shop h3 {font-size: 4.8rem; margin-bottom: 3.2rem;}
+    #page.online-shop .list {flex-direction: column; gap: 11.6rem; align-items: stretch;}
+    #page.online-shop .list .box {max-width: 100%;}
+    #page.online-shop a span {
+        top: auto;
+        bottom: 2.5rem;
+        width: 52rem;
+        max-width: calc(100% - 4rem);
+        height: 10rem;
+        font-size: 3.4rem;
+    }
+    #page.online-shop a span:after {width: 1.4rem; height: 2.2rem;}
+}
+
+/* =================================================================
+お問合せ
+=================================================================*/
+#page.contact .main-content {letter-spacing: 0.1em;}
+#page.contact form {display: flex; flex-direction: column; gap: 60px;}
+#page.contact .box {display: flex; align-items: center; justify-content: space-between; width: 100%; max-width: 980px; margin: auto;}
+#page.contact .box.big {flex-direction: column; align-items: flex-start;}
+#page.contact .box .label {width: 309px; font-size: 24px;}
+#page.contact .box.big .label {margin-bottom: 26px;}
+#page.contact .box .form {width: 100%; max-width: 659px;}
+#page.contact .box .form input {font-size: 24px; width: 100%; max-width: 659px; border: 1px solid #5C4636; border-radius: 5px; height: 64px; padding: 0 10px;}
+#page.contact .box .form textarea {font-size: 24px; width: 100%; border: 1px solid #5C4636; border-radius: 5px; padding: 0 10px;}
+#page.contact .box.big .form {width: 100%; max-width: 100%;}
+#page.contact .mwform-tel-field {display: flex; gap: 13px; width: 100%;}
+#page.contact .mwform-tel-field input {width: calc((100% - 13px*2)/3);}
+
+#page.contact .cmn-button {border: 0px; padding: 0; margin: 55px auto 0;} 
+#page.contact .cmn-button.back {border: 1px solid #998675; color: #998675; background: #fff; padding: 0; margin: 40px auto 0; box-shadow: none;} 
+#page.contact .cmn-button.back:after {background-image: url('../img/top/article-link_arrow.svg');}
+
+#page.contact h3 {border-bottom: 1px solid #333333; font-size: 32px; padding-bottom: 12px; margin-bottom: 41px;}
+#page.contact h3.no-border {border-bottom: 0;}
+
+#page.contact .mw_wp_form_confirm {padding-top: 26px;}
+#page.contact .mw_wp_form_confirm form {gap: 0;}
+#page.contact .mw_wp_form_confirm .box {border-bottom: 1px solid #333333; max-width: 100%; padding: 0 51px 67px; margin-bottom: 67px;}
+#page.contact .mw_wp_form_confirm .box:last-of-type {margin-bottom: 31px;} 
+#page.contact .mw_wp_form_confirm .box.big {flex-direction: row;}
+#page.contact .mw_wp_form_confirm .box.big .form {max-width: 659px;}
+
+#page.contact .form-privacy-note {font-size: 24px; text-align: center;}
+#page.contact .form-privacy-note a {color: #4B41FF; text-decoration: underline;}
+#page.contact .form-privacy-note a:hover {text-decoration: none;}
+
+
+@media screen and (max-width: 1199px) {
+    #page.contact h3 {font-size: 4rem; margin-bottom: 4rem; padding-bottom: 4rem;}
+    #page.contact form {gap: 8.4rem;}
+    #page.contact .box {flex-direction: column; align-items: flex-start; gap: 2.2rem;}
+    #page.contact .box .label {width: 100%; font-size: 4rem; font-weight: bold;}
+    #page.contact .box.big .label {margin-bottom: 0}
+    #page.contact .box .form input {height: 12.8rem; font-size: 4rem; max-width: 100%;}
+    #page.contact .cmn-button {margin-top: 4.6rem;}
+
+    #page.contact .mw_wp_form_confirm {padding-top: 0;}
+    #page.contact .mw_wp_form_confirm .box {padding: 0 0 4rem; margin-bottom: 4rem;}
+    #page.contact .mw_wp_form_confirm .box .form {font-size: 4rem;}
+
+    #page.contact .mw_wp_form_confirm .box.big {flex-direction: column;}
+    #page.contact .form-privacy-note {font-size: 4rem; text-align: left;}
+    #page.contact .mw_wp_form_confirm .cmn-button {margin-top: 9.6rem;}
+    #page.contact .mw_wp_form_confirm .cmn-button.back {margin-top: 8rem;}
+
+    #page.contact .cmn-title {padding-left: 2rem;}
+    #page.contact .cmn-title .thanks {font-size: 5.2rem; white-space: nowrap;}
+    #page.contact h3.no-border {font-weight: normal;}
+
+    #page.contact .cmn-button.back.home {background: #998675; color: #fff; border: 0;}
+    #page.contact .cmn-button.back.home:after {background-image: url('../img/common/cmn-button_arrow.svg');}
+
+
+}
+
+/* =================================================================
+ヌボー生花店について
+=================================================================*/
+#page.about .tab-menu {display: flex; border: 1px solid #998675; border-radius: 10px; padding: 0; overflow: hidden; margin-bottom: 82px;}
+#page.about .tab-menu .tab {text-decoration: none; display: flex; justify-content: center; align-items: center; height: 80px; width: calc((100%)/3); position: relative; font-size: 24px; font-weight: bold;}
+#page.about .tab-menu .tab:nth-child(2) {border-left: 1px solid #998675; border-right: 1px solid #998675;}
+#page.about .tab-menu .is-active {background: #998675; color: #fff;}
+#page.about .tab-menu .is-active:after {content: ""; display: block; width: 16px; height: 10px; background-image: url('../img/page/about_arrow.svg'); background-size: cover; position: absolute; left: 0; right: 0; bottom: 10px; margin: auto;}
+#page.about h3 {font-size: 36px;}
+
+#page.about .greeting .box {display: flex; gap: 28px; margin-bottom: 15px;}
+#page.about .greeting p {line-height: 2;}
+#page.about .greeting .box img {max-width: 500px;}
+#page.about .greeting .concept {margin-top: 77px; text-align: center;}
+#page.about .greeting .concept .jp {font-size: 40px;}
+#page.about .greeting .concept .en {font-size: 32px;}
+#page.about .greeting .concept + p {margin-top: 34px;}
+#page.about .greeting .bottom_text {margin-bottom: 92px;}
+#page.about .greeting .bottom_text span {text-align: right; display: block; margin-top: 33px; font-size: 20px;}
+
+#page.about .company h3 + p {margin-top: 5px;}
+#page.about .company p + h3 {margin-top: 44px;}
+#page.about .company .overview {margin-top: 104px;}
+#page.about .company .overview h2 {text-align: center; font-size: 36px; margin-bottom: 50px;}
+#page.about .company table {border-top: 1px solid #000000;}
+#page.about .company table th {font-size: 24px; text-align: left; width: 241px; border-bottom: 1px solid #000000; padding: 30px 0;}
+#page.about .company table td {font-size: 24px; border-bottom: 1px solid #000000; padding: 30px 0;}
+#page.about .company table td a {width: 100%; max-width: 250px; height: 50px; border-radius: 9999px; background: #5C4636; display: inline-flex; justify-content: center; align-items: center; color: #FFF; font-size: 19px; font-weight: 700; position: relative; margin-left: 1em;}
+#page.about .company table td a:after {content: ""; display: block; width: 8px; height: 12px; background-image: url('../img/common/cmn-button_arrow.svg'); background-size: cover; position: absolute; right: 15px; top: 0; bottom: 0; margin: auto;}
+#page.about .company .map h3 {font-size: 24px; margin-bottom: 14px;}
+#page.about .company .map td {border-bottom: 0;}
+#page.about .company .history {margin-top: 175px; margin-bottom: 112px;}
+#page.about .company .history h2 {text-align: center; font-size: 36px; margin-bottom: 50px;}
+#page.about .company .history .list {flex-direction: column; position: relative;}
+#page.about .company .history .list:before {content: ""; width: 1px; height: 97%; display: block; background: #000; position: absolute; left: 209px; top: 15px;}
+#page.about .company .history .list .item {display: flex; align-items: center;}
+#page.about .company .history .list .title {font-size: 16px; color: #A3A3A3; width: 195px; font-weight: normal; letter-spacing: 3.2px; line-height: 2.5;}
+#page.about .company .history .list .content {font-size: 16px; color: #363636; position: relative; padding-left: 36px; margin-top: 0; letter-spacing: 3.2px; line-height: 2.5;}
+#page.about .company .history .list .content:before {content: ""; display: block; width: 13px; height: 13px; border-radius: 100%; background: #000000; position: absolute; left: 8px; top: 0; bottom: 0; margin: auto;}
+
+#page.about .staff {margin-bottom: 108px;}
+#page.about .staff .list {flex-direction: column; gap: 60px;}
+#page.about .staff .box {display: flex; align-items: flex-start; gap: 36px;}
+#page.about .staff .box img {max-width: 198px;}
+#page.about .staff .box .name {font-size: 24px; font-weight: normal; letter-spacing: 4.8px; line-height: 1.666; padding-bottom: 16px; border-bottom: 1px solid #000000;}
+#page.about .staff .box .name + p {margin-top: 21px; font-size: 20px;}
+
+@media screen and (max-width: 1199px) {
+    #page.about .tab-menu {margin-bottom: 3.8rem; border-radius: 2rem;}
+    #page.about .tab-menu .tab {height: 22rem; font-size: 4rem; text-align: center; letter-spacing: 0.1em; line-height: 1.5;}
+    #page.about .greeting p {font-size: 4rem;}
+    #page.about .greeting .box {flex-direction: column; margin-top: 2.4rem;}
+    #page.about .greeting .box img {order: 1;}
+    #page.about .greeting .box p {order: 2;}    
+    #page.about h3 {font-size: 4.8rem;}
+
+    #page.about .greeting .concept {letter-spacing: 0.1em;}
+    #page.about .greeting .concept .jp {font-size: 6.4rem;}
+    #page.about .greeting .concept .en {font-size: 4rem;}
+
+    #page.about .company p {font-size: 4rem;}
+    #page.about .company p + h3 {margin-top: 6rem;}
+
+    #page.about .company .overview {margin-top: 12.4rem;}
+    #page.about .company .overview h2 {margin-bottom: 10rem; font-size: 7.2rem;}
+
+    #page table th,
+    #page table td {border-right: 0;}
+    #page.about .company table th {width: 100%; border-bottom: 0; padding-top: 4rem; padding-bottom: 2rem; font-size: 4.8rem;}
+    #page.about .company table td {width: 100%; border-top: 0; padding-top: 2rem; padding-bottom: 4rem; font-size: 4rem;}
+    #page.about .company table td a {margin-left: 0; margin-top: 4rem; max-width: 50rem; height: 10rem; font-size: 3.8rem;}
+    #page.about .company table td a:after {width: 1.6rem; height: 2.4rem;}
+    #page.about .company table .map td {padding-top: 4rem;}
+
+    #page.about .company .history {margin-top: 18rem; margin-bottom: 6.4rem;}
+    #page.about .company .history h2 {margin-bottom: 11.4rem; font-size: 7.2rem;}
+    #page.about .company .history .list:before {left: 0.2rem; top: 3rem; height: 99%;}
+    #page.about .company .history .list .item {flex-direction: column; align-items: flex-start; width: 100%}
+    #page.about .company .history .list .content {padding-left: 4rem; font-size: 3.2rem;}
+    #page.about .company .history .list .content:before {display: none;}
+    #page.about .company .history .list .title {padding-left: 4rem; width: 100%; font-size: 3.2rem; position: relative;}
+    #page.about .company .history .list .title:before {content: ""; display: block; width: 2.6rem; height: 2.6rem; border-radius: 100%; background: #000000; position: absolute; left: -1rem; top: 0; bottom: 0; margin: auto;}
+
+    #page.about .staff {margin-bottom: 18rem;}
+    #page.about .staff .list {gap: 16rem;}
+    #page.about .staff .box {flex-direction: column; gap: 4rem; align-items: center;}
+    #page.about .staff .box img {max-width: 39.6rem;}
+    #page.about .staff .box .name {font-size: 4.8rem; padding-bottom: 4rem;}
+    #page.about .staff .box .name + p {margin-top: 4rem; font-size: 4rem;}
+
+}
+
+
+/* =================================================================
+店舗紹介
+=================================================================*/
+#page.shop-info .main-content {margin-top: 112px;}
+#page.shop-info .tab-menu {display: flex; border-radius: 10px 10px 0 0; padding: 0; overflow: hidden; margin-bottom: 33px;}
+#page.shop-info .tab-menu .tab {text-decoration: none; display: flex; justify-content: center; align-items: center; height: 60px; width: calc((100%)/4); position: relative; font-size: 24px; font-weight: bold; background: #CCC3BA; color: #fff; border-right: 1px solid #fff; cursor: pointer;}
+#page.shop-info .tab-menu .tab a {color: #fff; height: 60px; width: 100%; display: flex; justify-content: center; align-items: center;}
+#page.shop-info .tab-menu .tab:last-child {border-right: 0px;}
+#page.shop-info .tab-menu .is-active {background: #5C4636; color: #fff;}
+
+#page.shop-info .shop-list h3 {font-size: 24px; letter-spacing: 0; margin-bottom: 50px;}
+#page.shop-info .shop-list .list {flex-direction: column; gap: 86px; margin-bottom: 126px;}
+#page.shop-info .shop-list .list .item {display: flex; align-items: flex-start; gap: 45px;}
+#page.shop-info .shop-list .list .item img {max-width: 500px;}
+#page.shop-info .shop-list .list .item .text {width: 100%;}
+#page.shop-info .shop-list .list .item h4 {font-size: 16px; padding-bottom: 20px; border-bottom: 1px solid #000000; letter-spacing: 3.2px; width: 100%;}
+#page.shop-info .shop-list .list .item p {margin-top: 20px; font-size: 16px; letter-spacing: 3.2px; line-height: 2;}
+#page.shop-info .shop-list .list .item .button {margin-top: 20px; display: flex; flex-direction: column; gap: 20px;}
+#page.shop-info .shop-list .list .item .button a {width: 300px; height: 60px; display: flex; justify-content: center; align-items: center; position: relative; font-size: 19px; border-radius: 9999px;}
+#page.shop-info .shop-list .list .item .button a:after {content: ""; display: block; width: 8px; height: 13px; background-image: url('../img/common/cmn-button_arrow.svg'); background-size: cover; position: absolute; right: 17px; top: 0; bottom: 0; margin: auto;}
+#page.shop-info .shop-list .list .item .button .google {border: 1px solid #998675; color: #998675;}
+#page.shop-info .shop-list .list .item .button .google:after {background-image: url('../img/top/article-link_arrow.svg');}
+#page.shop-info .shop-list .list .item .button .more {background: #998675; color: #fff;}
+
+#page.shop-info .honten h3 {margin-bottom: 50px;}
+#page.shop-info .honten h3 + img {width: 100%;}
+#page.shop-info .honten .box {margin-top: 80px;}
+#page.shop-info .honten .box h4 {font-size: 24px; padding-bottom: 19px; border-bottom: 1px solid #333; margin-bottom: 19px;}
+#page.shop-info .honten .map {margin-top: 80px;}
+#page.shop-info .honten .map iframe {width: 100%; height: 678px; aspect-ratio: 1080 / 678;}
+
+/* =================================================================
+店舗紹介 共通CTA（電話・来店予約）
+shop / nubow-aile / nubow-adorer / nubow-larbre の4ページで同一
+=================================================================*/
+#page.shop-info .list.links {
+    display: flex;
+    flex-direction: row;
+    gap: 45px;
+    margin-bottom: 0;
+    margin-top: 80px;
+    align-items: stretch;
+}
+#page.shop-info .list.links .box {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 540px;
+}
+#page.shop-info .list.links .box a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+}
+#page.shop-info .list.links img {
+    display: block;
+    width: 100%;
+    max-width: 540px;
+    height: auto;
+    vertical-align: top;
+}
+#page.shop-info .list.links .icon {
+    width: 28px;
+}
+#page.shop-info .list.links a span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background: #5C4636;
+    width: 300px;
+    max-width: calc(100% - 40px);
+    height: 60px;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    margin: auto;
+    font-size: 19px;
+    letter-spacing: 0;
+    box-sizing: border-box;
+}
+#page.shop-info .list.links .tel a span {
+    background: #fff;
+    color: #5C4636;
+    font-weight: bold;
+    font-size: 24px;
+}
+#page.shop-info .list.links .tel a span img {
+    margin-right: 7px;
+}
+
+@media screen and (max-width: 1199px) {
+    #page.shop-info .main-content {margin-top: 12rem;}
+    #page.shop-info .tab-menu {flex-wrap: wrap; border-radius: 2rem; margin-bottom: 4.2rem;}
+    #page.shop-info .tab-menu .tab {width: calc((100%) / 2); font-size: 4rem; height: 12rem; letter-spacing: 0; border-bottom: 1px solid #fff;}
+    #page.shop-info .tab-menu .tab:nth-child(2n) {border-right: 0;}
+    #page.shop-info .tab-menu .tab:nth-child(n + 3) {border-bottom: 0;}
+
+    #page.shop-info .shop-list h3 {font-size: 4.8rem; margin-bottom: 5.6rem;}
+    #page.shop-info .shop-list .list {gap: 12.6rem; margin-bottom: 4rem;}
+    #page.shop-info .shop-list .list .item {flex-direction: column; gap: 4rem; align-items: stretch;}
+    #page.shop-info .shop-list .list .item img {width: 100%; max-width: 100%; display: block; margin-left: auto; margin-right: auto;}
+    #page.shop-info .shop-list .list .item h4 {font-size: 3.6rem; padding-bottom: 2rem;}
+    #page.shop-info .shop-list .list .item p {margin-top: 2rem; font-size: 3.2rem;}
+
+    #page.shop-info .shop-list .list .item .button {align-items: center; gap: 4rem;}
+    #page.shop-info .shop-list .list .item .button a {width: 60rem; height: 12rem; font-size: 3.8rem; letter-spacing: 0;}
+    #page.shop-info .shop-list .list .item .button a:after {width: 1.6rem; height: 2.4rem;}
+
+    #page.shop-info .honten h3 {font-size: 4.8rem; letter-spacing: 0; margin-bottom: 3.8rem;}
+    #page.shop-info .honten .box {margin-top: 2rem;}
+    #page.shop-info .honten .box + .box {margin-top: 12rem;}
+    #page.shop-info .honten .box h4 {font-size: 4rem; padding-bottom: 2rem; margin-bottom: 2rem;}
+    #page.shop-info .honten .box p {font-size: 4rem; letter-spacing: 0.1em;}
+
+    #page.shop-info .honten .map {margin-top: 6rem;}
+    #page.shop-info .honten .map iframe {height: auto; aspect-ratio: 370 / 233;}
+    
+    /* 共通CTA（4ページ共通）＝オンラインショップと同様 SPは1カラム・余白統一 */
+    #page.shop-info .list.links {
+        flex-direction: column;
+        gap: 11.6rem;
+        margin-top: 12rem;
+        align-items: stretch;
+    }
+    #page.shop-info .list.links .box {
+        margin-top: 0;
+        max-width: 100%;
+    }
+    #page.shop-info .list.links .box + .box {margin-top: 0;}
+    #page.shop-info .list.links a span {
+        top: auto;
+        bottom: 2.5rem;
+        width: 52rem;
+        max-width: calc(100% - 4rem);
+        height: 10rem;
+        font-size: 3.4rem;
+    }
+    #page.shop-info .list.links a span:after {width: 1.4rem; height: 2.2rem;}
+}
+
+/* =================================================================
+よくあるご質問
+=================================================================*/
+#page.faq .flex {display: flex; justify-content: space-between;}
+#page.faq .sidebar {width: 100%; max-width: 340px; padding-right: 40px;}
+#page.faq .sidebar ul {display: flex; flex-direction: column; gap: 5px; padding: 0;}
+#page.faq .sidebar ul li {line-height: 2.5; list-style: none;}
+#page.faq .sidebar a {font-size: 16px; letter-spacing: 1.6px; display: flex; align-items: center; gap: 10px;}
+#page.faq .sidebar a:before {content: ""; display: block; width: 8px; height: 12px; background-image: url('../img/common/arrow_black.svg'); background-size: cover;}
+
+#page.faq .faq-main-content {width: 100%; max-width: 740px; padding: 0 0 0px 40px; margin-bottom: 174px; border-left: 1px solid #998675;}
+#page.faq .faq-main-content .box {width: 100%;}
+#page.faq .faq-main-content .box + .box {margin-top: 60px;}
+#page.faq .faq-main-content .box h3 {font-size: 24px; font-weight: bold; color: #333; padding-bottom: 14px; border-bottom: 1px solid #ADADAD; line-height: 1; font-size: 36px; margin-bottom: 24px;}
+#page.faq .faq-content {padding-left: 12px; padding-right: 44px; letter-spacing: 0.1em; border-bottom: 1px solid #ADADAD; padding-bottom: 24px;}
+#page.faq .faq-content + .faq-content {margin-top: 24px;}
+
+#page.faq .faq-question {display: flex; align-items: flex-start; gap: 26px; cursor: pointer;}
+#page.faq .faq-question:before {flex-shrink: 0; content: "Q"; display: flex; justify-content: center; align-items: center; width: 50px; height: 50px; background: #998675; color: #fff; border-radius: 100%; padding: 0 0 0 2px;}
+#page.faq .faq-question .faq-question__title {font-size: 16px; font-weight: bold; padding-top: 10px; display: flex; justify-content: space-between; width: 100%;}
+#page.faq .faq-question .faq-question__title:after {content: ""; display: block; width: 28px; height: 15px; background-image: url('../img/common/faq_arrow.svg'); background-size: cover; flex-shrink: 0;}
+#page.faq .faq-question.is-open .faq-question__title:after {transform: rotate(180deg);}
+#page.faq .faq-answer {display: none;}
+#page.faq .faq-answer__wrap {padding-top: 24px; font-size: 16px; display: flex; gap: 26px;}
+#page.faq .faq-answer__wrap:before {flex-shrink: 0; content: "A"; display: flex; justify-content: center; align-items: center; width: 50px; height: 50px; background: #5C4636; color: #fff; border-radius: 100%; padding: 0 0 0 2px;} 
+
+@media screen and (max-width: 1199px) {
+    #page.faq .flex {flex-direction: column; gap: 6rem}
+    #page.faq .sidebar {max-width: 100%; padding-right: 0;}
+    #page.faq .sidebar ul {gap: 1rem;}
+    #page.faq .sidebar a {font-size: 4rem; gap: 2rem; font-weight: bold;}
+    #page.faq .sidebar a:before {width: 1.6rem; height: 2.4rem;}
+    
+    #page.faq .faq-main-content {border: 0px; padding: 0 0 0px 0; gap: 14.8rem;}
+    #page.faq .faq-main-content .box h3 {font-size: 4.8rem; padding-bottom: 6rem;}
+    #page.faq .faq-question {gap: 3.2rem;}
+    #page.faq .faq-question:before {width: 10rem; height: 10rem; font-size: 4.8rem;}
+    #page.faq .faq-question .faq-question__title {font-size: 3.2rem; padding-top: 2rem;}
+    #page.faq .faq-question .faq-question__title:after {width: 5.6rem; height: 3rem; position: relative; top: 1rem;}
+    #page.faq .faq-content {padding-right: 2.6rem; padding-left: 0; letter-spacing: 0;}
+    #page.faq .faq-answer__wrap {font-size: 3.2rem; gap: 3.2rem; padding-top: 3.8rem;}
+    #page.faq .faq-answer__wrap:before {width: 10rem; height: 10rem; font-size: 4.8rem;}
+}
+
+/* =================================================================
+事例紹介
+=================================================================*/
+#page.case-list .flex {display: flex;}
+#page.case-list .sidebar {width: 100%; max-width: 300px;}
+#page.case-list .sidebar ul {display: flex; flex-direction: column; gap: 5px; padding: 0;}
+#page.case-list .sidebar ul li {line-height: 2.5; list-style: none;}
+#page.case-list .sidebar a {font-size: 16px; letter-spacing: 1.6px; display: flex; align-items: center; gap: 10px;}
+#page.case-list .sidebar a:before {content: ""; display: block; width: 8px; height: 12px; background-image: url('../img/common/arrow_black.svg'); background-size: cover;}
+
+#page.case-list .case-main-content {width: 100%; max-width: 780px; padding: 0 0 0px 60px; margin-bottom: 0; border-left: 1px solid #998675; display: flex; flex-direction: column; gap: 80px;}
+#page.case-list .case-main-content .title {display: flex; flex-direction: column; padding-bottom: 24px; border-bottom: 1px solid #ADADAD; gap: 14px;}
+#page.case-list .case-main-content .title h3 {font-size: 32px; font-weight: bold; color: #333;}
+#page.case-list .case-main-content .title .button {display: flex; justify-content: center; align-items: center; background: #998675; border-radius: 9999px; width: 430px; height: 60px; font-size: 19px; font-weight: bold; color: #fff; letter-spacing: 0; align-self: flex-end; position: relative;}
+#page.case-list .case-main-content .title .button:after {content: ""; display: block; width: 8px; height: 13px; background-image: url('../img/common/cmn-button_arrow.svg'); background-size: cover; position: absolute; right: 17px; top: 0; bottom: 0; margin: auto;}
+#page.case-list .case-main-content .list {justify-content: space-between; margin-top: 30px;}
+#page.case-list .case-main-content .list .item {width: 100%; max-width: 346px;}
+#page.case-list .case-main-content .list .item img {width: 100%; aspect-ratio: 346 / 346;}
+#page.case-list .case-main-content .list .item h4 {font-size: 24px; font-weight: normal;}
+
+
+@media screen and (max-width: 1199px) {
+    #page.case-list .flex {flex-direction: column; gap: 14.8rem}
+    #page.case-list .sidebar {max-width: 100%;}
+    #page.case-list .sidebar ul {gap: 1rem;}
+    #page.case-list .sidebar a {font-size: 4rem; gap: 2rem; font-weight: bold;}
+    #page.case-list .sidebar a:before {width: 1.6rem; height: 2.4rem;}
+    #page.case-list .case-main-content {border: 0px; padding: 0 0 0px 0; gap: 14.8rem;}
+    #page.case-list .case-main-content .title {padding-bottom: 6rem; gap: 6rem; margin-bottom: 6rem; line-height: 1;}
+    #page.case-list .case-main-content .title h3 {font-size: 4.8rem;}
+    #page.case-list .case-main-content .title .button {width: 100%; height: 12rem; font-size: 3.4rem;}
+    #page.case-list .case-main-content .list {margin-top: 0; gap: 6rem}
+    #page.case-list .case-main-content .list .item {max-width: 100%;}
+    #page.case-list .case-main-content .list .item h4 {font-size: 4.8rem; margin-top: 2.2rem;}
+}
+
+/* =================================================================
+事例紹介-一覧
+=================================================================*/
+#page.case-list.case-list-detail .main-title {display: flex; justify-content: space-between; align-items: center;}
+#page.case-list .tag-list {margin-top: 28px; display: flex; align-items: center; gap: 11px;}
+#page.case-list .tag-list a {font-size: 21px; background: #5C4636; display: flex; justify-content: center; align-items: center; height: 35px; color: #fff; padding: 0 11px; border-radius: 6px;}
+#page.case-list .serch-detail {display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 19px; color: #fff; width: 300px; height: 60px; background: #5C4636; border-radius: 9999px; gap: 8px;}
+#page.case-list .article-main .list {flex-wrap: wrap; gap: 100px 48px;}
+#page.case-list .article-main .item {width: calc((100% - 48px*2)/3);}
+#page.case-list .article-main .thumb img {width: 100%;}
+#page.case-list .article-main .text {margin-top: 25px;}
+#page.case-list .article-main .text .title {font-size: 24px; line-height: 1.45;}
+#page.case-list .article-main .text a {display: flex; justify-content: center; align-items: center; background: #998675; border-radius: 9999px; width: 100%; height: 60px; font-size: 19px; font-weight: bold; color: #fff; letter-spacing: 0; position: relative; margin-top: 25px;}
+#page.case-list .article-main .text a:after {content: ""; display: block; width: 8px; height: 13px; background-image: url('../img/common/cmn-button_arrow.svg'); background-size: cover; position: absolute; right: 17px; top: 0; bottom: 0; margin: auto;}
+
+.remodal-overlay {background: rgba(43,46,56,0) !important;}
+.remodal {background: rgba(153, 134, 117, 0.90) !important; width: 80% !important; max-width: 1232px !important; min-height: 676px !important;}
+.remodal-close {width: 70px !important; height: 70px !important; right: 37px !important; top: 14px !important; left: auto !important;}
+.remodal-close:before {display: none !important;}
+.modal-inner {padding: 64px 72px 73px;}
+.modal-inner h2 {text-align: left; color: #fff; font-size: 32px; font-weight: bold; padding-bottom: 10px; border-bottom: 1px solid #fff; line-height: 1; display: flex; align-items: center; gap: 10px;}
+.modal-inner h2 .required {display: inline-flex; justify-content: center; align-items: center; background: #fff; font-weight: normal; font-size: 16px; color: #000; height: 37px; border-radius: 9999px; padding: 3px 18px 0;}
+.service-radio-list {margin-top: 31px; display: flex; flex-wrap: wrap; gap: 11px 0;}
+.service-radio-list label {font-size: 15px; font-weight: bold; color: #fff; width: calc((100%)/5); display: flex; align-items: center; padding-left: 35px; letter-spacing: 0; text-align: left;}
+
+.search-category {margin-top: 73px;}
+.search-category .category-link-list {display: flex; flex-wrap: wrap; gap: 27px 10px; margin-top: 35px;}
+.search-category .category-link-list li {width: calc((100% - 10px*4)/5);}
+.search-category .category-link-list a {background: #fff; color: #000; min-height: 37px; display: flex; justify-content: center; align-items: center; border-radius: 9999px; font-size: 13px; letter-spacing: 0; padding: 5px 20px;}
+
+.submit-button {display: flex; justify-content: center; align-items: center; font-weight: bold; font-size: 19px; color: #fff; width: 300px; height: 60px; background: #5C4636; border-radius: 9999px; gap: 8px; border: 0px; margin: 55px auto 0;}
+
+label {position: relative; cursor: pointer; padding-left: 30px;}
+label::before, label::after {content: ""; display: block; border-radius: 50%; position: absolute; transform: translateY(-50%); top: 50%;}
+label::before {background-color: #fff; border: 1px solid #ddd; border-radius: 50%; width: 24px; height: 24px; left: 5px;}
+label::after {background-color: #333; border-radius: 50%; opacity: 0; width: 10px; height: 10px; left: 12px}
+input:checked + label::after {opacity: 1;}
+.visually-hidden {position: absolute; white-space: nowrap; border: 0; clip: rect(0 0 0 0); clip-path: inset(50%); overflow: hidden; height: 1px; width: 1px; margin: -1px; padding: 0;}
+
+@media screen and (max-width: 1199px) {
+    #page.case-list.case-list-detail .main-title {flex-direction: column; align-items: flex-start; gap: 6rem;}
+    #page.case-list.case-list-detail .main-title .serch-detail {align-self: center; font-size: 3.6rem; width: 60rem; height: 12rem; gap: 1.6rem;}
+    #page.case-list.case-list-detail .main-content {margin-top: 14.8rem;}
+    #page.case-list .article-main .list {gap: 10rem 0;}
+    #page.case-list .article-main .item {width: 100%;}
+    #page.case-list .article-main .text {margin-top: 3rem;}
+    #page.case-list .article-main .text .title {font-size: 4.8rem;}
+    #page.case-list .article-main .text a {margin: 3rem auto 0; height: 12rem; max-width: 60rem; font-size: 3.8rem;}
+
+    .remodal-wrapper {padding: 0 !important; top: 24rem !important; height: 100vh !important;}
+    .remodal {padding: 0 !important; width: 100% !important;}
+    .remodal-close {width: 10rem !important; height: 10rem !important; right: 2rem !important; top: 2rem !important; left: auto !important; }
+    .modal-inner {padding: 14.4rem 4rem 42rem;}
+    .modal-inner h2 {font-size: 4rem; gap: 1rem; padding-bottom: 2rem;}
+    .modal-inner h2 .required {font-size: 3.2rem; height: 7.4rem;}
+    .service-radio-list {flex-direction: column; gap: 3rem 0; margin-top: 2.4rem;}
+    .service-radio-list label {width: 100%; font-size: 3.2rem; padding-left: 7rem;}
+
+    .search-category {margin-top: 4.4rem;}
+    .search-category .category-link-list {flex-wrap: wrap; gap: 2.6rem 1.8rem;}
+    .search-category .category-link-list li {width: calc((100% - 1.8rem) / 2);}
+    .search-category .category-link-list a {font-size: 2.8rem;}
+
+    .submit-button {width: 60rem; height: 12rem; margin: 10rem auto 0; font-size: 3.8rem;}
+
+}
+
+/* =================================================================
+事例紹介-詳細
+=================================================================*/
+#page.case-detail .main-content {margin-top: 0;}
+#page.case-detail .other-links {margin-bottom: 134px;}
+
+@media screen and (max-width: 1199px) {
+    #page.case-detail .other-links {padding: 0 2rem; margin-bottom: 20.8rem;}
+}
+
+/* =================================================================
+サービス紹介
+=================================================================*/
+#page.service-list .flex {display: flex;}
+#page.service-list .sidebar {width: 100%; max-width: 300px;}
+#page.service-list .sidebar ul {display: flex; flex-direction: column; gap: 5px; padding: 0;}
+#page.service-list .sidebar ul li {line-height: 2.5; list-style: none;}
+#page.service-list .sidebar a {font-size: 16px; letter-spacing: 1.6px; display: flex; align-items: center; gap: 10px;}
+#page.service-list .sidebar a:before {content: ""; display: block; width: 8px; height: 12px; background-image: url('../img/common/arrow_black.svg'); background-size: cover;}
+
+#page.service-list .service-main-content {max-width: 780px; width: 100%; padding: 0 0 0px 60px; margin-bottom: 0; border-left: 1px solid #998675; display: flex; flex-direction: column; gap: 80px;}
+#page.service-list h3 {font-size: 36px; font-weight: bold; color: #333333;}
+#page.service-list h3 + p {font-size: 16px; margin-top: 0px;}
+#page.service-list h4.youto {background: #CCC3BA; border-radius: 9999px; font-weight: bold; font-size: 16px; color: #fff; display: inline-flex; justify-content: center; align-items: center; height: 40px; padding: 0 15px; letter-spacing: 0; margin-top: 10px;}
+#page.service-list .purpose {font-size: 15px; letter-spacing: 3px; margin-top: 10px;}
+#page.service-list .main-content .box .flex {margin-top: 10px; display: flex; gap: 50px; align-items: flex-start;}
+#page.service-list .main-content .box .flex .text {width: 100%;}
+#page.service-list .main-content .box .flex img {width: 100%; max-width: 240px; flex-shrink: 0;}
+#page.service-list .main-content .box p {font-size: 16px; line-height: 2.5;}
+#page.service-list .main-content .box a {margin-top: 30px; height: 60px; display: flex; justify-content: center; align-items: center; color: #fff; font-weight: bold; background: #998675; border-radius: 9999px; font-size: 19px; letter-spacing: 0; position: relative;}
+#page.service-list .main-content .box a:after {content: ""; display: block; width: 8px; height: 13px; background-image: url('../img/common/cmn-button_arrow.svg'); background-size: cover; position: absolute; right: 17px; top: 0; bottom: 0; margin: auto;}
+
+#page.service-list .faq-link {background: #998675; height: 180px; display: flex; justify-content: center; align-items: center;}
+#page.service-list .faq-link .cmn-button {background: #fff; color: #5C4636;}
+#page.service-list .faq-link .cmn-button:after {background-image: url('../img/common/cmn-button_arrow_brown.svg')}
+
+#page.service-list .faq-link.sp {display: none;}
+
+@media screen and (max-width: 1199px) {
+    #page.service-list .flex {flex-direction: column; gap: 14.8rem}
+    #page.service-list .sidebar {max-width: 100%;}
+    #page.service-list .sidebar ul {gap: 1rem;}
+    #page.service-list .sidebar a {font-size: 4rem; gap: 2rem; font-weight: bold;}
+    #page.service-list .sidebar a:before {width: 1.6rem; height: 2.4rem;}
+
+    #page.service-list .service-main-content {border: 0px; padding: 0 0 0px 0; gap: 14.8rem;}
+    #page.service-list .box h3 {font-size: 4.8rem;}
+    #page.service-list .box p {font-size: 3.2rem; letter-spacing: 0.3rem;}
+    #page.service-list .box h4.youto {font-size: 3.2rem; height: 8rem;}
+    #page.service-list .box .purpose {font-size: 3rem;}
+    #page.service-list .box .flex {gap: 3rem; margin-top: 3rem;}
+    #page.service-list .box .flex img {max-width: 100%;}
+    #page.service-list .box a {height: 12rem; margin-top: 3rem; width: 100%; font-size: 3.8rem; letter-spacing: 0;}
+
+    #page.service-list .faq-link.pc {display: none;}
+    #page.service-list .faq-link.sp {display: flex;}
+    #page.service-list .faq-link {height: 19.4rem;}
+
+
+}
+
+/* =================================================================
+サービス紹介-詳細
+=================================================================*/
+#page.service-detail .sidebar {padding-right: 42px;}
+#page.service-detail .sidebar h3 {font-size: 20px; padding-right: 25px;}
+#page.service-detail .sidebar .faq-content {margin-top: 40px;}
+#page.service-detail .sidebar .faq-content .faq-question {background: #D6CFC8; font-size: 14px; display: flex; align-items: flex-start; padding: 0 14px; letter-spacing: 0; cursor: pointer;}
+#page.service-detail .sidebar .faq-content .faq-question:before {content: "Q"; font-size: 24px; font-weight: bold; margin-right: 13px;}
+#page.service-detail .sidebar .faq-content .faq-question .faq-question__title {display: flex; align-items: center; justify-content: space-between; width: 100%;}
+#page.service-detail .sidebar .faq-content .faq-question .faq-question__title:after {content: "−"; font-size: 24px; font-weight: bold;} 
+#page.service-detail .sidebar .faq-content .faq-question.is-open .faq-question__title:after {content: "＋";}
+#page.service-detail .sidebar .faq-content .faq-answer {background: #EBE7E3; display: none; font-size: 14px;}
+#page.service-detail .sidebar .faq-content .faq-answer__wrap {padding: 10px 46px 10px 14px; display: flex;}
+#page.service-detail .sidebar .faq-content .faq-answer__wrap:before {content: "A"; font-size: 24px; font-weight: bold; margin-right: 13px;}
+#page.service-detail .sidebar .bottom {margin-top: 55px;}
+
+#page.service-detail .service-main-content {display: block;}
+#page.service-detail .service-main-content .catch {margin-top: 0}
+#page.service-detail .service-main-content .text1 {font-size: 16px; line-height: 2.5;}
+
+#page.service-detail .service-main-content .list {flex-wrap: wrap; gap: 57px 26px; margin-top: 32px;}
+#page.service-detail .service-main-content .list .item {width: calc((100% - 26px)/2);}
+#page.service-detail .service-main-content .list .item img {width: 100%;}
+#page.service-detail .service-main-content .list .item h5 {font-size: 20px; padding-bottom: 9px; margin-top: 9px; margin-bottom: 9px; border-bottom: 1px solid #333; letter-spacing: 0; font-weight: normal;}
+#page.service-detail .service-main-content .list .item h5 .name {display: block; font-weight: bold;}
+#page.service-detail .service-main-content .list .item h5 .price {display: block; margin-top: 0;}
+#page.service-detail .service-main-content .list .item h5 .price span {font-size: 10px;}
+#page.service-detail .service-main-content .list .item .size {font-size: 18px;}
+#page.service-detail .service-main-content .list .item .size p {letter-spacing: 0.1em; line-height: 1.944444444444444;}
+#page.service-detail .service-main-content .list .item .size .flex {gap: 1em;}
+#page.service-detail .service-main-content .list .item p + p {margin-top: 0}
+#page.service-detail .service-main-content .list .item .hosoku {font-size: 11px; letter-spacing: 0.1em;}
+
+#page.service-detail .price {overflow: hidden; margin-top: 74px;}
+#page.service-detail .price h3 {font-size: 32px; letter-spacing: 0; display: flex; align-items: center;}
+#page.service-detail .price h3 img {width: 89px; margin-right: 17px;}
+#page.service-detail .price h3 + p {margin-top: 25px; font-size: 20px}
+#page.service-detail .price .gosankou {text-align: center; font-size: 20px; margin-top: 40px;}
+
+/* ボタンスタイル */
+#page.service-detail .price-selector {display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 20px; margin-top: 25px;}
+#page.service-detail .price-btn {background: #EBE7E3; color: #fff; font-size: 20px; border: none; padding: 0px 20px; height: 40px; font-weight: bold; cursor: pointer; border-radius: 9999px; transition: 0.3s; width: calc((100% - 20px*3)/4);}
+#page.service-detail .price-btn.active {background: #998675; color: #fff;}
+
+/* スライダー */
+#page.service-detail .swiper {width: 100%; max-width: 300px; padding-bottom: 30px; margin: 11px auto 0; overflow: visible;}
+#page.service-detail .swiper-wrapper {align-items: stretch}
+#page.service-detail .swiper-slide {transition: transform 0.3s ease, opacity 0.3s ease; opacity: 0.5; text-align: center; display: flex; flex-direction: column; justify-content: flex-end; transform-origin: bottom center; height: 325px;}
+#page.service-detail .swiper-slide.is-active {opacity: 1; z-index: 2; transform-origin: bottom center;}
+#page.service-detail .swiper-slide img {width: 39%; height: auto; margin: 0 auto; transition: .3s; transform-origin: bottom center;}
+#page.service-detail .swiper-slide.is-active img {width: 100%; height: auto; transition: .3s; transform-origin: bottom center;}
+#page.service-detail .swiper-nav {text-align: center; margin-top: -20px;}
+#page.service-detail .swiper-button-next, 
+#page.service-detail .swiper-button-prev {color: #aaa;}
+
+#page.service-detail .swiper-button-prev {left: -61px; top: 150px;}
+#page.service-detail .swiper-button-next {right: -61px; top: 150px;}
+
+#page.service-detail .tokuten {margin-top: 90px;}
+#page.service-detail .tokuten h3 {font-size: 32px; letter-spacing: 0;}
+#page.service-detail .tokuten p {font-size: 24px; margin-top: 11px;}
+#page.service-detail .service-main-content .list .item.wide {width: 100%;}
+
+#page.service-detail .other {margin-top: 118px;} 
+#page.service-detail .other h3 {font-size: 32px;}
+#page.service-detail .other .text {margin-top: 28px;}
+#page.service-detail .other h4 {font-size: 24px;}
+#page.service-detail .other p {font-size: 20px;}
+#page.service-detail .other img {margin-top: 20px;}
+
+/* サービス紹介下層 CTA（店舗紹介・Aboutと同様の余白・レイアウト） */
+#page.service-detail .other-links2 .links {
+    display: flex;
+    flex-direction: row;
+    gap: 45px;
+    margin-top: 80px;
+    margin-bottom: 134px;
+    justify-content: center;
+    align-items: stretch;
+}
+#page.service-detail .other-links2 .links .box {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 540px;
+}
+#page.service-detail .other-links2 .links .box a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+}
+/* CTA画像のみ（span内の.iconには当てない） */
+#page.service-detail .other-links2 .links .box a > img {
+    display: block;
+    width: 100%;
+    max-width: 540px;
+    height: auto;
+    vertical-align: top;
+}
+#page.service-detail .other-links2 .links .icon {width: 28px;}
+#page.service-detail .other-links2 .links a span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background: #5C4636;
+    width: 300px;
+    max-width: calc(100% - 40px);
+    height: 60px;
+    color: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    margin: auto;
+    font-size: 19px;
+    letter-spacing: 0;
+    box-sizing: border-box;
+}
+#page.service-detail .other-links2 .links .tel a span {
+    background: #fff;
+    color: #5C4636;
+    font-weight: bold;
+    font-size: 24px;
+}
+#page.service-detail .other-links2 .links .tel a span img {margin-right: 7px;}
+
+@media screen and (max-width: 1199px) {
+    /* SP: サービス詳細ページを画面幅いっぱいに表示 */
+    #page.service-detail {width: 100%; max-width: 100%; box-sizing: border-box;}
+    #page.service-detail .page-header .inner {max-width: 100%; padding-left: 1.5rem; padding-right: 1.5rem;}
+    #page.service-detail .main-content {max-width: 100%; padding-left: 1.5rem; padding-right: 1.5rem;}
+
+    #page.service-detail .sidebar {padding-right: 0;}
+    #page.service-detail .sidebar .wrap {display: none;}
+    #page.service-detail .sidebar h3.accordion-toggle {border: 1px solid #333333; padding: 2.2rem 14rem 2.2rem 1.9rem; display: flex; align-items: center; position: relative; font-size: 4rem;}
+    #page.service-detail .sidebar h3.accordion-toggle:before {content: ""; display: block; width: 3.6rem; height: 0.4rem; background: #333; position: absolute; right: 4rem; top: 0; bottom: 0; margin: auto;} 
+    #page.service-detail .sidebar h3.accordion-toggle:after {content: ""; display: block; width: 0.4rem; height: 3.6rem; background: #333; position: absolute; right: 5.7rem; top: 0; bottom: 0; margin: auto;}
+    #page.service-detail .sidebar h3.accordion-toggle.is-open:after {display: none;}
+    #page.service-detail .sidebar .faq-content {margin-top: 0;}
+    #page.service-detail .sidebar .faq-content + .faq-content {margin-top: 4.6rem;}
+    #page.service-detail .sidebar .bottom {margin-top: 4rem;}
+    #page.service-detail .sidebar a {display: inline-flex;}
+
+    #page.service-detail .sidebar .faq-content .faq-question {font-size: 2.8rem; padding: 0 2.8rem;}
+    #page.service-detail .sidebar .faq-content .faq-question:before {font-size: 4.8rem; margin-right: 2.6rem;}
+    #page.service-detail .sidebar .faq-content .faq-question .faq-question__title:after {font-size: 4.8rem;}
+    #page.service-detail .sidebar .faq-content .faq-answer__wrap {padding: 2rem 9.2rem 2rem 2.8rem; font-size: 2.8rem;}
+    #page.service-detail .sidebar .faq-content .faq-answer__wrap:before {font-size: 4.8rem; margin-right: 2.6rem;}
+
+    #page.service-detail .flex {gap: 6rem;}
+    #page.service-detail .service-main-content .catch {font-size: 3.2rem;}
+    #page.service-detail h4.youto {font-size: 3.2rem; height: 8rem; margin-top: 3rem;}
+    #page.service-detail .purpose {font-size: 3rem;}
+    #page.service-detail .service-main-content .text1 {font-size: 3.2rem; margin-top: 2rem;}
+    #page.service-detail .service-main-content .list {margin-top: 8rem; gap: 6rem 0;}
+    #page.service-detail .service-main-content .list .item {width: 100%;}
+    #page.service-detail .service-main-content .list .item h5 {font-size: 4rem; padding-bottom: 1.8rem; margin-top: 1.8rem; margin-bottom: 1.8rem;}
+    #page.service-detail .service-main-content .list .item .size {font-size: 3.6rem;}
+    #page.service-detail .price h3 {font-size: 4.8rem;}
+    #page.service-detail .price h3 + p {font-size: 4rem;}
+    #page.service-detail .price-selector {gap: 4.1rem 4rem;}
+    #page.service-detail .price-btn {width: calc((100% - 4rem)/2); height: 8rem; font-size: 4rem;}
+
+    #page.service-detail .tokuten {margin-top: 20rem;}
+    #page.service-detail .tokuten h3 {font-size: 4.8rem;}
+    #page.service-detail .tokuten p {font-size: 4.8rem;}
+
+    #page.service-detail .other {margin-top: 12.4rem;}
+    #page.service-detail .other h3 {font-size: 4.8rem;}
+    #page.service-detail .other h4 {font-size: 4rem;}
+    #page.service-detail .other p {font-size: 4rem;}
+    #page.service-detail .swiper {padding-bottom: 0;}
+
+    /* サービス紹介 CTA（SP）＝画面幅いっぱい・1カラム・左右余白なし */
+    #page.service-detail .other-links2 {
+        width: 100vw;
+        max-width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        box-sizing: border-box;
+        padding: 0;
+    }
+    #page.service-detail .other-links2 .links.list {
+        flex-direction: column;
+        gap: 11.6rem;
+        margin-top: 12rem;
+        margin-bottom: 20.8rem;
+        align-items: stretch;
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    #page.service-detail .other-links2 .links .box {
+        flex: 0 0 auto;
+        align-self: stretch;
+        width: 100%;
+        margin-top: 0;
+        max-width: 100%;
+        min-height: 0;
+    }
+    #page.service-detail .other-links2 .links .box + .box {margin-top: 0;}
+    #page.service-detail .other-links2 .links .box a {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+    /* SP: CTA画像＝コンテンツ幅に合わせ、縦は画像全体表示（見切れなし） */
+    #page.service-detail .other-links2 .links .box a > img {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        min-height: 0;
+        object-fit: contain;
+        object-position: center;
+        vertical-align: top;
+    }
+    #page.service-detail .other-links2 .links a span {
+        top: auto;
+        bottom: 2.5rem;
+        width: 52rem;
+        max-width: calc(100% - 4rem);
+        height: 10rem;
+        font-size: 3.4rem;
+        z-index: 1;
+    }
+    #page.service-detail .other-links2 .links a span:after {width: 1.4rem; height: 2.2rem;}
+}
+
+
+/* =================================================================
+Service Detail - Celebration Bouquet (御祝い花束)
+=================================================================*/
+
+/* 商品リスト（S/M/L/LLサイズ）- PC時2カラム */
+.celebration-bouquet-items {
+    gap: 40px 20px !important;
+}
+
+.celebration-bouquet-items .item {
+    width: calc((100% - 20px) / 2) !important;
+}
+
+.celebration-bouquet-items .item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1.2;
+}
+
+.celebration-bouquet-items .item .size p {
+    font-size: 14px !important;
+    line-height: 1.6;
+}
+
+.celebration-bouquet-items .item .tax {
+    font-size: 16px !important;
+}
+
+/* Rose Bouquet セクション */
+.rose-bouquet-section {
+    margin-top: 80px;
+}
+
+.rose-bouquet-preview {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+.rose-bouquet-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+}
+
+.rose-bouquet-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+}
+
+.rose-bouquet-subtitle {
+    font-size: 48px !important;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #fff !important;
+}
+
+.rose-bouquet-description {
+    font-size: 20px;
+    color: #fff;
+}
+
+.rose-bouquet-price-list {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.rose-price-column {
+    flex: 1;
+}
+
+.rose-price-column p {
+    font-size: 20px !important;
+    line-height: 2;
+    margin-bottom: 10px;
+}
+
+.rose-price-column p strong {
+    font-weight: bold;
+}
+
+.rose-price-column .tax {
+    font-size: 16px !important;
+}
+
+/* バラの花束リスト - PC時2カラム */
+.rose-bouquet-items {
+    gap: 40px 20px !important;
+}
+
+.rose-bouquet-items .item {
+    width: calc((100% - 20px) / 2) !important;
+}
+
+.rose-bouquet-items .item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1.2;
+}
+
+/* 御祝い花束の特典 - PC時2カラム */
+.celebration-bouquet-tokuten {
+    margin-top: 80px;
+}
+
+.celebration-bouquet-tokuten .tokuten-header {
+    background: #f5d0d7;
+    padding: 30px 40px;
+    margin: 0 0 40px 0;
+    border-radius: 10px;
+}
+
+.celebration-bouquet-tokuten .tokuten-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: center;
+}
+
+.celebration-bouquet-tokuten .tokuten-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px !important;
+}
+
+.celebration-bouquet-tokuten .tokuten-list .item {
+    width: calc((100% - 20px) / 2) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.celebration-bouquet-tokuten .tokuten-list .item img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.celebration-bouquet-tokuten .tokuten-list .item h5 {
+    font-size: 18px !important;
+    line-height: 1.6;
+}
+
+@media screen and (max-width: 1199px) {
+    /* 商品リスト（S/M/L/LL）- SP時は1カラム、大きめ表示 */
+    .celebration-bouquet-items .item {
+        width: 100% !important;
+    }
+    
+    .celebration-bouquet-items .item h5 {
+        font-size: 5rem !important;
+        padding-bottom: 2rem !important;
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .celebration-bouquet-items .item h5 .name {
+        font-size: 5rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .celebration-bouquet-items .item h5 .price {
+        font-size: 4.5rem !important;
+    }
+    
+    .celebration-bouquet-items .item h5 .tax {
+        font-size: 3.2rem !important;
+    }
+    
+    .celebration-bouquet-items .item .size p {
+        font-size: 3.8rem !important;
+    }
+    
+    /* Rose Bouquetセクション */
+    .rose-bouquet-preview {
+        height: 50rem;
+    }
+    
+    .rose-bouquet-subtitle {
+        font-size: 8rem !important;
+    }
+    
+    .rose-bouquet-description {
+        font-size: 4rem;
+    }
+    
+    .rose-bouquet-price-list {
+        flex-direction: row;
+        gap: 4rem;
+    }
+    
+    .rose-price-column p {
+        font-size: 3.8rem !important;
+    }
+    
+    /* バラ花束リスト - SP時は1カラム、大きめ表示 */
+    .rose-bouquet-items .item {
+        width: 100% !important;
+    }
+    
+    .rose-bouquet-items .item h5 {
+        font-size: 5rem !important;
+        padding-bottom: 2rem !important;
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .rose-bouquet-items .item h5 .name {
+        font-size: 5rem !important;
+    }
+    
+    .rose-bouquet-items .item h5 .price {
+        font-size: 4.5rem !important;
+    }
+    
+    .rose-bouquet-items .item h5 .tax {
+        font-size: 3.2rem !important;
+    }
+    
+    /* 特典 - SP時は1カラム、大きめ表示 */
+    .celebration-bouquet-tokuten .tokuten-header {
+        padding: 4rem;
+        margin-bottom: 6rem;
+    }
+    
+    .celebration-bouquet-tokuten .tokuten-header h3 {
+        font-size: 6rem !important;
+    }
+    
+    .celebration-bouquet-tokuten .tokuten-list {
+        gap: 6rem 4rem !important;
+    }
+    
+    .celebration-bouquet-tokuten .tokuten-list .item {
+        width: 100% !important;
+    }
+    
+    .celebration-bouquet-tokuten .tokuten-list .item img {
+        max-width: 50rem;
+    }
+    
+    .celebration-bouquet-tokuten .tokuten-list .item h5 {
+        font-size: 4.5rem !important;
+    }
+}
+
+
+/* =================================================================
+Service Detail - Celebration Arrangement (御祝いアレンジメント)
+=================================================================*/
+
+/* 商品リスト（S/M/L/LLサイズ）- PC時2カラム */
+.celebration-arrangement-items {
+    gap: 40px 20px !important;
+}
+
+.celebration-arrangement-items .item {
+    width: calc((100% - 20px) / 2) !important;
+}
+
+.celebration-arrangement-items .item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1.2;
+}
+
+.celebration-arrangement-items .item .size p {
+    font-size: 14px !important;
+    line-height: 1.6;
+}
+
+.celebration-arrangement-items .item .tax {
+    font-size: 16px !important;
+}
+
+/* 御祝いアレンジメントの特典 */
+.celebration-arrangement-tokuten {
+    margin-top: 80px;
+}
+
+.celebration-arrangement-tokuten .tokuten-header {
+    background: #ffdf8f;
+    padding: 30px 40px;
+    margin: 0 0 40px 0;
+    border-radius: 10px;
+}
+
+.celebration-arrangement-tokuten .tokuten-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: center;
+}
+
+.celebration-arrangement-tokuten .tokuten-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px !important;
+}
+
+.celebration-arrangement-tokuten .tokuten-list .item {
+    width: calc((100% - 20px) / 2) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.celebration-arrangement-tokuten .tokuten-list .item img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.celebration-arrangement-tokuten .tokuten-list .item h5 {
+    font-size: 18px !important;
+    line-height: 1.6;
+}
+
+/* Colors セクション */
+.celebration-arrangement-colors {
+    margin-top: 80px;
+}
+
+.celebration-arrangement-colors .colors-header {
+    background: #ffdf8f;
+    padding: 30px 40px;
+    margin: 0 0 20px 0;
+    border-radius: 10px;
+}
+
+.celebration-arrangement-colors .colors-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: center;
+}
+
+.celebration-arrangement-colors .colors-lead {
+    font-size: 18px !important;
+    line-height: 1.8;
+    margin-bottom: 40px !important;
+    text-align: left;
+    background: none !important;
+}
+
+.celebration-arrangement-colors .colors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.celebration-arrangement-colors .colors-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.celebration-arrangement-colors .colors-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.celebration-arrangement-colors .colors-text h4 {
+    font-size: 24px !important;
+    margin-bottom: 10px !important;
+}
+
+.celebration-arrangement-colors .colors-text p {
+    font-size: 16px !important;
+    line-height: 1.6;
+}
+
+@media screen and (max-width: 1199px) {
+    /* 商品リスト - SP時は1カラム、大きめ表示 */
+    .celebration-arrangement-items .item {
+        width: 100% !important;
+    }
+    
+    .celebration-arrangement-items .item h5 {
+        font-size: 5rem !important;
+        padding-bottom: 2rem !important;
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .celebration-arrangement-items .item h5 .name {
+        font-size: 5rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .celebration-arrangement-items .item h5 .price {
+        font-size: 4.5rem !important;
+    }
+    
+    .celebration-arrangement-items .item h5 .tax {
+        font-size: 3.2rem !important;
+    }
+    
+    .celebration-arrangement-items .item .size p {
+        font-size: 3.8rem !important;
+    }
+    
+    /* 特典 - SP時は1カラム、大きめ表示 */
+    .celebration-arrangement-tokuten .tokuten-header {
+        padding: 4rem;
+        margin-bottom: 6rem;
+    }
+    
+    .celebration-arrangement-tokuten .tokuten-header h3 {
+        font-size: 6rem !important;
+    }
+    
+    .celebration-arrangement-tokuten .tokuten-list {
+        gap: 6rem 4rem !important;
+    }
+    
+    .celebration-arrangement-tokuten .tokuten-list .item {
+        width: 100% !important;
+    }
+    
+    .celebration-arrangement-tokuten .tokuten-list .item img {
+        max-width: 50rem;
+    }
+    
+    .celebration-arrangement-tokuten .tokuten-list .item h5 {
+        font-size: 4.5rem !important;
+    }
+    
+    /* カラーバリエーション */
+    .celebration-arrangement-colors .colors-header {
+        padding: 4rem;
+        margin-bottom: 3rem;
+    }
+    
+    .celebration-arrangement-colors .colors-header h3 {
+        font-size: 6rem !important;
+    }
+    
+    .celebration-arrangement-colors .colors-lead {
+        font-size: 3.2rem !important;
+        margin-bottom: 6rem !important;
+        text-align: left;
+    }
+    
+    .celebration-arrangement-colors .colors-list {
+        gap: 6rem;
+    }
+    
+    .celebration-arrangement-colors .colors-item {
+        flex-direction: row;
+        gap: 4rem;
+    }
+    
+    .celebration-arrangement-colors .colors-item img {
+        width: 25rem;
+        height: 25rem;
+    }
+    
+    .celebration-arrangement-colors .colors-text h4 {
+        font-size: 4.5rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .celebration-arrangement-colors .colors-text p {
+        font-size: 3.2rem !important;
+    }
+}
+
+
+/* =================================================================
+Service Detail - Celebration Orchid (御祝い胡蝶蘭)
+=================================================================*/
+
+/* 商品リスト（胡蝶蘭）- PC時2カラム */
+.celebration-orchid-items {
+    gap: 40px 20px !important;
+}
+
+.celebration-orchid-items .item {
+    width: calc((100% - 20px) / 2) !important;
+}
+
+.celebration-orchid-items .item.orchid-multi {
+    width: 100% !important;
+}
+
+.celebration-orchid-items .item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1.2;
+}
+
+.celebration-orchid-items .item .size p {
+    font-size: 14px !important;
+    line-height: 1.6;
+    white-space: normal;
+}
+
+.celebration-orchid-items .item .tax {
+    font-size: 16px !important;
+}
+
+/* 大輪白/3本立ち - PC時3カラム表示、3つ並べて収まるサイズ（220px） */
+.orchid-slider-wrap {
+    position: relative;
+    margin: 0;
+}
+
+.orchid-slider {
+    overflow: visible;
+}
+
+.orchid-slider-inner {
+    display: flex;
+    gap: 20px;
+}
+
+.orchid-slider-inner img {
+    width: 220px;
+    max-width: 220px;
+    min-width: 220px;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1.2;
+    flex: 0 0 220px;
+}
+
+.orchid-slider-arrow {
+    display: none;
+}
+
+/* 大輪白/5本立ち - PC時2カラム表示、通常の商品と同じサイズ（350px） */
+.orchid-images-row {
+    display: flex;
+    gap: 20px;
+    margin: 0;
+}
+
+.orchid-images-row img {
+    width: 350px;
+    max-width: 350px;
+    min-width: 350px;
+    height: auto;
+    object-fit: cover;
+    aspect-ratio: 1 / 1.2;
+    flex: 0 0 350px;
+}
+
+.orchid-size-small p {
+    font-size: 14px !important;
+}
+
+.orchid-size-small .line1 {
+    display: inline;
+}
+
+.orchid-size-small .line2 {
+    display: inline;
+}
+
+.orchid-size-line {
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+/* Service セクション */
+.orchid-service {
+    background: #f0ebe6;
+    border-radius: 10px;
+    padding: 40px;
+    margin: 80px 0;
+}
+
+.orchid-service-header h3 {
+    font-size: 36px !important;
+    margin-bottom: 20px !important;
+    text-align: center;
+}
+
+.orchid-service-sub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.orchid-service-sub .label {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.orchid-service-sub img {
+    max-width: 80px;
+    height: auto;
+}
+
+.orchid-service-body hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20px 0;
+}
+
+.orchid-service-body p {
+    font-size: 16px !important;
+    line-height: 1.8;
+}
+
+/* 胡蝶蘭の特典 */
+.celebration-orchid-tokuten {
+    margin-top: 80px;
+}
+
+.celebration-orchid-tokuten .tokuten-header {
+    background: #e3b8cd;
+    padding: 30px 40px;
+    margin: 0 0 40px 0;
+    border-radius: 10px;
+}
+
+.celebration-orchid-tokuten .tokuten-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: center;
+}
+
+.celebration-orchid-tokuten .tokuten-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px !important;
+}
+
+.celebration-orchid-tokuten .tokuten-list .item {
+    width: calc((100% - 20px) / 2) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.celebration-orchid-tokuten .tokuten-list .item img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.celebration-orchid-tokuten .tokuten-list .item h5 {
+    font-size: 18px !important;
+    line-height: 1.6;
+}
+
+/* ===============================
+   観葉植物（celebration-plants）専用スタイル
+   =============================== */
+
+/* 商品リスト */
+.celebration-plants-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px !important;
+}
+
+.celebration-plants-items .item {
+    width: calc((100% - 20px) / 2) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* 左詰め */
+    text-align: left; /* 左詰め */
+}
+
+.celebration-plants-items .item img {
+    width: 100%;
+    max-width: 385px;
+    height: auto;
+    aspect-ratio: 1 / 1.2;
+    object-fit: cover;
+    margin-bottom: 20px;
+    margin-left: 0; /* 左詰め */
+    margin-right: auto; /* 左詰め */
+}
+
+.celebration-plants-items .item h5 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px !important;
+}
+
+.celebration-plants-items .item h5 .name {
+    font-size: 18px !important;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.celebration-plants-items .item h5 .item-detail {
+    font-size: 14px;
+    font-weight: normal;
+    display: block;
+    margin-top: 5px;
+}
+
+.celebration-plants-items .item h5 .price {
+    font-size: 16px !important;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+.celebration-plants-items .item h5 .tax {
+    font-size: 14px !important;
+}
+
+.celebration-plants-items .item .size p {
+    font-size: 14px !important;
+    line-height: 1.8;
+    margin: 5px 0;
+}
+
+.celebration-plants-items .item .size .note {
+    font-size: 12px !important;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* =================================================================
+御祝いスタンド花（celebration-stand-flower）
+=================================================================*/
+.celebration-stand-flower-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px !important;
+}
+
+.celebration-stand-flower-items .item {
+    width: calc((100% - 20px) / 2) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.celebration-stand-flower-items .item img {
+    width: 100%;
+    max-width: 385px;
+    height: auto;
+    aspect-ratio: 1 / 1.2;
+    object-fit: cover;
+    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.celebration-stand-flower-items .item h5 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px !important;
+}
+
+.celebration-stand-flower-items .item h5 .name {
+    font-size: 18px !important;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.celebration-stand-flower-items .item h5 .price {
+    font-size: 16px !important;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+.celebration-stand-flower-items .item h5 .tax {
+    font-size: 14px !important;
+}
+
+.celebration-stand-flower-items .item .size p {
+    font-size: 14px !important;
+    line-height: 1.8;
+    margin: 5px 0;
+}
+
+/* Columnセクション（Service同様・背景#f2bbb8・画像少し横長） */
+.stand-flower-column {
+    margin-top: 80px;
+    background: #f2bbb8;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.stand-flower-column .column-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.stand-flower-column .column-header h3 {
+    font-size: 36px !important;
+    margin: 0 0 10px 0 !important;
+    font-weight: bold;
+}
+
+.stand-flower-column .column-header .column-sub {
+    font-size: 20px !important;
+    margin: 0 !important;
+    font-weight: bold;
+}
+
+.stand-flower-column .column-body {
+    padding: 0;
+}
+
+.stand-flower-column .column-image {
+    margin-bottom: 24px;
+}
+
+.stand-flower-column .column-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.stand-flower-column .column-text {
+    font-size: 16px !important;
+    line-height: 1.8;
+    margin: 0 0 16px 0;
+}
+
+.stand-flower-column .column-text:last-child {
+    margin-bottom: 0;
+}
+
+/* =================================================================
+お悔やみ・お供え花（funeral-flower）
+=================================================================*/
+.funeral-flower-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px !important;
+}
+
+.funeral-flower-items .item {
+    width: calc((100% - 20px) / 2) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.funeral-flower-items .item img {
+    width: 100%;
+    max-width: 385px;
+    height: auto;
+    aspect-ratio: 1 / 1.2;
+    object-fit: cover;
+    margin-bottom: 20px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.funeral-flower-items .item h5 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 15px !important;
+}
+
+.funeral-flower-items .item h5 .name {
+    font-size: 18px !important;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+.funeral-flower-items .item h5 .price {
+    font-size: 16px !important;
+    font-weight: normal;
+    line-height: 1.4;
+}
+
+.funeral-flower-items .item h5 .tax {
+    font-size: 14px !important;
+}
+
+.funeral-flower-items .item .size p {
+    font-size: 14px !important;
+    line-height: 1.8;
+    margin: 5px 0;
+}
+
+.funeral-flower-items .item.funeral-orchid-multi {
+    width: 100% !important;
+}
+
+/* お悔やみ・お供え花の特典（背景#c7e2ed） */
+.funeral-flower-tokuten {
+    margin-top: 80px;
+}
+
+.funeral-flower-tokuten .tokuten-header {
+    background: #c7e2ed;
+    padding: 30px 40px;
+    margin: 0 0 40px 0;
+    border-radius: 10px;
+}
+
+.funeral-flower-tokuten .tokuten-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: center;
+}
+
+.funeral-flower-tokuten .tokuten-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px;
+}
+
+.funeral-flower-tokuten .tokuten-list .item {
+    width: calc((100% - 20px) / 2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.funeral-flower-tokuten .tokuten-list .item img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Column（画像右・見出しテキスト左） */
+.funeral-flower-column {
+    margin-top: 80px;
+    background: #f2bbb8;
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.funeral-flower-column .column-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.funeral-flower-column .column-header h3 {
+    font-size: 36px !important;
+    margin: 0 0 10px 0 !important;
+    font-weight: bold;
+}
+
+.funeral-flower-column .column-header .column-sub {
+    font-size: 20px !important;
+    margin: 0 !important;
+    font-weight: bold;
+}
+
+.funeral-flower-column .column-body-right-img {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.funeral-flower-column .column-body-right-img .column-text-wrap {
+    flex: 1;
+    min-width: 0;
+}
+
+.funeral-flower-column .column-body-right-img .column-text {
+    font-size: 16px !important;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.funeral-flower-column .column-body-right-img .column-image {
+    flex-shrink: 0;
+}
+
+.funeral-flower-column .column-body-right-img .column-image img {
+    width: 100%;
+    max-width: 280px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+/* Serviceセクション */
+.plants-service {
+    margin-top: 80px;
+    background: #f0ebe6; /* 背景色追加 */
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.plants-service .service-header {
+    background: transparent;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.plants-service .service-header h3 {
+    font-size: 36px !important;
+    margin: 0 0 20px 0 !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+.plants-service .service-body {
+    padding: 0;
+}
+
+.plants-service .service-sub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 0;
+}
+
+.plants-service .service-sub .label {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.plants-service .service-sub img {
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+}
+
+.plants-service .service-body hr {
+    border: none;
+    border-top: 1px solid #ccc; /* 色調整 */
+    margin: 20px 0;
+}
+
+.plants-service .service-body p {
+    font-size: 16px !important;
+    line-height: 1.8;
+}
+
+/* Green Rentalセクション */
+.plants-rental {
+    margin-top: 60px;
+    background: #f0ebe6; /* 背景色追加 */
+    border-radius: 10px;
+    padding: 40px;
+}
+
+.plants-rental .rental-header {
+    background: transparent;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.plants-rental .rental-header h3 {
+    font-size: 36px !important;
+    margin: 0 0 20px 0 !important;
+    text-align: center;
+    font-weight: bold;
+}
+
+.plants-rental .rental-body {
+    padding: 0;
+}
+
+.plants-rental .rental-sub {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 0;
+}
+
+.plants-rental .rental-sub .label {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.plants-rental .rental-sub img {
+    max-width: 150px;
+    height: auto;
+    object-fit: contain;
+}
+
+.plants-rental .rental-body hr {
+    border: none;
+    border-top: 1px solid #ccc; /* 色調整 */
+    margin: 20px 0;
+}
+
+.plants-rental .rental-body p {
+    font-size: 16px !important;
+    line-height: 1.8;
+}
+
+/* 観葉植物の特典 */
+.celebration-plants-tokuten {
+    margin-top: 80px;
+}
+
+.celebration-plants-tokuten .tokuten-header {
+    background: #cbdea6;
+    padding: 30px 40px;
+    margin: 0 0 40px 0;
+    border-radius: 10px;
+}
+
+.celebration-plants-tokuten .tokuten-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: center;
+}
+
+.celebration-plants-tokuten .tokuten-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px 20px !important;
+}
+
+.celebration-plants-tokuten .tokuten-list .item {
+    width: calc((100% - 20px) / 2) !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.celebration-plants-tokuten .tokuten-list .item img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.celebration-plants-tokuten .tokuten-list .item h5 {
+    font-size: 18px !important;
+    line-height: 1.6;
+}
+
+/* Suiteセクション（サスティープレゼント） */
+.plants-suite {
+    margin-top: 80px;
+}
+
+.plants-suite .suite-header {
+    background: transparent;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.plants-suite .suite-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: left;
+    font-weight: bold;
+}
+
+.plants-suite .suite-body {
+    background: #cbdea6;
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.plants-suite .suite-sub {
+    margin-bottom: 20px;
+}
+
+.plants-suite .suite-sub .label {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.plants-suite .suite-body hr {
+    border: none;
+    border-top: 1px solid #000;
+    margin: 20px 0;
+}
+
+.plants-suite .suite-body hr.dashed {
+    border-top: 1px dashed #000;
+}
+
+.plants-suite .suite-body p {
+    font-size: 16px !important;
+    line-height: 1.8;
+}
+
+.plants-suite .suite-body .suite-main {
+    font-weight: bold;
+}
+
+.plants-suite .suite-image {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.plants-suite .suite-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* 胡蝶蘭 Colors セクション */
+.celebration-orchid-colors {
+    margin-top: 80px;
+}
+
+.celebration-orchid-colors .colors-header {
+    background: #e3b8cd;
+    padding: 30px 40px;
+    margin: 0 0 40px 0;
+    border-radius: 10px;
+}
+
+.celebration-orchid-colors .colors-header h3 {
+    font-size: 36px !important;
+    margin: 0 !important;
+    text-align: center;
+}
+
+.celebration-orchid-colors .colors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.celebration-orchid-colors .colors-item {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.celebration-orchid-colors .colors-item img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.celebration-orchid-colors .colors-text h4 {
+    font-size: 24px !important;
+    margin-bottom: 10px !important;
+}
+
+.celebration-orchid-colors .colors-text p {
+    font-size: 16px !important;
+    line-height: 1.6;
+}
+
+/* ページ全体の横スクロール防止 */
+#page.service-detail {
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 1199px) {
+    /* 商品リスト - SP時は1カラム、大きめ表示 */
+    .celebration-orchid-items .item {
+        width: 100% !important;
+    }
+    
+    .celebration-orchid-items .item.orchid-multi {
+        width: 100% !important;
+    }
+    
+    .celebration-orchid-items .item h5 {
+        font-size: 5rem !important;
+        padding-bottom: 2rem !important;
+        margin-top: 2rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .celebration-orchid-items .item h5 .name {
+        font-size: 5rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .celebration-orchid-items .item h5 .price {
+        font-size: 4.5rem !important;
+    }
+    
+    .celebration-orchid-items .item h5 .tax {
+        font-size: 3.2rem !important;
+    }
+    
+    .celebration-orchid-items .item .size p {
+        font-size: 3.8rem !important;
+    }
+    
+    /* 大輪白/3本立ち - SP時横スクロール（5本立ちと同じ設定） */
+    .orchid-slider-wrap {
+        max-width: 100%;
+        position: relative;
+    }
+    
+    .orchid-slider {
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .orchid-slider::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .orchid-slider::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    .orchid-slider::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+    
+    .orchid-slider-inner {
+        gap: 2rem;
+    }
+    
+    .orchid-slider-inner img {
+        width: 50rem !important;
+        max-width: none !important;
+        min-width: auto !important;
+        height: auto;
+        flex: none !important;
+        flex-shrink: 0;
+    }
+    
+    .orchid-slider-arrow {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 6rem;
+        right: 2rem;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.5);
+        padding: 2rem 4rem;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 5;
+    }
+    
+    /* 大輪白/5本立ち - SP時横スクロール */
+    .orchid-images-row {
+        max-width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .orchid-images-row::-webkit-scrollbar {
+        height: 6px;
+    }
+    
+    .orchid-images-row::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+    
+    .orchid-images-row::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+    
+    .orchid-images-row img {
+        width: 50rem !important;
+        max-width: none !important;
+        min-width: auto !important;
+        flex: none !important;
+        flex-shrink: 0;
+    }
+    
+    .orchid-size-small p {
+        font-size: 3.4rem !important;
+    }
+    
+    .orchid-size-small .line1 {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+    
+    .orchid-size-small .line2 {
+        display: block;
+    }
+    
+    /* 回収サービス */
+    .orchid-service {
+        padding: 4rem;
+        margin: 8rem 0;
+    }
+    
+    .orchid-service-header h3 {
+        font-size: 6rem !important;
+        margin-bottom: 3rem !important;
+    }
+    
+    .orchid-service-sub {
+        gap: 3rem;
+        flex-direction: column;
+    }
+    
+    .orchid-service-sub .label {
+        font-size: 4.5rem;
+    }
+    
+    .orchid-service-sub img {
+        max-width: 20rem;
+    }
+    
+    .orchid-service-body p {
+        font-size: 3.6rem !important;
+    }
+    
+    /* 特典 - SP時は1カラム、大きめ表示 */
+    .celebration-orchid-tokuten .tokuten-header {
+        padding: 4rem;
+        margin-bottom: 6rem;
+    }
+    
+    .celebration-orchid-tokuten .tokuten-header h3 {
+        font-size: 6rem !important;
+    }
+    
+    .celebration-orchid-tokuten .tokuten-list {
+        gap: 6rem 4rem !important;
+    }
+    
+    .celebration-orchid-tokuten .tokuten-list .item {
+        width: 100% !important;
+    }
+    
+    .celebration-orchid-tokuten .tokuten-list .item img {
+        max-width: 50rem;
+    }
+    
+    .celebration-orchid-tokuten .tokuten-list .item h5 {
+        font-size: 4.5rem !important;
+    }
+    
+    /* ===============================
+       観葉植物（celebration-plants）SP用スタイル
+       =============================== */
+    
+    /* 商品リスト - SP時は1カラム、大きめ表示 */
+    .celebration-plants-items .item {
+        width: 100% !important;
+        align-items: flex-start !important; /* テキスト左寄せ */
+        text-align: left !important; /* テキスト左寄せ */
+    }
+    
+    .celebration-plants-items .item img {
+        width: 100% !important;
+        max-width: 100% !important; /* 画像横幅いっぱい */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 2rem !important; /* 下余白調整 */
+    }
+    
+    .celebration-plants-items .item h5 .name {
+        font-size: 4.5rem !important;
+    }
+    
+    .celebration-plants-items .item h5 .price {
+        font-size: 3.8rem !important;
+    }
+    
+    .celebration-plants-items .item h5 .tax {
+        font-size: 3.2rem !important;
+    }
+    
+    .celebration-plants-items .item .size p {
+        font-size: 3.2rem !important;
+    }
+    
+    .celebration-plants-items .item .size .note {
+        font-size: 2.8rem !important;
+    }
+    
+    /* 御祝いスタンド花 SP用 */
+    .celebration-stand-flower-items .item {
+        width: 100% !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+    
+    .celebration-stand-flower-items .item img {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .celebration-stand-flower-items .item h5 .name {
+        font-size: 4.5rem !important;
+    }
+    
+    .celebration-stand-flower-items .item h5 .price {
+        font-size: 3.8rem !important;
+    }
+    
+    .celebration-stand-flower-items .item h5 .tax {
+        font-size: 3.2rem !important;
+    }
+    
+    .celebration-stand-flower-items .item .size p {
+        font-size: 3.2rem !important;
+    }
+    
+    .stand-flower-column {
+        margin-top: 12rem;
+        padding: 4rem;
+    }
+    
+    .stand-flower-column .column-header h3 {
+        font-size: 6rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .stand-flower-column .column-header .column-sub {
+        font-size: 3.6rem !important;
+    }
+    
+    .stand-flower-column .column-image {
+        margin-bottom: 3rem;
+    }
+    
+    .stand-flower-column .column-text {
+        font-size: 3.2rem !important;
+    }
+    
+    /* お悔やみ・お供え花 SP用 */
+    .funeral-flower-items .item {
+        width: 100% !important;
+        align-items: flex-start !important;
+        text-align: left !important;
+    }
+    
+    .funeral-flower-items .item img {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .funeral-flower-items .item h5 .name {
+        font-size: 4.5rem !important;
+    }
+    
+    .funeral-flower-items .item h5 .price {
+        font-size: 3.8rem !important;
+    }
+    
+    .funeral-flower-items .item h5 .tax {
+        font-size: 3.2rem !important;
+    }
+    
+    .funeral-flower-items .item .size p {
+        font-size: 3.2rem !important;
+    }
+    
+    .funeral-flower-column .column-body-right-img {
+        flex-direction: column;
+    }
+    
+    .funeral-flower-column .column-body-right-img .column-image {
+        order: -1;
+    }
+    
+    .funeral-flower-column .column-body-right-img .column-image img {
+        max-width: 100%;
+    }
+    
+    .funeral-flower-column .column-header h3 {
+        font-size: 6rem !important;
+    }
+    
+    .funeral-flower-column .column-header .column-sub {
+        font-size: 3.6rem !important;
+    }
+    
+    .funeral-flower-column .column-body-right-img .column-text {
+        font-size: 3.2rem !important;
+    }
+    
+    .funeral-flower-tokuten .tokuten-header h3 {
+        font-size: 6rem !important;
+    }
+    
+    .funeral-flower-tokuten .tokuten-list .item {
+        width: 100% !important;
+    }
+    
+    /* Serviceセクション */
+    .plants-service {
+        margin-top: 12rem;
+    }
+    
+    .plants-service .service-header h3 {
+        font-size: 6rem !important;
+        margin-bottom: 4rem !important;
+    }
+    
+    .plants-service .service-sub {
+        gap: 3rem;
+        flex-direction: column; /* SPでは縦並び */
+    }
+    
+    .plants-service .service-sub .label {
+        font-size: 4.5rem;
+    }
+    
+    .plants-service .service-sub img {
+        max-width: 25rem;
+    }
+    
+    .plants-service .service-body hr {
+        margin: 3rem 0;
+    }
+    
+    .plants-service .service-body p {
+        font-size: 3.6rem !important;
+    }
+    
+    /* Green Rentalセクション */
+    .plants-rental {
+        margin-top: 10rem;
+    }
+    
+    .plants-rental .rental-header h3 {
+        font-size: 6rem !important;
+        margin-bottom: 4rem !important;
+    }
+    
+    .plants-rental .rental-sub {
+        gap: 3rem;
+        flex-direction: column; /* SPでは縦並び */
+    }
+    
+    .plants-rental .rental-sub .label {
+        font-size: 4.5rem;
+    }
+    
+    .plants-rental .rental-sub img {
+        max-width: 25rem;
+    }
+    
+    .plants-rental .rental-body hr {
+        margin: 3rem 0;
+    }
+    
+    .plants-rental .rental-body p {
+        font-size: 3.6rem !important;
+    }
+    
+    /* 商品名の補足テキスト（SP） */
+    .celebration-plants-items .item h5 .item-detail {
+        font-size: 2.8rem;
+        margin-top: 1rem;
+    }
+    
+    /* 特典 - SP時は1カラム、大きめ表示 */
+    .celebration-plants-tokuten {
+        margin-top: 12rem;
+    }
+    
+    .celebration-plants-tokuten .tokuten-header {
+        padding: 4rem;
+        margin-bottom: 6rem;
+    }
+    
+    .celebration-plants-tokuten .tokuten-header h3 {
+        font-size: 6rem !important;
+    }
+    
+    .celebration-plants-tokuten .tokuten-list {
+        gap: 6rem 4rem !important;
+    }
+    
+    .celebration-plants-tokuten .tokuten-list .item {
+        width: 100% !important;
+    }
+    
+    .celebration-plants-tokuten .tokuten-list .item img {
+        max-width: 50rem;
+    }
+    
+    .celebration-plants-tokuten .tokuten-list .item h5 {
+        font-size: 4.5rem !important;
+    }
+    
+    /* Suiteセクション */
+    .plants-suite {
+        margin-top: 12rem;
+    }
+    
+    .plants-suite .suite-header h3 {
+        font-size: 6rem !important;
+        margin-bottom: 4rem !important;
+    }
+    
+    .plants-suite .suite-body {
+        padding: 6rem 4rem;
+    }
+    
+    .plants-suite .suite-sub .label {
+        font-size: 4.5rem;
+    }
+    
+    .plants-suite .suite-body hr {
+        margin: 3rem 0;
+    }
+    
+    .plants-suite .suite-body p {
+        font-size: 3.6rem !important;
+    }
+    
+    .plants-suite .suite-image {
+        margin-top: 5rem;
+    }
+    
+    /* カラーバリエーション */
+    .celebration-orchid-colors .colors-header {
+        padding: 4rem;
+        margin-bottom: 6rem;
+    }
+    
+    .celebration-orchid-colors .colors-header h3 {
+        font-size: 6rem !important;
+    }
+    
+    .celebration-orchid-colors .colors-list {
+        gap: 6rem;
+    }
+    
+    .celebration-orchid-colors .colors-item {
+        flex-direction: row;
+        gap: 4rem;
+    }
+    
+    .celebration-orchid-colors .colors-item img {
+        width: 25rem;
+        height: 25rem;
+    }
+    
+    .celebration-orchid-colors .colors-text h4 {
+        font-size: 4.5rem !important;
+        margin-bottom: 2rem !important;
+    }
+    
+    .celebration-orchid-colors .colors-text p {
+        font-size: 3.2rem !important;
+    }
+}
+
+
+/* =================================================================
+サイトマップ
+=================================================================*/
+#page.sitemap .list {flex-wrap: wrap; gap: 100px 50px;}
+#page.sitemap .list .item {width: calc((100% - 50px*3)/4);}
+#page.sitemap h3 {font-size: 20px; background: #EBE7E3; height: 40px; letter-spacing: 0; padding: 0 10px; display: flex; align-items: center; margin-bottom: 11px;}
+#page.sitemap ul {list-style: none; padding-left: 0;}
+#page.sitemap ul li a {font-size: 15px; letter-spacing: 0;}
+#page.sitemap ul li ul {padding-left: 1em;}
+
+@media screen and (max-width: 1199px) {
+    #page.sitemap .list {gap: 3rem;}
+    #page.sitemap .list .item {width: 100%;}
+    #page.sitemap h3 {font-size: 3.8rem; margin-bottom: 1rem; height: auto; padding: 1rem 2rem;}
+    #page.sitemap ul li {line-height: 3;}
+    #page.sitemap ul li a {font-size: 3.2rem;}
+}
+
+
+/* =================================================================
+Shop (店舗紹介)
+=================================================================*/
+
+/* Instagram アイコンのスタイル（サイズ少し大きめ） */
+.shop-instagram-icon {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235c4636"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>') no-repeat center;
+    background-size: contain;
+    vertical-align: middle;
+    margin-right: 6px;
+    text-indent: -9999px;
+    overflow: hidden;
+}
+/* 店舗詳細3ページ：店舗名の右にアイコンを配置するため */
+#page.shop-info .honten h3 .shop-instagram-icon {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+.shop-name-with-icon {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0 8px;
+}
+
+.shop-name {
+    white-space: nowrap;
+}
+
+/* 店舗詳細3ページ：PC時は 店舗名 → アイコン → 住所 の順で表示（.shop-location をブロック内に含めたため） */
+#page.shop-info .honten h3 .shop-name-with-icon .shop-name { order: 1; }
+#page.shop-info .honten h3 .shop-name-with-icon .shop-instagram-icon { order: 2; }
+#page.shop-info .honten h3 .shop-name-with-icon .shop-location { order: 3; }
+
+/* Shop list page - ロゴ画像の調整・PCでテキスト列を揃える */
+@media screen and (min-width: 1200px) {
+    #page.shop-info .shop-list .list .item {
+        display: grid;
+        grid-template-columns: 350px 1fr;
+        gap: 45px;
+        align-items: start;
+    }
+    #page.shop-info .shop-list .list .item img {
+        width: 100% !important;
+        max-width: 350px !important;
+        height: auto !important;
+        max-height: 250px !important;
+        object-fit: contain !important;
+    }
+}
+
+/* SPでは従来のflex・画像サイズ */
+#page.shop-info .shop-list .list .item img {
+    width: auto !important;
+    max-width: 350px !important;
+    height: auto !important;
+    max-height: 250px !important;
+    object-fit: contain !important;
+}
+
+/* Shop detail page - ロゴオーバーレイ */
+.shop-image-wrap {
+    position: relative;
+    width: 100%;
+}
+
+.shop-logo-wrap {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.shop-logo {
+    position: relative;
+    z-index: 1;
+    max-width: 150px;
+    height: auto;
+}
+
+@media screen and (max-width: 1199px) {
+    .shop-instagram-icon {
+        width: 4.2rem;
+        height: 4.2rem;
+        margin-right: 1.2rem;
+    }
+    
+    #page.shop-info .shop-list .list .item img {
+        max-width: 100% !important;
+        max-height: 40rem !important;
+    }
+    
+    /* 店舗詳細3ページのみ：メイン画像左上ロゴをモバイルで少し小さく */
+    #page.shop-info .honten .shop-logo-wrap {
+        top: 2rem;
+        left: 2rem;
+        padding: 1.2rem;
+    }
+    #page.shop-info .honten .shop-logo {
+        max-width: 18rem;
+    }
+    
+    /* 上記以外の .shop-logo-wrap / .shop-logo（店舗一覧など）は従来どおり */
+    .shop-logo-wrap {
+        top: 3rem;
+        left: 3rem;
+    }
+    .shop-logo {
+        max-width: 25rem;
+    }
+    
+    /* 店舗詳細3ページ：SP時は 1行目「店舗名（住所）」2行目「Instagram」※（住所）は小さめ */
+    #page.shop-info .honten h3 {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    #page.shop-info .honten h3 .shop-name-with-icon {
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0 0.3em;
+    }
+    #page.shop-info .honten h3 .shop-name-with-icon .shop-name {
+        order: 1;
+    }
+    #page.shop-info .honten h3 .shop-name-with-icon .shop-location {
+        order: 2;
+        font-size: 0.7em;
+        font-weight: normal;
+    }
+    /* 店舗詳細のみ：SPでもアイコンは小さくしすぎない＆左詰め */
+    #page.shop-info .honten h3 .shop-name-with-icon .shop-instagram-icon {
+        order: 3;
+        flex: 0 0 auto;
+        display: block;
+        margin-left: 0;
+        margin-top: 1rem;
+        width: 5.5rem;
+        height: 5.5rem;
+    }
+}
+
+
+/* =================================================================
+About Us
+=================================================================*/
+
+/* 代表挨拶セクションのスタイル */
+#page.about .greeting-main-title {
+    font-size: 32px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    font-weight: bold;
+}
+
+#page.about .greeting .box {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+#page.about .greeting .box .text-block {
+    flex: 1;
+}
+
+#page.about .greeting .box img {
+    width: 48%;
+    max-width: 500px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.20);
+}
+
+#page.about .greeting h3 {
+    font-size: 24px;
+    margin: 40px 0 20px 0 !important;
+    line-height: 1.6;
+    font-weight: bold;
+}
+
+#page.about .greeting p {
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+#page.about .greeting .signature {
+    text-align: right;
+    margin-top: 40px;
+    font-size: 20px;
+}
+
+/* 代表プロフィール・花屋の未来をつくる活動（h3で分離、1カラム） */
+#page.about .greeting-extra-h3 {
+    font-size: 24px;
+    margin: 60px 0 20px 0 !important;
+    padding-top: 0;
+    border-top: none;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+#page.about .greeting-extra-h3:first-of-type {
+    margin-top: 60px !important;
+    padding-top: 60px;
+    border-top: 1px solid #e0e0e0;
+}
+
+#page.about .greeting-extra.profile-block,
+#page.about .greeting-extra.activity-block {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+/* 公式サイトボタンと下のCTA（その他リンク）の間隔 */
+#page.about .greeting-extra.activity-block {
+    margin-bottom: 60px;
+}
+
+/* About Us CTA（お問い合わせ・オンラインショップ）＝店舗紹介CTAと同じサイズ・配置 */
+#page.about .other-links .list {
+    display: flex;
+    flex-direction: row;
+    gap: 45px;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+#page.about .other-links .list .box {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 540px;
+}
+#page.about .other-links .list .box a {
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+}
+#page.about .other-links .list .box img {
+    width: 100%;
+    max-width: 540px;
+    height: auto;
+    vertical-align: top;
+}
+#page.about .other-links a span {
+    max-width: calc(100% - 40px);
+    box-sizing: border-box;
+    border-radius: 30px;
+}
+
+#page.about .main-content > .other-links {
+    margin-top: 60px;
+}
+
+#page.about .greeting-extra .profile-name {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+#page.about .greeting-extra .activity-company {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* SNS：名前の右にInstagramアイコン、（日々の…）を小さく */
+#page.about .greeting-extra .sns-link {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#page.about .greeting-extra .sns-name {
+    font-weight: bold;
+}
+
+#page.about .greeting-extra .about-instagram-icon {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%235c4636"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>') no-repeat center;
+    background-size: contain;
+    vertical-align: middle;
+    text-indent: -9999px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+#page.about .greeting-extra .sns-icon-desc-wrap {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#page.about .greeting-extra .sns-desc {
+    font-size: 14px;
+    color: #666;
+    margin-left: 4px;
+}
+
+#page.about .greeting-extra .activity-logo {
+    margin-top: 20px;
+}
+
+#page.about .greeting-extra .activity-link {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #5c4636;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+#page.about .greeting-extra .activity-link:hover {
+    background: #3d2e24;
+}
+
+@media screen and (max-width: 1199px) {
+    #page.about .greeting-main-title {
+        font-size: 4.8rem;
+        margin-bottom: 4rem;
+    }
+    
+    #page.about .greeting .box {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    #page.about .greeting .box img {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    #page.about .greeting h3 {
+        font-size: 4rem;
+        margin: 4rem 0 2rem 0 !important;
+    }
+    
+    #page.about .greeting p {
+        font-size: 3.2rem;
+        line-height: 1.8;
+    }
+    
+    #page.about .greeting .signature {
+        font-size: 3.2rem;
+        margin-top: 4rem;
+    }
+    
+    #page.about .greeting-extra-h3 {
+        font-size: 4rem;
+        margin: 6rem 0 2rem 0 !important;
+    }
+    
+    #page.about .greeting-extra-h3:first-of-type {
+        margin-top: 6rem !important;
+        padding-top: 6rem;
+    }
+    
+    #page.about .greeting-extra .profile-name,
+    #page.about .greeting-extra .activity-company {
+        font-size: 3.2rem;
+    }
+    
+    /* SP: 名前の下にアイコン＋テキスト（アイコン左・テキスト右） */
+    #page.about .greeting-extra .sns-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+    }
+    
+    #page.about .greeting-extra .sns-icon-desc-wrap {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+    }
+    
+    #page.about .greeting-extra .about-instagram-icon {
+        width: 5.6rem;
+        height: 5.6rem;
+        flex-shrink: 0;
+    }
+    
+    #page.about .greeting-extra .sns-desc {
+        font-size: 2.4rem;
+        color: #666;
+        margin-left: 0;
+        line-height: 1.5;
+    }
+    
+    #page.about .greeting-extra .activity-link {
+        font-size: 3.2rem;
+        padding: 2rem 4rem;
+    }
+    
+    /* 公式サイトボタンとCTAの間隔（SP） */
+    #page.about .greeting-extra.activity-block {
+        margin-bottom: 8rem;
+    }
+    
+    #page.about .main-content > .other-links {
+        margin-top: 8rem;
+    }
+    
+    /* About Us CTA（SP）＝オンラインショップ・店舗紹介と同様 1カラム・余白統一 */
+    #page.about .other-links .list {
+        flex-direction: column;
+        gap: 11.6rem;
+    }
+    #page.about .other-links .list .box {
+        max-width: 100%;
+    }
+    #page.about .other-links a span {
+        top: auto;
+        bottom: 2.5rem;
+        width: 52rem;
+        max-width: calc(100% - 4rem);
+        height: 10rem;
+        font-size: 3.4rem;
+    }
+    #page.about .other-links a span:after {
+        width: 1.4rem;
+        height: 2.2rem;
+    }
+}
+
+
+
+
+
+
+

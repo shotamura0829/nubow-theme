@@ -13,3 +13,10 @@ backups/
 # 旧版・バックアップPHP（参照するまで不要なら削除可）
 *-OLD.php
 *-BACKUP.php
+
+# 外部ライブラリCSS（インデックス不要）
+css/swiper-bundle.css
+css/aos.css
+
+# 参照用URL一覧（約600KB、インデックス不要）
+nubow-production-urls.txt

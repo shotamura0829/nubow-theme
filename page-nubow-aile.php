@@ -14,7 +14,7 @@
 				<li>店舗紹介</li>
 			</ul>
 			<div class="main-title">
-				<h2 class="cmn-title">店舗紹介</h2>
+				<h1 class="cmn-title">店舗紹介</h1>
 			</div>
 		</div>
 		
@@ -124,7 +124,7 @@
         map.setMapTypeId('genius');
 
         /*アイコンの表示設定*/
-        var icon = new google.maps.MarkerImage('http://nubow.co.jp/dev/wp-content/themes/nubow/cmn/images/about/pin.png',/*アイコンのパス*/
+        var icon = new google.maps.MarkerImage('<?php echo get_template_directory_uri(); ?>/img/page/pin.png',/*アイコンのパス*/
         new google.maps.Size(45,75),/*アイコンのサイズ*/
         new google.maps.Point(0,0)/*座標からのアイコンの位置*/
     );

@@ -19,7 +19,7 @@ get_header();
 				<li>よくあるご質問</li>
 			</ul>
 			<div class="main-title">
-				<h2 class="cmn-title">よくあるご質問</h2>
+				<h1 class="cmn-title">よくあるご質問</h1>
 			</div>
 		</div>
 	</div>

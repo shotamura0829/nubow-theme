@@ -14,7 +14,7 @@
 				<li><a href="<?php echo home_url('/'); ?>news">お知らせ</a></li>
 			</ul>
 			<div class="main-title">
-				<h2 class="cmn-title">お知らせ</h2>
+				<h1 class="cmn-title">お知らせ</h1>
 			</div>
 		</div>
 	</div>
