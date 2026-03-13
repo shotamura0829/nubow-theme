@@ -188,7 +188,7 @@
 						<p>お悔やみ・お供え花</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/funeral-stand-flower" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-stand-flower/celebration-stand-flower-image01.webp" alt="葬儀スタンド花">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/funeral-stand-flower/funeral-stand-flower-0.webp" alt="葬儀スタンド花">
 						<p>葬儀スタンド花</p>
 					</a>
 				</div>

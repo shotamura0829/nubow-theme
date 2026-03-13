@@ -61,7 +61,7 @@
 					'celebration-plants'       => 'img/service/celebration-plants/celebration-plants-image01.webp',
 					'celebration-stand-flower' => 'img/page/celebration-stand-flower/celebration-stand-flower-image01.webp',
 					'funeral-flower'           => 'img/page/funeral-flower/funeral-flower-image01.webp',
-					'funeral-stand-flower'     => 'img/page/celebration-stand-flower/celebration-stand-flower-image01.webp',
+					'funeral-stand-flower'     => 'img/page/funeral-stand-flower/funeral-stand-flower-0.webp',
 				];
 				foreach ( $service_boxes as $box_id => $box ) :
 					// 子ページ（service/celebration-orchid 等）または単体スラッグで取得
