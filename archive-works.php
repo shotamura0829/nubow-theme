@@ -115,21 +115,34 @@
 				</button>
 			</form>
 
-			<script>
-			document.addEventListener('DOMContentLoaded', function () {
-				const form = document.querySelector('.remodal .modal-inner form');
-				if (!form) return;
+		<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const form = document.querySelector('.remodal .modal-inner form');
+			if (!form) return;
 
-				// 送信ボタン押下時のみ、選択されたタームのパーマリンクへ遷移
-				form.addEventListener('submit', function (e) {
-					const checked = form.querySelector('input[name="works_category"]:checked');
-					if (checked && checked.dataset.url) {
-						e.preventDefault(); // GET送信させない
-						window.location.href = checked.dataset.url; // /works_category/◯◯/ へ
+			// SP: サービス選択時に詳細検索ボタンへ自動スクロール
+			const serviceRadios = form.querySelectorAll('.service-radio-list input[type="radio"]');
+			serviceRadios.forEach(function (radio) {
+				radio.addEventListener('change', function () {
+					if (window.innerWidth <= 1199) {
+						const submitBtn = form.querySelector('.submit-button');
+						if (submitBtn) {
+							submitBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+						}
 					}
 				});
 			});
-			</script>
+
+			// 送信ボタン押下時のみ、選択されたタームのパーマリンクへ遷移
+			form.addEventListener('submit', function (e) {
+				const checked = form.querySelector('input[name="works_category"]:checked');
+				if (checked && checked.dataset.url) {
+					e.preventDefault(); // GET送信させない
+					window.location.href = checked.dataset.url; // /works_category/◯◯/ へ
+				}
+			});
+		});
+		</script>
 		</div>
 	</div>
 
