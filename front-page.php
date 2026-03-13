@@ -6,18 +6,28 @@
 		<section class="fv">
 			<div class="wrapper">
 				<div class="swiper01">
-				<div class="swiper-wrapper">
-					<div class="swiper-slide">
-						<a href="https://nubow.jp/" target="_blank" rel="noopener noreferrer">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" alt="ヌボー生花店 オンラインショップ">
-						</a>
-					</div>
-					<div class="swiper-slide">
-						<a href="<?php echo home_url('/reservation'); ?>">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg" alt="店舗来店予約・事前決済">
-						</a>
-					</div>
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<a href="https://nubow.jp/" target="_blank" rel="noopener noreferrer">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" alt="ヌボー生花店 オンラインショップ">
+					</a>
 				</div>
+				<div class="swiper-slide">
+					<a href="<?php echo home_url('/reservation'); ?>">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg" alt="店舗来店予約・事前決済">
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="https://nubow.jp/" target="_blank" rel="noopener noreferrer">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" alt="ヌボー生花店 オンラインショップ">
+					</a>
+				</div>
+				<div class="swiper-slide">
+					<a href="<?php echo home_url('/reservation'); ?>">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv03.jpg" alt="店舗来店予約・事前決済">
+					</a>
+				</div>
+			</div>
 				</div>
 				<!-- ナビゲーションボタン -->
 				<div class="swiper-button-prev swiper-button-prev-01"></div>
@@ -349,8 +359,7 @@
 <script type="text/javascript">
 	$(function() {
 		const swiper1 = new Swiper(".swiper01", {
-			loop: false,
-			rewind: true,
+			loop: true,
 			centeredSlides: true,
 			slidesPerView: 1,
 			spaceBetween: 0,
