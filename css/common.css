@@ -391,6 +391,9 @@ footer .sp-menu {display: none;}
 
 @media screen and (max-width: 1199px) {
 .other-links img {max-width: 100%;}
+/* iOS Safari: overflow:hidden on main can prevent absolute-positioned span backgrounds from painting.
+   Adding overflow:hidden + GPU-compositing to the <a> fixes this. */
+.other-links a {display: block; overflow: hidden; -webkit-transform: translateZ(0); transform: translateZ(0);}
 .other-links a span {top: auto; bottom: 2.5rem; width: 52rem; max-width: calc(100% - 4rem); height: 10rem; font-size: 3.4rem;}
 .other-links a span:after {width: 1.6rem; height: 2.4rem;}
 }
