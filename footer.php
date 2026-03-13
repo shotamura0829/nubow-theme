@@ -12,6 +12,9 @@
 				<a href="<?php echo home_url('/'); ?>online-shop">
 					<img src="<?php echo get_template_directory_uri(); ?>/img/common/footer_icon_cart.png" width="51" height="49" loading="lazy" alt="">オンラインショップ
 				</a>
+				<a href="<?php echo home_url('/'); ?>reservation">
+					<img src="<?php echo get_template_directory_uri(); ?>/img/common/shop-icon.png" width="51" height="51" loading="lazy" alt="">店舗予約
+				</a>
 			</div>
 			<div class="sp-menu">
 				<div class="sp-menu_box">

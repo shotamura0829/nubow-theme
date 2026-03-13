@@ -117,7 +117,7 @@ service
 #top .service .list {margin-top: 45px; display: flex; flex-wrap: wrap; gap: 70px 50px;}
 #top .service .list .item {width: calc((100% - 70px)/2); background: #fff; border-radius: 20px; overflow: hidden; font-size: 24px; display: flex; align-items: center; gap: 40px; position: relative;}
 #top .service .list .item:after {content: ""; width: 13px; height: 21px; background-image: url('../img/top/article-link_arrow.svg'); background-size: cover; position: absolute; right: 20px; top: 0; bottom: 0; margin: auto;}
-#top .service .list .item img {height: 160px; width: auto;}
+#top .service .list .item img {width: 160px; height: 160px; object-fit: cover; flex-shrink: 0;}
 
 @media screen and (max-width: 1199px) {
   #top .service {padding: 8.4rem 0 10rem;}
@@ -125,7 +125,7 @@ service
   #top .service .list {margin-top: 8rem; gap: 4rem 0px;}
   #top .service .list .item {width: 100%; gap: 5.6rem;}
   #top .service .list .item:after {width: 1.7rem; height: 2.8rem;}
-  #top .service .list .item img {height: 22.4rem;}
+  #top .service .list .item img {width: 22.4rem; height: 22.4rem; object-fit: cover; flex-shrink: 0;}
   #top .service .list .item p {font-size: 3.6rem; font-weight: bold;}
 }
 

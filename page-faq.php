@@ -3,118 +3,56 @@
 // FAQデータ一元管理
 // 回答（answer）を入力すれば HTML と JSON-LD の両方に自動反映されます
 // =====================================================================
-$faq_sections = [
-	[
-		'id'    => 'faq01',
-		'title' => 'ご注文方法',
-		'items' => [
-			[
-				'question' => '注文後の変更はできますか？',
-				'answer'   => '', // ← ここに回答を入力してください
-			],
-			[
-				'question' => 'いつまでに注文したら良いですか？',
-				'answer'   => '',
-			],
-			[
-				'question' => 'どのように注文したら良いですか？',
-				'answer'   => '',
-			],
-		],
-	],
-	[
-		'id'    => 'faq02',
-		'title' => 'お支払方法',
-		'items' => [
-			[
-				'question' => '支払いはどうしたら良いでしょうか？',
-				'answer'   => '',
-			],
-			[
-				'question' => '金券でも支払いは出来ますか？',
-				'answer'   => '',
-			],
-		],
-	],
-	[
-		'id'    => 'faq03',
-		'title' => 'お届け方法',
-		'items' => [
-			[
-				'question' => '法事のお花を贈るタイミングは？',
-				'answer'   => '',
-			],
-			[
-				'question' => '訃報の知らせをうけたら？',
-				'answer'   => '',
-			],
-			[
-				'question' => '長野市外へのお届けは出来ますか？',
-				'answer'   => '',
-			],
-			[
-				'question' => 'お届け先が不在の場合はどうなりますか？',
-				'answer'   => '',
-			],
-			[
-				'question' => '叙勲・受賞祝のタイミングは？',
-				'answer'   => '',
-			],
-		],
-	],
-	[
-		'id'    => 'faq04',
-		'title' => 'お花を贈る時の注意点',
-		'items' => [
-			[
-				'question' => 'ご法事花の注意点は？',
-				'answer'   => '',
-			],
-			[
-				'question' => '叙勲・受賞祝時の注意点は？',
-				'answer'   => '',
-			],
-			[
-				'question' => '出馬・当選祝時の注意点は？',
-				'answer'   => '',
-			],
-			[
-				'question' => '就任・栄転祝い時の注意点は？',
-				'answer'   => '',
-			],
-			[
-				'question' => '開店・開業・移転祝時の注意点は？',
-				'answer'   => '',
-			],
-		],
-	],
-	[
-		'id'    => 'faq05',
-		'title' => 'その他',
-		'items' => [
-			[
-				'question' => 'お悔やみ時の札の大きさは？',
-				'answer'   => '',
-			],
-			[
-				'question' => 'お祝いの札の大きさは？',
-				'answer'   => '',
-			],
-			[
-				'question' => 'お店はどこにありますか？',
-				'answer'   => '長野市内に3店舗ございます。ヌボーエール（西和田2丁目5-25）、ヌボーアドレ（稲里町中央1-23-1）、ヌボーラルブル（南千歳1丁目22-6 長野駅ビルMIDORI長野1階）にてお買い求めいただけます。',
-			],
-			[
-				'question' => 'お届けした商品を見ることは出来ますか？',
-				'answer'   => '',
-			],
-			[
-				'question' => '注文後の変更は出来ますか？',
-				'answer'   => '',
-			],
-		],
-	],
+// セクション定義 + faq_listタクソノミーのターム名を紐付け
+// WordPress管理画面で入力したFAQ投稿が優先されます
+$faq_section_defs = [
+	[ 'id' => 'faq01', 'title' => 'ご注文方法',          'term' => 'ご注文方法' ],
+	[ 'id' => 'faq02', 'title' => 'お支払方法',          'term' => 'お支払方法' ],
+	[ 'id' => 'faq03', 'title' => 'お届け方法',          'term' => 'お届け方法' ],
+	[ 'id' => 'faq04', 'title' => 'お花を贈る時の注意点', 'term' => 'お花を贈る時の注意点' ],
+	[ 'id' => 'faq05', 'title' => 'その他',              'term' => 'その他' ],
 ];
+
+// WordPressのFAQ投稿からデータを取得して $faq_sections を組み立てる
+$faq_sections = [];
+foreach ( $faq_section_defs as $def ) {
+	$items    = [];
+	$faq_term = get_term_by( 'name', $def['term'], 'faq_list' );
+
+	if ( $faq_term && ! is_wp_error( $faq_term ) ) {
+		$faq_q = new WP_Query([
+			'post_type'      => 'faq',
+			'posts_per_page' => -1,
+			'orderby'        => 'menu_order',
+			'order'          => 'ASC',
+			'no_found_rows'  => true,
+			'tax_query'      => [[
+				'taxonomy' => 'faq_list',
+				'field'    => 'term_id',
+				'terms'    => $faq_term->term_id,
+			]],
+		]);
+		if ( $faq_q->have_posts() ) {
+			while ( $faq_q->have_posts() ) {
+				$faq_q->the_post();
+				$items[] = [
+					'question' => get_the_title(),
+					'answer'   => get_the_content(),
+				];
+			}
+			wp_reset_postdata();
+		}
+	}
+
+	// WordPress投稿が1件もなければセクション自体をスキップ
+	if ( ! empty( $items ) ) {
+		$faq_sections[] = [
+			'id'    => $def['id'],
+			'title' => $def['title'],
+			'items' => $items,
+		];
+	}
+}
 
 get_header();
 ?>
@@ -142,11 +80,9 @@ get_header();
 		<div class="flex">
 			<div class="sidebar" id="sidebar">
 				<ul>
-					<li><a href="#faq01">ご注文方法</a></li>
-					<li><a href="#faq02">お支払い方法</a></li>
-					<li><a href="#faq03">お届け方法</a></li>
-					<li><a href="#faq04">お花を贈る時の注意点</a></li>
-					<li><a href="#faq05">その他</a></li>
+					<?php foreach ( $faq_sections as $section ) : ?>
+					<li><a href="#<?php echo esc_attr( $section['id'] ); ?>"><?php echo esc_html( $section['title'] ); ?></a></li>
+					<?php endforeach; ?>
 				</ul>
 			</div>
 			<div id="sidebar-placeholder" style="display: none;"></div>
@@ -161,7 +97,7 @@ get_header();
 						</dt>
 						<dd class="faq-answer">
 							<div class="faq-answer__wrap">
-								<div><?php echo $item['answer'] ? nl2br( esc_html( $item['answer'] ) ) : '<span style="color:#999;">（回答準備中）</span>'; ?></div>
+								<div><?php echo $item['answer'] ? wpautop( wp_kses_post( $item['answer'] ) ) : '<span style="color:#999;">（回答準備中）</span>'; ?></div>
 							</div>
 						</dd>
 					</dl>
