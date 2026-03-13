@@ -501,24 +501,21 @@ add_filter('request', function ($vars) {
 }, 10, 1);
 
 /**
- * Permalink Manager の Gutenberg スクリプトを無効化して Yoast SEO との JS 競合を解消する
- * Permalink Manager の実際のリダイレクト・カスタムパーマリンク機能は影響を受けない
+ * 本番移行時の301リダイレクト
+ * 旧本番URL（nubow.co.jp時代のパス）を新URLへ転送する
  */
-add_action('admin_enqueue_scripts', function($hook) {
-  if (!in_array($hook, ['post.php', 'post-new.php'], true)) {
-    return;
-  }
-  // Permalink Manager が登録するスクリプトハンドルを全て無効化
-  $pm_handles = [
-    'permalink-manager',
-    'permalink-manager-gutenberg',
-    'permalink-manager-edit-screen',
-    'permalink-manager-react',
-    'permalink-manager-pro',
-    'permalink-manager-pro-gutenberg',
+add_action('template_redirect', function() {
+  $path = rtrim( strtok( $_SERVER['REQUEST_URI'], '?' ), '/' );
+
+  $redirects = [
+    '/shop/honten'        => '/shop/nubow-aile',
+    '/shop/nagano-minami' => '/shop/nubow-adorer',
+    '/shop/adorer-cafe'   => '/shop',
+    '/shop/shinonoi'      => '/shop',
   ];
-  foreach ($pm_handles as $handle) {
-    wp_dequeue_script($handle);
-    wp_deregister_script($handle);
+
+  if ( isset( $redirects[ $path ] ) ) {
+    wp_redirect( home_url( $redirects[ $path ] ), 301 );
+    exit;
   }
-}, 9999);
+});
