@@ -164,31 +164,31 @@
 
 				<div class="list">
 					<a href="<?php echo home_url('/'); ?>service/celebration-bouquet/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/service_img01.png" alt="">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/service/celebration-bouquet-image1.webp" alt="御祝い花束">
 						<p>御祝い花束</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/celebration-arrangement/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/service_img02.png" alt="">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-arrangement/celebration-arrangement-image01.png" alt="御祝いアレンジメント花">
 						<p>御祝い<br>アレンジメント花</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/celebration-orchid/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/service_img03.png" alt="">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-orchid/celebration-orchid-image01.png" alt="御祝い胡蝶蘭">
 						<p>御祝い胡蝶蘭</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/celebration-plants/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/service_img04.png" alt="">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/service/celebration-plants/celebration-plants-image01.webp" alt="御祝い観葉植物">
 						<p>御祝い観葉植物</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/celebration-stand-flower/" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/service_img05.png" alt="">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-stand-flower/celebration-stand-flower-image01.webp" alt="御祝いスタンド花">
 						<p>御祝いスタンド花</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/funeral-flower" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/service_img06.png" alt="">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/funeral-flower/funeral-flower-image01.webp" alt="お悔やみ・お供え花">
 						<p>お悔やみ・お供え花</p>
 					</a>
 					<a href="<?php echo home_url('/'); ?>service/funeral-stand-flower" class="item">
-						<img src="<?php echo get_template_directory_uri(); ?>/img/top/service_img07.png" alt="">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/page/celebration-stand-flower/celebration-stand-flower-image01.webp" alt="葬儀スタンド花">
 						<p>葬儀スタンド花</p>
 					</a>
 				</div>
