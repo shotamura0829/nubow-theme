@@ -908,7 +908,7 @@ shop / nubow-aile / nubow-adorer / nubow-larbre の4ページで同一
 #page.service-detail .sidebar {padding-right: 42px;}
 #page.service-detail .sidebar h3 {font-size: 20px; padding-right: 25px;}
 #page.service-detail .sidebar .faq-content {margin-top: 40px;}
-#page.service-detail .sidebar .faq-content .faq-question {background: #D6CFC8; font-size: 14px; display: flex; align-items: flex-start; padding: 0 14px; letter-spacing: 0; cursor: pointer;}
+#page.service-detail .sidebar .faq-content .faq-question {background: #D6CFC8; font-size: 14px; display: flex; align-items: flex-start; padding: 12px 14px; letter-spacing: 0; cursor: pointer;}
 #page.service-detail .sidebar .faq-content .faq-question:before {content: "Q"; font-size: 24px; font-weight: bold; margin-right: 13px;}
 #page.service-detail .sidebar .faq-content .faq-question .faq-question__title {display: flex; align-items: center; justify-content: space-between; width: 100%;}
 #page.service-detail .sidebar .faq-content .faq-question .faq-question__title:after {content: "−"; font-size: 24px; font-weight: bold;} 
@@ -1056,7 +1056,7 @@ shop / nubow-aile / nubow-adorer / nubow-larbre の4ページで同一
     #page.service-detail .sidebar .bottom {margin-top: 4rem;}
     #page.service-detail .sidebar a {display: inline-flex;}
 
-    #page.service-detail .sidebar .faq-content .faq-question {font-size: 2.8rem; padding: 0 2.8rem;}
+    #page.service-detail .sidebar .faq-content .faq-question {font-size: 2.8rem; padding: 2rem 2.8rem;}
     #page.service-detail .sidebar .faq-content .faq-question:before {font-size: 4.8rem; margin-right: 2.6rem;}
     #page.service-detail .sidebar .faq-content .faq-question .faq-question__title:after {font-size: 4.8rem;}
     #page.service-detail .sidebar .faq-content .faq-answer__wrap {padding: 2rem 9.2rem 2rem 2.8rem; font-size: 2.8rem;}
