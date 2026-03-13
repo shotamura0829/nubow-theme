@@ -220,6 +220,11 @@ page共通
     }
 }
 
+@media screen and (max-width: 1004px) {
+    /* ヘッダー高20remに合わせてpadding-topを上書き（≤1199pxの27.8remのまま残すと余白過多） */
+    #page {padding-top: 23rem;}
+}
+
 /* =================================================================
 404
 =================================================================*/
@@ -302,8 +307,8 @@ news詳細
 
 #page.article-detail .article-main {border-top: 1px solid #333333; padding-top: 36px; overflow-wrap: break-word; word-break: break-word;}
 #page.article-detail .article-main p {font-size: 20px; line-height: 2;}
-#page.article-detail .article-main a {color: #998675; text-decoration: underline;}
-#page.article-detail .article-main a:hover {color: #5C4636;}
+#page.article-detail .article-main a {color: #5C4636; text-decoration: underline;}
+#page.article-detail .article-main a:hover {opacity: 0.75;}
 
 #page.article-detail .article-main img {width: 100%;}
 #page.article-detail .article-main figure + p {margin-top: 40px;}
@@ -418,7 +423,7 @@ online-shop
 #page.contact .mwform-tel-field input {width: calc((100% - 13px*2)/3);}
 
 #page.contact .cmn-button {border: 0px; padding: 0; margin: 55px auto 0;} 
-#page.contact .cmn-button.back {border: 1px solid #998675; color: #998675; background: #fff; padding: 0; margin: 40px auto 0; box-shadow: none;} 
+#page.contact .cmn-button.back {border: 1px solid #5C4636; color: #5C4636; background: #fff; padding: 0; margin: 40px auto 0; box-shadow: none;} 
 #page.contact .cmn-button.back:after {background-image: url('../img/top/article-link_arrow.svg');}
 
 #page.contact h3 {border-bottom: 1px solid #333333; font-size: 32px; padding-bottom: 12px; margin-bottom: 41px;}
@@ -577,7 +582,7 @@ online-shop
 #page.shop-info .shop-list .list .item .button {margin-top: 20px; display: flex; flex-direction: column; gap: 20px;}
 #page.shop-info .shop-list .list .item .button a {width: 300px; height: 60px; display: flex; justify-content: center; align-items: center; position: relative; font-size: 19px; border-radius: 9999px;}
 #page.shop-info .shop-list .list .item .button a:after {content: ""; display: block; width: 8px; height: 13px; background-image: url('../img/common/cmn-button_arrow.svg'); background-size: cover; position: absolute; right: 17px; top: 0; bottom: 0; margin: auto;}
-#page.shop-info .shop-list .list .item .button .google {border: 1px solid #998675; color: #998675;}
+#page.shop-info .shop-list .list .item .button .google {border: 1px solid #5C4636; color: #5C4636;}
 #page.shop-info .shop-list .list .item .button .google:after {background-image: url('../img/top/article-link_arrow.svg');}
 #page.shop-info .shop-list .list .item .button .more {background: #998675; color: #fff;}
 
