@@ -319,23 +319,32 @@
 			}
 
 		function repositionCalendar(el) {
-			/* カレンダー用：子要素のドロップダウンスタイルを除去してから中央固定配置 */
-			el.querySelectorAll('li, span, div').forEach(function(c) {
+			/* 子要素に適用したドロップダウン用スタイルをリセット */
+			el.querySelectorAll('li, span, div, td, th').forEach(function(c) {
 				if (c === el) return;
 				['font-size','padding','min-height','line-height','display','align-items','box-sizing'].forEach(function(p) {
 					c.style.removeProperty(p);
 				});
 			});
-			var vw = window.innerWidth;
-			el.style.setProperty('position',   'fixed',                             'important');
-			el.style.setProperty('left',        '50%',                               'important');
-			el.style.setProperty('transform',   'translateX(-50%)',                  'important');
-			el.style.setProperty('top',         '8vh',                               'important');
-			el.style.setProperty('width',       Math.min(vw - 16, 400) + 'px',       'important');
-			el.style.setProperty('max-width',   '400px',                             'important');
-			el.style.setProperty('max-height',  '84vh',                              'important');
-			el.style.setProperty('overflow-y',  'auto',                              'important');
-			el.style.setProperty('z-index',     '99999',                             'important');
+			function setCalPos() {
+				var vw  = window.innerWidth;
+				var calW = Math.min(vw - 16, 400);
+				var leftPx = Math.round((vw - calW) / 2);
+				el.style.setProperty('position',   'fixed',         'important');
+				el.style.setProperty('top',        '10vh',          'important');
+				el.style.setProperty('left',       leftPx + 'px',   'important');
+				el.style.setProperty('transform',  'none',          'important');
+				el.style.setProperty('width',      calW + 'px',     'important');
+				el.style.setProperty('max-width',  '400px',         'important');
+				el.style.setProperty('max-height', '80vh',          'important');
+				el.style.setProperty('overflow-y', 'auto',          'important');
+				el.style.setProperty('z-index',    '99999',         'important');
+			}
+			/* hanayoya の JS が後から上書きしても追従して再適用 */
+			setCalPos();
+			[50, 100, 200, 400, 800].forEach(function(ms) {
+				setTimeout(setCalPos, ms);
+			});
 		}
 
 		function fix(el) {
@@ -343,7 +352,7 @@
 			applyStyles(el);
 			/* 少し遅らせてhanayoyaのJS位置設定を上書き */
 			setTimeout(function() { reposition(el); }, 30);
-			/* 150ms 後に子要素数を確認 → 多ければカレンダーとして再配置 */
+			/* 300ms後：hanayoyaがカレンダーを描画し終えてから子要素数で判定 */
 			setTimeout(function() {
 				var isCalendar = el.querySelectorAll('*').length > 20;
 				if (isCalendar) {
@@ -351,7 +360,7 @@
 				} else {
 					reposition(el);
 				}
-			}, 150);
+			}, 300);
 		}
 
 			/*
