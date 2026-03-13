@@ -762,7 +762,7 @@ add_filter( 'robots_txt', function( $output, $public ) {
 add_action( 'init', function() {
   $social = get_option( 'wpseo_social', [] );
   if ( empty( $social['og_default_image'] ) ) {
-    $social['og_default_image']    = get_template_directory_uri() . '/img/top/fv01.jpg';
+    $social['og_default_image']    = get_template_directory_uri() . '/img/common/nubow-ogp.webp';
     $social['og_default_image_id'] = 0;
     update_option( 'wpseo_social', $social );
   }
