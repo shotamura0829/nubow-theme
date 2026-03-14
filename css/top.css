@@ -156,12 +156,13 @@ case
 #top .case .tab-menu .tab:nth-child(5n) {border-left: 1px solid #998675;}
 #top .case .tab-menu .tab.is-active {background: #998675; color: #fff;}
 #top .case .list {display: flex; flex-direction: column; margin-top: 64px; gap: 70px;}
-#top .case .box {display: flex; align-items: flex-start;}
-#top .case .box img {max-width: 320px; margin-right: 38px;}
-#top .case .box .text {display: flex; flex-direction: column;}
+#top .case .box {display: flex; align-items: stretch;}
+#top .case .box > a {flex-shrink: 0;}
+#top .case .box img {width: 320px; height: 240px; object-fit: cover; display: block; margin-right: 38px;}
+#top .case .box .text {display: flex; flex-direction: column; flex: 1;}
 #top .case .box h3 {font-size: 30px; font-weight: bold;}
 #top .case .box p {margin-top: 11px; font-size: 24px; line-height: 2;}
-#top .case .box .text .more {align-self: center; display: inline-flex; justify-content: center; align-items: center; min-width: 300px; height: 60px; border-radius: 9999px; border: 1px solid #998675; color: #998675; position: relative; margin-top: 38px; padding: 0 50px;}
+#top .case .box .text .more {align-self: center; display: inline-flex; justify-content: center; align-items: center; min-width: 300px; height: 60px; border-radius: 9999px; border: 1px solid #998675; color: #998675; position: relative; margin-top: auto; padding-top: 38px; padding-left: 50px; padding-right: 50px;}
 #top .case .box .text .more:after {content: ""; width: 8px; height: 12px; background-image: url('../img/top/article-link_arrow.svg'); background-size: cover; position: absolute; right: 18px; top: 0; bottom: 0; margin: auto;}
 #top .case .link {display: flex; justify-content: center; margin-top: 85px;}
 #top .case .link .cmn-button {max-width: 100%; min-width: 600px; width: auto; display: inline-flex; padding: 0 60px;}
