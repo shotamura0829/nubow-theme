@@ -242,7 +242,7 @@
 	<div class="inner">
 		<div class="title-wrap">
 			<h2 class="cmn-title">事例紹介</h2>
-			<a href="<?php echo esc_url( home_url('/case-list') ); ?>" class="cmn-button">事例一覧を確認する</a>
+			<a href="<?php echo esc_url( home_url('/works') ); ?>" class="cmn-button">事例一覧を確認する</a>
 		</div>
 
 		<p class="top-text">
