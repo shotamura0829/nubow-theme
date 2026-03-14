@@ -314,6 +314,11 @@ header .toggle-button {display: none;}
 	#head_submenu .bottom-links .contact img {width: 4.6rem;}
 }
 
+/* 小さい画面（〜400px）：ハンバーガーメニューのリンクテキストが改行しないよう縮小 */
+@media screen and (max-width: 400px) {
+	#head_submenu .link-area a {font-size: 4.8rem; letter-spacing: -0.1rem;}
+}
+
 /* 800〜1004px：ヘッダーとハンバーガーを中間サイズに縮小 */
 @media screen and (max-width: 1004px) {
 	header { height: 20rem; padding: 2.5rem; }
