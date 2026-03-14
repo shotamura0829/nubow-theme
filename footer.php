@@ -103,13 +103,31 @@
 				<div class="box">
 					<p>事例紹介</p>
 					<ul>
-						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/celebration-bouquet">花束</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/celebration-arrangement">アレンジメント花</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/celebration-orchid">胡蝶蘭</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/celebration-plants">観葉植物</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/celebration-stand-flower">御祝い花・御祝いスタンド花</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/funeral-flower">お悔やみ・お供え花</a></li>
-						<li><a href="<?php echo home_url('/'); ?>works_category/service_category/funeral-stand-flower">葬儀花・葬儀スタンド花</a></li>
+						<?php
+						$_footer_name_map = [
+							'御祝い花束'           => '花束',
+							'御祝いアレンジメント花' => 'アレンジメント花',
+							'御祝い胡蝶蘭'         => '胡蝶蘭',
+							'御祝い観葉植物'        => '観葉植物',
+							'御祝いスタンド花'      => '御祝い花・御祝いスタンド花',
+							'お悔やみ・お供え花'    => 'お悔やみ・お供え花',
+							'葬儀スタンド花'        => '葬儀花・葬儀スタンド花',
+						];
+						$_svc_parent = get_term_by( 'slug', 'service_category', 'works_category' );
+						if ( $_svc_parent && ! is_wp_error( $_svc_parent ) ) :
+							$_footer_terms = get_terms([
+								'taxonomy'   => 'works_category',
+								'parent'     => $_svc_parent->term_id,
+								'hide_empty' => false,
+								'orderby'    => 'term_order',
+								'order'      => 'ASC',
+							]);
+							foreach ( $_footer_terms as $_ft ) :
+								$_ft_label = $_footer_name_map[ $_ft->name ] ?? $_ft->name;
+								echo '<li><a href="' . esc_url( get_term_link( $_ft ) ) . '">' . esc_html( $_ft_label ) . '</a></li>';
+							endforeach;
+						endif;
+						?>
 					</ul>
 				</div>
 			</div>
