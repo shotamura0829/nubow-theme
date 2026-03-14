@@ -12,20 +12,21 @@
 fv
 =================================================================*/
 .fv {position: relative; overflow: hidden;}
-.fv .wrapper {position: relative; max-width: 100%;}
+.fv .wrapper {position: relative; max-width: 960px; margin: auto;}
 .fv .swiper-slide a {display: block; line-height: 0;}
 .fv .swiper-slide a img {width: 100%; height: auto; display: block;}
 
 /* swiper-bundle.css が遅延/未読み込みでも正しく横並びになるよう保証 */
-.fv .swiper01 {overflow: hidden;}
+/* overflow: visible にすることで隣スライドが左右にはみ出して見える（PC カルーセル peek 効果） */
+/* 画面端のクリップは親の .fv { overflow: hidden } が担う */
+.fv .swiper01 {overflow: visible;}
 .fv .swiper-wrapper {display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; width: 100%; box-sizing: content-box; transition-property: transform;}
 .fv .swiper-slide {flex-shrink: 0; width: 100%;}
 
-/* PC：ナビボタンを画像内端に配置 */
 .swiper-button-prev,
-.swiper-rtl .swiper-button-next {width: 70px; height: 70px; left: 20px;}
+.swiper-rtl .swiper-button-next {width: 70px; height: 70px; left: -90px;}
 .swiper-button-next,
-.swiper-rtl .swiper-button-prev {width: 70px; height: 70px; right: 20px;}
+.swiper-rtl .swiper-button-prev {width: 70px; height: 70px; right: -90px;}
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {content: '' !important; display: block; width: 70px; height: 70px; background-size: cover; background-image: url('../img/common/icon-prev.png');}
 .swiper-button-next:after,
