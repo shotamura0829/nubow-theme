@@ -12,7 +12,7 @@
 fv
 =================================================================*/
 .fv {position: relative; overflow: hidden;}
-.fv .wrapper {position: relative; max-width: 960px; margin: auto;}
+.fv .wrapper {position: relative; max-width: 100%;}
 .fv .swiper-slide a {display: block; line-height: 0;}
 .fv .swiper-slide a img {width: 100%; height: auto; display: block;}
 
@@ -21,10 +21,11 @@ fv
 .fv .swiper-wrapper {display: flex !important; flex-direction: row !important; flex-wrap: nowrap !important; width: 100%; box-sizing: content-box; transition-property: transform;}
 .fv .swiper-slide {flex-shrink: 0; width: 100%;}
 
+/* PC：ナビボタンを画像内端に配置 */
 .swiper-button-prev,
-.swiper-rtl .swiper-button-next {width: 70px; height: 70px; left: -90px;}
+.swiper-rtl .swiper-button-next {width: 70px; height: 70px; left: 20px;}
 .swiper-button-next,
-.swiper-rtl .swiper-button-prev {width: 70px; height: 70px; right: -90px;}
+.swiper-rtl .swiper-button-prev {width: 70px; height: 70px; right: 20px;}
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {content: '' !important; display: block; width: 70px; height: 70px; background-size: cover; background-image: url('../img/common/icon-prev.png');}
 .swiper-button-next:after,
