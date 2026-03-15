@@ -742,6 +742,21 @@ add_action('template_redirect', function() {
 });
 
 /**
+ * SMTP メール送信設定
+ */
+add_action( 'phpmailer_init', function( $phpmailer ) {
+	$phpmailer->isSMTP();
+	$phpmailer->Host       = 'wx110.wadax-sv.jp';
+	$phpmailer->SMTPAuth   = true;
+	$phpmailer->Port       = 587;
+	$phpmailer->SMTPSecure = 'tls';
+	$phpmailer->Username   = 'info@nubow.co.jp';
+	$phpmailer->Password   = 'v$82vP95z';
+	$phpmailer->From       = 'info@nubow.co.jp';
+	$phpmailer->FromName   = 'ヌボー生花店';
+} );
+
+/**
  * robots.txt カスタマイズ
  * 本番移行後: WordPress管理画面「設定 > 表示設定」の"検索エンジンをブロック"をOFFにすること
  */
