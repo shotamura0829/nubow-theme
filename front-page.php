@@ -9,10 +9,10 @@
 		<div class="swiper-wrapper">
 				<div class="swiper-slide">
 					<a href="https://nubow.jp/" target="_blank" rel="noopener noreferrer">
-						<picture>
-							<source srcset="<?php echo get_template_directory_uri(); ?>/img/top/fv01.webp" type="image/webp">
-							<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" alt="ヌボー生花店 オンラインショップ" fetchpriority="high" loading="eager">
-						</picture>
+					<picture>
+						<source srcset="<?php echo get_template_directory_uri(); ?>/img/top/fv01-1.webp" type="image/webp">
+						<img src="<?php echo get_template_directory_uri(); ?>/img/top/fv01-1.webp" alt="ヌボー生花店 オンラインショップ" fetchpriority="high" loading="eager">
+					</picture>
 					</a>
 				</div>
 				<div class="swiper-slide">
