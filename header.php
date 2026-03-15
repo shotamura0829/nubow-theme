@@ -11,7 +11,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,user-scalable=1">
 <meta name="format-detection" content="telephone=no">
-<title><?php bloginfo('name'); wp_title('|'); ?></title>
 
 <!-- 外部リソース事前接続（レンダリング高速化） -->
 <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
