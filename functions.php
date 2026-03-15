@@ -728,6 +728,9 @@ add_action('template_redirect', function() {
 
     // 旧事例一覧ページ
     '/case-list'                        => '/works',
+
+    // トップ固定ページの直接アクセスをホームへ
+    '/top'                              => '/',
   ];
 
   if ( isset( $redirects[ $path ] ) ) {
