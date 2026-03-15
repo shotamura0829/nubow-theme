@@ -724,6 +724,9 @@ add_action('template_redirect', function() {
     '/faq_list/order'                   => '/faq',
     '/faq_list/other'                   => '/faq',
     '/faq_list/payment'                 => '/faq',
+
+    // 旧事例一覧ページ
+    '/case-list'                        => '/works',
   ];
 
   if ( isset( $redirects[ $path ] ) ) {
