@@ -1,0 +1,30 @@
+# 本番（nubow.co.jp）への手動デプロイ
+# GitHub Actions の「Run workflow」ボタンから手動実行のみ
+# dev で確認済みのコードを本番に反映する際に使用
+
+name: Deploy to nubow.co.jp (PRODUCTION)
+
+on:
+  workflow_dispatch:  # 手動実行のみ（自動デプロイなし）
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: FTP Deploy to nubow.co.jp (PRODUCTION)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: dev.nubow.co.jp
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: httpdocs/dev/wp-content/themes/nubow/
+          exclude: |
+            **/.git*
+            **/.DS_Store
+            **/node_modules/**
+            **/README*
+            **/sync_fix*
+            **/.cursor*
