@@ -27,8 +27,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="preload" as="image" href="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" fetchpriority="high">
 <?php endif; ?>
 
-<?php if (
+<?php
+$_swiper_path = trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/');
+if (
 	is_front_page() ||
+	is_home() ||
+	$_swiper_path === '' ||
 	is_page_template( 'page-service-list-detail.php' ) ||
 	is_page_template( 'page-celebration-plants.php' )
 ) : ?>
