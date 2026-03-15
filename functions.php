@@ -746,12 +746,12 @@ add_action('template_redirect', function() {
  */
 add_action( 'phpmailer_init', function( $phpmailer ) {
 	$phpmailer->isSMTP();
-	$phpmailer->Host       = 'wx110.wadax-sv.jp';
+	$phpmailer->Host       = defined('SMTP_HOST') ? SMTP_HOST : 'wx110.wadax-sv.jp';
 	$phpmailer->SMTPAuth   = true;
 	$phpmailer->Port       = 587;
 	$phpmailer->SMTPSecure = 'tls';
-	$phpmailer->Username   = 'info@nubow.co.jp';
-	$phpmailer->Password   = 'v$82vP95z';
+	$phpmailer->Username   = defined('SMTP_USER') ? SMTP_USER : 'info@nubow.co.jp';
+	$phpmailer->Password   = defined('SMTP_PASS') ? SMTP_PASS : '';
 	$phpmailer->From       = 'info@nubow.co.jp';
 	$phpmailer->FromName   = 'ヌボー生花店';
 } );
