@@ -1,10 +1,11 @@
 <?php
 /**
  * works投稿のアイキャッチ自動設定スクリプト（一時利用・実行後削除）
- * アクセス: https://dev.nubow.co.jp/wp-content/themes/nubow/set-works-thumbnails.php?run=1
+ * アクセス: https://nubow.co.jp/dev/wp-content/themes/nubow/set-works-thumbnails.php?run=1
+ * ファイルが存在すればメディアライブラリに登録してからアイキャッチに設定する
  */
 @ini_set( 'memory_limit', '512M' );
-@ini_set( 'max_execution_time', '300' );
+@ini_set( 'max_execution_time', '600' );
 
 require_once( dirname( __FILE__ ) . '/../../../wp-load.php' );
 
@@ -16,6 +17,10 @@ if ( ! isset( $_GET['run'] ) ) {
     echo '<p>実行: <a href="?run=1">?run=1</a></p>';
     exit;
 }
+
+require_once( ABSPATH . 'wp-admin/includes/image.php' );
+require_once( ABSPATH . 'wp-admin/includes/file.php' );
+require_once( ABSPATH . 'wp-admin/includes/media.php' );
 
 if ( ob_get_level() ) { ob_end_clean(); }
 header( 'Content-Type: text/html; charset=utf-8' );
@@ -43,6 +48,7 @@ $total        = count( $posts );
 $set_count    = 0;
 $no_img_count = 0;
 $not_found    = 0;
+$registered   = 0;
 $i            = 0;
 
 echo "対象件数（アイキャッチなし）: {$total}件\n\n";
@@ -77,18 +83,60 @@ foreach ( $posts as $post ) {
         )
     );
 
+    // メディアライブラリ未登録の場合、ファイルから登録を試みる
     if ( ! $attachment_id ) {
-        $not_found++;
-        echo "  → NOT FOUND（メディアライブラリに未登録）\n";
-        echo "  → 元URL: {$image_url}\n\n";
-        flush();
-        continue;
+        // uploads フォルダ内でファイルを探す
+        $upload_dir = wp_upload_dir();
+        $found_file = '';
+
+        // URLのパスからuploadsディレクトリ以降を取得
+        $url_path = parse_url( $image_url, PHP_URL_PATH );
+        // /dev/wp-content/uploads/ or /wp-content/uploads/ に対応
+        if ( preg_match( '#wp-content/uploads/(.+)$#', $url_path, $up ) ) {
+            $rel_path   = $up[1];
+            $found_file = trailingslashit( $upload_dir['basedir'] ) . $rel_path;
+        }
+
+        if ( $found_file && file_exists( $found_file ) ) {
+            echo "  → ファイル発見: {$found_file}\n";
+            echo "  → メディアライブラリに登録中...\n";
+            flush();
+
+            $filetype  = wp_check_filetype( $found_file );
+            $attach    = [
+                'guid'           => trailingslashit( $upload_dir['baseurl'] ) . $rel_path,
+                'post_mime_type' => $filetype['type'],
+                'post_title'     => sanitize_file_name( pathinfo( $found_file, PATHINFO_FILENAME ) ),
+                'post_content'   => '',
+                'post_status'    => 'inherit',
+            ];
+
+            $attachment_id = wp_insert_attachment( $attach, $found_file, $post->ID );
+
+            if ( ! is_wp_error( $attachment_id ) && $attachment_id ) {
+                $attach_data = wp_generate_attachment_metadata( $attachment_id, $found_file );
+                wp_update_attachment_metadata( $attachment_id, $attach_data );
+                $registered++;
+                echo "  → メディア登録完了（ID:{$attachment_id}）\n";
+            } else {
+                $not_found++;
+                echo "  → メディア登録失敗\n\n";
+                flush();
+                continue;
+            }
+        } else {
+            $not_found++;
+            echo "  → ファイル未発見（アップロードフォルダに存在しない）\n";
+            echo "  → 元URL: {$image_url}\n\n";
+            flush();
+            continue;
+        }
     }
 
     echo "  → メディアID:{$attachment_id} 発見\n";
     flush();
 
-    // アイキャッチを直接postmetaに書き込み（set_post_thumbnailと同等）
+    // アイキャッチを直接postmetaに書き込み
     $result = $wpdb->replace(
         $wpdb->postmeta,
         [
@@ -100,7 +148,6 @@ foreach ( $posts as $post ) {
     );
 
     if ( $result !== false ) {
-        // オブジェクトキャッシュをクリア
         clean_post_cache( $post->ID );
         $set_count++;
         echo "  → OK（アイキャッチ設定完了）\n\n";
@@ -112,5 +159,5 @@ foreach ( $posts as $post ) {
 
 echo "========================================\n";
 echo "完了: {$total}件対象\n";
-echo "  設定:{$set_count}件 / 画像なし:{$no_img_count}件 / ライブラリ未登録:{$not_found}件\n";
+echo "  設定:{$set_count}件 / メディア新規登録:{$registered}件 / 画像なし:{$no_img_count}件 / ファイル未発見:{$not_found}件\n";
 echo '</pre>';
