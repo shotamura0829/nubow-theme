@@ -23,7 +23,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/images/common/apple-touch-icon.png" sizes="152x152">
 
 <?php if ( is_front_page() ) : ?>
-<link rel="preload" as="image" href="<?php echo get_template_directory_uri(); ?>/img/top/fv01.jpg" fetchpriority="high">
+<link rel="preload" as="image" href="<?php echo get_template_directory_uri(); ?>/img/top/fv01-1.webp" fetchpriority="high" type="image/webp">
 <?php endif; ?>
 
 <?php
