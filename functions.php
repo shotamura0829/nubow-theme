@@ -769,6 +769,7 @@ add_filter( 'robots_txt', function( $output, $public ) {
     $output  = "User-agent: *\n";
     $output .= "Disallow: /wp-admin/\n";
     $output .= "Disallow: /wp-includes/\n";
+    $output .= "Disallow: /dev/\n";
     $output .= "Allow: /wp-admin/admin-ajax.php\n";
     $output .= "\n";
     $output .= "Sitemap: " . home_url( '/sitemap_index.xml' ) . "\n";
