@@ -20,7 +20,7 @@ jobs:
           server: dev.nubow.co.jp
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: nubow.co.jp/httpdocs/dev/wp-content/themes/nubow/
+          server-dir: httpdocs/dev/wp-content/themes/nubow/
           exclude: |
             **/.git*
             **/.DS_Store
