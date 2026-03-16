@@ -82,7 +82,7 @@
 						</p>
 						<p>「花屋さんの力になりたい、業界を活性化させたい」という強い想いから、2025年1月に花屋専門の経営コンサルティング会社を設立。長年培った経営ノウハウを全国の仲間に共有し、業界全体の持続可能な発展を支援しています。</p>
 						<div class="activity-logo">
-							<a href="#" class="activity-link" target="_blank" rel="noopener noreferrer">公式サイトはこちら</a>
+							<a href="https://hanayanomikata.com/" class="activity-link" target="_blank" rel="noopener noreferrer">公式サイトはこちら</a>
 						</div>
 					</div>
 				</div>
