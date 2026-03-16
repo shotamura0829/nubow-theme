@@ -845,9 +845,9 @@ get_header();
 							</div>
 						</div>
 						<div class="item">
-							<img src="<?php echo $funeral_img; ?>funeral-flower-image03.webp" alt="アレンジメント花（洋花Mサイズ）">
-							<h5>
-								<span class="name">アレンジメント花（洋花Mサイズ）</span>
+						<img src="<?php echo $funeral_img; ?>funeral-flower-image03.webp" alt="アレンジメント花（洋花LLサイズ）">
+						<h5>
+							<span class="name">アレンジメント花（洋花LLサイズ）</span>
 								<span class="price">¥14,300円<span class="tax">（税込）</span></span>
 							</h5>
 							<div class="size">
@@ -867,9 +867,9 @@ get_header();
 							</div>
 						</div>
 						<div class="item">
-							<img src="<?php echo $funeral_img; ?>funeral-flower-image05.webp" alt="アレンジメント花（和花Lサイズ）">
-							<h5>
-								<span class="name">アレンジメント花（和花Lサイズ）</span>
+						<img src="<?php echo $funeral_img; ?>funeral-flower-image05.webp" alt="アレンジメント花（和花LLサイズ）">
+						<h5>
+							<span class="name">アレンジメント花（和花LLサイズ）</span>
 								<span class="price">¥14,300円<span class="tax">（税込）</span></span>
 							</h5>
 							<div class="size">
