@@ -8,10 +8,10 @@
 				</a>
 			</div>
 			<div class="box reserve">
-				<a href="<?php echo home_url('/'); ?>online-shop">
-					<img src="<?php echo get_template_directory_uri(); ?>/img/nubow-cta/reserve.png" alt="店舗への来店予約">
-					<span>店舗への来店予約はこちら</span>
-				</a>
+			<a href="<?php echo home_url('/'); ?>reservation">
+				<img src="<?php echo get_template_directory_uri(); ?>/img/nubow-cta/reserve.png" alt="店舗への来店予約">
+				<span>店舗への来店予約はこちら</span>
+			</a>
 			</div>
 		</div>
 	</section>
